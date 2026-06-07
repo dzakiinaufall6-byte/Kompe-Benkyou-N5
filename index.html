@@ -1,0 +1,4274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT N5 Study — にほんご</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="jp-title">日本語 N5</div>
+    <div class="sub">JLPT Study Guide</div>
+  </div>
+  <div class="sidebar-progress">
+    <div class="prog-label">Progress Belajar</div>
+    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="main-prog-fill"></div></div>
+    <div class="prog-pct" id="main-prog-pct">15% selesai</div>
+  </div>
+  <div class="sidebar-stats">
+    <div class="sidebar-stat-box">
+      <div class="ss-val"><span class="streak-fire">🔥</span><span id="sb-streak">0</span></div>
+      <div class="ss-label">Streak</div>
+    </div>
+    <div class="sidebar-stat-box">
+      <div class="ss-val" id="sb-timer">0j</div>
+      <div class="ss-label">Total Belajar</div>
+    </div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Menu Utama</div>
+    <div class="nav-item active" onclick="goPage('home')">
+      <span class="nav-icon">🏠</span> Beranda
+    </div>
+    <div class="nav-item" onclick="goPage('hiragana')">
+      <span class="nav-icon">あ</span> Hiragana
+      <span class="nav-badge">46</span>
+    </div>
+    <div class="nav-item" onclick="goPage('katakana')">
+      <span class="nav-icon">ア</span> Katakana
+      <span class="nav-badge">46</span>
+    </div>
+    <div class="nav-item" onclick="goPage('kanji')">
+      <span class="nav-icon">漢</span> Kanji N5
+      <span class="nav-badge">80</span>
+    </div>
+    <div class="nav-item" onclick="goPage('vocab')">
+      <span class="nav-icon">📚</span> Kosakata
+      <span class="nav-badge">800</span>
+    </div>
+    <div class="nav-item" onclick="goPage('grammar')">
+      <span class="nav-icon">📝</span> Tata Bahasa
+      <span class="nav-badge">30</span>
+    </div>
+    <div class="nav-item" onclick="goPage('flashcard')">
+      <span class="nav-icon">🃏</span> Flashcard Kanji
+      <span class="nav-badge">80</span>
+    </div>
+    <div class="nav-item" onclick="goPage('minna')">
+      <span class="nav-icon">📗</span> Minna no Nihongo
+      <span class="nav-badge">25 bab</span>
+    </div>
+    <div class="nav-item" onclick="goPage('minna-flash')">
+      <span class="nav-icon">🃏</span> Flashcard Minna
+      <span class="nav-badge">25 bab</span>
+    </div>
+    <div class="nav-item" onclick="goPage('dokkai')">
+      <span class="nav-icon">📖</span> Dokkai N5
+      <span class="nav-badge">10 soal</span>
+    </div>
+    <div class="nav-item" onclick="goPage('choukai')">
+      <span class="nav-icon">🎧</span> Choukai N5
+      <span class="nav-badge">10 video</span>
+    </div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Latihan</div>
+    <div class="nav-item" onclick="goPage('quiz')">
+      <span class="nav-icon">🎯</span> Kuis
+    </div>
+    <div class="nav-item" onclick="goPage('tips')">
+      <span class="nav-icon">💡</span> Tips Belajar
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+  <div class="topbar">
+    <div style="display:flex; align-items:center">
+      <div class="mobile-menu-btn" onclick="toggleSidebar()">☰</div>
+      <span class="topbar-title" id="page-title">Beranda</span>
+      <span class="topbar-jp" id="page-jp">べんきょう</span>
+    </div>
+    <div class="topbar-right">
+      <div class="timer-pill" id="timer-pill" onclick="toggleTimer()" title="Klik untuk mulai/pause timer belajar">
+        <span class="timer-dot"></span>
+        <span id="timer-display">00:00</span>
+      </div>
+      <div class="date-badge" id="top-date"></div>
+    </div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="hero-banner">
+        <div class="hero-left">
+          <div class="hero-label">JLPT N5 — Juli 2025</div>
+          <h1>ようこそ！<br>Selamat Belajar</h1>
+          <p style="margin-top:6px">Persiapkan dirimu untuk ujian JLPT N5 dengan materi terstruktur, mulai dari Hiragana sampai Tata Bahasa.</p>
+        </div>
+        <div class="countdown-box">
+          <div class="days" id="countdown-days">—</div>
+          <div class="days-label">Hari Lagi</div>
+          <div class="exam-date">Ujian: Juli 2025</div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Hiragana</div>
+          <div class="stat-val">46</div>
+          <div class="stat-sub">karakter dasar</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Kanji N5</div>
+          <div class="stat-val">80</div>
+          <div class="stat-sub">kanji wajib</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Kosakata</div>
+          <div class="stat-val">800</div>
+          <div class="stat-sub">kata penting</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pola Bahasa</div>
+          <div class="stat-val">30</div>
+          <div class="stat-sub">tata bahasa</div>
+        </div>
+      </div>
+
+      <!-- Streak & Timer cards -->
+      <div class="stats-grid" style="margin-bottom:1.5rem">
+        <div class="stat-card" style="border-left:4px solid #E8A020; grid-column: span 2;">
+          <div class="stat-label">🔥 Streak Belajar</div>
+          <div style="display:flex;align-items:baseline;gap:8px">
+            <div class="stat-val" id="home-streak">0</div>
+            <div class="stat-sub">hari berturut-turut</div>
+          </div>
+          <div class="stat-sub" style="margin-top:6px" id="home-streak-msg">Buka website ini setiap hari untuk menjaga streak!</div>
+        </div>
+        <div class="stat-card" style="border-left:4px solid var(--indigo); grid-column: span 2;">
+          <div class="stat-label">⏱ Total Waktu Belajar</div>
+          <div style="display:flex;align-items:baseline;gap:8px">
+            <div class="stat-val" id="home-total-time">0m</div>
+            <div class="stat-sub">di website ini</div>
+          </div>
+          <div class="stat-sub" style="margin-top:6px">Klik tombol ▶ di topbar untuk mulai/pause timer sesi belajar.</div>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-icon">💡</div>
+        <div class="tip-text"><strong>Tips hari ini:</strong> Mulai dengan hafal Hiragana & Katakana dulu sebelum masuk Kanji. Minimal 30 menit per hari sudah cukup untuk JLPT N5 dalam 3 bulan!</div>
+      </div>
+
+      <div class="section-header">
+        <div><h2>Menu Materi</h2><span class="jp">もくじ</span></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card red" onclick="goPage('hiragana')">
+          <span class="card-count">46 karakter</span>
+          <span class="card-emoji">あ</span>
+          <div class="jp-sub">ひらがな</div>
+          <h3>Hiragana</h3>
+          <p>Aksara dasar bahasa Jepang. Wajib dihafal pertama kali.</p>
+        </div>
+        <div class="menu-card indigo" onclick="goPage('katakana')">
+          <span class="card-count">46 karakter</span>
+          <span class="card-emoji">ア</span>
+          <div class="jp-sub">カタカナ</div>
+          <h3>Katakana</h3>
+          <p>Digunakan untuk kata serapan asing & penekanan.</p>
+        </div>
+        <div class="menu-card gold" onclick="goPage('kanji')">
+          <span class="card-count">80 kanji</span>
+          <span class="card-emoji">漢</span>
+          <div class="jp-sub">かんじ</div>
+          <h3>Kanji N5</h3>
+          <p>80 kanji dasar yang wajib dikuasai untuk N5.</p>
+        </div>
+        <div class="menu-card green" onclick="goPage('vocab')">
+          <span class="card-count">800 kata</span>
+          <span class="card-emoji">📖</span>
+          <div class="jp-sub">ごい</div>
+          <h3>Kosakata</h3>
+          <p>Daftar kosakata paling sering keluar di ujian N5.</p>
+        </div>
+        <div class="menu-card teal" onclick="goPage('grammar')">
+          <span class="card-count">30 pola</span>
+          <span class="card-emoji">✍️</span>
+          <div class="jp-sub">ぶんぽう</div>
+          <h3>Tata Bahasa</h3>
+          <p>Pola kalimat dasar N5 lengkap dengan contoh.</p>
+        </div>
+        <div class="menu-card purple" onclick="goPage('quiz')">
+          <span class="card-count">latihan soal</span>
+          <span class="card-emoji">🎯</span>
+          <div class="jp-sub">れんしゅう</div>
+          <h3>Kuis</h3>
+          <p>Uji pemahamanmu dengan kuis interaktif pilihan ganda.</p>
+        </div>
+        <div class="menu-card" style="border-top:3px solid #C0392B;" onclick="goPage('flashcard')">
+          <span class="card-count">80 kanji</span>
+          <span class="card-emoji">🃏</span>
+          <div class="jp-sub">フラッシュカード</div>
+          <h3>Flashcard Kanji</h3>
+          <p>Hafal kanji dengan metode flip card — klik untuk balik kartu!</p>
+        </div>
+        <div class="menu-card" style="border-top:3px solid #E07B39; grid-column: span 3;" onclick="goPage('minna')">
+          <span class="card-count">Bab 1–25</span>
+          <span class="card-emoji">📗</span>
+          <div class="jp-sub">みんなの日本語</div>
+          <h3>Minna no Nihongo 1</h3>
+          <p>Materi lengkap buku みんなの日本語 1 — pola kalimat, kosakata, dan contoh percakapan dari Bab 1 sampai Bab 25.</p>
+        </div>
+        <div class="menu-card" style="border-top:3px solid #7C3AED; grid-column: span 3;" onclick="goPage('minna-flash')">
+          <span class="card-count">Bab 1–25</span>
+          <span class="card-emoji">🃏</span>
+          <div class="jp-sub">フラッシュカード</div>
+          <h3>Flashcard Minna no Nihongo</h3>
+          <p>Flashcard interaktif berbasis materi みんなの日本語 1 — latih kosakata tiap bab dengan kartu bolak-balik 3D!</p>
+        </div>
+        <div class="menu-card" style="border-top:3px solid #0891B2; grid-column: span 3;" onclick="goPage('dokkai')">
+          <span class="card-count">10 teks latihan</span>
+          <span class="card-emoji">📖</span>
+          <div class="jp-sub">どっかい</div>
+          <h3>Dokkai JLPT N5</h3>
+          <p>Latihan membaca teks bahasa Jepang level N5 — lengkap soal pilihan ganda dan pembahasan jawaban.</p>
+        </div>
+        <div class="menu-card" style="border-top:3px solid #7C3AED; grid-column: span 3;" onclick="goPage('choukai')">
+          <span class="card-count">10 video latihan</span>
+          <span class="card-emoji">🎧</span>
+          <div class="jp-sub">ちょうかい</div>
+          <h3>Choukai JLPT N5</h3>
+          <p>Latihan mendengar (聴解) JLPT N5 — tonton video, jawab soal pilihan ganda, dan cek jawabanmu!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIRAGANA -->
+    <div class="page" id="page-hiragana">
+      <div class="tip-card">
+        <div class="tip-icon">📌</div>
+        <div class="tip-text">Klik pada karakter untuk menandainya sebagai <strong>sudah hafal</strong> (hijau). Hafalkan baris per baris, mulai dari vokal あいうえお.</div>
+      </div>
+      <div class="kana-toolbar" id="hiragana-toolbar"></div>
+      <div class="kana-table-wrap">
+        <table class="kana-table" id="hiragana-table"></table>
+      </div>
+    </div>
+
+    <!-- KATAKANA -->
+    <div class="page" id="page-katakana">
+      <div class="tip-card">
+        <div class="tip-icon">📌</div>
+        <div class="tip-text">Katakana mirip bentuknya dengan Hiragana. Fokus pada perbedaan bentuk yang sering tertukar: シ/ツ dan ソ/ン.</div>
+      </div>
+      <div class="kana-toolbar" id="katakana-toolbar"></div>
+      <div class="kana-table-wrap">
+        <table class="kana-table" id="katakana-table"></table>
+      </div>
+    </div>
+
+    <!-- KANJI -->
+    <div class="page" id="page-kanji">
+      <div class="tip-card">
+        <div class="tip-icon">🖊️</div>
+        <div class="tip-text">Klik kanji untuk melihat detail lengkap. Tandai sebagai <strong>sudah hafal</strong> setelah kamu bisa baca dan tulis dengan benar.</div>
+      </div>
+      <div class="kanji-grid" id="kanji-grid"></div>
+    </div>
+
+    <!-- VOCAB -->
+    <div class="page" id="page-vocab">
+      <div class="vocab-search">
+        <input type="text" id="vocab-search-input" placeholder="Cari kata dalam bahasa Jepang atau Indonesia...">
+        <select id="vocab-cat-filter">
+          <option value="">Semua Kategori</option>
+          <option value="Nomina">Nomina (Kata Benda)</option>
+          <option value="Verba">Verba (Kata Kerja)</option>
+          <option value="Adjektiva">Adjektiva</option>
+          <option value="Adverbia">Adverbia</option>
+          <option value="Ungkapan">Ungkapan</option>
+        </select>
+      </div>
+      <div class="vocab-list" id="vocab-list"></div>
+    </div>
+
+    <!-- GRAMMAR -->
+    <div class="page" id="page-grammar">
+      <div class="tip-card">
+        <div class="tip-icon">📐</div>
+        <div class="tip-text">Pahami pola kalimat, bukan hanya hafal. Klik tiap pola untuk melihat contoh kalimat lengkap beserta transliterasi.</div>
+      </div>
+      <div class="grammar-list" id="grammar-list"></div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="page" id="page-quiz">
+      <div class="quiz-config">
+        <div class="field">
+          <label>Kategori</label>
+          <select id="quiz-cat">
+            <option value="hiragana">Hiragana</option>
+            <option value="katakana">Katakana</option>
+            <option value="vocab">Kosakata</option>
+            <option value="kanji">Kanji</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Jumlah Soal</label>
+          <select id="quiz-num">
+            <option value="10">10 soal</option>
+            <option value="20">20 soal</option>
+            <option value="30">30 soal</option>
+          </select>
+        </div>
+        <button class="btn-start" onclick="startQuiz()">▶ Mulai Kuis</button>
+      </div>
+      <div id="quiz-area">
+        <div class="quiz-progress">
+          <div class="quiz-prog-bar"><div class="quiz-prog-fill" id="q-prog"></div></div>
+          <span class="quiz-counter" id="q-counter">0/10</span>
+          <span class="quiz-score-badge" id="q-score">✓ 0</span>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-question-type" id="q-type"></div>
+          <div class="quiz-question-text" id="q-question"></div>
+          <div class="quiz-question-hint" id="q-hint"></div>
+        </div>
+        <div class="quiz-options" id="q-options"></div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-emoji" id="r-emoji">🎉</div>
+        <div class="result-title" id="r-title">Kuis Selesai!</div>
+        <div class="result-score" id="r-score"></div>
+        <div class="result-msg" id="r-msg"></div>
+        <button class="btn-retry" onclick="retryQuiz()">🔄 Coba Lagi</button>
+      </div>
+    </div>
+
+    <!-- FLASHCARD -->
+    <div class="page" id="page-flashcard">
+      <div class="tip-card">
+        <div class="tip-icon">🃏</div>
+        <div class="tip-text">Klik kartu untuk membalik dan melihat arti. Tekan <strong>Hafal ✓</strong> jika sudah tahu, atau <strong>Ulangi ✗</strong> jika perlu latihan lagi.</div>
+      </div>
+      <div class="fc-controls">
+        <select id="fc-mode" onchange="initFlashcard()">
+          <option value="all">Semua Kanji (80)</option>
+          <option value="unknown">Belum Hafal Saja</option>
+          <option value="number">Angka & Waktu</option>
+          <option value="nature">Alam & Tempat</option>
+          <option value="action">Kata Kerja</option>
+        </select>
+        <select id="fc-order" onchange="initFlashcard()">
+          <option value="shuffle">Acak</option>
+          <option value="order">Berurutan</option>
+        </select>
+        <span class="fc-counter-txt" id="fc-counter">0 / 0</span>
+      </div>
+
+      <div id="fc-main">
+        <div class="fc-scene" onclick="flipCard()" id="fc-scene">
+          <div class="fc-inner" id="fc-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-char" id="fc-char">一</div>
+              <div class="fc-hint">Klik untuk balik kartu</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-reading" id="fc-reading"></div>
+              <div class="fc-meaning" id="fc-meaning"></div>
+              <div class="fc-on" id="fc-on-kun"></div>
+              <div class="fc-example" id="fc-example"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-tap-hint" id="fc-tap-hint">👆 Klik kartu untuk melihat jawaban</div>
+
+        <div class="fc-actions fc-actions-hidden" id="fc-actions">
+          <button class="fc-btn again" onclick="fcAnswer(false)">✗ Ulangi</button>
+          <button class="fc-btn good" onclick="fcAnswer(true)">✓ Hafal</button>
+        </div>
+        <div style="text-align:center; display:none" id="fc-next-wrap">
+          <button class="fc-btn next" onclick="fcNext()">Kartu Berikutnya →</button>
+        </div>
+
+        <div class="fc-progress-row" id="fc-dots"></div>
+      </div>
+
+      <div class="fc-result" id="fc-result">
+        <div class="fc-result-emoji">🎉</div>
+        <div class="fc-result-title">Sesi Flashcard Selesai!</div>
+        <div class="fc-result-stats">
+          <div class="fc-result-stat green"><div class="rsv" id="fc-res-good">0</div><div class="rsl">Hafal</div></div>
+          <div class="fc-result-stat red"><div class="rsv" id="fc-res-bad">0</div><div class="rsl">Perlu Ulangi</div></div>
+        </div>
+        <button class="btn-fc-restart" onclick="initFlashcard()">🔄 Mulai Lagi</button>
+      </div>
+    </div>
+
+
+    <!-- MINNA NO NIHONGO -->
+    <div class="page" id="page-minna">
+      <div class="tip-card">
+        <div class="tip-icon">📗</div>
+        <div class="tip-text">Materi dari buku <strong>みんなの日本語 1</strong> — buku standar belajar bahasa Jepang yang digunakan di seluruh dunia. Pilih bab di bawah untuk mulai belajar!</div>
+      </div>
+
+      <!-- Tab navigasi bab -->
+      <div class="minna-tabs-wrap">
+        <div class="minna-tabs" id="minna-tabs"></div>
+      </div>
+
+      <!-- Konten tiap bab -->
+      <div id="minna-content"></div>
+    </div>
+
+    <!-- FLASHCARD MINNA NO NIHONGO -->
+    <div class="page" id="page-minna-flash">
+      <div class="tip-card">
+        <div class="tip-icon">🃏</div>
+        <div class="tip-text">Flashcard kosakata dari <strong>みんなの日本語 1</strong> — Bab 1–25. Pilih bab, klik kartu untuk balik, lalu nilai apakah sudah hafal atau perlu ulangi lagi.</div>
+      </div>
+      <div class="minna-fc-controls">
+        <div class="minna-fc-field">
+          <label>Bab</label>
+          <select id="minna-fc-bab" onchange="initMinnaFC()">
+          </select>
+        </div>
+        <div class="minna-fc-field">
+          <label>Urutan</label>
+          <select id="minna-fc-order" onchange="initMinnaFC()">
+            <option value="shuffle">Acak</option>
+            <option value="order">Berurutan</option>
+          </select>
+        </div>
+        <span class="fc-counter-txt" id="minna-fc-counter">0 / 0</span>
+      </div>
+
+      <div id="minna-fc-main">
+        <div class="fc-scene" onclick="flipMinnaCard()" id="minna-fc-scene">
+          <div class="fc-inner" id="minna-fc-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-char" id="minna-fc-front-text" style="font-size:36px;line-height:1.3;padding:0 1rem;text-align:center"></div>
+              <div class="fc-hint">Klik untuk lihat arti</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-reading" id="minna-fc-reading"></div>
+              <div class="fc-meaning" id="minna-fc-meaning" style="font-size:20px"></div>
+              <div class="fc-on" id="minna-fc-cat"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-tap-hint" id="minna-fc-tap-hint">👆 Klik kartu untuk melihat jawaban</div>
+
+        <div class="fc-actions fc-actions-hidden" id="minna-fc-actions">
+          <button class="fc-btn again" onclick="minnaFCAnswer(false)">✗ Ulangi</button>
+          <button class="fc-btn good" onclick="minnaFCAnswer(true)">✓ Hafal</button>
+        </div>
+        <div style="text-align:center;display:none" id="minna-fc-next-wrap">
+          <button class="fc-btn next" onclick="minnaFCNext()">Kartu Berikutnya →</button>
+        </div>
+
+        <div class="fc-progress-row" id="minna-fc-dots"></div>
+      </div>
+
+      <div class="fc-result" id="minna-fc-result">
+        <div class="fc-result-emoji">🎉</div>
+        <div class="fc-result-title">Sesi Selesai!</div>
+        <div class="fc-result-stats">
+          <div class="fc-result-stat green"><div class="rsv" id="minna-fc-res-good">0</div><div class="rsl">Hafal</div></div>
+          <div class="fc-result-stat red"><div class="rsv" id="minna-fc-res-bad">0</div><div class="rsl">Ulangi</div></div>
+        </div>
+        <button class="btn-fc-restart" onclick="initMinnaFC()">🔄 Mulai Lagi</button>
+      </div>
+    </div>
+
+    <!-- DOKKAI JLPT N5 -->
+    <div class="page" id="page-dokkai">
+      <div class="tip-card" style="background:#EFF8FB;border-color:rgba(8,145,178,0.2);">
+        <div class="tip-icon">📖</div>
+        <div class="tip-text" style="color:#0891B2">Latihan <strong>membaca (読解 Dokkai)</strong> JLPT N5 — baca teks bahasa Jepang lalu jawab pertanyaan. Klik <strong>Periksa Jawaban</strong> setelah selesai untuk melihat skor dan pembahasan.</div>
+      </div>
+      <div class="dokkai-tabs" id="dokkai-tabs"></div>
+      <div id="dokkai-content-area"></div>
+    </div>
+
+    <!-- CHOUKAI JLPT N5 -->
+    <div class="page" id="page-choukai">
+      <div class="tip-card" style="background:#F3EFFF;border-color:rgba(124,58,237,0.2);">
+        <div class="tip-icon">🎧</div>
+        <div class="tip-text" style="color:#4C1D95">Latihan <strong>mendengar (聴解 Choukai)</strong> JLPT N5 — tonton video dari playlist resmi, lalu jawab soal pilihan ganda. Klik <strong>Periksa Jawaban</strong> untuk melihat skor dan pembahasan.</div>
+      </div>
+      <div class="choukai-tabs" id="choukai-tabs"></div>
+      <div id="choukai-content-area"></div>
+    </div>
+    <!-- TIPS -->
+    <div class="page" id="page-tips">
+      <div class="tips-grid">
+        <div class="tip-full-card" style="grid-column: span 2;">
+          <div class="tip-tag">Jadwal Belajar</div>
+          <span class="tip-icon-big">📅</span>
+          <h3>Rencana Belajar 3 Bulan Menuju JLPT N5</h3>
+          <table class="schedule-table">
+            <tr><th>Minggu</th><th>Fokus</th><th>Target</th></tr>
+            <tr><td><span class="time-dot"></span>1–2</td><td>Hiragana & Katakana</td><td>Hafal semua 92 karakter</td></tr>
+            <tr><td><span class="time-dot" style="background:var(--red)"></span>3–4</td><td>Kanji N5 (bagian 1)</td><td>40 kanji pertama</td></tr>
+            <tr><td><span class="time-dot" style="background:var(--gold)"></span>5–6</td><td>Kanji N5 (bagian 2) + Kosakata</td><td>40 kanji sisanya + 200 kata</td></tr>
+            <tr><td><span class="time-dot" style="background:var(--green)"></span>7–8</td><td>Tata Bahasa N5</td><td>Semua 30 pola kalimat</td></tr>
+            <tr><td><span class="time-dot" style="background:#2E7D7D"></span>9–10</td><td>Kosakata intensif</td><td>400 kata lagi</td></tr>
+            <tr><td><span class="time-dot" style="background:#6B3FA0"></span>11–12</td><td>Review + Latihan Soal</td><td>Simulasi ujian penuh</td></tr>
+          </table>
+        </div>
+        <div class="tip-full-card">
+          <div class="tip-tag">Teknik Hafalan</div>
+          <span class="tip-icon-big">🧠</span>
+          <h3>Spaced Repetition</h3>
+          <div class="tip-body">Ulang materi yang hampir terlupakan, bukan yang sudah dihapal. Interval: ulang di hari ke-1, 3, 7, 14, 30. Gunakan aplikasi seperti Anki untuk otomatisasi.</div>
+        </div>
+        <div class="tip-full-card">
+          <div class="tip-tag">Listening</div>
+          <span class="tip-icon-big">🎧</span>
+          <h3>Biasakan Dengar Bahasa Jepang</h3>
+          <div class="tip-body">Tonton anime dengan subtitle Jepang, atau dengarkan podcast seperti JapanesePod101. Minimal 15 menit per hari untuk melatih telinga.</div>
+        </div>
+        <div class="tip-full-card">
+          <div class="tip-tag">Menulis</div>
+          <span class="tip-icon-big">✍️</span>
+          <h3>Tulis, Jangan Hanya Baca</h3>
+          <div class="tip-body">Menulis karakter secara manual jauh lebih efektif daripada hanya membaca. Gunakan grid kanji khusus (方眼紙) dan tulis setiap karakter minimal 10 kali.</div>
+        </div>
+        <div class="tip-full-card">
+          <div class="tip-tag">Kosakata</div>
+          <span class="tip-icon-big">📗</span>
+          <h3>Pelajari Kata dalam Konteks</h3>
+          <div class="tip-body">Jangan hafal kata satu per satu. Pelajari dalam kalimat utuh. Contoh: bukan hafal kata 食べる saja, tapi latih pola kalimat 〜を食べます.</div>
+        </div>
+        <div class="tip-full-card">
+          <div class="tip-tag">Motivasi</div>
+          <span class="tip-icon-big">🌸</span>
+          <h3>Tetapkan Tujuan Kecil</h3>
+          <div class="tip-body">Pecah target besar menjadi kecil. "Hari ini hafal 5 kanji" lebih terasa achievable dari "hafal 80 kanji". Rayakan setiap pencapaian kecil!</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- KANJI MODAL -->
+<div class="kanji-modal-overlay" id="kanji-modal-overlay" onclick="closeKanjiModal(event)">
+  <div class="kanji-modal" id="kanji-modal">
+    <button class="modal-close" onclick="closeKanjiModal()">✕</button>
+    <span class="modal-kanji-char" id="modal-char"></span>
+    <div class="modal-meaning" id="modal-meaning"></div>
+    <div class="modal-row" id="modal-readings"></div>
+    <div class="modal-example" id="modal-example"></div>
+    <button class="modal-know-btn" id="modal-know-btn" onclick="toggleKanjiKnown()">✓ Tandai Sudah Hafal</button>
+  </div>
+</div>
+
+<div class="streak-toast" id="streak-toast"></div>
+
+<script>
+// ===== DATA =====
+
+const HIRAGANA = [
+  {row:'Vokal', chars:[{c:'あ',r:'a'},{c:'い',r:'i'},{c:'う',r:'u'},{c:'え',r:'e'},{c:'お',r:'o'}]},
+  {row:'K', chars:[{c:'か',r:'ka'},{c:'き',r:'ki'},{c:'く',r:'ku'},{c:'け',r:'ke'},{c:'こ',r:'ko'}]},
+  {row:'S', chars:[{c:'さ',r:'sa'},{c:'し',r:'shi'},{c:'す',r:'su'},{c:'せ',r:'se'},{c:'そ',r:'so'}]},
+  {row:'T', chars:[{c:'た',r:'ta'},{c:'ち',r:'chi'},{c:'つ',r:'tsu'},{c:'て',r:'te'},{c:'と',r:'to'}]},
+  {row:'N', chars:[{c:'な',r:'na'},{c:'に',r:'ni'},{c:'ぬ',r:'nu'},{c:'ね',r:'ne'},{c:'の',r:'no'}]},
+  {row:'H', chars:[{c:'は',r:'ha'},{c:'ひ',r:'hi'},{c:'ふ',r:'fu'},{c:'へ',r:'he'},{c:'ほ',r:'ho'}]},
+  {row:'M', chars:[{c:'ま',r:'ma'},{c:'み',r:'mi'},{c:'む',r:'mu'},{c:'め',r:'me'},{c:'も',r:'mo'}]},
+  {row:'Y', chars:[{c:'や',r:'ya'},{c:'',r:''},{c:'ゆ',r:'yu'},{c:'',r:''},{c:'よ',r:'yo'}]},
+  {row:'R', chars:[{c:'ら',r:'ra'},{c:'り',r:'ri'},{c:'る',r:'ru'},{c:'れ',r:'re'},{c:'ろ',r:'ro'}]},
+  {row:'W', chars:[{c:'わ',r:'wa'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'を',r:'wo'}]},
+  {row:'N', chars:[{c:'ん',r:'n'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'',r:''}]},
+  {row:'G', chars:[{c:'が',r:'ga'},{c:'ぎ',r:'gi'},{c:'ぐ',r:'gu'},{c:'げ',r:'ge'},{c:'ご',r:'go'}]},
+  {row:'Z', chars:[{c:'ざ',r:'za'},{c:'じ',r:'ji'},{c:'ず',r:'zu'},{c:'ぜ',r:'ze'},{c:'ぞ',r:'zo'}]},
+  {row:'D', chars:[{c:'だ',r:'da'},{c:'ぢ',r:'ji'},{c:'づ',r:'zu'},{c:'で',r:'de'},{c:'ど',r:'do'}]},
+  {row:'B', chars:[{c:'ば',r:'ba'},{c:'び',r:'bi'},{c:'ぶ',r:'bu'},{c:'べ',r:'be'},{c:'ぼ',r:'bo'}]},
+  {row:'P', chars:[{c:'ぱ',r:'pa'},{c:'ぴ',r:'pi'},{c:'ぷ',r:'pu'},{c:'ぺ',r:'pe'},{c:'ぽ',r:'po'}]},
+];
+
+const KATAKANA = [
+  {row:'Vokal', chars:[{c:'ア',r:'a'},{c:'イ',r:'i'},{c:'ウ',r:'u'},{c:'エ',r:'e'},{c:'オ',r:'o'}]},
+  {row:'K', chars:[{c:'カ',r:'ka'},{c:'キ',r:'ki'},{c:'ク',r:'ku'},{c:'ケ',r:'ke'},{c:'コ',r:'ko'}]},
+  {row:'S', chars:[{c:'サ',r:'sa'},{c:'シ',r:'shi'},{c:'ス',r:'su'},{c:'セ',r:'se'},{c:'ソ',r:'so'}]},
+  {row:'T', chars:[{c:'タ',r:'ta'},{c:'チ',r:'chi'},{c:'ツ',r:'tsu'},{c:'テ',r:'te'},{c:'ト',r:'to'}]},
+  {row:'N', chars:[{c:'ナ',r:'na'},{c:'ニ',r:'ni'},{c:'ヌ',r:'nu'},{c:'ネ',r:'ne'},{c:'ノ',r:'no'}]},
+  {row:'H', chars:[{c:'ハ',r:'ha'},{c:'ヒ',r:'hi'},{c:'フ',r:'fu'},{c:'ヘ',r:'he'},{c:'ホ',r:'ho'}]},
+  {row:'M', chars:[{c:'マ',r:'ma'},{c:'ミ',r:'mi'},{c:'ム',r:'mu'},{c:'メ',r:'me'},{c:'モ',r:'mo'}]},
+  {row:'Y', chars:[{c:'ヤ',r:'ya'},{c:'',r:''},{c:'ユ',r:'yu'},{c:'',r:''},{c:'ヨ',r:'yo'}]},
+  {row:'R', chars:[{c:'ラ',r:'ra'},{c:'リ',r:'ri'},{c:'ル',r:'ru'},{c:'レ',r:'re'},{c:'ロ',r:'ro'}]},
+  {row:'W', chars:[{c:'ワ',r:'wa'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'ヲ',r:'wo'}]},
+  {row:'N', chars:[{c:'ン',r:'n'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'',r:''}]},
+  {row:'G', chars:[{c:'ガ',r:'ga'},{c:'ギ',r:'gi'},{c:'グ',r:'gu'},{c:'ゲ',r:'ge'},{c:'ゴ',r:'go'}]},
+  {row:'Z', chars:[{c:'ザ',r:'za'},{c:'ジ',r:'ji'},{c:'ズ',r:'zu'},{c:'ゼ',r:'ze'},{c:'ゾ',r:'zo'}]},
+  {row:'B', chars:[{c:'バ',r:'ba'},{c:'ビ',r:'bi'},{c:'ブ',r:'bu'},{c:'ベ',r:'be'},{c:'ボ',r:'bo'}]},
+  {row:'P', chars:[{c:'パ',r:'pa'},{c:'ピ',r:'pi'},{c:'プ',r:'pu'},{c:'ペ',r:'pe'},{c:'ポ',r:'po'}]},
+];
+
+const KANJI_DATA = [
+  {c:'一',on:'イチ',kun:'ひと',m:'satu',s:1,ex:'一つ (hitotsu) — satu buah'},
+  {c:'二',on:'ニ',kun:'ふた',m:'dua',s:2,ex:'二つ (futatsu) — dua buah'},
+  {c:'三',on:'サン',kun:'みっ',m:'tiga',s:3,ex:'三つ (mittsu) — tiga buah'},
+  {c:'四',on:'シ',kun:'よっ',m:'empat',s:5,ex:'四月 (shigatsu) — April'},
+  {c:'五',on:'ゴ',kun:'いつ',m:'lima',s:4,ex:'五月 (gogatsu) — Mei'},
+  {c:'六',on:'ロク',kun:'むっ',m:'enam',s:4,ex:'六つ (muttsu) — enam buah'},
+  {c:'七',on:'シチ',kun:'なな',m:'tujuh',s:2,ex:'七月 (shichigatsu) — Juli'},
+  {c:'八',on:'ハチ',kun:'やっ',m:'delapan',s:2,ex:'八つ (yattsu) — delapan'},
+  {c:'九',on:'キュウ',kun:'ここの',m:'sembilan',s:2,ex:'九月 (kugatsu) — September'},
+  {c:'十',on:'ジュウ',kun:'とお',m:'sepuluh',s:2,ex:'十分 (juppun) — 10 menit'},
+  {c:'百',on:'ヒャク',kun:'—',m:'seratus',s:6,ex:'百円 (hyakuen) — 100 yen'},
+  {c:'千',on:'セン',kun:'ち',m:'seribu',s:3,ex:'千円 (senen) — 1000 yen'},
+  {c:'万',on:'マン',kun:'—',m:'sepuluh ribu',s:3,ex:'一万 (ichiman) — 10.000'},
+  {c:'円',on:'エン',kun:'まる',m:'yen/bulat',s:4,ex:'百円 (hyakuen) — 100 yen'},
+  {c:'日',on:'ニチ',kun:'ひ',m:'hari/matahari',s:4,ex:'今日 (kyou) — hari ini'},
+  {c:'月',on:'ゲツ',kun:'つき',m:'bulan',s:4,ex:'今月 (kongetsu) — bulan ini'},
+  {c:'年',on:'ネン',kun:'とし',m:'tahun',s:6,ex:'今年 (kotoshi) — tahun ini'},
+  {c:'時',on:'ジ',kun:'とき',m:'waktu/jam',s:10,ex:'何時 (nanji) — jam berapa'},
+  {c:'分',on:'フン',kun:'わか',m:'menit/bagian',s:4,ex:'五分 (gofun) — 5 menit'},
+  {c:'半',on:'ハン',kun:'なか',m:'setengah',s:5,ex:'半分 (hanbun) — setengah'},
+  {c:'人',on:'ジン',kun:'ひと',m:'orang/manusia',s:2,ex:'日本人 (nihonjin) — orang Jepang'},
+  {c:'子',on:'シ',kun:'こ',m:'anak',s:3,ex:'子供 (kodomo) — anak'},
+  {c:'女',on:'ジョ',kun:'おんな',m:'perempuan',s:3,ex:'女の子 (onnanoko) — anak perempuan'},
+  {c:'男',on:'ダン',kun:'おとこ',m:'laki-laki',s:7,ex:'男の子 (otokonoko) — anak laki-laki'},
+  {c:'山',on:'サン',kun:'やま',m:'gunung',s:3,ex:'富士山 (fujisan) — Gunung Fuji'},
+  {c:'川',on:'セン',kun:'かわ',m:'sungai',s:3,ex:'川 (kawa) — sungai'},
+  {c:'木',on:'モク',kun:'き',m:'pohon/kayu',s:4,ex:'木曜日 (mokuyoubi) — Kamis'},
+  {c:'水',on:'スイ',kun:'みず',m:'air',s:4,ex:'水曜日 (suiyoubi) — Rabu'},
+  {c:'火',on:'カ',kun:'ひ',m:'api',s:4,ex:'火曜日 (kayoubi) — Selasa'},
+  {c:'土',on:'ド',kun:'つち',m:'tanah',s:3,ex:'土曜日 (doyoubi) — Sabtu'},
+  {c:'金',on:'キン',kun:'かね',m:'emas/uang',s:8,ex:'金曜日 (kin-youbi) — Jumat'},
+  {c:'花',on:'カ',kun:'はな',m:'bunga',s:7,ex:'花見 (hanami) — melihat bunga'},
+  {c:'空',on:'クウ',kun:'そら',m:'langit',s:8,ex:'青空 (aozora) — langit biru'},
+  {c:'雨',on:'ウ',kun:'あめ',m:'hujan',s:8,ex:'大雨 (oame) — hujan lebat'},
+  {c:'電',on:'デン',kun:'—',m:'listrik',s:13,ex:'電話 (denwa) — telepon'},
+  {c:'車',on:'シャ',kun:'くるま',m:'kendaraan',s:7,ex:'自動車 (jidousha) — mobil'},
+  {c:'語',on:'ゴ',kun:'かた',m:'bahasa/kata',s:14,ex:'日本語 (nihongo) — bahasa Jepang'},
+  {c:'国',on:'コク',kun:'くに',m:'negara',s:8,ex:'外国 (gaikoku) — negara asing'},
+  {c:'学',on:'ガク',kun:'まな',m:'belajar',s:8,ex:'学生 (gakusei) — mahasiswa'},
+  {c:'校',on:'コウ',kun:'—',m:'sekolah',s:10,ex:'学校 (gakkou) — sekolah'},
+  {c:'先',on:'セン',kun:'さき',m:'sebelumnya/senior',s:6,ex:'先生 (sensei) — guru'},
+  {c:'生',on:'セイ',kun:'いき',m:'hidup/lahir',s:5,ex:'学生 (gakusei) — pelajar'},
+  {c:'大',on:'ダイ',kun:'おお',m:'besar',s:3,ex:'大学 (daigaku) — universitas'},
+  {c:'小',on:'ショウ',kun:'ちい',m:'kecil',s:3,ex:'小学校 (shougakkou) — SD'},
+  {c:'中',on:'チュウ',kun:'なか',m:'dalam/tengah',s:4,ex:'中学校 (chuugakkou) — SMP'},
+  {c:'上',on:'ジョウ',kun:'うえ',m:'atas',s:3,ex:'上手 (jouzu) — pintar/mahir'},
+  {c:'下',on:'カ',kun:'した',m:'bawah',s:3,ex:'地下 (chika) — bawah tanah'},
+  {c:'右',on:'ウ',kun:'みぎ',m:'kanan',s:5,ex:'右手 (migite) — tangan kanan'},
+  {c:'左',on:'サ',kun:'ひだり',m:'kiri',s:5,ex:'左手 (hidarite) — tangan kiri'},
+  {c:'口',on:'コウ',kun:'くち',m:'mulut',s:3,ex:'入口 (iriguchi) — pintu masuk'},
+  {c:'目',on:'モク',kun:'め',m:'mata',s:5,ex:'目薬 (megusuri) — obat tetes mata'},
+  {c:'耳',on:'ジ',kun:'みみ',m:'telinga',s:6,ex:'耳鼻科 (jibi-ka) — THT'},
+  {c:'手',on:'シュ',kun:'て',m:'tangan',s:4,ex:'手紙 (tegami) — surat'},
+  {c:'足',on:'ソク',kun:'あし',m:'kaki',s:7,ex:'足音 (ashioto) — suara langkah'},
+  {c:'本',on:'ホン',kun:'もと',m:'buku/asal',s:5,ex:'日本 (nihon) — Jepang'},
+  {c:'父',on:'フ',kun:'ちち',m:'ayah',s:4,ex:'お父さん (otousan) — Ayah'},
+  {c:'母',on:'ボ',kun:'はは',m:'ibu',s:5,ex:'お母さん (okaasan) — Ibu'},
+  {c:'友',on:'ユウ',kun:'とも',m:'teman',s:4,ex:'友達 (tomodachi) — teman'},
+  {c:'見',on:'ケン',kun:'みる',m:'melihat',s:7,ex:'見学 (kengaku) — studi wisata'},
+  {c:'聞',on:'ブン',kun:'きく',m:'mendengar',s:14,ex:'聞く (kiku) — mendengar'},
+  {c:'食',on:'ショク',kun:'たべる',m:'makan',s:9,ex:'食事 (shokuji) — makan (formal)'},
+  {c:'飲',on:'イン',kun:'のむ',m:'minum',s:12,ex:'飲物 (nomimono) — minuman'},
+  {c:'行',on:'コウ',kun:'いく',m:'pergi',s:6,ex:'旅行 (ryokou) — perjalanan'},
+  {c:'来',on:'ライ',kun:'くる',m:'datang',s:7,ex:'来年 (rainen) — tahun depan'},
+  {c:'出',on:'シュツ',kun:'でる',m:'keluar',s:5,ex:'出口 (deguchi) — pintu keluar'},
+  {c:'入',on:'ニュウ',kun:'はいる',m:'masuk',s:2,ex:'入口 (iriguchi) — pintu masuk'},
+  {c:'買',on:'バイ',kun:'かう',m:'membeli',s:12,ex:'買い物 (kaimono) — belanja'},
+  {c:'読',on:'ドク',kun:'よむ',m:'membaca',s:14,ex:'読書 (dokusho) — membaca buku'},
+  {c:'書',on:'ショ',kun:'かく',m:'menulis',s:10,ex:'書類 (shorui) — dokumen'},
+  {c:'話',on:'ワ',kun:'はなす',m:'berbicara',s:13,ex:'会話 (kaiwa) — percakapan'},
+  {c:'白',on:'ハク',kun:'しろ',m:'putih',s:5,ex:'白い (shiroi) — berwarna putih'},
+  {c:'黒',on:'コク',kun:'くろ',m:'hitam',s:11,ex:'黒い (kuroi) — berwarna hitam'},
+  {c:'赤',on:'セキ',kun:'あか',m:'merah',s:7,ex:'赤い (akai) — berwarna merah'},
+  {c:'青',on:'セイ',kun:'あお',m:'biru/hijau',s:8,ex:'青い (aoi) — berwarna biru'},
+  {c:'高',on:'コウ',kun:'たかい',m:'tinggi/mahal',s:10,ex:'高い (takai) — mahal'},
+  {c:'安',on:'アン',kun:'やすい',m:'murah/aman',s:6,ex:'安い (yasui) — murah'},
+  {c:'新',on:'シン',kun:'あたらしい',m:'baru',s:13,ex:'新聞 (shinbun) — koran'},
+  {c:'古',on:'コ',kun:'ふるい',m:'lama/kuno',s:5,ex:'古い (furui) — tua/lama'},
+  {c:'長',on:'チョウ',kun:'ながい',m:'panjang',s:8,ex:'長い (nagai) — panjang'},
+  {c:'何',on:'カ',kun:'なに',m:'apa/berapa',s:7,ex:'何時 (nanji) — jam berapa'},
+  {c:'今',on:'コン',kun:'いま',m:'sekarang',s:4,ex:'今日 (kyou) — hari ini'},
+  {c:'毎',on:'マイ',kun:'—',m:'setiap',s:6,ex:'毎日 (mainichi) — setiap hari'},
+];
+
+const VOCAB_DATA = [
+  {w:'私',r:'わたし (watashi)',m:'saya',cat:'Nomina'},
+  {w:'あなた',r:'anata',m:'kamu (formal)',cat:'Nomina'},
+  {w:'彼',r:'かれ (kare)',m:'dia (laki-laki)',cat:'Nomina'},
+  {w:'彼女',r:'かのじょ (kanojo)',m:'dia (perempuan)',cat:'Nomina'},
+  {w:'先生',r:'せんせい (sensei)',m:'guru / dokter',cat:'Nomina'},
+  {w:'学生',r:'がくせい (gakusei)',m:'pelajar / mahasiswa',cat:'Nomina'},
+  {w:'友達',r:'ともだち (tomodachi)',m:'teman',cat:'Nomina'},
+  {w:'家族',r:'かぞく (kazoku)',m:'keluarga',cat:'Nomina'},
+  {w:'お父さん',r:'おとうさん (otousan)',m:'ayah (sopan)',cat:'Nomina'},
+  {w:'お母さん',r:'おかあさん (okaasan)',m:'ibu (sopan)',cat:'Nomina'},
+  {w:'家',r:'いえ (ie)',m:'rumah',cat:'Nomina'},
+  {w:'学校',r:'がっこう (gakkou)',m:'sekolah',cat:'Nomina'},
+  {w:'大学',r:'だいがく (daigaku)',m:'universitas',cat:'Nomina'},
+  {w:'会社',r:'かいしゃ (kaisha)',m:'perusahaan',cat:'Nomina'},
+  {w:'駅',r:'えき (eki)',m:'stasiun kereta',cat:'Nomina'},
+  {w:'電車',r:'でんしゃ (densha)',m:'kereta listrik',cat:'Nomina'},
+  {w:'バス',r:'basu',m:'bus',cat:'Nomina'},
+  {w:'車',r:'くるま (kuruma)',m:'mobil',cat:'Nomina'},
+  {w:'飛行機',r:'ひこうき (hikouki)',m:'pesawat terbang',cat:'Nomina'},
+  {w:'食べ物',r:'たべもの (tabemono)',m:'makanan',cat:'Nomina'},
+  {w:'飲み物',r:'のみもの (nomimono)',m:'minuman',cat:'Nomina'},
+  {w:'水',r:'みず (mizu)',m:'air',cat:'Nomina'},
+  {w:'お茶',r:'おちゃ (ocha)',m:'teh',cat:'Nomina'},
+  {w:'ご飯',r:'ごはん (gohan)',m:'nasi / makan',cat:'Nomina'},
+  {w:'パン',r:'pan',m:'roti',cat:'Nomina'},
+  {w:'魚',r:'さかな (sakana)',m:'ikan',cat:'Nomina'},
+  {w:'肉',r:'にく (niku)',m:'daging',cat:'Nomina'},
+  {w:'野菜',r:'やさい (yasai)',m:'sayuran',cat:'Nomina'},
+  {w:'果物',r:'くだもの (kudamono)',m:'buah-buahan',cat:'Nomina'},
+  {w:'本',r:'ほん (hon)',m:'buku',cat:'Nomina'},
+  {w:'新聞',r:'しんぶん (shinbun)',m:'koran',cat:'Nomina'},
+  {w:'手紙',r:'てがみ (tegami)',m:'surat',cat:'Nomina'},
+  {w:'映画',r:'えいが (eiga)',m:'film',cat:'Nomina'},
+  {w:'音楽',r:'おんがく (ongaku)',m:'musik',cat:'Nomina'},
+  {w:'スポーツ',r:'supootsu',m:'olahraga',cat:'Nomina'},
+  {w:'天気',r:'てんき (tenki)',m:'cuaca',cat:'Nomina'},
+  {w:'時間',r:'じかん (jikan)',m:'waktu',cat:'Nomina'},
+  {w:'今日',r:'きょう (kyou)',m:'hari ini',cat:'Nomina'},
+  {w:'明日',r:'あした (ashita)',m:'besok',cat:'Nomina'},
+  {w:'昨日',r:'きのう (kinou)',m:'kemarin',cat:'Nomina'},
+  {w:'食べる',r:'たべる (taberu)',m:'makan',cat:'Verba'},
+  {w:'飲む',r:'のむ (nomu)',m:'minum',cat:'Verba'},
+  {w:'見る',r:'みる (miru)',m:'melihat / menonton',cat:'Verba'},
+  {w:'聞く',r:'きく (kiku)',m:'mendengar / bertanya',cat:'Verba'},
+  {w:'話す',r:'はなす (hanasu)',m:'berbicara',cat:'Verba'},
+  {w:'読む',r:'よむ (yomu)',m:'membaca',cat:'Verba'},
+  {w:'書く',r:'かく (kaku)',m:'menulis',cat:'Verba'},
+  {w:'行く',r:'いく (iku)',m:'pergi',cat:'Verba'},
+  {w:'来る',r:'くる (kuru)',m:'datang',cat:'Verba'},
+  {w:'帰る',r:'かえる (kaeru)',m:'pulang',cat:'Verba'},
+  {w:'買う',r:'かう (kau)',m:'membeli',cat:'Verba'},
+  {w:'売る',r:'うる (uru)',m:'menjual',cat:'Verba'},
+  {w:'起きる',r:'おきる (okiru)',m:'bangun tidur',cat:'Verba'},
+  {w:'寝る',r:'ねる (neru)',m:'tidur',cat:'Verba'},
+  {w:'働く',r:'はたらく (hataraku)',m:'bekerja',cat:'Verba'},
+  {w:'勉強する',r:'べんきょうする',m:'belajar',cat:'Verba'},
+  {w:'休む',r:'やすむ (yasumu)',m:'beristirahat',cat:'Verba'},
+  {w:'待つ',r:'まつ (matsu)',m:'menunggu',cat:'Verba'},
+  {w:'会う',r:'あう (au)',m:'bertemu',cat:'Verba'},
+  {w:'分かる',r:'わかる (wakaru)',m:'mengerti / paham',cat:'Verba'},
+  {w:'大きい',r:'おおきい (ookii)',m:'besar',cat:'Adjektiva'},
+  {w:'小さい',r:'ちいさい (chiisai)',m:'kecil',cat:'Adjektiva'},
+  {w:'高い',r:'たかい (takai)',m:'tinggi / mahal',cat:'Adjektiva'},
+  {w:'安い',r:'やすい (yasui)',m:'murah',cat:'Adjektiva'},
+  {w:'新しい',r:'あたらしい (atarashii)',m:'baru',cat:'Adjektiva'},
+  {w:'古い',r:'ふるい (furui)',m:'lama / tua',cat:'Adjektiva'},
+  {w:'良い',r:'いい (ii)',m:'bagus / baik',cat:'Adjektiva'},
+  {w:'悪い',r:'わるい (warui)',m:'buruk / jahat',cat:'Adjektiva'},
+  {w:'好き',r:'すき (suki)',m:'suka',cat:'Adjektiva'},
+  {w:'嫌い',r:'きらい (kirai)',m:'tidak suka',cat:'Adjektiva'},
+  {w:'暑い',r:'あつい (atsui)',m:'panas (cuaca)',cat:'Adjektiva'},
+  {w:'寒い',r:'さむい (samui)',m:'dingin (cuaca)',cat:'Adjektiva'},
+  {w:'とても',r:'totemo',m:'sangat',cat:'Adverbia'},
+  {w:'少し',r:'すこし (sukoshi)',m:'sedikit',cat:'Adverbia'},
+  {w:'もう',r:'mou',m:'sudah / lagi',cat:'Adverbia'},
+  {w:'まだ',r:'mada',m:'masih / belum',cat:'Adverbia'},
+  {w:'また',r:'mata',m:'lagi / sampai jumpa',cat:'Adverbia'},
+  {w:'すぐ',r:'sugu',m:'segera',cat:'Adverbia'},
+  {w:'よく',r:'yoku',m:'sering / baik-baik',cat:'Adverbia'},
+  {w:'時々',r:'ときどき (tokidoki)',m:'kadang-kadang',cat:'Adverbia'},
+  {w:'ありがとう',r:'arigatou',m:'terima kasih',cat:'Ungkapan'},
+  {w:'すみません',r:'sumimasen',m:'permisi / maaf',cat:'Ungkapan'},
+  {w:'おはよう',r:'ohayou',m:'selamat pagi',cat:'Ungkapan'},
+  {w:'こんにちは',r:'konnichiwa',m:'selamat siang / halo',cat:'Ungkapan'},
+  {w:'こんばんは',r:'konbanwa',m:'selamat malam',cat:'Ungkapan'},
+  {w:'さようなら',r:'sayounara',m:'selamat tinggal',cat:'Ungkapan'},
+  {w:'はじめまして',r:'hajimemashite',m:'senang berkenalan',cat:'Ungkapan'},
+  {w:'よろしく',r:'yoroshiku',m:'mohon bantuannya',cat:'Ungkapan'},
+];
+
+const GRAMMAR_DATA = [
+  {num:'01',pat:'〜は〜です',title:'Predikat Nomina (kalimat identifikasi)',desc:'Pola dasar bahasa Jepang. "wa" adalah partikel topik, "desu" adalah kopula sopan setara "adalah".',examples:[{jp:'私は学生です。',rom:'Watashi wa gakusei desu.',id:'Saya adalah seorang pelajar.'},{jp:'これは本です。',rom:'Kore wa hon desu.',id:'Ini adalah sebuah buku.'}]},
+  {num:'02',pat:'〜は〜ではありません',title:'Penyangkalan Nomina',desc:'Bentuk negatif dari 〜です. Digunakan untuk menyangkal identitas atau klasifikasi.',examples:[{jp:'私は先生ではありません。',rom:'Watashi wa sensei dewa arimasen.',id:'Saya bukan seorang guru.'},{jp:'これは車ではありません。',rom:'Kore wa kuruma dewa arimasen.',id:'Ini bukan mobil.'}]},
+  {num:'03',pat:'〜が〜あります / います',title:'Keberadaan Benda dan Makhluk Hidup',desc:'"Arimasu" untuk benda mati, "imasu" untuk makhluk hidup. Partikel "ga" menandai subjek.',examples:[{jp:'机の上に本があります。',rom:'Tsukue no ue ni hon ga arimasu.',id:'Di atas meja ada buku.'},{jp:'公園に犬がいます。',rom:'Kouen ni inu ga imasu.',id:'Di taman ada anjing.'}]},
+  {num:'04',pat:'〜を〜ます',title:'Objek Langsung dengan を',desc:'Partikel "wo/o" menandai objek langsung dari kata kerja. Digunakan sebelum kata kerja transitif.',examples:[{jp:'私はご飯を食べます。',rom:'Watashi wa gohan wo tabemasu.',id:'Saya makan nasi.'},{jp:'音楽を聞きます。',rom:'Ongaku wo kikimasu.',id:'(Saya) mendengarkan musik.'}]},
+  {num:'05',pat:'〜に〜行きます／来ます',title:'Tujuan Pergi / Datang',desc:'Partikel "ni" menandai tujuan perpindahan. Digunakan dengan kata kerja iku (pergi), kuru (datang), kaeru (pulang).',examples:[{jp:'学校に行きます。',rom:'Gakkou ni ikimasu.',id:'(Saya) pergi ke sekolah.'},{jp:'日本に来ました。',rom:'Nihon ni kimashita.',id:'(Saya) datang ke Jepang.'}]},
+  {num:'06',pat:'〜で〜します',title:'Tempat Melakukan Kegiatan',desc:'Partikel "de" menandai tempat di mana suatu aktivitas berlangsung.',examples:[{jp:'図書館で本を読みます。',rom:'Toshokan de hon wo yomimasu.',id:'(Saya) membaca buku di perpustakaan.'},{jp:'レストランで食べます。',rom:'Resutoran de tabemasu.',id:'(Saya) makan di restoran.'}]},
+  {num:'07',pat:'〜と〜',title:'Partikel と untuk Bersama / Dan',desc:'"To" digunakan untuk: (1) menghubungkan nomina setara "dan", atau (2) menyatakan melakukan sesuatu bersama seseorang.',examples:[{jp:'友達と映画を見ます。',rom:'Tomodachi to eiga wo mimasu.',id:'(Saya) menonton film bersama teman.'},{jp:'りんごとバナナ',rom:'Ringo to banana',id:'apel dan pisang'}]},
+  {num:'08',pat:'〜たいです',title:'Keinginan Melakukan Sesuatu',desc:'Ditambahkan pada bentuk masu-stem kata kerja. Menyatakan keinginan diri sendiri (ingin melakukan 〜).',examples:[{jp:'日本に行きたいです。',rom:'Nihon ni ikitai desu.',id:'Saya ingin pergi ke Jepang.'},{jp:'ラーメンを食べたいです。',rom:'Raamen wo tabetai desu.',id:'Saya ingin makan ramen.'}]},
+  {num:'09',pat:'〜てください',title:'Permintaan Sopan',desc:'Bentuk te + kudasai untuk meminta seseorang melakukan sesuatu dengan sopan.',examples:[{jp:'ちょっと待ってください。',rom:'Chotto matte kudasai.',id:'Tolong tunggu sebentar.'},{jp:'これを見てください。',rom:'Kore wo mite kudasai.',id:'Tolong lihat ini.'}]},
+  {num:'10',pat:'〜ません / 〜ませんでした',title:'Penyangkalan Kata Kerja',desc:'Bentuk negatif kata kerja sopan. 〜ません untuk sekarang/masa depan, 〜ませんでした untuk lampau.',examples:[{jp:'肉を食べません。',rom:'Niku wo tabemasen.',id:'(Saya) tidak makan daging.'},{jp:'昨日学校に行きませんでした。',rom:'Kinou gakkou ni ikimasen deshita.',id:'Kemarin (saya) tidak pergi ke sekolah.'}]},
+  {num:'11',pat:'〜ね / 〜よ',title:'Partikel Akhir ね dan よ',desc:'"Ne" mencari persetujuan / konfirmasi ("kan?"). "Yo" memberikan informasi baru yang tegas ("lho!").',examples:[{jp:'今日は暑いですね。',rom:'Kyou wa atsui desu ne.',id:'Hari ini panas ya.'},{jp:'それは本当ですよ。',rom:'Sore wa hontou desu yo.',id:'Itu benar, lho.'}]},
+  {num:'12',pat:'〜から〜まで',title:'Dari 〜 sampai 〜 (Waktu/Tempat)',desc:'"Kara" berarti "dari" dan "made" berarti "sampai". Digunakan untuk rentang waktu atau tempat.',examples:[{jp:'月曜日から金曜日まで働きます。',rom:'Getsuyoubi kara kin-youbi made hatarakimasu.',id:'(Saya) bekerja dari Senin sampai Jumat.'},{jp:'東京から大阪まで',rom:'Toukyou kara Oosaka made',id:'dari Tokyo sampai Osaka'}]},
+  {num:'13',pat:'〜の',title:'Partikel の untuk Kepemilikan / Keterangan',desc:'"No" menghubungkan dua nomina — yang pertama menerangkan yang kedua (seperti "milik" atau kata sifat benda).',examples:[{jp:'これは私の本です。',rom:'Kore wa watashi no hon desu.',id:'Ini adalah buku saya.'},{jp:'日本語の先生',rom:'Nihongo no sensei',id:'guru bahasa Jepang'}]},
+  {num:'14',pat:'〜も',title:'Partikel も (juga)',desc:'"Mo" menggantikan "wa" atau "ga" untuk menyatakan "juga". Memperluas pernyataan ke subjek lain.',examples:[{jp:'田中さんも学生です。',rom:'Tanaka-san mo gakusei desu.',id:'Tanaka juga seorang pelajar.'},{jp:'私も行きます。',rom:'Watashi mo ikimasu.',id:'Saya juga pergi.'}]},
+  {num:'15',pat:'どんな〜 / どの〜',title:'Kata Tanya どんな dan どの',desc:'"Donna" (apa macam / seperti apa) diikuti nomina. "Dono" (yang mana) untuk pilihan spesifik.',examples:[{jp:'どんな音楽が好きですか。',rom:'Donna ongaku ga suki desu ka.',id:'(Kamu) suka musik macam apa?'},{jp:'どの本が欲しいですか。',rom:'Dono hon ga hoshii desu ka.',id:'Buku yang mana yang kamu mau?'}]},
+];
+
+// ===== STATE =====
+let learnedHiragana = new Set(JSON.parse(localStorage.getItem('lh')||'[]'));
+let learnedKatakana = new Set(JSON.parse(localStorage.getItem('lk')||'[]'));
+let learnedKanji = new Set(JSON.parse(localStorage.getItem('lkj')||'[]'));
+let currentKanjiIdx = -1;
+let quizQ = [], quizIdx = 0, quizScore = 0, quizTotal = 10;
+
+// ===== STREAK =====
+function getTodayStr() { return new Date().toISOString().slice(0,10); }
+function getStreak() { return parseInt(localStorage.getItem('streak')||'0'); }
+function checkAndUpdateStreak() {
+  const today = getTodayStr();
+  const lastLogin = localStorage.getItem('lastLogin')||'';
+  const streak = getStreak();
+  if(lastLogin === today) return streak;
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+  const yStr = yesterday.toISOString().slice(0,10);
+  let newStreak;
+  if(lastLogin === yStr) { newStreak = streak + 1; }
+  else if(lastLogin === '') { newStreak = 1; }
+  else { newStreak = 1; }
+  localStorage.setItem('streak', newStreak);
+  localStorage.setItem('lastLogin', today);
+  if(newStreak > 1) showStreakToast(newStreak);
+  return newStreak;
+}
+function showStreakToast(n) {
+  const t = document.getElementById('streak-toast');
+  t.textContent = '🔥 Streak ' + n + ' hari! Pertahankan terus!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+function updateStreakUI() {
+  const s = getStreak();
+  document.getElementById('sb-streak').textContent = s;
+  const homeEl = document.getElementById('home-streak');
+  if(homeEl) homeEl.textContent = s;
+  const msgEl = document.getElementById('home-streak-msg');
+  if(msgEl) {
+    if(s === 0) msgEl.textContent = 'Buka website ini setiap hari untuk menjaga streak!';
+    else if(s < 7) msgEl.textContent = 'Bagus! Terus pertahankan, kamu sudah ' + s + ' hari berturut-turut!';
+    else if(s < 30) msgEl.textContent = '🌟 Keren banget! ' + s + ' hari streak — kamu serius belajar!';
+    else msgEl.textContent = '🏆 Luar biasa! ' + s + ' hari — kamu calon JLPT N5 pasti lulus!';
+  }
+}
+
+// ===== STUDY TIMER =====
+let timerSeconds = parseInt(localStorage.getItem('totalStudySecs')||'0');
+let sessionSecs = 0;
+let timerRunning = false;
+let timerInterval = null;
+function toggleTimer() {
+  timerRunning = !timerRunning;
+  const pill = document.getElementById('timer-pill');
+  if(timerRunning) {
+    pill.classList.add('running');
+    timerInterval = setInterval(()=>{
+      sessionSecs++;
+      timerSeconds++;
+      localStorage.setItem('totalStudySecs', timerSeconds);
+      updateTimerUI();
+    },1000);
+  } else {
+    pill.classList.remove('running');
+    clearInterval(timerInterval);
+  }
+}
+function updateTimerUI() {
+  const s = sessionSecs;
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  const fmt = h > 0 ? `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}` : `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+  document.getElementById('timer-display').textContent = fmt;
+  const total = timerSeconds;
+  const th = Math.floor(total/3600), tm = Math.floor((total%3600)/60);
+  const sbLabel = th > 0 ? `${th}j ${tm}m` : `${tm}m`;
+  document.getElementById('sb-timer').textContent = sbLabel;
+  // Update home page total time
+  const homeTime = document.getElementById('home-total-time');
+  if(homeTime) {
+    const totalMins = Math.floor(total/60);
+    if(th > 0) homeTime.textContent = `${th}j ${tm}m`;
+    else homeTime.textContent = `${totalMins}m`;
+  }
+}
+
+// ===== FLASHCARD STATE =====
+let fcDeck = [], fcIdx = 0, fcKnownCount = 0, fcAgainCount = 0, fcFlipped = false;
+const FC_GROUPS = {
+  number: ['一','二','三','四','五','六','七','八','九','十','百','千','万','円','日','月','年','時','分','半'],
+  nature: ['山','川','木','水','火','土','金','花','空','雨','電','車'],
+  action: ['見','聞','食','飲','行','来','出','入','買','読','書','話'],
+};
+
+function initFlashcard() {
+  const mode = document.getElementById('fc-mode').value;
+  const order = document.getElementById('fc-order').value;
+  let pool = [...KANJI_DATA];
+  if(mode === 'unknown') pool = pool.filter(k=>!learnedKanji.has(k.c));
+  else if(FC_GROUPS[mode]) pool = pool.filter(k=>FC_GROUPS[mode].includes(k.c));
+  if(order === 'shuffle') pool = pool.sort(()=>Math.random()-0.5);
+  fcDeck = pool;
+  fcIdx = 0; fcKnownCount = 0; fcAgainCount = 0; fcFlipped = false;
+  document.getElementById('fc-result').classList.remove('show');
+  document.getElementById('fc-main').style.display = 'block';
+  document.getElementById('fc-inner').classList.remove('flipped');
+  document.getElementById('fc-actions').classList.add('fc-actions-hidden');
+  document.getElementById('fc-next-wrap').style.display = 'none';
+  document.getElementById('fc-tap-hint').style.display = 'block';
+  buildFcDots();
+  renderFcCard();
+}
+
+function renderFcCard() {
+  if(fcIdx >= fcDeck.length) { showFcResult(); return; }
+  const k = fcDeck[fcIdx];
+  document.getElementById('fc-char').textContent = k.c;
+  document.getElementById('fc-reading').textContent = 'On: ' + k.on + '  |  Kun: ' + k.kun;
+  document.getElementById('fc-meaning').textContent = k.m;
+  document.getElementById('fc-on-kun').textContent = k.s + ' goresan';
+  document.getElementById('fc-example').textContent = k.ex;
+  document.getElementById('fc-counter').textContent = (fcIdx+1) + ' / ' + fcDeck.length;
+  fcFlipped = false;
+  document.getElementById('fc-inner').classList.remove('flipped');
+  document.getElementById('fc-actions').classList.add('fc-actions-hidden');
+  document.getElementById('fc-next-wrap').style.display = 'none';
+  document.getElementById('fc-tap-hint').style.display = 'block';
+  updateFcDots();
+}
+
+function flipCard() {
+  if(fcIdx >= fcDeck.length) return;
+  fcFlipped = !fcFlipped;
+  document.getElementById('fc-inner').classList.toggle('flipped', fcFlipped);
+  if(fcFlipped) {
+    document.getElementById('fc-actions').classList.remove('fc-actions-hidden');
+    document.getElementById('fc-tap-hint').style.display = 'none';
+  }
+}
+
+function fcAnswer(known) {
+  if(known) {
+    fcKnownCount++;
+    learnedKanji.add(fcDeck[fcIdx].c);
+    saveState();
+  } else {
+    fcAgainCount++;
+  }
+  markFcDot(fcIdx, known);
+  document.getElementById('fc-actions').classList.add('fc-actions-hidden');
+  document.getElementById('fc-next-wrap').style.display = 'block';
+  document.getElementById('fc-tap-hint').style.display = 'none';
+}
+
+function fcNext() {
+  fcIdx++;
+  renderFcCard();
+}
+
+function buildFcDots() {
+  const row = document.getElementById('fc-dots');
+  row.innerHTML = fcDeck.map((_,i)=>`<div class="fc-dot" id="fcdot-${i}"></div>`).join('');
+}
+function updateFcDots() {
+  document.querySelectorAll('.fc-dot').forEach((d,i)=>{
+    if(i < fcIdx) d.classList.add('seen'); else d.classList.remove('seen','known');
+  });
+}
+function markFcDot(i, known) {
+  const d = document.getElementById('fcdot-'+i);
+  if(d) { d.classList.add('seen'); if(known) d.classList.add('known'); }
+}
+
+function showFcResult() {
+  document.getElementById('fc-main').style.display = 'none';
+  const r = document.getElementById('fc-result');
+  r.classList.add('show');
+  document.getElementById('fc-res-good').textContent = fcKnownCount;
+  document.getElementById('fc-res-bad').textContent = fcAgainCount;
+}
+
+
+// ===== MINNA NO NIHONGO DATA =====
+const MINNA_DATA = [
+  {
+    bab: 1,
+    judul_jp: 'わたし は マイク・ミラー です。',
+    judul_id: 'Saya adalah Mike Miller.',
+    tema: 'Perkenalan Diri',
+    pola: [
+      { pat: 'KB は KB です', desc: 'Partikel は (wa) menunjukkan topik kalimat. です (desu) di akhir kalimat menunjukkan bentuk sopan setara "adalah".' },
+      { pat: 'KB は KB じゃ/では ありません', desc: 'Bentuk negatif dari です. じゃ ありません lebih santai, では ありません lebih formal (bukan/tidak).' },
+      { pat: 'KB は KB ですか', desc: 'Partikel か di akhir kalimat membentuk kalimat tanya. Jawab: はい (ya) atau いいえ (tidak).' },
+      { pat: 'KB も KB です', desc: 'Partikel も (mo) berarti "juga". Menunjukkan predikat yang sama dengan kalimat sebelumnya.' },
+      { pat: 'KB の KB', desc: 'Partikel の menghubungkan dua nomina — yang pertama menerangkan yang kedua, atau menyatakan kepemilikan.' },
+    ],
+    contoh: [
+      { jp: 'わたし は マイク・ミラー です。', rom: 'Watashi wa Maiku Miraa desu.', id: 'Saya Mike Miller.' },
+      { jp: 'サントスさん は 学生 じゃ ありません。', rom: 'Santos san wa gakusei jya arimasen.', id: 'Mr. Santos bukan mahasiswa.' },
+      { jp: 'ミラーさん は 会社員 ですか。', rom: 'Miller san wa kaishain desuka?', id: 'Apakah Mr. Miller karyawan perusahaan?' },
+      { jp: 'サントスさん も 会社員 です。', rom: 'Santos san mo kaishain desu.', id: 'Mr. Santos juga karyawan perusahaan.' },
+      { jp: 'さくら大学の先生です。', rom: 'Sakura daigaku no sensei desu.', id: 'Dosen Universitas Sakura.' },
+    ],
+    kaiwa: {
+      judul: 'はじめまして — Salam Kenal',
+      baris: [
+        { speaker: 'Miller', jp: 'はじめまして。マイク・ミラーです。アメリカから来ました。どうぞよろしく。', id: 'Salam kenal. Saya Mike Miller. Datang dari Amerika. Senang berkenalan.' },
+        { speaker: 'Satou', jp: '佐藤けい子です。どうぞよろしく。', id: 'Saya Satou Keiko. Senang berkenalan.' },
+      ]
+    },
+    vocab: [
+      { jp: 'わたし', rom: 'watashi', id: 'saya' },
+      { jp: 'あなた', rom: 'anata', id: 'kamu/anda' },
+      { jp: '先生', rom: 'sensei', id: 'guru / dosen' },
+      { jp: '学生', rom: 'gakusei', id: 'pelajar / mahasiswa' },
+      { jp: '会社員', rom: 'kaishain', id: 'karyawan perusahaan' },
+      { jp: '銀行員', rom: 'ginkouin', id: 'pegawai bank' },
+      { jp: '医者', rom: 'isha', id: 'dokter' },
+      { jp: '大学', rom: 'daigaku', id: 'universitas' },
+      { jp: '病院', rom: 'byouin', id: 'rumah sakit' },
+      { jp: 'だれ', rom: 'dare', id: 'siapa' },
+      { jp: 'はい', rom: 'hai', id: 'ya' },
+      { jp: 'いいえ', rom: 'iie', id: 'tidak / bukan' },
+    ],
+  },
+  {
+    bab: 2,
+    judul_jp: 'これ は 辞書 です。',
+    judul_id: 'Ini adalah kamus.',
+    tema: 'Kata Petunjuk Benda',
+    pola: [
+      { pat: 'これ / それ / あれ は KB です', desc: 'これ (kore) = ini (dekat pembicara). それ (sore) = itu (dekat lawan bicara). あれ (are) = itu (jauh dari keduanya).' },
+      { pat: 'この/その/あの + KB は KB です', desc: 'この, その, あの digunakan sebelum nomina sebagai kata penjelas. Berbeda dengan これ/それ/あれ yang berdiri sendiri.' },
+      { pat: 'KB は KB の KB です', desc: 'Menyatakan kepemilikan atau asal suatu benda.' },
+      { pat: '〜は だれ の KB ですか', desc: 'Kalimat tanya kepemilikan. Siapa punya benda ini?' },
+    ],
+    contoh: [
+      { jp: 'これ は 辞書 です。', rom: 'Kore wa jisho desu.', id: 'Ini adalah kamus.' },
+      { jp: 'それ は 私 の 傘 です。', rom: 'Sore wa watashi no kasa desu.', id: 'Itu adalah payung saya.' },
+      { jp: 'あれ は なん ですか。', rom: 'Are wa nan desuka?', id: 'Itu apa?' },
+      { jp: 'この 本 は 私 の です。', rom: 'Kono hon wa watashi no desu.', id: 'Buku ini milik saya.' },
+      { jp: 'それ は だれ の かばん ですか。', rom: 'Sore wa dare no kaban desuka?', id: 'Itu tas milik siapa?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Ini Punya Siapa?',
+      baris: [
+        { speaker: 'A', jp: 'あのう、それ は ミラーさん の ですか。', id: 'Eh, apakah itu milik Mr. Miller?' },
+        { speaker: 'B', jp: 'いいえ、ちがいます。これ は 山田さん の です。', id: 'Bukan, beda. Ini milik Mr. Yamada.' },
+      ]
+    },
+    vocab: [
+      { jp: 'これ', rom: 'kore', id: 'ini' },
+      { jp: 'それ', rom: 'sore', id: 'itu (dekat lawan bicara)' },
+      { jp: 'あれ', rom: 'are', id: 'itu (jauh dari keduanya)' },
+      { jp: 'この', rom: 'kono', id: 'ini (sebelum nomina)' },
+      { jp: 'その', rom: 'sono', id: 'itu (sebelum nomina)' },
+      { jp: 'あの', rom: 'ano', id: 'itu jauh (sebelum nomina)' },
+      { jp: '辞書', rom: 'jisho', id: 'kamus' },
+      { jp: '傘', rom: 'kasa', id: 'payung' },
+      { jp: 'かばん', rom: 'kaban', id: 'tas' },
+      { jp: '本', rom: 'hon', id: 'buku' },
+      { jp: 'なん / なに', rom: 'nan / nani', id: 'apa' },
+      { jp: 'ちがいます', rom: 'chigaimasu', id: 'berbeda / bukan' },
+    ],
+  },
+  {
+    bab: 3,
+    judul_jp: 'ここ は 食堂 です。',
+    judul_id: 'Di sini adalah kantin.',
+    tema: 'Kata Petunjuk Tempat',
+    pola: [
+      { pat: 'ここ / そこ / あそこ は KB です', desc: 'ここ (koko) = di sini. そこ (soko) = di sana (dekat lawan bicara). あそこ (asoko) = di sana (jauh dari keduanya).' },
+      { pat: 'KB は どこ ですか', desc: 'Kalimat tanya lokasi. "Di mana KB berada?"' },
+      { pat: 'KB は KB に あります / います', desc: 'あります untuk benda mati, います untuk makhluk hidup. Partikel に menunjukkan lokasi keberadaan.' },
+      { pat: 'KB は こちら / そちら / あちら です', desc: 'Bentuk sopan dari ここ / そこ / あそこ. Digunakan dalam situasi formal.' },
+    ],
+    contoh: [
+      { jp: 'ここ は 食堂 です。', rom: 'Koko wa shokudo desu.', id: 'Di sini adalah kantin.' },
+      { jp: 'エレベーター は あそこ です。', rom: 'Erebeetaa wa asoko desu.', id: 'Lift ada di sana.' },
+      { jp: 'トイレ は どこ ですか。', rom: 'Toire wa doko desuka?', id: 'Toilet di mana?' },
+      { jp: '事務所 は 3階 に あります。', rom: 'Jimusho wa 3-kai ni arimasu.', id: 'Kantor ada di lantai 3.' },
+      { jp: 'カリナさん は 食堂 に います。', rom: 'Karina san wa shokudo ni imasu.', id: 'Ms. Karina ada di kantin.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Mencari Tempat',
+      baris: [
+        { speaker: 'A', jp: 'すみません、受付は どこ ですか。', id: 'Permisi, resepsionis di mana ya?' },
+        { speaker: 'B', jp: '1階 です。エレベーター は あちら です。', id: 'Di lantai 1. Liftnya di sana.' },
+        { speaker: 'A', jp: 'ありがとう ございます。', id: 'Terima kasih.' },
+      ]
+    },
+    vocab: [
+      { jp: 'ここ', rom: 'koko', id: 'di sini' },
+      { jp: 'そこ', rom: 'soko', id: 'di sana (dekat pendengar)' },
+      { jp: 'あそこ', rom: 'asoko', id: 'di sana (jauh)' },
+      { jp: 'どこ', rom: 'doko', id: 'di mana' },
+      { jp: '食堂', rom: 'shokudo', id: 'kantin / ruang makan' },
+      { jp: '事務所', rom: 'jimusho', id: 'kantor' },
+      { jp: '受付', rom: 'uketsuke', id: 'resepsionis' },
+      { jp: '階', rom: 'kai', id: 'lantai' },
+      { jp: 'エレベーター', rom: 'erebeetaa', id: 'lift / elevator' },
+      { jp: 'トイレ', rom: 'toire', id: 'toilet' },
+      { jp: 'こちら', rom: 'kochira', id: 'di sini (sopan)' },
+      { jp: 'あちら', rom: 'achira', id: 'di sana (sopan)' },
+    ],
+  },
+  {
+    bab: 4,
+    judul_jp: '今 何時 ですか。',
+    judul_id: 'Sekarang jam berapa?',
+    tema: 'Waktu & Jam',
+    pola: [
+      { pat: '今 〜時 〜分 です', desc: 'Menyatakan waktu saat ini. 時 (ji) = jam, 分 (fun/pun) = menit.' },
+      { pat: 'KB は 〜時 から 〜時 まで です', desc: 'Menyatakan rentang waktu. から = dari, まで = sampai.' },
+      { pat: '〜時 に KB を します', desc: 'Menyatakan kegiatan pada waktu tertentu. Partikel に menandai waktu spesifik.' },
+    ],
+    contoh: [
+      { jp: '今 4時 5分 です。', rom: 'Ima yoji gofun desu.', id: 'Sekarang jam 4 lewat 5 menit.' },
+      { jp: '銀行 は 何時 から 何時 まで ですか。', rom: 'Ginkou wa nanji kara nanji made desuka?', id: 'Bank buka dari jam berapa sampai jam berapa?' },
+      { jp: '9時 から 5時 まで です。', rom: '9-ji kara 5-ji made desu.', id: 'Dari jam 9 sampai jam 5.' },
+      { jp: '今 何時 ですか。', rom: 'Ima nanji desuka?', id: 'Sekarang jam berapa?' },
+      { jp: '12時 半 です。', rom: 'Juuniji han desu.', id: 'Jam setengah satu (12.30).' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Jam Berapa?',
+      baris: [
+        { speaker: 'A', jp: 'すみません、今 何時 ですか。', id: 'Permisi, sekarang jam berapa?' },
+        { speaker: 'B', jp: '3時 15分 です。', id: 'Jam 3 lewat 15 menit.' },
+        { speaker: 'A', jp: 'デパート は 何時 まで ですか。', id: 'Department store tutup jam berapa?' },
+        { speaker: 'B', jp: '7時 まで です。', id: 'Sampai jam 7.' },
+      ]
+    },
+    vocab: [
+      { jp: '今', rom: 'ima', id: 'sekarang' },
+      { jp: '何時', rom: 'nanji', id: 'jam berapa' },
+      { jp: '〜時', rom: '~ji', id: '~ jam' },
+      { jp: '〜分', rom: '~fun/pun', id: '~ menit' },
+      { jp: '半', rom: 'han', id: 'setengah (30 menit)' },
+      { jp: 'から', rom: 'kara', id: 'dari' },
+      { jp: 'まで', rom: 'made', id: 'sampai' },
+      { jp: '銀行', rom: 'ginkou', id: 'bank' },
+      { jp: 'デパート', rom: 'depaato', id: 'department store' },
+      { jp: '何時間', rom: 'nanjikan', id: 'berapa jam' },
+      { jp: '午前', rom: 'gozen', id: 'pagi / AM' },
+      { jp: '午後', rom: 'gogo', id: 'siang / PM' },
+    ],
+  },
+  {
+    bab: 5,
+    judul_jp: '私は 毎朝 6時に 起きます。',
+    judul_id: 'Saya bangun jam 6 setiap pagi.',
+    tema: 'Kegiatan Sehari-hari (Kata Kerja)',
+    pola: [
+      { pat: '〜時 に 起きます / 寝ます / 行きます', desc: 'Partikel に digunakan setelah keterangan waktu spesifik (jam, hari, bulan) untuk menunjukkan kapan sesuatu terjadi.' },
+      { pat: 'KB は 毎〜 〜ます', desc: '毎 (mai) berarti "setiap". 毎日 (mainichi) = setiap hari, 毎朝 (maiasa) = setiap pagi, 毎週 (maishuu) = setiap minggu.' },
+      { pat: 'KB は 〜を します', desc: 'Partikel を menandai objek langsung dari kata kerja. します = melakukan.' },
+    ],
+    contoh: [
+      { jp: '私 は 毎朝 6時 に 起きます。', rom: 'Watashi wa maiasa rokuji ni okimasu.', id: 'Saya bangun jam 6 setiap pagi.' },
+      { jp: '11時 に 寝ます。', rom: 'Juuichiji ni nemasu.', id: 'Saya tidur jam 11.' },
+      { jp: '土曜日 に テニス を します。', rom: 'Doyoubi ni tenisu o shimasu.', id: 'Sabtu saya bermain tenis.' },
+      { jp: '毎日 日本語 を 勉強 します。', rom: 'Mainichi nihongo o benkyou shimasu.', id: 'Setiap hari belajar bahasa Jepang.' },
+      { jp: '何時 に 起きますか。', rom: 'Nanji ni okimasuka?', id: 'Bangun jam berapa?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Rutinitas Harian',
+      baris: [
+        { speaker: 'A', jp: '毎朝 何時 に 起きますか。', id: 'Setiap pagi bangun jam berapa?' },
+        { speaker: 'B', jp: '6時 半 に 起きます。', id: 'Saya bangun jam setengah 7.' },
+        { speaker: 'A', jp: '早いですね。', id: 'Cepat ya.' },
+        { speaker: 'B', jp: 'ミラーさん は？', id: 'Kalau Mr. Miller?' },
+        { speaker: 'A', jp: '私 は 7時 です。', id: 'Saya jam 7.' },
+      ]
+    },
+    vocab: [
+      { jp: '起きます', rom: 'okimasu', id: 'bangun tidur' },
+      { jp: '寝ます', rom: 'nemasu', id: 'tidur' },
+      { jp: '食べます', rom: 'tabemasu', id: 'makan' },
+      { jp: '飲みます', rom: 'nomimasu', id: 'minum' },
+      { jp: '行きます', rom: 'ikimasu', id: 'pergi' },
+      { jp: '帰ります', rom: 'kaerimasu', id: 'pulang' },
+      { jp: '働きます', rom: 'hatarakimasu', id: 'bekerja' },
+      { jp: '勉強します', rom: 'benkyou shimasu', id: 'belajar' },
+      { jp: '毎日', rom: 'mainichi', id: 'setiap hari' },
+      { jp: '毎朝', rom: 'maiasa', id: 'setiap pagi' },
+      { jp: '毎晩', rom: 'maiban', id: 'setiap malam' },
+      { jp: '休みます', rom: 'yasumimasu', id: 'beristirahat' },
+    ],
+  },
+  {
+    bab: 6,
+    judul_jp: '私は 昨日 勉強しました。',
+    judul_id: 'Kemarin saya belajar.',
+    tema: 'Bentuk Lampau Kata Kerja',
+    pola: [
+      { pat: '〜ました (bentuk lampau positif)', desc: 'Bentuk lampau sopan dari kata kerja. Ganti ます menjadi ました. Contoh: 行きます → 行きました (pergi → sudah pergi).' },
+      { pat: '〜ませんでした (bentuk lampau negatif)', desc: 'Bentuk lampau negatif sopan. Ganti ません menjadi ませんでした. Contoh: 食べません → 食べませんでした.' },
+      { pat: 'いつ 〜ましたか', desc: 'Kalimat tanya lampau. いつ = kapan.' },
+    ],
+    contoh: [
+      { jp: '私 は 昨日 勉強 しました。', rom: 'Watashi wa kinou benkyou shimashita.', id: 'Kemarin saya belajar.' },
+      { jp: '昨日 学校 へ 行きませんでした。', rom: 'Kinou gakkou e ikimasen deshita.', id: 'Kemarin tidak pergi ke sekolah.' },
+      { jp: 'いつ 日本 へ 来ましたか。', rom: 'Itsu nihon e kimashitaka?', id: 'Kapan datang ke Jepang?' },
+      { jp: '先週 映画 を 見ました。', rom: 'Senshuu eiga o mimashita.', id: 'Minggu lalu menonton film.' },
+      { jp: '朝ごはん を 食べませんでした。', rom: 'Asagohan o tabemasen deshita.', id: 'Tidak makan sarapan.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Liburan Kemarin',
+      baris: [
+        { speaker: 'A', jp: '昨日 何 を しましたか。', id: 'Kemarin kamu ngapain?' },
+        { speaker: 'B', jp: '映画 を 見ました。', id: 'Menonton film.' },
+        { speaker: 'A', jp: 'どんな 映画 ですか。', id: 'Film apa?' },
+        { speaker: 'B', jp: 'アクション の 映画 です。', id: 'Film action.' },
+      ]
+    },
+    vocab: [
+      { jp: '昨日', rom: 'kinou', id: 'kemarin' },
+      { jp: '今日', rom: 'kyou', id: 'hari ini' },
+      { jp: '明日', rom: 'ashita', id: 'besok' },
+      { jp: '先週', rom: 'senshuu', id: 'minggu lalu' },
+      { jp: '来週', rom: 'raishuu', id: 'minggu depan' },
+      { jp: '先月', rom: 'sengetsu', id: 'bulan lalu' },
+      { jp: '来月', rom: 'raigetsu', id: 'bulan depan' },
+      { jp: '去年', rom: 'kyonen', id: 'tahun lalu' },
+      { jp: '来年', rom: 'rainen', id: 'tahun depan' },
+      { jp: 'いつ', rom: 'itsu', id: 'kapan' },
+      { jp: '朝ごはん', rom: 'asagohan', id: 'sarapan' },
+      { jp: '夜', rom: 'yoru', id: 'malam' },
+    ],
+  },
+  {
+    bab: 7,
+    judul_jp: '私は 京都へ 行きます。',
+    judul_id: 'Saya pergi ke Kyoto.',
+    tema: 'Perpindahan & Tujuan (partikel へ, で, と)',
+    pola: [
+      { pat: '〜へ 行きます / 来ます / 帰ります', desc: 'Partikel へ (e) menunjukkan arah tujuan perpindahan. Digunakan dengan kata kerja gerak: 行く, 来る, 帰る.' },
+      { pat: '〜で 行きます (sarana transportasi)', desc: 'Partikel で menunjukkan alat/sarana yang digunakan. Contoh: バスで行きます (naik bus).' },
+      { pat: '〜と 行きます (bersama)', desc: 'Partikel と berarti "bersama". Digunakan untuk menyatakan teman pergi bersama.' },
+    ],
+    contoh: [
+      { jp: '私 は 京都 へ 行きます。', rom: 'Watashi wa Kyouto e ikimasu.', id: 'Saya pergi ke Kyoto.' },
+      { jp: '電車 で 会社 へ 行きます。', rom: 'Densha de kaisha e ikimasu.', id: 'Pergi ke kantor naik kereta.' },
+      { jp: '家族 と 日本 へ 来ました。', rom: 'Kazoku to Nihon e kimashita.', id: 'Datang ke Jepang bersama keluarga.' },
+      { jp: 'いつ 大阪 へ 行きますか。', rom: 'Itsu Oosaka e ikimasuka?', id: 'Kapan pergi ke Osaka?' },
+      { jp: 'バス で うち へ 帰ります。', rom: 'Basu de uchi e kaerimasu.', id: 'Pulang ke rumah naik bus.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Liburan ke Mana?',
+      baris: [
+        { speaker: 'A', jp: '今度 の 休み、どこ か へ 行きますか。', id: 'Liburan kali ini pergi ke mana?' },
+        { speaker: 'B', jp: 'ええ、友達 と 沖縄 へ 行きます。', id: 'Ya, pergi ke Okinawa bersama teman.' },
+        { speaker: 'A', jp: 'いいですね。何 で 行きますか。', id: 'Bagus ya. Naik apa?' },
+        { speaker: 'B', jp: '飛行機 で 行きます。', id: 'Naik pesawat.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜へ', rom: '~e', id: 'ke ~ (arah tujuan)' },
+      { jp: '〜で', rom: '~de', id: 'dengan ~ (sarana)' },
+      { jp: '〜と', rom: '~to', id: 'bersama ~' },
+      { jp: '電車', rom: 'densha', id: 'kereta listrik' },
+      { jp: '地下鉄', rom: 'chikatetsu', id: 'kereta bawah tanah' },
+      { jp: 'バス', rom: 'basu', id: 'bus' },
+      { jp: 'タクシー', rom: 'takushii', id: 'taksi' },
+      { jp: '飛行機', rom: 'hikouki', id: 'pesawat' },
+      { jp: '船', rom: 'fune', id: 'kapal' },
+      { jp: '自転車', rom: 'jitensha', id: 'sepeda' },
+      { jp: '歩いて', rom: 'aruite', id: 'berjalan kaki' },
+      { jp: '一人で', rom: 'hitori de', id: 'sendirian' },
+    ],
+  },
+  {
+    bab: 8,
+    judul_jp: '私は 本を 読みます。',
+    judul_id: 'Saya membaca buku.',
+    tema: 'Kegiatan dengan Objek (partikel を)',
+    pola: [
+      { pat: 'KB を 〜ます', desc: 'Partikel を (wo/o) menandai objek langsung dari kata kerja transitif. Diletakkan setelah objek, sebelum kata kerja.' },
+      { pat: 'KB で KB を 〜ます', desc: 'Partikel で menunjukkan tempat melakukan kegiatan. Gabungan: melakukan sesuatu di suatu tempat.' },
+      { pat: 'KB に KB を もらいます / あげます', desc: 'に menunjukkan arah pemberian. もらいます = menerima dari, あげます = memberikan kepada.' },
+    ],
+    contoh: [
+      { jp: '私 は 本 を 読みます。', rom: 'Watashi wa hon o yomimasu.', id: 'Saya membaca buku.' },
+      { jp: '図書館 で 本 を 借ります。', rom: 'Toshokan de hon o karimasu.', id: 'Meminjam buku di perpustakaan.' },
+      { jp: '音楽 を 聞きます。', rom: 'Ongaku o kikimasu.', id: 'Mendengarkan musik.' },
+      { jp: '駅 で 新聞 を 買います。', rom: 'Eki de shinbun o kaimasu.', id: 'Membeli koran di stasiun.' },
+      { jp: '友達 に プレゼント を あげます。', rom: 'Tomodachi ni purezento o agemasu.', id: 'Memberi hadiah kepada teman.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Kegiatan di Waktu Luang',
+      baris: [
+        { speaker: 'A', jp: '週末 は 何 を しますか。', id: 'Akhir pekan ngapain?' },
+        { speaker: 'B', jp: 'たいてい 音楽 を 聴いたり、本 を 読んだり します。', id: 'Biasanya mendengarkan musik atau membaca buku.' },
+        { speaker: 'A', jp: 'どんな 音楽 が 好きですか。', id: 'Suka musik apa?' },
+        { speaker: 'B', jp: 'Jポップ が 好きです。', id: 'Suka J-Pop.' },
+      ]
+    },
+    vocab: [
+      { jp: '読みます', rom: 'yomimasu', id: 'membaca' },
+      { jp: '書きます', rom: 'kakimasu', id: 'menulis' },
+      { jp: '聞きます', rom: 'kikimasu', id: 'mendengar / bertanya' },
+      { jp: '見ます', rom: 'mimasu', id: 'melihat / menonton' },
+      { jp: '買います', rom: 'kaimasu', id: 'membeli' },
+      { jp: '借ります', rom: 'karimasu', id: 'meminjam' },
+      { jp: '貸します', rom: 'kashimasu', id: 'meminjamkan' },
+      { jp: 'もらいます', rom: 'moraimasu', id: 'menerima' },
+      { jp: 'あげます', rom: 'agemasu', id: 'memberikan' },
+      { jp: '図書館', rom: 'toshokan', id: 'perpustakaan' },
+      { jp: '音楽', rom: 'ongaku', id: 'musik' },
+      { jp: '映画', rom: 'eiga', id: 'film' },
+    ],
+  },
+  {
+    bab: 9,
+    judul_jp: '一緒に 神戸へ 行きませんか。',
+    judul_id: 'Maukah pergi ke Kobe bersama?',
+    tema: 'Mengajak & Menyarankan',
+    pola: [
+      { pat: '〜ませんか', desc: 'Digunakan untuk mengajak/mengundang lawan bicara dengan sopan. Setara dengan "Mau tidak kita ~ ?"' },
+      { pat: '〜ましょう', desc: 'Digunakan untuk mengajak dengan lebih tegas. Setara dengan "Ayo kita ~ !"' },
+      { pat: '〜ましょうか', desc: 'Digunakan untuk menawarkan bantuan atau meminta konfirmasi. "Bagaimana kalau ~ ?"' },
+    ],
+    contoh: [
+      { jp: '一緒 に 神戸 へ 行きませんか。', rom: 'Issho ni Koube e ikimasenka?', id: 'Maukah pergi ke Kobe bersama-sama?' },
+      { jp: 'ちょっと 休みましょう。', rom: 'Chotto yasumimashou.', id: 'Ayo istirahat sebentar.' },
+      { jp: '一緒 に 食べましょうか。', rom: 'Issho ni tabemashouka?', id: 'Bagaimana kalau makan bersama?' },
+      { jp: 'コーヒー を 飲みませんか。', rom: 'Koohii o nomimasenka?', id: 'Maukah minum kopi?' },
+      { jp: 'じゃ、そうしましょう。', rom: 'Jya, sou shimashou.', id: 'Kalau begitu, ayo lakukan itu.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Mengajak Keluar',
+      baris: [
+        { speaker: 'A', jp: '来週の土曜日、映画を見に行きませんか。', id: 'Sabtu depan, maukah menonton film?' },
+        { speaker: 'B', jp: 'いいですね。何の映画ですか。', id: 'Bagus itu. Film apa?' },
+        { speaker: 'A', jp: 'アクション映画です。3時から始まります。', id: 'Film action. Mulai jam 3.' },
+        { speaker: 'B', jp: 'じゃ、行きましょう。', id: 'Kalau begitu, ayo pergi!' },
+      ]
+    },
+    vocab: [
+      { jp: '一緒に', rom: 'issho ni', id: 'bersama-sama' },
+      { jp: 'ちょっと', rom: 'chotto', id: 'sebentar / sedikit' },
+      { jp: 'じゃ', rom: 'jya', id: 'kalau begitu' },
+      { jp: 'そうします', rom: 'sou shimasu', id: 'melakukan itu' },
+      { jp: 'いいですね', rom: 'ii desu ne', id: 'bagus ya' },
+      { jp: '始まります', rom: 'hajimarimasu', id: 'dimulai' },
+      { jp: '終わります', rom: 'owarimasu', id: 'selesai' },
+      { jp: 'もちろん', rom: 'mochiron', id: 'tentu saja' },
+      { jp: 'ちょっと…', rom: 'chotto...', id: 'sebentar... (penolakan halus)' },
+      { jp: '残念ですが', rom: 'zannen desu ga', id: 'sayang sekali tapi...' },
+      { jp: '予定', rom: 'yotei', id: 'rencana / jadwal' },
+      { jp: '都合が悪い', rom: 'tsugou ga warui', id: 'tidak ada waktu' },
+    ],
+  },
+  {
+    bab: 10,
+    judul_jp: '私は 日本語が 少し 分かります。',
+    judul_id: 'Saya sedikit mengerti bahasa Jepang.',
+    tema: 'Kemampuan & Kesukaan (が)',
+    pola: [
+      { pat: '〜が 好きです / 嫌いです', desc: 'Partikel が digunakan dengan kata sifat な seperti 好き (suka) dan 嫌い (tidak suka). Berbeda dari を yang biasa untuk objek kata kerja.' },
+      { pat: '〜が 分かります / できます', desc: '分かります = mengerti/paham, できます = bisa/mampu. Keduanya menggunakan partikel が untuk menandai objeknya.' },
+      { pat: '〜が ほしいです', desc: 'ほしい = ingin memiliki (benda). Digunakan dengan partikel が. Berbeda dari たい yang dipakai untuk kata kerja.' },
+    ],
+    contoh: [
+      { jp: '私 は 日本語 が 少し 分かります。', rom: 'Watashi wa nihongo ga sukoshi wakarimasu.', id: 'Saya sedikit mengerti bahasa Jepang.' },
+      { jp: 'イタリア の 料理 が 好きです。', rom: 'Italia no ryouri ga suki desu.', id: 'Saya suka masakan Italia.' },
+      { jp: '車 が ほしいです。', rom: 'Kuruma ga hoshii desu.', id: 'Saya ingin punya mobil.' },
+      { jp: '音楽 が できますか。', rom: 'Ongaku ga dekimasuka?', id: 'Bisa bermain musik?' },
+      { jp: '辛い 食べ物 が 嫌いです。', rom: 'Karai tabemono ga kirai desu.', id: 'Tidak suka makanan pedas.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Hobi & Kesukaan',
+      baris: [
+        { speaker: 'A', jp: 'ミラーさんは 音楽 が 好きですか。', id: 'Mr. Miller, suka musik?' },
+        { speaker: 'B', jp: 'ええ、クラシック が 好きです。スポーツ は？', id: 'Ya, suka musik klasik. Kalau olahraga?' },
+        { speaker: 'A', jp: 'サッカー が 好きですが、あまり できません。', id: 'Suka sepak bola, tapi tidak terlalu bisa.' },
+      ]
+    },
+    vocab: [
+      { jp: '好き', rom: 'suki', id: 'suka' },
+      { jp: '嫌い', rom: 'kirai', id: 'tidak suka' },
+      { jp: '分かります', rom: 'wakarimasu', id: 'mengerti / paham' },
+      { jp: 'できます', rom: 'dekimasu', id: 'bisa / mampu' },
+      { jp: 'ほしい', rom: 'hoshii', id: 'ingin (memiliki)' },
+      { jp: '上手', rom: 'jouzu', id: 'pandai / mahir' },
+      { jp: '下手', rom: 'heta', id: 'tidak pandai' },
+      { jp: '少し', rom: 'sukoshi', id: 'sedikit' },
+      { jp: 'あまり〜ません', rom: 'amari ~masen', id: 'tidak terlalu ~' },
+      { jp: 'スポーツ', rom: 'supootsu', id: 'olahraga' },
+      { jp: '料理', rom: 'ryouri', id: 'masakan / memasak' },
+      { jp: '趣味', rom: 'shumi', id: 'hobi' },
+    ],
+  },
+  {
+    bab: 11,
+    judul_jp: 'あそこに コンビニが あります。',
+    judul_id: 'Di sana ada convenience store.',
+    tema: 'Keberadaan Benda & Orang (あります / います)',
+    pola: [
+      { pat: '場所に KB が あります', desc: 'あります digunakan untuk menyatakan keberadaan benda mati atau tumbuhan di suatu tempat. に = di (lokasi).' },
+      { pat: '場所に KB が います', desc: 'います digunakan untuk menyatakan keberadaan makhluk hidup (orang, hewan) di suatu tempat.' },
+      { pat: 'KB は 場所に あります / います', desc: 'Jika topiknya adalah benda/orang yang dicari, posisi は di awal. Menunjukkan di mana sesuatu berada.' },
+    ],
+    contoh: [
+      { jp: 'あそこ に コンビニ が あります。', rom: 'Asoko ni konbini ga arimasu.', id: 'Di sana ada convenience store.' },
+      { jp: 'ロビー に 佐藤さん が います。', rom: 'Robii ni Satou san ga imasu.', id: 'Di lobi ada Pak Satou.' },
+      { jp: '東京 ディズニーランド は 千葉県 に あります。', rom: 'Toukyou Dizuniirando wa Chibaken ni arimasu.', id: 'Tokyo Disneyland ada di Prefektur Chiba.' },
+      { jp: '会議室 に テーブル が 7つ あります。', rom: 'Kaigishitsu ni teeburu ga nanatsu arimasu.', id: 'Di ruang rapat ada 7 meja.' },
+      { jp: '猫 は どこ に いますか。', rom: 'Neko wa doko ni imasuka?', id: 'Kucingnya di mana?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Mencari Barang di Toko',
+      baris: [
+        { speaker: 'Pembeli', jp: 'すみません、ATM は どこ に ありますか。', id: 'Permisi, ATM ada di mana?' },
+        { speaker: 'Pegawai', jp: '2階 に あります。エスカレーター の そば です。', id: 'Ada di lantai 2. Di dekat eskalator.' },
+        { speaker: 'Pembeli', jp: 'ありがとう ございます。', id: 'Terima kasih.' },
+      ]
+    },
+    vocab: [
+      { jp: 'あります', rom: 'arimasu', id: 'ada (benda mati)' },
+      { jp: 'います', rom: 'imasu', id: 'ada (makhluk hidup)' },
+      { jp: 'コンビニ', rom: 'konbini', id: 'convenience store' },
+      { jp: '上', rom: 'ue', id: 'atas' },
+      { jp: '下', rom: 'shita', id: 'bawah' },
+      { jp: '右', rom: 'migi', id: 'kanan' },
+      { jp: '左', rom: 'hidari', id: 'kiri' },
+      { jp: '前', rom: 'mae', id: 'depan' },
+      { jp: '後ろ', rom: 'ushiro', id: 'belakang' },
+      { jp: '中', rom: 'naka', id: 'dalam' },
+      { jp: 'そば', rom: 'soba', id: 'dekat / samping' },
+      { jp: '間', rom: 'aida', id: 'antara' },
+    ],
+  },
+  {
+    bab: 12,
+    judul_jp: '昨日は 雨でした。',
+    judul_id: 'Kemarin hujan.',
+    tema: 'Bentuk Lampau Nomina & Kata Sifat',
+    pola: [
+      { pat: 'KB でした (lampau positif)', desc: 'Bentuk lampau dari です. Setara "adalah/ada ... dulu". KB でした = KB itu dulu/kemarin.' },
+      { pat: 'KB じゃ/では ありませんでした (lampau negatif)', desc: 'Bentuk lampau negatif dari KB です. Setara "bukan ..." di masa lalu.' },
+      { pat: 'い形容詞 + かったです (lampau)', desc: 'Kata sifat い bentuk lampau: hilangkan い terakhir, tambahkan かったです. Contoh: 寒い → 寒かったです.' },
+      { pat: 'な形容詞 + でした (lampau)', desc: 'Kata sifat な bentuk lampau: tambahkan でした. Contoh: きれい → きれいでした.' },
+    ],
+    contoh: [
+      { jp: '昨日 は 雨 でした。', rom: 'Kinou wa ame deshita.', id: 'Kemarin hujan.' },
+      { jp: '昨日 は 寒かった です。', rom: 'Kinou wa samukatta desu.', id: 'Kemarin dingin.' },
+      { jp: '先週 は 忙しかった です。', rom: 'Senshuu wa isogashikatta desu.', id: 'Minggu lalu sibuk.' },
+      { jp: '子供 の とき、野菜 が 嫌いでした。', rom: 'Kodomo no toki, yasai ga kirai deshita.', id: 'Waktu kecil, tidak suka sayuran.' },
+      { jp: 'パーティー は にぎやか でした。', rom: 'Paatii wa nigiyaka deshita.', id: 'Pestanya ramai.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Bagaimana Perjalanannya?',
+      baris: [
+        { speaker: 'A', jp: '旅行 は どうでしたか。', id: 'Bagaimana perjalanannya?' },
+        { speaker: 'B', jp: 'とても 楽しかった です。天気 も よかった です。', id: 'Sangat menyenangkan. Cuacanya juga bagus.' },
+        { speaker: 'A', jp: '食べ物 は どうでしたか。', id: 'Bagaimana makanannya?' },
+        { speaker: 'B', jp: 'おいしかった です。でも、少し 高かった です。', id: 'Enak. Tapi, sedikit mahal.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜でした', rom: '~deshita', id: 'adalah (lampau)' },
+      { jp: '〜かった', rom: '~katta', id: 'bentuk lampau kata sifat い' },
+      { jp: '楽しい', rom: 'tanoshii', id: 'menyenangkan' },
+      { jp: '忙しい', rom: 'isogashii', id: 'sibuk' },
+      { jp: '難しい', rom: 'muzukashii', id: 'sulit' },
+      { jp: 'やさしい', rom: 'yasashii', id: 'mudah / baik hati' },
+      { jp: 'おいしい', rom: 'oishii', id: 'enak' },
+      { jp: 'まずい', rom: 'mazui', id: 'tidak enak' },
+      { jp: 'にぎやか', rom: 'nigiyaka', id: 'ramai / hidup' },
+      { jp: 'しずか', rom: 'shizuka', id: 'tenang / sepi' },
+      { jp: 'きれい', rom: 'kirei', id: 'cantik / bersih' },
+      { jp: 'べんり', rom: 'benri', id: 'praktis / nyaman' },
+    ],
+  },
+  {
+    bab: 13,
+    judul_jp: '北海道は 九州より 大きいです。',
+    judul_id: 'Hokkaido lebih besar dari Kyushu.',
+    tema: 'Perbandingan (より / いちばん)',
+    pola: [
+      { pat: 'A は B より 〜です', desc: 'Menyatakan perbandingan: A lebih ~ daripada B. より = daripada.' },
+      { pat: 'A と B と どちらが 〜ですか', desc: 'Kalimat tanya perbandingan antara dua hal. どちら = yang mana.' },
+      { pat: '〜の中で いちばん 〜です', desc: 'Menyatakan superlatif: paling ~ di antara ~. いちばん = paling/nomor satu.' },
+    ],
+    contoh: [
+      { jp: '北海道 は 九州 より 大きいです。', rom: 'Hokkaidou wa Kyuushuu yori ookii desu.', id: 'Hokkaido lebih besar dari Kyushu.' },
+      { jp: '電車 と バス と どちらが 速いですか。', rom: 'Densha to basu to dochira ga hayai desuka?', id: 'Mana yang lebih cepat, kereta atau bus?' },
+      { jp: '電車 の ほうが 速いです。', rom: 'Densha no houga hayai desu.', id: 'Kereta lebih cepat.' },
+      { jp: '私 は 1年 で 夏 が いちばん 好きです。', rom: 'Watashi wa 1nen de natsu ga ichiban suki desu.', id: 'Dari setahun, saya paling suka musim panas.' },
+      { jp: 'クラス の 中で 田中さん が いちばん 背 が 高いです。', rom: 'Kurasu no naka de Tanaka san ga ichiban se ga takai desu.', id: 'Di kelas, Tanaka paling tinggi.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Memilih Restoran',
+      baris: [
+        { speaker: 'A', jp: 'イタリア料理 と 中華料理 と どちらが 好きですか。', id: 'Mana yang lebih disukai, masakan Italia atau China?' },
+        { speaker: 'B', jp: 'イタリア料理 の ほうが 好きです。', id: 'Saya lebih suka masakan Italia.' },
+        { speaker: 'A', jp: 'この 街 で いちばん おいしい イタリアン は どこですか。', id: 'Restoran Italia terenak di kota ini di mana?' },
+        { speaker: 'B', jp: 'ベラ は どうですか。駅 の そば に あります。', id: 'Bagaimana dengan Bella? Ada di dekat stasiun.' },
+      ]
+    },
+    vocab: [
+      { jp: 'より', rom: 'yori', id: 'daripada' },
+      { jp: 'いちばん', rom: 'ichiban', id: 'paling / nomor satu' },
+      { jp: 'どちら', rom: 'dochira', id: 'yang mana (dari dua)' },
+      { jp: '〜のほうが', rom: '~no houga', id: 'yang ~ lebih...' },
+      { jp: '〜の中で', rom: '~no naka de', id: 'di antara ~' },
+      { jp: '大きい', rom: 'ookii', id: 'besar' },
+      { jp: '小さい', rom: 'chiisai', id: 'kecil' },
+      { jp: '速い', rom: 'hayai', id: 'cepat' },
+      { jp: '遅い', rom: 'osoi', id: 'lambat' },
+      { jp: '背が高い', rom: 'se ga takai', id: 'tinggi badan' },
+      { jp: '季節', rom: 'kisetsu', id: 'musim' },
+      { jp: '夏', rom: 'natsu', id: 'musim panas' },
+    ],
+  },
+  {
+    bab: 14,
+    judul_jp: '私は すしを 食べたいです。',
+    judul_id: 'Saya ingin makan sushi.',
+    tema: 'Keinginan (〜たい / 〜ほしい)',
+    pola: [
+      { pat: '〜たいです (ingin melakukan)', desc: 'Menyatakan keinginan diri sendiri. Dibuat dari bentuk ます-stem kata kerja + たいです. Contoh: 食べます → 食べたいです.' },
+      { pat: '〜たくないです (tidak ingin)', desc: 'Bentuk negatif dari たい. Ganti い dengan くないです. Contoh: 食べたい → 食べたくないです.' },
+      { pat: 'どこか / なにか / だれか', desc: 'どこか = suatu tempat, なにか = sesuatu, だれか = seseorang. Digunakan dalam kalimat dengan makna tidak pasti.' },
+    ],
+    contoh: [
+      { jp: '私 は すし を 食べたいです。', rom: 'Watashi wa sushi o tabetai desu.', id: 'Saya ingin makan sushi.' },
+      { jp: '日本 へ 行きたいです。', rom: 'Nihon e ikitai desu.', id: 'Saya ingin pergi ke Jepang.' },
+      { jp: '今日 は 何 も 食べたくないです。', rom: 'Kyou wa nanimo tabetakunai desu.', id: 'Hari ini tidak ingin makan apa pun.' },
+      { jp: 'どこか へ 行きたいです。', rom: 'Dokoka e ikitai desu.', id: 'Ingin pergi ke suatu tempat.' },
+      { jp: '何 が 飲みたいですか。', rom: 'Nani ga nomitai desuka?', id: 'Mau minum apa?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Keinginan Masa Depan',
+      baris: [
+        { speaker: 'A', jp: '将来 何 に なりたいですか。', id: 'Di masa depan ingin jadi apa?' },
+        { speaker: 'B', jp: '通訳 に なりたいです。', id: 'Ingin jadi penerjemah.' },
+        { speaker: 'A', jp: 'どんな 言語 を 勉強 したいですか。', id: 'Bahasa apa yang ingin dipelajari?' },
+        { speaker: 'B', jp: '日本語 と 中国語 を 勉強 したいです。', id: 'Ingin belajar bahasa Jepang dan China.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜たいです', rom: '~tai desu', id: 'ingin ~ (kata kerja)' },
+      { jp: '〜たくないです', rom: '~takunai desu', id: 'tidak ingin ~' },
+      { jp: 'どこか', rom: 'dokoka', id: 'suatu tempat' },
+      { jp: 'なにか', rom: 'nanika', id: 'sesuatu' },
+      { jp: 'だれか', rom: 'dareka', id: 'seseorang' },
+      { jp: 'どこも〜ません', rom: 'dokomo ~masen', id: 'tidak di mana pun' },
+      { jp: 'なにも〜ません', rom: 'nanimo ~masen', id: 'tidak ada apa pun' },
+      { jp: '将来', rom: 'shourai', id: 'masa depan' },
+      { jp: '夢', rom: 'yume', id: 'mimpi / cita-cita' },
+      { jp: 'なります', rom: 'narimasu', id: 'menjadi' },
+      { jp: '通訳', rom: 'tsuuyaku', id: 'penerjemah lisan' },
+      { jp: '言語', rom: 'gengo', id: 'bahasa' },
+    ],
+  },
+  {
+    bab: 15,
+    judul_jp: 'フランスへ 料理を 習いに 行きます。',
+    judul_id: 'Pergi ke Prancis untuk belajar memasak.',
+    tema: 'Tujuan Pergi (〜に 行きます)',
+    pola: [
+      { pat: '〜(目的)に 行きます / 来ます / 帰ります', desc: 'Menyatakan tujuan perjalanan. Bentuk: kata kerja ます-stem / kata benda suru + に + 行く/来る/帰る.' },
+      { pat: 'KK-stem に 行きます', desc: 'Contoh: 食べ(ます) に 行きます = pergi untuk makan. 見(ます) に 行きます = pergi untuk melihat.' },
+    ],
+    contoh: [
+      { jp: 'フランス へ 料理 を 習い に 行きます。', rom: 'Furansu e ryouri o narai ni ikimasu.', id: 'Pergi ke Prancis untuk belajar memasak.' },
+      { jp: '図書館 へ 本 を 借り に 行きます。', rom: 'Toshokan e hon o kari ni ikimasu.', id: 'Pergi ke perpustakaan untuk meminjam buku.' },
+      { jp: '映画 を 見 に 来ませんか。', rom: 'Eiga o mi ni kimasenka?', id: 'Maukah datang untuk menonton film?' },
+      { jp: '買い物 に 行きました。', rom: 'Kaimono ni ikimashita.', id: 'Pergi belanja.' },
+      { jp: '散歩 に 行きましょう。', rom: 'Sanpo ni ikimashou.', id: 'Ayo pergi jalan-jalan.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Tujuan Liburan',
+      baris: [
+        { speaker: 'A', jp: '夏休み に どこ か へ 行きますか。', id: 'Liburan musim panas pergi ke mana?' },
+        { speaker: 'B', jp: '京都 へ 行きます。', id: 'Pergi ke Kyoto.' },
+        { speaker: 'A', jp: '何 を し に 行きますか。', id: 'Pergi untuk ngapain?' },
+        { speaker: 'B', jp: 'お寺 を 見 に 行きます。', id: 'Pergi untuk melihat kuil.' },
+      ]
+    },
+    vocab: [
+      { jp: '習います', rom: 'naraimasu', id: 'belajar (dari guru)' },
+      { jp: '散歩します', rom: 'sanpo shimasu', id: 'jalan-jalan' },
+      { jp: '買い物します', rom: 'kaimono shimasu', id: 'belanja' },
+      { jp: '旅行します', rim: 'ryokou shimasu', id: 'bepergian' },
+      { jp: 'お寺', rom: 'otera', id: 'kuil (Budha)' },
+      { jp: '神社', rom: 'jinja', id: 'kuil (Shinto)' },
+      { jp: '美術館', rom: 'bijutsukan', id: 'museum seni' },
+      { jp: '博物館', rom: 'hakubutsukan', id: 'museum' },
+      { jp: '公園', rom: 'kouen', id: 'taman' },
+      { jp: '夏休み', rom: 'natsuyasumi', id: 'liburan musim panas' },
+      { jp: '冬休み', rom: 'fuyuyasumi', id: 'liburan musim dingin' },
+      { jp: '春休み', rom: 'haruyasumi', id: 'liburan musim semi' },
+    ],
+  },
+  {
+    bab: 16,
+    judul_jp: 'ちょっと 待ってください。',
+    judul_id: 'Tolong tunggu sebentar.',
+    tema: 'Bentuk て (Permintaan & Urutan Kegiatan)',
+    pola: [
+      { pat: 'KK-te ください', desc: 'Permintaan sopan: "Tolong lakukan ~". Dibuat dari bentuk て kata kerja + ください.' },
+      { pat: 'KK-te から、〜', desc: 'Menyatakan urutan: "Setelah ~, kemudian ~". てから menekankan urutan yang harus diikuti.' },
+      { pat: 'KK-te、KK-te、〜ます', desc: 'Menghubungkan beberapa kegiatan berurutan: "Melakukan A, lalu B, lalu C".' },
+    ],
+    contoh: [
+      { jp: 'ちょっと 待って ください。', rom: 'Chotto matte kudasai.', id: 'Tolong tunggu sebentar.' },
+      { jp: 'ここ に 名前 を 書いて ください。', rom: 'Koko ni namae o kaite kudasai.', id: 'Tolong tulis nama di sini.' },
+      { jp: '手 を 洗って から、食べて ください。', rom: 'Te o aratte kara, tabete kudasai.', id: 'Setelah cuci tangan, silakan makan.' },
+      { jp: '朝 ジョギング して、シャワー を 浴びて、会社 へ 行きます。', rom: 'Asa jogingu shite, shawaa o abite, kaisha e ikimasu.', id: 'Pagi jogging, mandi, lalu pergi ke kantor.' },
+      { jp: 'まっすぐ 行って、右 に 曲がって ください。', rom: 'Massugu itte, migi ni magatte kudasai.', id: 'Jalan lurus, lalu belok kanan.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Petunjuk Arah',
+      baris: [
+        { speaker: 'Turis', jp: 'すみません、駅 は どこですか。', id: 'Permisi, stasiun di mana?' },
+        { speaker: 'Warga', jp: 'この 道 を まっすぐ 行って ください。', id: 'Jalan lurus di jalan ini.' },
+        { speaker: 'Warga', jp: '信号 を 右 に 曲がって ください。駅 は すぐ あります。', id: 'Belok kanan di lampu merah. Stasiunnya ada segera.' },
+        { speaker: 'Turis', jp: 'どうも ありがとう ございます。', id: 'Terima kasih banyak.' },
+      ]
+    },
+    vocab: [
+      { jp: '待ちます', rom: 'machimasu', id: 'menunggu' },
+      { jp: '曲がります', rom: 'magarimasu', id: 'belok' },
+      { jp: '渡ります', rom: 'watarimasu', id: 'menyeberang' },
+      { jp: '止まります', rom: 'tomarimasu', id: 'berhenti' },
+      { jp: 'まっすぐ', rom: 'massugu', id: 'lurus' },
+      { jp: '右', rom: 'migi', id: 'kanan' },
+      { jp: '左', rom: 'hidari', id: 'kiri' },
+      { jp: '信号', rom: 'shingou', id: 'lampu lalu lintas' },
+      { jp: '角', rom: 'kado', id: 'sudut jalan' },
+      { jp: '橋', rom: 'hashi', id: 'jembatan' },
+      { jp: '洗います', rom: 'araimasu', id: 'mencuci' },
+      { jp: 'シャワーを浴びます', rom: 'shawaa o abimasu', id: 'mandi (shower)' },
+    ],
+  },
+  {
+    bab: 17,
+    judul_jp: '写真を 撮っても いいですか。',
+    judul_id: 'Bolehkah saya mengambil foto?',
+    tema: 'Izin & Larangan (〜ても いい / 〜ては いけない)',
+    pola: [
+      { pat: 'KK-te も いいですか', desc: 'Meminta izin: "Bolehkah saya ~?" Jawaban setuju: はい、〜て も いいです. Jawaban tidak setuju: いいえ、〜て は いけません.' },
+      { pat: 'KK-te は いけません', desc: 'Melarang: "Tidak boleh ~". Lebih kuat dari ないで ください. Digunakan untuk peraturan/larangan resmi.' },
+      { pat: 'KK-nai de ください', desc: 'Permintaan negatif: "Tolong jangan ~". Lebih halus dari ては いけません.' },
+    ],
+    contoh: [
+      { jp: '写真 を 撮っても いいですか。', rom: 'Shashin o totte mo ii desuka?', id: 'Bolehkah mengambil foto?' },
+      { jp: 'はい、どうぞ。', rom: 'Hai, douzo.', id: 'Ya, silakan.' },
+      { jp: 'ここ で タバコ を 吸っては いけません。', rom: 'Koko de tabako o sutte wa ikemasen.', id: 'Tidak boleh merokok di sini.' },
+      { jp: '写真 を 撮らないで ください。', rom: 'Shashin o toranaide kudasai.', id: 'Tolong jangan mengambil foto.' },
+      { jp: '辞書 を 使っても いいですか。', rom: 'Jisho o tsukatte mo ii desuka?', id: 'Bolehkah menggunakan kamus?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Di Museum',
+      baris: [
+        { speaker: 'Pengunjung', jp: 'すみません、ここ で 写真 を 撮っても いいですか。', id: 'Permisi, bolehkah ambil foto di sini?' },
+        { speaker: 'Petugas', jp: 'フラッシュ を 使わなければ、いいです。', id: 'Kalau tidak menggunakan flash, boleh.' },
+        { speaker: 'Pengunjung', jp: 'ここ に 入っても いいですか。', id: 'Bolehkah masuk ke sini?' },
+        { speaker: 'Petugas', jp: 'すみません、そちら は 入っては いけません。', id: 'Maaf, ke sana tidak boleh masuk.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜ても いいです', rom: '~te mo ii desu', id: 'boleh ~' },
+      { jp: '〜ては いけません', rom: '~te wa ikemasen', id: 'tidak boleh ~' },
+      { jp: '〜ないで ください', rom: '~naide kudasai', id: 'tolong jangan ~' },
+      { jp: '写真', rom: 'shashin', id: 'foto' },
+      { jp: '撮ります', rom: 'torimasu', id: 'mengambil (foto)' },
+      { jp: 'タバコ', rom: 'tabako', id: 'rokok' },
+      { jp: '吸います', rom: 'suimasu', id: 'menghisap / merokok' },
+      { jp: '使います', rom: 'tsukaimasu', id: 'menggunakan' },
+      { jp: 'フラッシュ', rom: 'furasshu', id: 'flash (kamera)' },
+      { jp: '入ります', rom: 'hairimasu', id: 'masuk' },
+      { jp: 'どうぞ', rom: 'douzo', id: 'silakan' },
+      { jp: '禁止', rom: 'kinshi', id: 'larangan' },
+    ],
+  },
+  {
+    bab: 18,
+    judul_jp: 'パスポートを 見せなければ なりません。',
+    judul_id: 'Harus menunjukkan paspor.',
+    tema: 'Keharusan & Tidak Perlu (〜なければ なりません)',
+    pola: [
+      { pat: 'KK-nakereba narimasen', desc: 'Menyatakan keharusan: "Harus ~". Dibuat dari bentuk negatif kamus (〜ない) → ganti ない dengan なければ なりません.' },
+      { pat: 'KK-nakute mo ii desu', desc: 'Menyatakan tidak perlu: "Tidak harus ~ / boleh tidak ~". Kebalikan dari なければ なりません.' },
+      { pat: 'もう 〜ました か', desc: 'Menanyakan apakah sesuatu sudah dilakukan. もう = sudah. まだです = belum.' },
+    ],
+    contoh: [
+      { jp: 'パスポート を 見せなければ なりません。', rom: 'Pasupooto o misenakereba narimasen.', id: 'Harus menunjukkan paspor.' },
+      { jp: '日曜日 は 早く 起きなくても いいです。', rom: 'Nichiyoubi wa hayaku okinakute mo ii desu.', id: 'Hari Minggu tidak harus bangun pagi.' },
+      { jp: '薬 を 飲まなければ なりません。', rom: 'Kusuri o nomanakere ba narimasen.', id: 'Harus minum obat.' },
+      { jp: 'もう 宿題 を しましたか。', rom: 'Mou shukudai o shimashitaka?', id: 'Sudah mengerjakan PR?' },
+      { jp: 'いいえ、まだ です。', rom: 'Iie, mada desu.', id: 'Belum.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Peraturan Kantor',
+      baris: [
+        { speaker: 'Bos', jp: '毎朝 9時 まで に 来なければ なりません。', id: 'Harus datang sebelum jam 9 setiap pagi.' },
+        { speaker: 'Karyawan', jp: '制服 を 着なければ なりませんか。', id: 'Apakah harus memakai seragam?' },
+        { speaker: 'Bos', jp: 'はい、そうです。でも 残業 は しなくても いいです。', id: 'Ya, betul. Tapi lembur tidak harus.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜なければ なりません', rom: '~nakereba narimasen', id: 'harus ~' },
+      { jp: '〜なくても いいです', rom: '~nakute mo ii desu', id: 'tidak harus ~' },
+      { jp: 'もう', rom: 'mou', id: 'sudah' },
+      { jp: 'まだ', rom: 'mada', id: 'belum' },
+      { jp: 'パスポート', rom: 'pasupooto', id: 'paspor' },
+      { jp: '見せます', rom: 'misemasu', id: 'menunjukkan' },
+      { jp: '薬', rom: 'kusuri', id: 'obat' },
+      { jp: '飲みます', rom: 'nomimasu', id: 'minum' },
+      { jp: '制服', rom: 'seifuku', id: 'seragam' },
+      { jp: '着ます', rom: 'kimasu', id: 'memakai (baju)' },
+      { jp: '残業', rom: 'zangyou', id: 'lembur' },
+      { jp: '宿題', rom: 'shukudai', id: 'pekerjaan rumah' },
+    ],
+  },
+  {
+    bab: 19,
+    judul_jp: 'ミラーさんは 漢字を 読む ことが できます。',
+    judul_id: 'Mr. Miller bisa membaca kanji.',
+    tema: 'Kemampuan & Nominalisasi (〜こと が できます)',
+    pola: [
+      { pat: 'KK (bentuk kamus) こと が できます', desc: 'Menyatakan kemampuan: "Bisa ~". Kata kerja bentuk kamus + こと が できます. Lebih formal dari できます saja.' },
+      { pat: '私 の 趣味 は 〜こと です', desc: 'Nominalisasi kata kerja menggunakan こと: menjadikan kata kerja sebagai nomina. Digunakan untuk menyatakan hobi.' },
+      { pat: '〜 前 に、〜', desc: 'Menyatakan sebelum melakukan sesuatu. KK bentuk kamus + 前に = sebelum ~.' },
+    ],
+    contoh: [
+      { jp: 'ミラーさん は 漢字 を 読む こと が できます。', rom: 'Miraa san wa kanji o yomu koto ga dekimasu.', id: 'Mr. Miller bisa membaca kanji.' },
+      { jp: '私 の 趣味 は 映画 を 見る こと です。', rom: 'Watashi no shumi wa eiga o miru koto desu.', id: 'Hobi saya adalah menonton film.' },
+      { jp: '寝る 前 に、日記 を 書きます。', rom: 'Neru mae ni, nikki o kakimasu.', id: 'Sebelum tidur, menulis diary.' },
+      { jp: '私 は ピアノ を 弾く こと が できます。', rom: 'Watashi wa piano o hiku koto ga dekimasu.', id: 'Saya bisa memainkan piano.' },
+      { jp: '料理 する こと が 好きです。', rom: 'Ryouri suru koto ga suki desu.', id: 'Suka memasak.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Bakat & Kemampuan',
+      baris: [
+        { speaker: 'A', jp: '何か 楽器 を 弾く こと が できますか。', id: 'Bisa memainkan alat musik?' },
+        { speaker: 'B', jp: 'はい、ギター を 弾く こと が できます。', id: 'Ya, bisa memainkan gitar.' },
+        { speaker: 'A', jp: 'いつ から 弾いていますか。', id: 'Sudah main dari kapan?' },
+        { speaker: 'B', jp: '子供 の とき から です。', id: 'Dari waktu kecil.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜こと が できます', rom: '~koto ga dekimasu', id: 'bisa ~ (formal)' },
+      { jp: '趣味', rom: 'shumi', id: 'hobi' },
+      { jp: '前に', rom: 'mae ni', id: 'sebelum ~' },
+      { jp: '後で', rom: 'ato de', id: 'setelah ~ / nanti' },
+      { jp: '日記', rom: 'nikki', id: 'diary / buku harian' },
+      { jp: '楽器', rom: 'gakki', id: 'alat musik' },
+      { jp: 'ピアノ', rom: 'piano', id: 'piano' },
+      { jp: 'ギター', rom: 'gitaa', id: 'gitar' },
+      { jp: '弾きます', rom: 'hikimasu', id: 'memainkan (alat musik)' },
+      { jp: '歌います', rom: 'utaimasu', id: 'bernyanyi' },
+      { jp: '踊ります', rom: 'odorimasu', id: 'menari' },
+      { jp: '子供のとき', rom: 'kodomo no toki', id: 'waktu kecil' },
+    ],
+  },
+  {
+    bab: 20,
+    judul_jp: '相撲を 見た ことが あります。',
+    judul_id: 'Saya pernah menonton sumo.',
+    tema: 'Pengalaman (〜た ことが あります)',
+    pola: [
+      { pat: 'KK (bentuk た) こと が あります', desc: 'Menyatakan pengalaman pernah melakukan sesuatu: "Pernah ~". KK bentuk lampau (た形) + こと が あります.' },
+      { pat: 'KK (bentuk た) こと が ありません', desc: 'Menyatakan belum pernah: "Belum pernah ~". Bentuk negatifnya.' },
+      { pat: '〜回 〜た こと が あります', desc: 'Menyatakan berapa kali pengalaman tersebut terjadi. 一回 = sekali, 何回 = berapa kali.' },
+    ],
+    contoh: [
+      { jp: '相撲 を 見た こと が あります。', rom: 'Sumou o mita koto ga arimasu.', id: 'Pernah menonton sumo.' },
+      { jp: '富士山 に 登った こと が ありますか。', rom: 'Fujisan ni nobotta koto ga arimasuka?', id: 'Pernahkah mendaki Gunung Fuji?' },
+      { jp: 'いいえ、一度 も ありません。', rom: 'Iie, ichido mo arimasen.', id: 'Tidak, belum pernah sekali pun.' },
+      { jp: '日本 料理 を 作った こと が あります。', rom: 'Nihon ryouri o tsukutta koto ga arimasu.', id: 'Pernah memasak masakan Jepang.' },
+      { jp: '何回 日本 へ 来た こと が ありますか。', rom: 'Nankai nihon e kita koto ga arimasuka?', id: 'Sudah berapa kali pernah ke Jepang?' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Pengalaman di Jepang',
+      baris: [
+        { speaker: 'A', jp: '日本 で 温泉 に 入った こと が ありますか。', id: 'Pernahkah berendam di onsen di Jepang?' },
+        { speaker: 'B', jp: 'はい、あります。別府 で 入りました。', id: 'Ya, pernah. Berendam di Beppu.' },
+        { speaker: 'A', jp: 'どうでしたか。', id: 'Bagaimana rasanya?' },
+        { speaker: 'B', jp: 'とても 気持ちよかった です。', id: 'Terasa sangat nyaman.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜た こと が あります', rom: '~ta koto ga arimasu', id: 'pernah ~' },
+      { jp: '一度', rom: 'ichido', id: 'sekali' },
+      { jp: '何回', rom: 'nankai', id: 'berapa kali' },
+      { jp: '一度も〜ない', rom: 'ichido mo ~nai', id: 'belum pernah sekali pun' },
+      { jp: '登ります', rom: 'noborimasu', id: 'mendaki / naik' },
+      { jp: '温泉', rom: 'onsen', id: 'pemandian air panas' },
+      { jp: '入ります', rom: 'hairimasu', id: 'masuk / mandi' },
+      { jp: '気持ちいい', rom: 'kimochi ii', id: 'terasa nyaman' },
+      { jp: '経験', rom: 'keiken', id: 'pengalaman' },
+      { jp: '初めて', rom: 'hajimete', id: 'pertama kali' },
+      { jp: '相撲', rom: 'sumou', id: 'sumo (gulat Jepang)' },
+      { jp: '富士山', rom: 'fujisan', id: 'Gunung Fuji' },
+    ],
+  },
+  {
+    bab: 21,
+    judul_jp: '休みの日は テニスを したり 散歩したり します。',
+    judul_id: 'Di hari libur, melakukan hal-hal seperti tenis dan jalan-jalan.',
+    tema: 'Kegiatan Berulang (〜たり 〜たり します)',
+    pola: [
+      { pat: 'KK1-たり、KK2-たり します', desc: 'Menyebutkan beberapa kegiatan yang dilakukan bergantian atau sebagai contoh sebagian. Bukan semua kegiatan disebutkan, hanya yang representatif.' },
+      { pat: 'KK1-たり、KK2-たり しました', desc: 'Bentuk lampau dari たり〜たり します.' },
+    ],
+    contoh: [
+      { jp: '休みの日 は テニス を したり、散歩 に 行ったり します。', rom: 'Yasumi no hi wa tenisu o shitari, sanpo ni ittari shimasu.', id: 'Di hari libur, main tenis dan jalan-jalan (antara lain).' },
+      { jp: '週末 は 音楽 を 聴いたり、本 を 読んだり します。', rom: 'Shuumatsu wa ongaku o kiitari, hon o yondari shimasu.', id: 'Akhir pekan mendengarkan musik dan membaca buku.' },
+      { jp: '昨日 は 映画 を 見たり、友達 と 話したり しました。', rom: 'Kinou wa eiga o mitari, tomodachi to hanashitari shimashita.', id: 'Kemarin menonton film dan ngobrol dengan teman.' },
+      { jp: 'のどが痛かったり、熱があったり します。', rom: 'Nodo ga itakattari, netsu ga attari shimasu.', id: 'Kadang tenggorokan sakit, kadang demam.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Akhir Pekan',
+      baris: [
+        { speaker: 'A', jp: '昨日 何 を しましたか。', id: 'Kemarin ngapain?' },
+        { speaker: 'B', jp: '買い物 を したり、映画 を 見たり しました。', id: 'Belanja, nonton film, dan lain-lain.' },
+        { speaker: 'A', jp: 'どんな 映画 でしたか。', id: 'Film apa itu?' },
+        { speaker: 'B', jp: 'コメディー です。笑ったり、泣いたり しました。', id: 'Komedi. Tertawa dan menangis.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜たり〜たり します', rom: '~tari~tari shimasu', id: 'melakukan hal-hal seperti ~' },
+      { jp: '散歩', rom: 'sanpo', id: 'jalan-jalan' },
+      { jp: 'テニス', rom: 'tenisu', id: 'tenis' },
+      { jp: '泳ぎます', rom: 'oyogimasu', id: 'berenang' },
+      { jp: '笑います', rom: 'waraimasu', id: 'tertawa' },
+      { jp: '泣きます', rom: 'nakimasu', id: 'menangis' },
+      { jp: 'のど', rom: 'nodo', id: 'tenggorokan' },
+      { jp: '熱', rom: 'netsu', id: 'demam / panas' },
+      { jp: '週末', rom: 'shuumatsu', id: 'akhir pekan' },
+      { jp: 'ゆっくり', rom: 'yukkuri', id: 'santai / pelan-pelan' },
+      { jp: 'コメディー', rom: 'komedii', id: 'komedi' },
+      { jp: '休みの日', rom: 'yasumi no hi', id: 'hari libur' },
+    ],
+  },
+  {
+    bab: 22,
+    judul_jp: 'これから だんだん 暖かく なります。',
+    judul_id: 'Mulai sekarang akan semakin hangat.',
+    tema: 'Perubahan Kondisi (〜に / 〜く なります)',
+    pola: [
+      { pat: 'い形容詞 → 〜く なります', desc: 'Menyatakan perubahan kondisi. Kata sifat い: hilangkan い terakhir, tambahkan く なります. Contoh: 寒い → 寒く なります.' },
+      { pat: 'な形容詞 → 〜に なります', desc: 'Kata sifat な: tambahkan に なります. Contoh: きれい → きれいに なります.' },
+      { pat: 'KB に なります', desc: 'Nomina: tambahkan に なります. Contoh: 先生 に なります = menjadi guru.' },
+    ],
+    contoh: [
+      { jp: 'これから だんだん 暖かく なります。', rom: 'Korekara dandan atatakaku narimasu.', id: 'Mulai sekarang akan semakin hangat.' },
+      { jp: '日本語 が 上手 に なりました。', rom: 'Nihongo ga jouzu ni narimashita.', id: 'Bahasa Jepang semakin mahir.' },
+      { jp: '子供 が 医者 に なりました。', rom: 'Kodomo ga isha ni narimashita.', id: 'Anaknya menjadi dokter.' },
+      { jp: '部屋 が きれいに なりました。', rom: 'Heya ga kirei ni narimashita.', id: 'Kamarnya menjadi bersih.' },
+      { jp: 'もっと 勉強 して、頭 が よく なりたいです。', rom: 'Motto benkyou shite, atama ga yoku naritai desu.', id: 'Ingin belajar lebih banyak dan menjadi pintar.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Perubahan Cuaca',
+      baris: [
+        { speaker: 'A', jp: '最近 だんだん 寒く なりましたね。', id: 'Belakangan ini semakin dingin ya.' },
+        { speaker: 'B', jp: 'そうですね。もうすぐ 冬 に なりますね。', id: 'Ya, benar. Sebentar lagi akan jadi musim dingin.' },
+        { speaker: 'A', jp: '冬 が 好きですか。', id: 'Suka musim dingin?' },
+        { speaker: 'B', jp: 'はい。雪 が 降ると きれいに なります。', id: 'Ya. Kalau salju turun, jadi indah.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜く なります', rom: '~ku narimasu', id: 'menjadi ~ (kata sifat い)' },
+      { jp: '〜に なります', rom: '~ni narimasu', id: 'menjadi ~ (kata sifat な / nomina)' },
+      { jp: 'だんだん', rom: 'dandan', id: 'semakin / lambat laun' },
+      { jp: 'もっと', rom: 'motto', id: 'lebih lagi' },
+      { jp: 'だいぶ', rom: 'daibu', id: 'cukup banyak / jauh lebih' },
+      { jp: '暖かい', rom: 'atatakai', id: 'hangat' },
+      { jp: '涼しい', rom: 'suzushii', id: 'sejuk' },
+      { jp: '雪', rom: 'yuki', id: 'salju' },
+      { jp: '冬', rom: 'fuyu', id: 'musim dingin' },
+      { jp: '春', rom: 'haru', id: 'musim semi' },
+      { jp: '秋', rom: 'aki', id: 'musim gugur' },
+      { jp: '季節', rom: 'kisetsu', id: 'musim' },
+    ],
+  },
+  {
+    bab: 23,
+    judul_jp: '明日 雨が 降ると 思います。',
+    judul_id: 'Saya pikir besok akan hujan.',
+    tema: 'Pendapat & Laporan Tidak Langsung (〜と 思います / 〜と 言います)',
+    pola: [
+      { pat: '〜と 思います', desc: 'Menyatakan pendapat atau perkiraan pembicara: "Saya pikir / kira ~". Kalimat sebelum と menggunakan bentuk biasa (kamus/lampau/negatif).' },
+      { pat: '〜と 言いました', desc: 'Melaporkan ucapan orang lain secara tidak langsung: "~ berkata bahwa ~". Kalimat sebelum と juga berbentuk biasa.' },
+      { pat: '〜でしょう', desc: 'Menyatakan dugaan yang tidak pasti: "Mungkin ~ / Kira-kira ~". Digunakan juga dalam ramalan cuaca.' },
+    ],
+    contoh: [
+      { jp: '明日 雨 が 降る と 思います。', rom: 'Ashita ame ga furu to omoimasu.', id: 'Saya pikir besok akan hujan.' },
+      { jp: '田中さん は もう 帰った と 思います。', rom: 'Tanaka san wa mou kaetta to omoimasu.', id: 'Saya pikir Pak Tanaka sudah pulang.' },
+      { jp: '父 は 留学 したい と 言いました。', rom: 'Chichi wa ryuugaku shitai to iimashita.', id: 'Ayah bilang ingin kuliah di luar negeri.' },
+      { jp: '明日 は 晴れる でしょう。', rom: 'Ashita wa hareru deshou.', id: 'Besok mungkin cerah.' },
+      { jp: 'この 問題 は 難しい と 思います。', rom: 'Kono mondai wa muzukashii to omoimasu.', id: 'Saya pikir soal ini sulit.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Membahas Rencana',
+      baris: [
+        { speaker: 'A', jp: 'ミラーさん は 来ますか。', id: 'Apakah Mr. Miller akan datang?' },
+        { speaker: 'B', jp: 'たぶん 来ない と 思います。今日 は 忙しい と 言っていました。', id: 'Mungkin tidak datang. Katanya hari ini sibuk.' },
+        { speaker: 'A', jp: 'そうですか。残念ですね。', id: 'Begitu ya. Sayang sekali.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜と 思います', rom: '~to omoimasu', id: 'saya pikir ~' },
+      { jp: '〜と 言います', rom: '~to iimasu', id: 'berkata bahwa ~' },
+      { jp: '〜でしょう', rom: '~deshou', id: 'mungkin ~ (dugaan)' },
+      { jp: 'たぶん', rom: 'tabun', id: 'mungkin / kira-kira' },
+      { jp: 'きっと', rom: 'kitto', id: 'pasti / tentu' },
+      { jp: 'たしか', rom: 'tashika', id: 'sepertinya / jika tidak salah' },
+      { jp: '晴れます', rom: 'haremasu', id: 'cerah' },
+      { jp: '曇ります', rom: 'kumorimasu', id: 'mendung' },
+      { jp: '降ります', rom: 'furimasu', id: 'turun (hujan/salju)' },
+      { jp: '天気予報', rom: 'tenki yohou', id: 'ramalan cuaca' },
+      { jp: '問題', rom: 'mondai', id: 'masalah / soal' },
+      { jp: '留学', rom: 'ryuugaku', id: 'kuliah di luar negeri' },
+    ],
+  },
+  {
+    bab: 24,
+    judul_jp: 'これは ミラーさんが 作った ケーキです。',
+    judul_id: 'Ini adalah kue yang dibuat oleh Mr. Miller.',
+    tema: 'Klausa Relatif (Kata Kerja Menerangkan Nomina)',
+    pola: [
+      { pat: 'KK (biasa) + Nomina', desc: 'Kata kerja bentuk biasa (kamus/lampau) dapat langsung ditempatkan sebelum nomina untuk menerangkannya. Ini disebut klausa relatif.' },
+      { pat: 'KK (lampau biasa) + Nomina', desc: 'Contoh: 昨日 買った 本 = buku yang dibeli kemarin. 食べた ケーキ = kue yang dimakan.' },
+      { pat: 'Nomina の Nomina', desc: 'Partikel の juga dapat menggabungkan nomina-nomina sebagai modifikasi.' },
+    ],
+    contoh: [
+      { jp: 'これ は ミラーさん が 作った ケーキ です。', rom: 'Kore wa Miraa san ga tsukutta keeki desu.', id: 'Ini adalah kue yang dibuat Mr. Miller.' },
+      { jp: 'あそこ に いる 人 は 田中さん です。', rom: 'Asoko ni iru hito wa Tanaka san desu.', id: 'Orang yang ada di sana adalah Pak Tanaka.' },
+      { jp: '昨日 習った ことば は 忘れました。', rom: 'Kinou naratta kotoba wa wasuremashita.', id: 'Kosakata yang dipelajari kemarin sudah lupa.' },
+      { jp: '私 が 住んで いる 街 は とても きれいです。', rom: 'Watashi ga sunde iru machi wa totemo kirei desu.', id: 'Kota tempat saya tinggal sangat indah.' },
+      { jp: '今 読んで いる 本 は おもしろいです。', rom: 'Ima yonde iru hon wa omoshiroi desu.', id: 'Buku yang sedang dibaca sekarang menarik.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Mendeskripsikan Benda',
+      baris: [
+        { speaker: 'A', jp: 'あの 赤い 服 を 着て いる 人 は だれですか。', id: 'Siapa orang yang memakai baju merah itu?' },
+        { speaker: 'B', jp: 'あの 人 は 田中さん の お姉さん です。', id: 'Orang itu adalah kakak perempuan Pak Tanaka.' },
+        { speaker: 'A', jp: 'きれいな 人 ですね。', id: 'Cantik ya.' },
+      ]
+    },
+    vocab: [
+      { jp: '作ります', rom: 'tsukurimasu', id: 'membuat' },
+      { jp: '忘れます', rom: 'wasuremasu', id: 'melupakan' },
+      { jp: '覚えます', rom: 'oboemasu', id: 'menghafal / mengingat' },
+      { jp: '住みます', rom: 'sumimasu', id: 'tinggal' },
+      { jp: '着ます', rom: 'kimasu', id: 'memakai (baju)' },
+      { jp: 'ことば', rom: 'kotoba', id: 'kata / kosakata' },
+      { jp: '街', rom: 'machi', id: 'kota / daerah' },
+      { jp: '服', rom: 'fuku', id: 'pakaian' },
+      { jp: '人', rom: 'hito', id: 'orang' },
+      { jp: 'おもしろい', rom: 'omoshiroi', id: 'menarik / lucu' },
+      { jp: 'ケーキ', rom: 'keeki', id: 'kue' },
+      { jp: 'お姉さん', rom: 'oneesan', id: 'kakak perempuan' },
+    ],
+  },
+  {
+    bab: 25,
+    judul_jp: '雨が 降ったら、出かけません。',
+    judul_id: 'Kalau hujan, saya tidak akan keluar.',
+    tema: 'Kalimat Bersyarat (〜たら / 〜ても)',
+    pola: [
+      { pat: '〜たら、〜 (kondisional)', desc: 'Menyatakan kondisi: "Kalau/Jika ~, maka ~". Dibuat dari bentuk lampau (た形) + ら. Digunakan untuk kondisi yang mungkin terjadi.' },
+      { pat: '〜ても、〜 (konsesif)', desc: 'Menyatakan konsesi: "Meskipun/Walaupun ~, tetap ~". Dibuat dari bentuk て + も. Menunjukkan bahwa hasilnya tidak berubah meski ada kondisi.' },
+      { pat: 'もし 〜たら / 〜なら', desc: 'もし digunakan untuk menekankan bahwa kondisi tersebut hipotetis atau tidak pasti. Seperti "Seandainya ~".' },
+    ],
+    contoh: [
+      { jp: '雨 が 降ったら、出かけません。', rom: 'Ame ga futtara, dekakemasen.', id: 'Kalau hujan, tidak akan keluar.' },
+      { jp: '雨 が 降っても、出かけます。', rom: 'Ame ga futte mo, dekakemasu.', id: 'Meskipun hujan, tetap keluar.' },
+      { jp: '安かったら、買います。', rom: 'Yasukattara, kaimasu.', id: 'Kalau murah, akan beli.' },
+      { jp: 'もし 宝くじ が 当たったら、何 を しますか。', rom: 'Moshi takarakuji ga atattara, nani o shimasuka?', id: 'Kalau memenangkan lotre, mau ngapain?' },
+      { jp: 'どんなに 疲れても、毎日 勉強 します。', rom: 'Donna ni tsukarete mo, mainichi benkyou shimasu.', id: 'Meski seberapa lelah pun, belajar setiap hari.' },
+    ],
+    kaiwa: {
+      judul: 'Percakapan: Rencana Jika Hujan',
+      baris: [
+        { speaker: 'A', jp: '明日 の ピクニック、楽しみですね。', id: 'Piknik besok, ditunggu-tunggu ya.' },
+        { speaker: 'B', jp: 'でも、雨 が 降ったら どうしますか。', id: 'Tapi, bagaimana kalau hujan?' },
+        { speaker: 'A', jp: '雨 が 降ったら、映画 を 見に 行きましょう。', id: 'Kalau hujan, ayo nonton film.' },
+        { speaker: 'B', jp: 'いいですね！晴れても 雨 が 降っても 楽しみましょう。', id: 'Bagus! Entah cerah atau hujan, mari bersenang-senang.' },
+      ]
+    },
+    vocab: [
+      { jp: '〜たら', rom: '~tara', id: 'kalau ~ (kondisional)' },
+      { jp: '〜ても', rom: '~te mo', id: 'meskipun ~ (konsesif)' },
+      { jp: 'もし', rom: 'moshi', id: 'seandainya' },
+      { jp: '出かけます', rom: 'dekakemasu', id: 'keluar / pergi keluar' },
+      { jp: '宝くじ', rom: 'takarakuji', id: 'lotre' },
+      { jp: '当たります', rom: 'atarimasu', id: 'menang / tepat' },
+      { jp: '疲れます', rom: 'tsukaremasu', id: 'kelelahan' },
+      { jp: 'ピクニック', rom: 'pikunikku', id: 'piknik' },
+      { jp: '晴れます', rom: 'haremasu', id: 'cerah' },
+      { jp: 'どんなに〜ても', rom: 'donna ni ~te mo', id: 'seberapa pun ~' },
+      { jp: '楽しみます', rom: 'tanoshimimasu', id: 'bersenang-senang' },
+      { jp: '楽しみ', rom: 'tanoshimi', id: 'sesuatu yang ditunggu-tunggu' },
+    ],
+  },
+
+];
+
+// ===== MINNA NO NIHONGO FUNCTIONS =====
+let minnaCurrentBab = 0;
+
+function buildMinna() {
+  const tabsEl = document.getElementById('minna-tabs');
+  const contentEl = document.getElementById('minna-content');
+
+  // Build tabs
+  tabsEl.innerHTML = MINNA_DATA.map((b, i) =>
+    `<button class="minna-tab ${i === 0 ? 'active' : ''}" onclick="switchMinnaBab(${i})">Bab ${b.bab}</button>`
+  ).join('');
+
+  // Build all bab content
+  contentEl.innerHTML = MINNA_DATA.map((b, i) => `
+    <div class="minna-bab ${i === 0 ? 'active' : ''}" id="minna-bab-${i}">
+      <div class="bab-header">
+        <span class="bab-num">Bab ${b.bab} — ${b.tema}</span>
+        <div>
+          <div class="bab-title-jp">${b.judul_jp}</div>
+          <div class="bab-title-id">${b.judul_id}</div>
+        </div>
+      </div>
+
+      <div class="minna-section">
+        <div class="minna-section-label">文型 Pola Kalimat</div>
+        <div class="pola-list">
+          ${b.pola.map(p => `
+            <div class="pola-item">
+              <div class="pola-pattern">${p.pat}</div>
+              <div class="pola-desc">${p.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="minna-section">
+        <div class="minna-section-label">例文 Contoh Kalimat</div>
+        <div class="contoh-list">
+          ${b.contoh.map((c, ci) => `
+            <div class="contoh-item">
+              <div class="contoh-jp">㊉${ci+1}　${c.jp}</div>
+              <div class="contoh-rom">${c.rom}</div>
+              <div class="contoh-id">${c.id}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="minna-section">
+        <div class="minna-section-label">会話 Percakapan</div>
+        <div class="kaiwa-box">
+          <div class="kaiwa-title">${b.kaiwa.judul}</div>
+          ${b.kaiwa.baris.map(k => `
+            <div class="kaiwa-line">
+              <div class="kaiwa-speaker">${k.speaker}</div>
+              <div class="kaiwa-text">
+                <div class="kaiwa-jp">${k.jp}</div>
+                <div style="font-size:12px;color:var(--ink3);margin-top:2px">${k.id}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="minna-section">
+        <div class="minna-section-label">語彙 Kosakata Bab ${b.bab}</div>
+        <div class="vocab-minna-grid">
+          ${b.vocab.map(v => `
+            <div class="vocab-minna-item">
+              <div class="vocab-minna-jp">${v.jp}</div>
+              <div class="vocab-minna-right">
+                <div class="vocab-minna-rom">${v.rom}</div>
+                <div class="vocab-minna-id">${v.id}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="bab-nav-row">
+        <button class="bab-nav-btn" onclick="switchMinnaBab(${i-1})" ${i === 0 ? 'disabled' : ''}>← Bab ${b.bab - 1}</button>
+        <button class="bab-nav-btn" onclick="switchMinnaBab(${i+1})" ${i === MINNA_DATA.length - 1 ? 'disabled' : ''}>Bab ${b.bab + 1} →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchMinnaBab(idx) {
+  if(idx < 0 || idx >= MINNA_DATA.length) return;
+  document.querySelectorAll('.minna-bab').forEach((el, i) => el.classList.toggle('active', i === idx));
+  document.querySelectorAll('.minna-tab').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+    if(i === idx) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+  minnaCurrentBab = idx;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+// ===== FLASHCARD MINNA NO NIHONGO =====
+let minnaFCDeck = [], minnaFCIdx = 0, minnaFCGood = 0, minnaFCBad = 0, minnaFCFlipped = false;
+
+// Populate bab dropdown once MINNA_DATA is ready
+function buildMinnaFCSelect() {
+  const sel = document.getElementById('minna-fc-bab');
+  if (!sel) return;
+  // "Semua" option
+  sel.innerHTML = '<option value="all">Semua Bab (1–25)</option>' +
+    MINNA_DATA.map(b => `<option value="${b.bab}">Bab ${b.bab} — ${b.tema}</option>`).join('');
+}
+
+function initMinnaFC() {
+  buildMinnaFCSelect();
+  const babVal = document.getElementById('minna-fc-bab')?.value || 'all';
+  const order  = document.getElementById('minna-fc-order')?.value || 'shuffle';
+
+  // Build deck from MINNA_DATA vocab
+  let pool = [];
+  MINNA_DATA.forEach(b => {
+    if (babVal === 'all' || String(b.bab) === babVal) {
+      b.vocab.forEach(v => {
+        pool.push({
+          front: v.jp,
+          reading: v.rom,
+          meaning: v.id,
+          cat: `Bab ${b.bab} — ${b.tema}`,
+          bab: b.bab
+        });
+      });
+    }
+  });
+
+  if (order === 'shuffle') pool = pool.sort(() => Math.random() - 0.5);
+
+  minnaFCDeck  = pool;
+  minnaFCIdx   = 0;
+  minnaFCGood  = 0;
+  minnaFCBad   = 0;
+  minnaFCFlipped = false;
+
+  const resultEl = document.getElementById('minna-fc-result');
+  const mainEl   = document.getElementById('minna-fc-main');
+  if (resultEl) resultEl.style.display = 'none';
+  if (mainEl)   mainEl.style.display   = 'block';
+
+  document.getElementById('minna-fc-inner')?.classList.remove('flipped');
+  document.getElementById('minna-fc-actions')?.classList.add('fc-actions-hidden');
+  const nextWrap = document.getElementById('minna-fc-next-wrap');
+  if (nextWrap) nextWrap.style.display = 'none';
+  const tapHint = document.getElementById('minna-fc-tap-hint');
+  if (tapHint) tapHint.style.display = 'block';
+
+  buildMinnaFCDots();
+  renderMinnaFCCard();
+}
+
+function renderMinnaFCCard() {
+  if (minnaFCIdx >= minnaFCDeck.length) { showMinnaFCResult(); return; }
+  const card = minnaFCDeck[minnaFCIdx];
+
+  document.getElementById('minna-fc-front-text').textContent = card.front;
+  document.getElementById('minna-fc-reading').textContent    = card.reading;
+  document.getElementById('minna-fc-meaning').textContent    = card.meaning;
+  document.getElementById('minna-fc-cat').textContent        = card.cat;
+  document.getElementById('minna-fc-counter').textContent    = (minnaFCIdx + 1) + ' / ' + minnaFCDeck.length;
+
+  minnaFCFlipped = false;
+  document.getElementById('minna-fc-inner')?.classList.remove('flipped');
+  document.getElementById('minna-fc-actions')?.classList.add('fc-actions-hidden');
+  const nextWrap = document.getElementById('minna-fc-next-wrap');
+  if (nextWrap) nextWrap.style.display = 'none';
+  const tapHint = document.getElementById('minna-fc-tap-hint');
+  if (tapHint) tapHint.style.display = 'block';
+
+  updateMinnaFCDots();
+}
+
+function flipMinnaCard() {
+  if (minnaFCIdx >= minnaFCDeck.length) return;
+  minnaFCFlipped = !minnaFCFlipped;
+  document.getElementById('minna-fc-inner')?.classList.toggle('flipped', minnaFCFlipped);
+  if (minnaFCFlipped) {
+    document.getElementById('minna-fc-actions')?.classList.remove('fc-actions-hidden');
+    const tapHint = document.getElementById('minna-fc-tap-hint');
+    if (tapHint) tapHint.style.display = 'none';
+  }
+}
+
+function minnaFCAnswer(good) {
+  if (good) minnaFCGood++; else minnaFCBad++;
+  markMinnaFCDot(minnaFCIdx, good);
+  document.getElementById('minna-fc-actions')?.classList.add('fc-actions-hidden');
+  const nextWrap = document.getElementById('minna-fc-next-wrap');
+  if (nextWrap) nextWrap.style.display = 'block';
+  const tapHint = document.getElementById('minna-fc-tap-hint');
+  if (tapHint) tapHint.style.display = 'none';
+}
+
+function minnaFCNext() {
+  minnaFCIdx++;
+  renderMinnaFCCard();
+}
+
+function buildMinnaFCDots() {
+  const row = document.getElementById('minna-fc-dots');
+  if (!row) return;
+  // Batasi dot maksimal 40 agar tidak terlalu penuh
+  const show = Math.min(minnaFCDeck.length, 40);
+  row.innerHTML = Array.from({length: show}, (_, i) =>
+    `<div class="fc-dot" id="mfcdot-${i}"></div>`
+  ).join('');
+}
+
+function updateMinnaFCDots() {
+  const show = Math.min(minnaFCDeck.length, 40);
+  for (let i = 0; i < show; i++) {
+    const d = document.getElementById(`mfcdot-${i}`);
+    if (!d) continue;
+    d.classList.toggle('seen', i < minnaFCIdx);
+  }
+}
+
+function markMinnaFCDot(i, good) {
+  if (i >= 40) return;
+  const d = document.getElementById(`mfcdot-${i}`);
+  if (!d) return;
+  d.classList.add('seen');
+  if (good) d.classList.add('known');
+}
+
+function showMinnaFCResult() {
+  const mainEl   = document.getElementById('minna-fc-main');
+  const resultEl = document.getElementById('minna-fc-result');
+  if (mainEl)   mainEl.style.display   = 'none';
+  if (resultEl) resultEl.style.display = 'block';
+  const goodEl = document.getElementById('minna-fc-res-good');
+  const badEl  = document.getElementById('minna-fc-res-bad');
+  if (goodEl) goodEl.textContent = minnaFCGood;
+  if (badEl)  badEl.textContent  = minnaFCBad;
+}
+
+// ===== DOKKAI JLPT N5 DATA =====
+const DOKKAI_DATA = [
+  {
+    id: 1,
+    judul: 'Surat dari Teman',
+    topik: 'Membaca surat informal',
+    level: 'N5',
+    passage: `<ruby>田中<rt>たなか</rt></ruby>さんへ
+
+　こんにちは。<ruby>元気<rt>げんき</rt></ruby>ですか。わたしは<ruby>元気<rt>げんき</rt></ruby>です。
+　<ruby>先週<rt>せんしゅう</rt></ruby>、<ruby>家族<rt>かぞく</rt></ruby>と<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>動物園<rt>どうぶつえん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きました。ぞうやきりんやさるなどを<ruby>見<rt>み</rt></ruby>ました。とても<ruby>楽<rt>たの</rt></ruby>しかったです。
+　<ruby>動物園<rt>どうぶつえん</rt></ruby>の<ruby>近<rt>ちか</rt></ruby>くに<ruby>大<rt>おお</rt></ruby>きい<ruby>公園<rt>こうえん</rt></ruby>があります。<ruby>公園<rt>こうえん</rt></ruby>で<ruby>昼<rt>ひる</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べました。<ruby>公園<rt>こうえん</rt></ruby>にはきれいな<ruby>花<rt>はな</rt></ruby>がたくさんさいていました。
+　<ruby>田中<rt>たなか</rt></ruby>さんは<ruby>動物<rt>どうぶつ</rt></ruby>が<ruby>好<rt>す</rt></ruby>きですか。<ruby>今度<rt>こんど</rt></ruby><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>動物園<rt>どうぶつえん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きましょう。
+
+　<ruby>山田<rt>やまだ</rt></ruby>より`,
+    passage_id: `Kepada Tanaka,
+
+Halo. Apakah kamu baik-baik saja? Saya baik-baik saja.
+Minggu lalu, saya pergi ke kebun binatang bersama keluarga. Kami melihat gajah, jerapah, monyet, dan lain-lain. Sangat menyenangkan.
+Di dekat kebun binatang ada taman yang besar. Kami makan siang di taman. Di taman banyak bunga cantik yang sedang mekar.
+Apakah Tanaka suka binatang? Lain kali mari kita pergi ke kebun binatang bersama.
+
+Dari Yamada`,
+    vocab: [
+      {jp:'どうぶつえん', rom:'doubutsuen', id:'kebun binatang'},
+      {jp:'かぞく', rom:'kazoku', id:'keluarga'},
+      {jp:'こうえん', rom:'kouen', id:'taman'},
+      {jp:'さいていました', rom:'saite imashita', id:'sedang mekar'},
+      {jp:'こんど', rom:'kondo', id:'lain kali'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'やまださんはせんしゅう、どこへいきましたか。',
+        q_id: 'Minggu lalu Yamada pergi ke mana?',
+        opts: [
+          {jp:'こうえん', id:'Taman'},
+          {jp:'どうぶつえん', id:'Kebun binatang'},
+          {jp:'がっこう', id:'Sekolah'},
+          {jp:'レストラン', id:'Restoran'},
+        ],
+        answer: 1,
+        exp: '「せんしゅう、かぞくといっしょにどうぶつえんへいきました」— Yamada pergi ke どうぶつえん (kebun binatang) bersama keluarga minggu lalu.'
+      },
+      {
+        num: 2,
+        q_jp: 'やまださんはどこでひるごはんをたべましたか。',
+        q_id: 'Yamada makan siang di mana?',
+        opts: [
+          {jp:'どうぶつえんのなか', id:'Di dalam kebun binatang'},
+          {jp:'レストラン', id:'Di restoran'},
+          {jp:'こうえん', id:'Di taman'},
+          {jp:'いえ', id:'Di rumah'},
+        ],
+        answer: 2,
+        exp: '「こうえんでひるごはんをたべました」— Makan siang di こうえん (taman). Partikel で menunjukkan tempat kegiatan.'
+      },
+      {
+        num: 3,
+        q_jp: 'このてがみをかいたひとのなまえはなんですか。',
+        q_id: 'Siapa nama orang yang menulis surat ini?',
+        opts: [
+          {jp:'たなか', id:'Tanaka'},
+          {jp:'やまだ', id:'Yamada'},
+          {jp:'かぞく', id:'Keluarga'},
+          {jp:'わかりません', id:'Tidak diketahui'},
+        ],
+        answer: 1,
+        exp: '「やまだより」— Surat ditandatangani "dari Yamada" (やまだより). より setelah nama berarti "dari".'
+      },
+    ]
+  },
+  {
+    id: 2,
+    judul: 'Jadwal Kegiatan',
+    topik: 'Membaca jadwal dan informasi waktu',
+    level: 'N5',
+    passage: `【<ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>予定<rt>よてい</rt></ruby>】
+
+　<ruby>月曜日<rt>げつようび</rt></ruby>：<ruby>図書館<rt>としょかん</rt></ruby>で<ruby>勉強<rt>べんきょう</rt></ruby>する
+　<ruby>火曜日<rt>かようび</rt></ruby>：<ruby>友達<rt>ともだち</rt></ruby>と<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>る（３<ruby>時<rt>じ</rt></ruby>から）
+　<ruby>水曜日<rt>すいようび</rt></ruby>：<ruby>日本語<rt>にほんご</rt></ruby>のクラス（１０<ruby>時<rt>じ</rt></ruby>〜１２<ruby>時<rt>じ</rt></ruby>）
+　<ruby>木曜日<rt>もくようび</rt></ruby>：<ruby>休<rt>やす</rt></ruby>み
+　<ruby>金曜日<rt>きんようび</rt></ruby>：<ruby>花子<rt>はなこ</rt></ruby>さんと<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をする
+　<ruby>土曜日<rt>どようび</rt></ruby>：<ruby>家族<rt>かぞく</rt></ruby>とレストランでごはんを<ruby>食<rt>た</rt></ruby>べる（<ruby>夕方<rt>ゆうがた</rt></ruby>６<ruby>時<rt>じ</rt></ruby>）
+　<ruby>日曜日<rt>にちようび</rt></ruby>：<ruby>家<rt>うち</rt></ruby>でゆっくり<ruby>休<rt>やす</rt></ruby>む`,
+    passage_id: `【Rencana Minggu Depan】
+
+Senin    : Belajar di perpustakaan
+Selasa   : Menonton film bersama teman (mulai jam 3)
+Rabu     : Kelas bahasa Jepang (pukul 10.00–12.00)
+Kamis    : Libur
+Jumat    : Belanja bersama Hanako
+Sabtu    : Makan malam di restoran bersama keluarga (sore jam 6)
+Minggu   : Istirahat santai di rumah`,
+    vocab: [
+      {jp:'よてい', rom:'yotei', id:'rencana / jadwal'},
+      {jp:'としょかん', rom:'toshokan', id:'perpustakaan'},
+      {jp:'ゆっくり', rom:'yukkuri', id:'santai / pelan-pelan'},
+      {jp:'ゆうがた', rom:'yuugata', id:'sore hari'},
+      {jp:'かいもの', rom:'kaimono', id:'belanja'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'にほんごのクラスはなんようびですか。',
+        q_id: 'Kelas bahasa Jepang hari apa?',
+        opts: [
+          {jp:'げつようび', id:'Senin'},
+          {jp:'かようび', id:'Selasa'},
+          {jp:'すいようび', id:'Rabu'},
+          {jp:'もくようび', id:'Kamis'},
+        ],
+        answer: 2,
+        exp: '「すいようび：にほんごのクラス」— Kelas bahasa Jepang ada pada hari すいようび (Rabu).'
+      },
+      {
+        num: 2,
+        q_jp: 'えいがはなんじからですか。',
+        q_id: 'Film dimulai jam berapa?',
+        opts: [
+          {jp:'１０じ', id:'Jam 10'},
+          {jp:'１２じ', id:'Jam 12'},
+          {jp:'３じ', id:'Jam 3'},
+          {jp:'６じ', id:'Jam 6'},
+        ],
+        answer: 2,
+        exp: '「ともだちとえいがをみる（３じから）」— Film bersama teman mulai dari jam 3 (３じ). から = dari/mulai.'
+      },
+      {
+        num: 3,
+        q_jp: 'やすみはなんようびですか。',
+        q_id: 'Hari libur adalah hari apa?',
+        opts: [
+          {jp:'かようび', id:'Selasa'},
+          {jp:'もくようび', id:'Kamis'},
+          {jp:'きんようび', id:'Jumat'},
+          {jp:'にちようび', id:'Minggu'},
+        ],
+        answer: 1,
+        exp: '「もくようび：やすみ」— Hari libur adalah もくようび (Kamis).'
+      },
+      {
+        num: 4,
+        q_jp: 'どようびのよていはなんですか。',
+        q_id: 'Apa rencana hari Sabtu?',
+        opts: [
+          {jp:'としょかんでべんきょうする', id:'Belajar di perpustakaan'},
+          {jp:'かいものをする', id:'Belanja'},
+          {jp:'かぞくとレストランでごはんをたべる', id:'Makan di restoran bersama keluarga'},
+          {jp:'うちでやすむ', id:'Istirahat di rumah'},
+        ],
+        answer: 2,
+        exp: '「どようび：かぞくとレストランでごはんをたべる」— Sabtu rencananya makan di restoran bersama keluarga.'
+      },
+    ]
+  },
+  {
+    id: 3,
+    judul: 'Pengumuman di Sekolah',
+    topik: 'Membaca pengumuman resmi',
+    level: 'N5',
+    passage: `【お<ruby>知<rt>し</rt></ruby>らせ】
+
+　<ruby>来週<rt>らいしゅう</rt></ruby>の<ruby>水曜日<rt>すいようび</rt></ruby>は「<ruby>学校<rt>がっこう</rt></ruby>まつり」です。
+　<ruby>午前<rt>ごぜん</rt></ruby>１０<ruby>時<rt>じ</rt></ruby>から<ruby>午後<rt>ごご</rt></ruby>４<ruby>時<rt>じ</rt></ruby>までです。
+　いろいろな<ruby>料理<rt>りょうり</rt></ruby>やゲームがあります。
+　<ruby>先生<rt>せんせい</rt></ruby>も<ruby>学生<rt>がくせい</rt></ruby>も<ruby>参加<rt>さんか</rt></ruby>します。
+　<ruby>友達<rt>ともだち</rt></ruby>を<ruby>連<rt>つ</rt></ruby>れてきてもいいです。
+　<ruby>日曜日<rt>にちようび</rt></ruby>は<ruby>学校<rt>がっこう</rt></ruby>が<ruby>休<rt>やす</rt></ruby>みです。
+　わからないことがあれば、<ruby>事務所<rt>じむしょ</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いてください。`,
+    passage_id: `【Pengumuman】
+
+Rabu minggu depan adalah "Festival Sekolah".
+Mulai pukul 10.00 pagi sampai pukul 16.00 sore.
+Akan ada berbagai makanan dan permainan.
+Guru dan siswa semuanya berpartisipasi.
+Boleh membawa teman.
+Hari Minggu sekolah libur.
+Jika ada yang tidak dimengerti, silakan tanya ke kantor.`,
+    vocab: [
+      {jp:'おしらせ', rom:'oshirase', id:'pengumuman'},
+      {jp:'まつり', rom:'matsuri', id:'festival / perayaan'},
+      {jp:'さんかします', rom:'sanka shimasu', id:'berpartisipasi'},
+      {jp:'つれてきてもいい', rom:'tsurete kite mo ii', id:'boleh membawa'},
+      {jp:'じむしょ', rom:'jimusho', id:'kantor / ruang tata usaha'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: '「がっこうまつり」はなんようびですか。',
+        q_id: '"Festival Sekolah" diadakan hari apa?',
+        opts: [
+          {jp:'げつようび', id:'Senin'},
+          {jp:'すいようび', id:'Rabu'},
+          {jp:'きんようび', id:'Jumat'},
+          {jp:'にちようび', id:'Minggu'},
+        ],
+        answer: 1,
+        exp: '「らいしゅうのすいようびは「がっこうまつり」です」— Festival diadakan pada すいようび (Rabu) minggu depan.'
+      },
+      {
+        num: 2,
+        q_jp: '「がっこうまつり」はなんじからなんじまでですか。',
+        q_id: '"Festival Sekolah" dari jam berapa sampai jam berapa?',
+        opts: [
+          {jp:'８じから１２じまで', id:'Jam 8 sampai 12'},
+          {jp:'１０じからごご４じまで', id:'Jam 10 pagi sampai 4 sore'},
+          {jp:'１２じから６じまで', id:'Jam 12 sampai 6'},
+          {jp:'９じから５じまで', id:'Jam 9 sampai 5'},
+        ],
+        answer: 1,
+        exp: '「ごぜん１０じからごご４じまで」— Dari jam 10 pagi (ごぜん) sampai jam 4 sore (ごご). から〜まで = dari〜sampai.'
+      },
+      {
+        num: 3,
+        q_jp: 'ともだちをつれてきてもいいですか。',
+        q_id: 'Apakah boleh membawa teman?',
+        opts: [
+          {jp:'はい、いいです', id:'Ya, boleh'},
+          {jp:'いいえ、だめです', id:'Tidak, tidak boleh'},
+          {jp:'せんせいだけいいです', id:'Hanya guru yang boleh'},
+          {jp:'わかりません', id:'Tidak diketahui'},
+        ],
+        answer: 0,
+        exp: '「ともだちをつれてきてもいいです」— Boleh membawa teman. 〜てもいいです = boleh melakukan 〜.'
+      },
+      {
+        num: 4,
+        q_jp: 'わからないことがあれば、どうしますか。',
+        q_id: 'Jika ada yang tidak dimengerti, harus bagaimana?',
+        opts: [
+          {jp:'せんせいにきく', id:'Tanya ke guru'},
+          {jp:'じむしょにいく', id:'Pergi ke kantor'},
+          {jp:'ともだちにきく', id:'Tanya ke teman'},
+          {jp:'インターネットでしらべる', id:'Cari di internet'},
+        ],
+        answer: 1,
+        exp: '「じむしょにきいてください」— Silakan tanya ke じむしょ (kantor/ruang tata usaha). Kunci: きいてください = tolong tanya/dengar.'
+      },
+    ]
+  },
+  {
+    id: 4,
+    judul: 'Menu Restoran',
+    topik: 'Membaca menu dan harga',
+    level: 'N5',
+    passage: `【レストランやまのメニュー】
+
+＜<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>＞
+　カレーライス　　　　　８００<ruby>円<rt>えん</rt></ruby>
+　オムライス　　　　　　７５０<ruby>円<rt>えん</rt></ruby>
+　ハンバーグ　　　　　　９５０<ruby>円<rt>えん</rt></ruby>
+　やきそば　　　　　　　６５０<ruby>円<rt>えん</rt></ruby>
+　サラダ（S<ruby>サイズ<rt>さいず</rt></ruby>）　　 ３００<ruby>円<rt>えん</rt></ruby>
+　サラダ（M<ruby>サイズ<rt>さいず</rt></ruby>）　　 ４５０<ruby>円<rt>えん</rt></ruby>
+
+＜<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>＞
+　コーヒー　　　　　　　３５０<ruby>円<rt>えん</rt></ruby>
+　お<ruby>茶<rt>ちゃ</rt></ruby>　　　　　　　　２５０<ruby>円<rt>えん</rt></ruby>
+　ジュース　　　　　　　３００<ruby>円<rt>えん</rt></ruby>
+
+　※ランチタイム（１１<ruby>時<rt>じ</rt></ruby>〜２<ruby>時<rt>じ</rt></ruby>）はドリンクが１００<ruby>円<rt>えん</rt></ruby><ruby>引<rt>び</rt></ruby>きです。`,
+    passage_id: `【Menu Restoran Yama】
+
+<Makanan>
+  Nasi kari          : 800 yen
+  Omelet rice        : 750 yen
+  Hamburger steak    : 950 yen
+  Mie goreng Jepang  : 650 yen
+  Salad (ukuran S)   : 300 yen
+  Salad (ukuran M)   : 450 yen
+
+<Minuman>
+  Kopi               : 350 yen
+  Teh                : 250 yen
+  Jus                : 300 yen
+
+※ Saat makan siang (pukul 11.00–14.00) minuman diskon 100 yen.`,
+    vocab: [
+      {jp:'メニュー', rom:'menyuu', id:'menu'},
+      {jp:'ランチタイム', rom:'ranchi taimu', id:'jam makan siang'},
+      {jp:'びき', rom:'biki (ne-biki)', id:'diskon'},
+      {jp:'サイズ', rom:'saizu', id:'ukuran'},
+      {jp:'ドリンク', rom:'dorinku', id:'minuman'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'いちばんたかいたべものはなんですか。',
+        q_id: 'Makanan yang paling mahal adalah apa?',
+        opts: [
+          {jp:'カレーライス', id:'Nasi kari (800 yen)'},
+          {jp:'オムライス', id:'Omelet rice (750 yen)'},
+          {jp:'ハンバーグ', id:'Hamburger steak (950 yen)'},
+          {jp:'やきそば', id:'Mie goreng (650 yen)'},
+        ],
+        answer: 2,
+        exp: 'Dari daftar harga: ハンバーグ = 950円 adalah yang termahal dibanding カレーライス (800), オムライス (750), dan やきそば (650).'
+      },
+      {
+        num: 2,
+        q_jp: 'ランチタイムにコーヒーはいくらですか。',
+        q_id: 'Berapa harga kopi saat jam makan siang?',
+        opts: [
+          {jp:'３５０えん', id:'350 yen'},
+          {jp:'３００えん', id:'300 yen'},
+          {jp:'２５０えん', id:'250 yen'},
+          {jp:'２００えん', id:'200 yen'},
+        ],
+        answer: 2,
+        exp: 'Harga kopi normal = 350円. Saat ランチタイム (makan siang) ada diskon 100円 (１００えんびき). Jadi: 350 − 100 = 250円.'
+      },
+      {
+        num: 3,
+        q_jp: 'やきそばとMサイズのサラダをたのみました。いくらですか。',
+        q_id: 'Memesan mie goreng dan salad ukuran M. Berapa totalnya?',
+        opts: [
+          {jp:'９５０えん', id:'950 yen'},
+          {jp:'１１００えん', id:'1100 yen'},
+          {jp:'１０５０えん', id:'1050 yen'},
+          {jp:'１２００えん', id:'1200 yen'},
+        ],
+        answer: 1,
+        exp: 'やきそば (650円) + Mサイズのサラダ (450円) = 1100円。計算: 650 + 450 = 1100.'
+      },
+    ]
+  },
+  {
+    id: 5,
+    judul: 'Kegiatan Akhir Pekan',
+    topik: 'Membaca cerita pengalaman',
+    level: 'N5',
+    passage: `　<ruby>先週<rt>せんしゅう</rt></ruby>の<ruby>土曜日<rt>どようび</rt></ruby>にわたしの<ruby>家<rt>うち</rt></ruby>でパーティーをしました。<ruby>友達<rt>ともだち</rt></ruby>が６<ruby>人<rt>にん</rt></ruby><ruby>来<rt>き</rt></ruby>ました。
+　わたしは<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>りました。サラダとカレーライスを<ruby>作<rt>つく</rt></ruby>りました。カレーライスはとてもおいしかったです。
+　<ruby>友達<rt>ともだち</rt></ruby>の<ruby>健二<rt>けんじ</rt></ruby>さんはケーキを<ruby>買<rt>か</rt></ruby>ってきました。<ruby>甘<rt>あま</rt></ruby>くておいしかったです。
+　パーティーは<ruby>午後<rt>ごご</rt></ruby>３<ruby>時<rt>じ</rt></ruby>から<ruby>始<rt>はじ</rt></ruby>まって、<ruby>夜<rt>よる</rt></ruby>１０<ruby>時<rt>じ</rt></ruby>に<ruby>終<rt>お</rt></ruby>わりました。７<ruby>時間<rt>じかん</rt></ruby>の<ruby>長<rt>なが</rt></ruby>いパーティーでした。
+　みんなとても<ruby>楽<rt>たの</rt></ruby>しかったと<ruby>思<rt>おも</rt></ruby>います。またやりたいです。`,
+    passage_id: `Sabtu minggu lalu saya mengadakan pesta di rumah. Enam teman datang.
+Saya memasak. Saya membuat salad dan nasi kari. Nasi karinya sangat enak.
+Teman saya Kenji membeli kue. Manisnya enak.
+Pesta dimulai jam 3 sore dan berakhir jam 10 malam. Pesta yang panjang, 7 jam.
+Saya pikir semua orang sangat senang. Ingin mengadakannya lagi.`,
+    vocab: [
+      {jp:'パーティー', rom:'paatii', id:'pesta'},
+      {jp:'はじまって', rom:'hajimatte', id:'dimulai (bentuk て)'},
+      {jp:'おわりました', rom:'owarimashita', id:'selesai / berakhir'},
+      {jp:'あまくておいしい', rom:'amakute oishii', id:'manis dan enak'},
+      {jp:'またやりたい', rom:'mata yaritai', id:'ingin melakukannya lagi'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'パーティーにともだちはなんにんきましたか。',
+        q_id: 'Berapa banyak teman yang datang ke pesta?',
+        opts: [
+          {jp:'３にん', id:'3 orang'},
+          {jp:'５にん', id:'5 orang'},
+          {jp:'６にん', id:'6 orang'},
+          {jp:'７にん', id:'7 orang'},
+        ],
+        answer: 2,
+        exp: '「ともだちが６にんきました」— 6人 (rokunin) teman datang ke pesta.'
+      },
+      {
+        num: 2,
+        q_jp: 'けんじさんはパーティーになにをもってきましたか。',
+        q_id: 'Apa yang Kenji bawa ke pesta?',
+        opts: [
+          {jp:'サラダ', id:'Salad'},
+          {jp:'カレーライス', id:'Nasi kari'},
+          {jp:'ケーキ', id:'Kue'},
+          {jp:'ジュース', id:'Jus'},
+        ],
+        answer: 2,
+        exp: '「ともだちのけんじさんはケーキをかってきました」— Kenji membeli dan membawa ケーキ (kue). かってきました = membeli dan datang membawa.'
+      },
+      {
+        num: 3,
+        q_jp: 'パーティーはなんじかんでしたか。',
+        q_id: 'Berapa jam lamanya pesta berlangsung?',
+        opts: [
+          {jp:'３じかん', id:'3 jam'},
+          {jp:'５じかん', id:'5 jam'},
+          {jp:'６じかん', id:'6 jam'},
+          {jp:'７じかん', id:'7 jam'},
+        ],
+        answer: 3,
+        exp: '「７じかんのながいパーティーでした」— Disebutkan langsung bahwa pestanya berlangsung 7 jam (７じかん).'
+      },
+      {
+        num: 4,
+        q_jp: 'パーティーはなんじにはじまりましたか。',
+        q_id: 'Pesta dimulai jam berapa?',
+        opts: [
+          {jp:'ごご１じ', id:'Jam 1 siang'},
+          {jp:'ごご３じ', id:'Jam 3 sore'},
+          {jp:'ごご５じ', id:'Jam 5 sore'},
+          {jp:'よる７じ', id:'Jam 7 malam'},
+        ],
+        answer: 1,
+        exp: '「パーティーはごご３じからはじまって」— Pesta dimulai dari ごご３じ (jam 3 sore). ごご = sore/PM.'
+      },
+    ]
+  },
+  {
+    id: 6,
+    judul: 'Surat Pemberitahuan Kelas',
+    topik: 'Membaca informasi kelas bahasa',
+    level: 'N5',
+    passage: `【<ruby>日本語<rt>にほんご</rt></ruby>クラスのお<ruby>知<rt>し</rt></ruby>らせ】
+
+　<ruby>来月<rt>らいげつ</rt></ruby>から、あたらしい<ruby>日本語<rt>にほんご</rt></ruby>クラスが<ruby>始<rt>はじ</rt></ruby>まります。
+　もうしこみは<ruby>今週<rt>こんしゅう</rt></ruby>の<ruby>金曜日<rt>きんようび</rt></ruby>までです。
+
+　＜クラスのじょうほう＞
+　・クラス<ruby>名<rt>めい</rt></ruby>：<ruby>日本語<rt>にほんご</rt></ruby>Aクラス
+　・<ruby>時間<rt>じかん</rt></ruby>　：まいしゅう<ruby>火曜日<rt>かようび</rt></ruby>と<ruby>水曜日<rt>すいようび</rt></ruby>、<ruby>午後<rt>ごご</rt></ruby>６<ruby>時<rt>じ</rt></ruby>から８<ruby>時<rt>じ</rt></ruby>まで
+　・ばしょ　：<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>のぶんかセンター３かい
+　・じゅぎょうりょう：<ruby>一<rt>ひと</rt></ruby>つき５０００<ruby>円<rt>えん</rt></ruby>
+　・もちもの：テキスト、ノート、えんぴつ
+
+　くわしいことは<ruby>電話<rt>でんわ</rt></ruby>かメールでおといあわせください。
+　<ruby>電話<rt>でんわ</rt></ruby>：０３−１２３４−５６７８`,
+    passage_id: `【Pengumuman Kelas Bahasa Jepang】
+
+Mulai bulan depan, kelas bahasa Jepang baru akan dimulai.
+Pendaftaran sampai Jumat minggu ini.
+
+<Informasi Kelas>
+・Nama kelas  : Kelas Bahasa Jepang A
+・Jadwal      : Setiap Selasa dan Rabu, pukul 18.00–20.00
+・Tempat      : Lantai 3 Pusat Budaya depan stasiun
+・Biaya       : 5.000 yen per bulan
+・Perlengkapan: Buku teks, buku catatan, pensil
+
+Untuk informasi lebih lanjut, hubungi via telepon atau email.
+Telepon: 03-1234-5678`,
+    vocab: [
+      {jp:'もうしこみ', rom:'moushikomi', id:'pendaftaran'},
+      {jp:'じょうほう', rom:'jouhou', id:'informasi'},
+      {jp:'じゅぎょうりょう', rom:'jugyouryou', id:'biaya kelas'},
+      {jp:'もちもの', rom:'mochimono', id:'barang bawaan'},
+      {jp:'おといあわせ', rom:'otoiawase', id:'pertanyaan / hubungi'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'クラスはまいしゅうなんようびにありますか。',
+        q_id: 'Kelas diadakan setiap hari apa dalam seminggu?',
+        opts: [
+          {jp:'かようびだけ', id:'Hanya Selasa'},
+          {jp:'かようびとすいようび', id:'Selasa dan Rabu'},
+          {jp:'すいようびときんようび', id:'Rabu dan Jumat'},
+          {jp:'げつようびからきんようびまで', id:'Senin sampai Jumat'},
+        ],
+        answer: 1,
+        exp: '「まいしゅうかようびとすいようび」— Kelas diadakan setiap Selasa (かようび) dan Rabu (すいようび).'
+      },
+      {
+        num: 2,
+        q_jp: 'じゅぎょうりょうはいくらですか。',
+        q_id: 'Berapa biaya kelasnya?',
+        opts: [
+          {jp:'いっかげつ３０００えん', id:'3.000 yen per bulan'},
+          {jp:'いっかげつ５０００えん', id:'5.000 yen per bulan'},
+          {jp:'いっかげつ８０００えん', id:'8.000 yen per bulan'},
+          {jp:'いっかいごとに１０００えん', id:'1.000 yen per sesi'},
+        ],
+        answer: 1,
+        exp: '「じゅぎょうりょう：いっかげつ５０００えん」— Biaya kelas adalah 5.000 yen per bulan (いっかげつ).'
+      },
+      {
+        num: 3,
+        q_jp: 'もうしこみはいつまでですか。',
+        q_id: 'Pendaftaran sampai kapan?',
+        opts: [
+          {jp:'こんしゅうのかようび', id:'Selasa minggu ini'},
+          {jp:'こんしゅうのきんようび', id:'Jumat minggu ini'},
+          {jp:'らいしゅうのげつようび', id:'Senin minggu depan'},
+          {jp:'らいげつのついたち', id:'Tanggal 1 bulan depan'},
+        ],
+        answer: 1,
+        exp: '「もうしこみはこんしゅうのきんようびまでです」— Pendaftaran sampai きんようび (Jumat) minggu ini. まで = sampai.'
+      },
+      {
+        num: 4,
+        q_jp: 'クラスのばしょはどこですか。',
+        q_id: 'Di mana tempat kelas diadakan?',
+        opts: [
+          {jp:'がっこうの２かい', id:'Lantai 2 sekolah'},
+          {jp:'えきのなか', id:'Di dalam stasiun'},
+          {jp:'えきまえのぶんかセンター３かい', id:'Lantai 3 Pusat Budaya depan stasiun'},
+          {jp:'としょかんのよこ', id:'Di samping perpustakaan'},
+        ],
+        answer: 2,
+        exp: '「ばしょ：えき前のぶんかセンター３かい」— Tempatnya di lantai 3 (３かい) Pusat Budaya (ぶんかセンター) depan stasiun (えき前).'
+      },
+    ]
+  },
+  {
+    id: 7,
+    judul: 'Email dari Teman',
+    topik: 'Membaca email informal',
+    level: 'N5',
+    passage: `<ruby>桜<rt>さくら</rt></ruby>さんへ
+
+　このまえのしゅうまつはどうでしたか。
+　わたしは<ruby>家族<rt>かぞく</rt></ruby>と<ruby>海<rt>うみ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きました。<ruby>海<rt>うみ</rt></ruby>はとてもきれいでした。こどもたちはすなはまであそびました。
+　わたしとおっとは<ruby>近<rt>ちか</rt></ruby>くのレストランで<ruby>魚<rt>さかな</rt></ruby><ruby>料理<rt>りょうり</rt></ruby>を<ruby>食<rt>た</rt></ruby>べました。とてもおいしかったです。でも、<ruby>帰<rt>かえ</rt></ruby>りに<ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>って、たいへんでした。
+　<ruby>桜<rt>さくら</rt></ruby>さんは<ruby>海<rt>うみ</rt></ruby>が<ruby>好<rt>す</rt></ruby>きですか。<ruby>今度<rt>こんど</rt></ruby><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたいです。
+
+　リサより`,
+    passage_id: `Kepada Sakura,
+
+Bagaimana akhir pekan yang lalu?
+Saya pergi ke laut bersama keluarga. Lautnya sangat indah. Anak-anak bermain di pantai berpasir.
+Saya dan suami makan masakan ikan di restoran terdekat. Sangat enak. Tapi, saat pulang hujan turun dan itu menyulitkan.
+Apakah Sakura suka laut? Lain kali ingin pergi bersama.
+
+Dari Risa`,
+    vocab: [
+      {jp:'すなはま', rom:'sunahama', id:'pantai berpasir'},
+      {jp:'おっと', rom:'otto', id:'suami (bicara tentang suami sendiri)'},
+      {jp:'さかなりょうり', rom:'sakana ryouri', id:'masakan ikan'},
+      {jp:'かえり', rom:'kaeri', id:'perjalanan pulang'},
+      {jp:'たいへん', rom:'taihen', id:'menyulitkan / susah'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'リサさんはしゅうまつにどこへいきましたか。',
+        q_id: 'Risa pergi ke mana saat akhir pekan?',
+        opts: [
+          {jp:'やま', id:'Gunung'},
+          {jp:'こうえん', id:'Taman'},
+          {jp:'うみ', id:'Laut'},
+          {jp:'としょかん', id:'Perpustakaan'},
+        ],
+        answer: 2,
+        exp: '「わたしはかぞくとうみにいきました」— Risa pergi ke うみ (laut) bersama keluarga.'
+      },
+      {
+        num: 2,
+        q_jp: 'こどもたちはなにをしましたか。',
+        q_id: 'Apa yang dilakukan anak-anak?',
+        opts: [
+          {jp:'さかなをたべた', id:'Makan ikan'},
+          {jp:'すなはまであそんだ', id:'Bermain di pantai berpasir'},
+          {jp:'レストランにいった', id:'Pergi ke restoran'},
+          {jp:'あめのなかであそんだ', id:'Bermain di tengah hujan'},
+        ],
+        answer: 1,
+        exp: '「こどもたちはすなはまであそびました」— Anak-anak bermain di すなはま (pantai berpasir). で = di (tempat kegiatan).'
+      },
+      {
+        num: 3,
+        q_jp: 'かえりにどうなりましたか。',
+        q_id: 'Apa yang terjadi saat pulang?',
+        opts: [
+          {jp:'てんきがよくなった', id:'Cuaca membaik'},
+          {jp:'でんしゃがこなかった', id:'Kereta tidak datang'},
+          {jp:'あめがふった', id:'Hujan turun'},
+          {jp:'くるまがこわれた', id:'Mobil rusak'},
+        ],
+        answer: 2,
+        exp: '「かえりにあめがふって、たいへんでした」— Saat pulang (かえりに) hujan turun (あめがふって) sehingga menyulitkan.'
+      },
+    ]
+  },
+  {
+    id: 8,
+    judul: 'Petunjuk Penggunaan',
+    topik: 'Membaca instruksi dan petunjuk',
+    level: 'N5',
+    passage: `【<ruby>自動販売機<rt>じどうはんばいき</rt></ruby>のつかいかた】
+
+　①　お<ruby>金<rt>かね</rt></ruby>を<ruby>入<rt>い</rt></ruby>れてください。
+　②　ほしいものをえらんでください。
+　③　ボタンをおしてください。
+　④　<ruby>下<rt>した</rt></ruby>のくちからものを<ruby>取<rt>と</rt></ruby>ってください。
+
+　※おつりは<ruby>右<rt>みぎ</rt></ruby>のところからでます。
+　※<ruby>冷<rt>つめ</rt></ruby>たい<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>はみずいろのボタンです。
+　※<ruby>温<rt>あたた</rt></ruby>かい<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>はあかいボタンです。
+　※こしょうのときはこの<ruby>電話<rt>でんわ</rt></ruby><ruby>番号<rt>ばんごう</rt></ruby>に<ruby>連絡<rt>れんらく</rt></ruby>してください。
+　　<ruby>電話<rt>でんわ</rt></ruby>：０８０−０００−１２３４`,
+    passage_id: `【Cara Penggunaan Mesin Penjual Otomatis】
+
+① Masukkan uang.
+② Pilih barang yang diinginkan.
+③ Tekan tombol.
+④ Ambil barang dari lubang di bawah.
+
+※ Kembalian keluar dari sisi kanan.
+※ Tombol warna biru adalah untuk minuman dingin.
+※ Tombol warna merah adalah untuk minuman hangat.
+※ Jika ada kerusakan, silakan hubungi nomor telepon ini.
+   Telepon: 080-000-1234`,
+    vocab: [
+      {jp:'じどうはんばいき', rom:'jidou hanbaiki', id:'mesin penjual otomatis'},
+      {jp:'えらぶ', rom:'erabu', id:'memilih'},
+      {jp:'ボタン', rom:'botan', id:'tombol'},
+      {jp:'おつり', rom:'otsuri', id:'kembalian'},
+      {jp:'こしょう', rom:'koshou', id:'kerusakan / kecelakaan'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'どのじゅんばんでつかいますか。ただしいものをえらんでください。',
+        q_id: 'Urutan penggunaan yang benar adalah?',
+        opts: [
+          {jp:'おかねをいれる→ボタンをおす→ものをえらぶ', id:'Masukkan uang → Tekan tombol → Pilih barang'},
+          {jp:'ものをえらぶ→おかねをいれる→ボタンをおす', id:'Pilih barang → Masukkan uang → Tekan tombol'},
+          {jp:'おかねをいれる→ものをえらぶ→ボタンをおす', id:'Masukkan uang → Pilih barang → Tekan tombol'},
+          {jp:'ボタンをおす→おかねをいれる→ものをえらぶ', id:'Tekan tombol → Masukkan uang → Pilih barang'},
+        ],
+        answer: 2,
+        exp: 'Urutan: ①おかねをいれる (masukkan uang) → ②ものをえらぶ (pilih barang) → ③ボタンをおす (tekan tombol) → ④ものをとる (ambil barang).'
+      },
+      {
+        num: 2,
+        q_jp: 'あたたかいのみものはどのボタンですか。',
+        q_id: 'Tombol mana untuk minuman hangat?',
+        opts: [
+          {jp:'みずいろのボタン', id:'Tombol warna biru'},
+          {jp:'あかいボタン', id:'Tombol warna merah'},
+          {jp:'きいろのボタン', id:'Tombol warna kuning'},
+          {jp:'みどりのボタン', id:'Tombol warna hijau'},
+        ],
+        answer: 1,
+        exp: '「あたたかいのみものはあかいボタンです」— Minuman hangat (あたたかい) = tombol merah (あかいボタン). Minuman dingin = biru.'
+      },
+      {
+        num: 3,
+        q_jp: 'おつりはどこからでますか。',
+        q_id: 'Kembalian keluar dari mana?',
+        opts: [
+          {jp:'したのくち', id:'Lubang di bawah'},
+          {jp:'みぎのところ', id:'Sisi kanan'},
+          {jp:'ひだりのところ', id:'Sisi kiri'},
+          {jp:'うえのくち', id:'Lubang di atas'},
+        ],
+        answer: 1,
+        exp: '「おつりはみぎのところからでます」— Kembalian (おつり) keluar dari みぎ (kanan). Jangan tertukar dengan lubang pengambilan barang (した).'
+      },
+    ]
+  },
+  {
+    id: 9,
+    judul: 'Poster Kegiatan Olahraga',
+    topik: 'Membaca poster dan brosur',
+    level: 'N5',
+    passage: `【<ruby>夏<rt>なつ</rt></ruby>のスポーツ<ruby>大会<rt>たいかい</rt></ruby>】
+
+　<ruby>楽<rt>たの</rt></ruby>しくうごこう！みんなでスポーツ！
+
+　<ruby>日時<rt>にちじ</rt></ruby>：７<ruby>月<rt>がつ</rt></ruby>２０<ruby>日<rt>にち</rt></ruby>（<ruby>土曜日<rt>どようび</rt></ruby>）<ruby>午前<rt>ごぜん</rt></ruby>９<ruby>時<rt>じ</rt></ruby>〜<ruby>午後<rt>ごご</rt></ruby>３<ruby>時<rt>じ</rt></ruby>
+　ばしょ：さくらスポーツセンター
+　さんかひ：おとな１０００<ruby>円<rt>えん</rt></ruby>、こども（１２<ruby>才<rt>さい</rt></ruby>いか）<ruby>無料<rt>むりょう</rt></ruby>
+
+　＜しゅもく＞
+　　テニス、バドミントン、バスケットボール、ヨガ
+
+　＜もちもの＞
+　　<ruby>運動<rt>うんどう</rt></ruby>のできるふく、タオル、<ruby>水<rt>みず</rt></ruby>
+
+　もうしこみ：７<ruby>月<rt>がつ</rt></ruby>１０<ruby>日<rt>にち</rt></ruby>までに<ruby>電話<rt>でんわ</rt></ruby>かウェブサイトから
+
+　みなさんのさんかをおまちしています！`,
+    passage_id: `【Pertandingan Olahraga Musim Panas】
+
+Ayo bergerak dengan senang! Olahraga bersama semua orang!
+
+Tanggal  : 20 Juli (Sabtu) pukul 09.00–15.00
+Tempat   : Pusat Olahraga Sakura
+Biaya    : Dewasa 1.000 yen, Anak-anak (12 tahun ke bawah) gratis
+
+<Cabang Olahraga>
+  Tenis, Bulu tangkis, Bola basket, Yoga
+
+<Perlengkapan>
+  Baju olahraga, Handuk, Air minum
+
+Pendaftaran: Sampai 10 Juli via telepon atau website
+
+Kami menunggu keikutsertaan Anda semua!`,
+    vocab: [
+      {jp:'たいかい', rom:'taikai', id:'pertandingan / turnamen'},
+      {jp:'さんかひ', rom:'sankahi', id:'biaya pendaftaran'},
+      {jp:'いか', rom:'ika', id:'ke bawah / kurang dari'},
+      {jp:'しゅもく', rom:'shumoku', id:'cabang / jenis (olahraga)'},
+      {jp:'おまちしています', rom:'omachi shite imasu', id:'menunggu (sopan)'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'たいかいはなんがつなんにちですか。',
+        q_id: 'Pertandingan diadakan tanggal berapa?',
+        opts: [
+          {jp:'６がつ２０にち', id:'20 Juni'},
+          {jp:'７がつ１０にち', id:'10 Juli'},
+          {jp:'７がつ２０にち', id:'20 Juli'},
+          {jp:'８がつ２０にち', id:'20 Agustus'},
+        ],
+        answer: 2,
+        exp: '「７がつ２０にち（どようび）」— Pertandingan diadakan pada tanggal 20 Juli (７がつ２０にち). Jangan tertukar dengan batas pendaftaran (10 Juli).'
+      },
+      {
+        num: 2,
+        q_jp: '１０さいのこどものさんかひはいくらですか。',
+        q_id: 'Berapa biaya untuk anak berusia 10 tahun?',
+        opts: [
+          {jp:'５００えん', id:'500 yen'},
+          {jp:'１０００えん', id:'1.000 yen'},
+          {jp:'５０００えん', id:'5.000 yen'},
+          {jp:'むりょう', id:'Gratis'},
+        ],
+        answer: 3,
+        exp: '「こども（１２さいいか）むりょう」— Anak-anak 12 tahun ke bawah (１２さいいか) gratis (むりょう). 10 tahun ≤ 12, jadi gratis.'
+      },
+      {
+        num: 3,
+        q_jp: 'もうしこみはいつまでですか。',
+        q_id: 'Batas pendaftaran sampai kapan?',
+        opts: [
+          {jp:'７がつ１０にち', id:'10 Juli'},
+          {jp:'７がつ１５にち', id:'15 Juli'},
+          {jp:'７がつ２０にち', id:'20 Juli'},
+          {jp:'８がつ１にち', id:'1 Agustus'},
+        ],
+        answer: 0,
+        exp: '「もうしこみ：７がつ１０にちまでに」— Pendaftaran (もうしこみ) sampai 10 Juli (７がつ１０にち). まで = sampai.'
+      },
+      {
+        num: 4,
+        q_jp: 'もちものにはいっていないものはどれですか。',
+        q_id: 'Barang apa yang TIDAK termasuk dalam perlengkapan yang harus dibawa?',
+        opts: [
+          {jp:'タオル', id:'Handuk'},
+          {jp:'みず', id:'Air minum'},
+          {jp:'うんどうのできるふく', id:'Baju olahraga'},
+          {jp:'くつ', id:'Sepatu'},
+        ],
+        answer: 3,
+        exp: 'Perlengkapan yang disebutkan: うんどうのできるふく (baju olahraga), タオル (handuk), みず (air minum). くつ (sepatu) tidak disebutkan.'
+      },
+    ]
+  },
+  {
+    id: 10,
+    judul: 'Percakapan di Stasiun',
+    topik: 'Membaca percakapan sehari-hari',
+    level: 'N5',
+    passage: `　<ruby>駅<rt>えき</rt></ruby>のインフォメーションセンターで
+
+　たびびと：すみません。この<ruby>電車<rt>でんしゃ</rt></ruby>は<ruby>何時<rt>なんじ</rt></ruby>にでますか。
+　がかり　：つぎは１０<ruby>時<rt>じ</rt></ruby>１５<ruby>分<rt>ふん</rt></ruby>です。
+　たびびと：<ruby>新宿<rt>しんじゅく</rt></ruby>まで<ruby>何分<rt>なんぷん</rt></ruby>かかりますか。
+　がかり　：<ruby>普通<rt>ふつう</rt></ruby><ruby>電車<rt>でんしゃ</rt></ruby>で４０<ruby>分<rt>ぷん</rt></ruby>ぐらいです。<ruby>急行<rt>きゅうこう</rt></ruby>だと２５<ruby>分<rt>ふん</rt></ruby>です。
+　たびびと：<ruby>急行<rt>きゅうこう</rt></ruby>のほうが<ruby>速<rt>はや</rt></ruby>いですね。<ruby>急行<rt>きゅうこう</rt></ruby>のつぎは<ruby>何時<rt>なんじ</rt></ruby>ですか。
+　がかり　：１０<ruby>時<rt>じ</rt></ruby>２５<ruby>分<rt>ふん</rt></ruby>です。
+　たびびと：わかりました。きっぷはここで<ruby>買<rt>か</rt></ruby>えますか。
+　がかり　：はい、あのきかいでも<ruby>買<rt>か</rt></ruby>えますし、<ruby>窓口<rt>まどぐち</rt></ruby>でも<ruby>買<rt>か</rt></ruby>えます。
+　たびびと：ありがとうございました。`,
+    passage_id: `Di Pusat Informasi Stasiun
+
+Wisatawan : Permisi. Kereta ini berangkat jam berapa?
+Petugas   : Yang berikutnya jam 10.15.
+Wisatawan : Butuh berapa menit sampai Shinjuku?
+Petugas   : Naik kereta biasa sekitar 40 menit. Kalau kereta ekspres 25 menit.
+Wisatawan : Kereta ekspres lebih cepat ya. Kereta ekspres berikutnya jam berapa?
+Petugas   : Jam 10.25.
+Wisatawan : Mengerti. Bisa beli tiket di sini?
+Petugas   : Ya, bisa beli di mesin itu, atau juga bisa di loket.
+Wisatawan : Terima kasih.`,
+    vocab: [
+      {jp:'たびびと', rom:'tabibito', id:'wisatawan / musafir'},
+      {jp:'がかり', rom:'gakari', id:'petugas'},
+      {jp:'ふつうでんしゃ', rom:'futsuu densha', id:'kereta biasa'},
+      {jp:'きゅうこう', rom:'kyuukou', id:'kereta ekspres'},
+      {jp:'まどぐち', rom:'madoguchi', id:'loket / jendela layanan'},
+    ],
+    questions: [
+      {
+        num: 1,
+        q_jp: 'ふつうでんしゃでしんじゅくまでなんぷんかかりますか。',
+        q_id: 'Berapa menit waktu tempuh ke Shinjuku naik kereta biasa?',
+        opts: [
+          {jp:'２５ふん', id:'25 menit'},
+          {jp:'３０ふん', id:'30 menit'},
+          {jp:'４０ふん', id:'40 menit'},
+          {jp:'４５ふん', id:'45 menit'},
+        ],
+        answer: 2,
+        exp: '「ふつうでんしゃで４０ぷんぐらいです」— Kereta biasa (ふつうでんしゃ) membutuhkan sekitar 40 menit (４０ぷん). ぐらい = sekitar/kira-kira.'
+      },
+      {
+        num: 2,
+        q_jp: 'つぎのきゅうこうはなんじなんぷんですか。',
+        q_id: 'Kereta ekspres berikutnya jam berapa?',
+        opts: [
+          {jp:'１０じ１５ふん', id:'Jam 10.15'},
+          {jp:'１０じ２５ふん', id:'Jam 10.25'},
+          {jp:'１０じ４０ふん', id:'Jam 10.40'},
+          {jp:'１１じ', id:'Jam 11.00'},
+        ],
+        answer: 1,
+        exp: '「きゅうこうのつぎはなんじですか。１０じ２５ふんです」— Kereta ekspres (きゅうこう) berikutnya jam 10.25 (１０じ２５ふん).'
+      },
+      {
+        num: 3,
+        q_jp: 'きっぷはどこでかえますか。ただしくないものをえらんでください。',
+        q_id: 'Di mana TIDAK bisa membeli tiket?',
+        opts: [
+          {jp:'きかい', id:'Mesin'},
+          {jp:'まどぐち', id:'Loket'},
+          {jp:'インターネット', id:'Internet'},
+          {jp:'１と２のりょうほう', id:'Mesin dan loket keduanya bisa'},
+        ],
+        answer: 2,
+        exp: '「あのきかいでもかえますし、まどぐちでもかえます」— Tiket bisa dibeli di mesin (きかい) dan loket (まどぐち). Internet tidak disebutkan, jadi itu yang TIDAK bisa.'
+      },
+    ]
+  },
+];
+
+// ===== DOKKAI FUNCTIONS =====
+let dokkaiAnswered = {}; // {teksId_qNum: selectedIdx}
+
+function buildDokkai() {
+  const tabsEl = document.getElementById('dokkai-tabs');
+  const contentEl = document.getElementById('dokkai-content-area');
+  if (!tabsEl || !contentEl) return;
+
+  // Build tabs
+  tabsEl.innerHTML = DOKKAI_DATA.map((d, i) =>
+    `<button class="dokkai-tab ${i===0?'active':''}" onclick="switchDokkai(${i})">Teks ${d.id}</button>`
+  ).join('');
+
+  // Build content
+  contentEl.innerHTML = DOKKAI_DATA.map((d, i) => {
+    const qHTML = d.questions.map(q => `
+      <div class="dokkai-q-card" id="dk-q-${d.id}-${q.num}">
+        <div class="dokkai-q-num">Soal ${q.num}</div>
+        <div class="dokkai-q-text">${q.q_jp}</div>
+        <div class="dokkai-q-text-id">${q.q_id}</div>
+        <div class="dokkai-opts">
+          ${q.opts.map((o, oi) => `
+            <button class="dokkai-opt" id="dk-opt-${d.id}-${q.num}-${oi}" onclick="selectDokkaiOpt(${d.id},${q.num},${oi})">
+              <span class="opt-num">${oi+1}.</span>
+              <span><span class="opt-jp">${o.jp}</span><span class="opt-id">${o.id}</span></span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="dokkai-explanation" id="dk-exp-${d.id}-${q.num}">${q.exp}</div>
+      </div>`).join('');
+
+    const vocabChips = d.vocab.map(v =>
+      `<span class="dokkai-vocab-chip">${v.jp}<span>${v.id}</span></span>`
+    ).join('');
+
+    return `
+    <div class="dokkai-content ${i===0?'active':''}" id="dokkai-section-${i}">
+      <div class="dokkai-header">
+        <div class="dokkai-header-left">
+          <div class="dk-label">Teks ${d.id} — Dokkai JLPT N5</div>
+          <div class="dk-title">${d.judul}</div>
+          <div class="dk-topic">${d.topik}</div>
+        </div>
+        <div class="dk-badge">${d.questions.length} soal</div>
+      </div>
+
+      <div class="dokkai-passage-box">
+        <div class="dokkai-passage-label">文章 Bacaan</div>
+        <div class="dokkai-text">${d.passage.replace(/\n/g,'<br>')}</div>
+        <div class="dokkai-vocab-row">${vocabChips}</div>
+      </div>
+
+      <div class="dokkai-score-bar" id="dk-score-${d.id}">
+        <div class="dokkai-score-top">
+          <div>
+            <div class="dokkai-score-num" id="dk-score-num-${d.id}">0 / ${d.questions.length}</div>
+            <div class="dokkai-score-label" id="dk-score-msg-${d.id}">Jawab semua soal dulu!</div>
+          </div>
+        </div>
+        <div class="dokkai-score-prog"><div class="dokkai-score-fill" id="dk-score-fill-${d.id}" style="width:0%"></div></div>
+      </div>
+
+      <div class="dokkai-questions">${qHTML}</div>
+
+      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+        <button class="btn-dokkai-check" onclick="checkDokkai(${d.id},${d.questions.length})">📝 Periksa Jawaban</button>
+        <button class="btn-dokkai-reset" onclick="resetDokkai(${d.id},${d.questions.length})">🔄 Ulangi</button>
+      </div>
+
+      <div class="dokkai-nav-row">
+        <button class="dokkai-nav-btn" onclick="switchDokkai(${i-1})" ${i===0?'disabled':''}>← Teks ${d.id-1}</button>
+        <button class="dokkai-nav-btn" onclick="switchDokkai(${i+1})" ${i===DOKKAI_DATA.length-1?'disabled':''}>Teks ${d.id+1} →</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function switchDokkai(idx) {
+  if (idx < 0 || idx >= DOKKAI_DATA.length) return;
+  document.querySelectorAll('.dokkai-content').forEach((el, i) => el.classList.toggle('active', i===idx));
+  document.querySelectorAll('.dokkai-tab').forEach((el, i) => {
+    el.classList.toggle('active', i===idx);
+    if (i===idx) el.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function selectDokkaiOpt(teksId, qNum, optIdx) {
+  const key = `${teksId}_${qNum}`;
+  // Remove selection from all options of this question
+  for (let i = 0; i < 4; i++) {
+    const el = document.getElementById(`dk-opt-${teksId}-${qNum}-${i}`);
+    if (el) { el.style.background=''; el.style.borderColor=''; el.style.fontWeight=''; }
+  }
+  // Highlight selected
+  const sel = document.getElementById(`dk-opt-${teksId}-${qNum}-${optIdx}`);
+  if (sel) { sel.style.background='#EFF8FB'; sel.style.borderColor='#0891B2'; }
+  dokkaiAnswered[key] = optIdx;
+}
+
+function checkDokkai(teksId, totalQ) {
+  const teks = DOKKAI_DATA.find(d => d.id === teksId);
+  if (!teks) return;
+  let correct = 0;
+  teks.questions.forEach(q => {
+    const key = `${teksId}_${q.num}`;
+    const chosen = dokkaiAnswered[key];
+    // Disable all opts
+    for (let i = 0; i < q.opts.length; i++) {
+      const el = document.getElementById(`dk-opt-${teksId}-${q.num}-${i}`);
+      if (el) { el.disabled = true; el.style.background=''; el.style.borderColor=''; el.style.fontWeight=''; }
+    }
+    // Mark correct
+    const correctEl = document.getElementById(`dk-opt-${teksId}-${q.num}-${q.answer}`);
+    if (correctEl) correctEl.classList.add('correct');
+    // Mark wrong if answered
+    if (chosen !== undefined && chosen !== q.answer) {
+      const wrongEl = document.getElementById(`dk-opt-${teksId}-${q.num}-${chosen}`);
+      if (wrongEl) wrongEl.classList.add('wrong');
+    }
+    if (chosen === q.answer) correct++;
+    // Show explanation
+    const expEl = document.getElementById(`dk-exp-${teksId}-${q.num}`);
+    if (expEl) expEl.classList.add('show');
+  });
+  // Show score
+  const scoreBar = document.getElementById(`dk-score-${teksId}`);
+  if (scoreBar) scoreBar.classList.add('show');
+  const numEl = document.getElementById(`dk-score-num-${teksId}`);
+  if (numEl) numEl.textContent = `${correct} / ${totalQ}`;
+  const fillEl = document.getElementById(`dk-score-fill-${teksId}`);
+  if (fillEl) fillEl.style.width = `${Math.round(correct/totalQ*100)}%`;
+  const msgEl = document.getElementById(`dk-score-msg-${teksId}`);
+  if (msgEl) {
+    const pct = correct/totalQ;
+    msgEl.textContent = pct===1 ? '🏆 Sempurna! Semua benar!' :
+                        pct>=0.7 ? '🎉 Bagus! Terus berlatih!' :
+                        pct>=0.5 ? '📚 Lumayan! Baca teks lagi ya.' :
+                                   '💪 Semangat! Coba ulangi dari awal.';
+  }
+}
+
+function resetDokkai(teksId, totalQ) {
+  const teks = DOKKAI_DATA.find(d => d.id === teksId);
+  if (!teks) return;
+  teks.questions.forEach(q => {
+    delete dokkaiAnswered[`${teksId}_${q.num}`];
+    for (let i = 0; i < q.opts.length; i++) {
+      const el = document.getElementById(`dk-opt-${teksId}-${q.num}-${i}`);
+      if (el) { el.disabled=false; el.classList.remove('correct','wrong'); el.style.background=''; el.style.borderColor=''; }
+    }
+    const expEl = document.getElementById(`dk-exp-${teksId}-${q.num}`);
+    if (expEl) expEl.classList.remove('show');
+  });
+  const scoreBar = document.getElementById(`dk-score-${teksId}`);
+  if (scoreBar) scoreBar.classList.remove('show');
+}
+
+
+
+// ===== CHOUKAI JLPT N5 DATA =====
+// Video dari playlist The Nihongo Nook
+// PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ
+const CHOUKAI_DATA = [
+  {
+    id: 1,
+    judul: 'Choukai Practice Test 1',
+    topik: 'Percakapan sehari-hari — perkenalan & tempat',
+    videoId: 'GVf3wc7sa8A',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Perhatikan kata tanya (どこ・だれ・なに・いつ) dan jawaban yang diberikan. Dengarkan angka dan waktu dengan seksama.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おとこのひとはどこへいきますか。',
+        q_id: 'Ke mana pria itu pergi?',
+        opts: [
+          {jp:'としょかん', id:'Perpustakaan'},
+          {jp:'ゆうびんきょく', id:'Kantor pos'},
+          {jp:'スーパー', id:'Supermarket'},
+          {jp:'えき', id:'Stasiun'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan baik-baik tujuan pria dalam percakapan. Kata kunci: としょかん (perpustakaan) yang disebutkan saat menjawab pertanyaan "どこへ行きますか".'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】おんなのひとはなにをかいますか。',
+        q_id: 'Apa yang akan dibeli wanita itu?',
+        opts: [
+          {jp:'パン', id:'Roti'},
+          {jp:'たまご', id:'Telur'},
+          {jp:'ぎゅうにゅう', id:'Susu'},
+          {jp:'やさい', id:'Sayuran'},
+        ],
+        answer: 1,
+        exp: 'Wanita menyebutkan apa yang ingin dibelinya di toko. Dengarkan kata benda setelah "〜をかいます" atau "〜がほしいです".'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】なんじにあいますか。',
+        q_id: 'Jam berapa mereka bertemu?',
+        opts: [
+          {jp:'２じ', id:'Jam 2'},
+          {jp:'３じ', id:'Jam 3'},
+          {jp:'３じはん', id:'Jam 3 lewat 30'},
+          {jp:'４じ', id:'Jam 4'},
+        ],
+        answer: 2,
+        exp: 'Perhatikan waktu yang disebutkan dalam percakapan. ３じはん = jam 3 lewat 30 menit. はん = setengah jam (30 menit).'
+      },
+    ]
+  },
+  {
+    id: 2,
+    judul: 'Choukai Practice Test 2',
+    topik: 'Aktivitas harian — jadwal & waktu',
+    videoId: '1z3-CWWA20Y',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Fokus pada kata kerja kegiatan (たべる・のむ・いく・みる) dan keterangan waktu (まいにち・あさ・よる). Catat urutan kejadian.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おとこのひとはまいあさなにをしますか。',
+        q_id: 'Apa yang dilakukan pria itu setiap pagi?',
+        opts: [
+          {jp:'シャワーをあびる', id:'Mandi shower'},
+          {jp:'ジョギングをする', id:'Jogging'},
+          {jp:'しんぶんをよむ', id:'Membaca koran'},
+          {jp:'コーヒーをのむ', id:'Minum kopi'},
+        ],
+        answer: 1,
+        exp: 'Pria menceritakan rutinitasnya di pagi hari. Dengarkan kata "まいあさ" diikuti kegiatan — dalam hal ini ジョギング (jogging).'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】おんなのひとはなんじにおきますか。',
+        q_id: 'Jam berapa wanita itu bangun?',
+        opts: [
+          {jp:'６じ', id:'Jam 6'},
+          {jp:'６じはん', id:'Jam 6 lewat 30'},
+          {jp:'７じ', id:'Jam 7'},
+          {jp:'７じはん', id:'Jam 7 lewat 30'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan waktu bangun (おきます) yang disebutkan wanita. ６じ = jam 6 tepat. Perhatikan perbedaan ６じ dan ６じはん.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】ふたりはどこでひるごはんをたべますか。',
+        q_id: 'Di mana keduanya makan siang?',
+        opts: [
+          {jp:'かいしゃのしょくどう', id:'Kafetaria kantor'},
+          {jp:'そとのレストラン', id:'Restoran di luar'},
+          {jp:'こうえん', id:'Taman'},
+          {jp:'うちにかえる', id:'Pulang ke rumah'},
+        ],
+        answer: 0,
+        exp: 'Percakapan membahas rencana makan siang. Dengarkan "しょくどう" (kafetaria) yang sering disebut untuk situasi makan di tempat kerja atau sekolah.'
+      },
+    ]
+  },
+  {
+    id: 3,
+    judul: 'Choukai Practice Test 3',
+    topik: 'Belanja & harga — di toko',
+    videoId: 'sY7L5cfCWno',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Perhatikan angka dan satuan uang (円・えん). Dengarkan percakapan antara penjual (てんいん) dan pembeli (きゃく) dengan cermat.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】このシャツはいくらですか。',
+        q_id: 'Berapa harga kemeja ini?',
+        opts: [
+          {jp:'１５００えん', id:'1.500 yen'},
+          {jp:'２０００えん', id:'2.000 yen'},
+          {jp:'２５００えん', id:'2.500 yen'},
+          {jp:'３０００えん', id:'3.000 yen'},
+        ],
+        answer: 1,
+        exp: 'Dengarkan harga yang disebutkan pegawai toko. ２０００えん = に せん えん = 2.000 yen. Pastikan tidak tertukar dengan angka lain.'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】おんなのひとはなにいろのかばんをかいますか。',
+        q_id: 'Wanita membeli tas warna apa?',
+        opts: [
+          {jp:'あかい', id:'Merah'},
+          {jp:'くろい', id:'Hitam'},
+          {jp:'しろい', id:'Putih'},
+          {jp:'あおい', id:'Biru'},
+        ],
+        answer: 1,
+        exp: 'Wanita memilih warna tas dalam percakapan. くろい = hitam. Perhatikan dialog saat wanita memilih dan mengonfirmasi pilihannya.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】おとこのひとはいくらはらいますか。',
+        q_id: 'Berapa yang dibayar pria itu?',
+        opts: [
+          {jp:'３５０えん', id:'350 yen'},
+          {jp:'５００えん', id:'500 yen'},
+          {jp:'６５０えん', id:'650 yen'},
+          {jp:'７００えん', id:'700 yen'},
+        ],
+        answer: 2,
+        exp: 'Hitung total yang harus dibayar berdasarkan barang yang dibeli. Perhatikan jika ada diskon atau penambahan barang dalam percakapan.'
+      },
+    ]
+  },
+  {
+    id: 4,
+    judul: 'Choukai Practice Test 4',
+    topik: 'Transportasi & arah — naik kereta',
+    videoId: '2zr8KZb1DUs',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Fokus pada kata arah (みぎ・ひだり・まっすぐ) dan transportasi (でんしゃ・バス・タクシー). Perhatikan nama stasiun dan jumlah menit.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】えきまでどうやっていきますか。',
+        q_id: 'Bagaimana cara pergi ke stasiun?',
+        opts: [
+          {jp:'あるいていく', id:'Jalan kaki'},
+          {jp:'バスにのる', id:'Naik bus'},
+          {jp:'じてんしゃにのる', id:'Naik sepeda'},
+          {jp:'タクシーにのる', id:'Naik taksi'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan cara pergi yang disarankan. あるいていく = pergi dengan berjalan kaki. Biasanya diikuti keterangan waktu seperti "〜ふんぐらいです".'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】えきからびょういんまでなんぷんかかりますか。',
+        q_id: 'Berapa menit dari stasiun ke rumah sakit?',
+        opts: [
+          {jp:'５ふん', id:'5 menit'},
+          {jp:'１０ふん', id:'10 menit'},
+          {jp:'１５ふん', id:'15 menit'},
+          {jp:'２０ふん', id:'20 menit'},
+        ],
+        answer: 1,
+        exp: 'Dengarkan keterangan waktu (ふん/ぷん) dalam percakapan. １０ふん = juuppun = 10 menit. Perhatikan perbedaan ふん (fun) dan ぷん (pun).'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】バスていはどこにありますか。',
+        q_id: 'Di mana halte bus berada?',
+        opts: [
+          {jp:'ぎんこうのまえ', id:'Di depan bank'},
+          {jp:'こうえんのとなり', id:'Di sebelah taman'},
+          {jp:'がっこうのうしろ', id:'Di belakang sekolah'},
+          {jp:'ゆうびんきょくのひだり', id:'Di kiri kantor pos'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan petunjuk lokasi halte bus. ぎんこうのまえ = di depan bank. Perhatikan partikel の yang menghubungkan tempat dengan posisi.'
+      },
+    ]
+  },
+  {
+    id: 5,
+    judul: 'Choukai Practice Test 5',
+    topik: 'Cuaca & rencana — percakapan keluarga',
+    videoId: 'ewHktqEnxTQ',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Dengarkan kosakata cuaca (はれ・くもり・あめ・ゆき) dan kata kondisional (〜たら/〜ば/もし). Perhatikan rencana yang berubah.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】あしたのてんきはどうですか。',
+        q_id: 'Bagaimana cuaca besok?',
+        opts: [
+          {jp:'はれ', id:'Cerah'},
+          {jp:'くもり', id:'Mendung'},
+          {jp:'あめ', id:'Hujan'},
+          {jp:'ゆき', id:'Salju'},
+        ],
+        answer: 2,
+        exp: 'Dengarkan kosakata cuaca. あめ = hujan. Dalam percakapan tentang rencana, cuaca sering menjadi alasan perubahan rencana.'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】かぞくはどこへいくよていでしたか。',
+        q_id: 'Ke mana keluarga berencana pergi?',
+        opts: [
+          {jp:'うみ', id:'Pantai'},
+          {jp:'やま', id:'Gunung'},
+          {jp:'こうえん', id:'Taman'},
+          {jp:'どうぶつえん', id:'Kebun binatang'},
+        ],
+        answer: 2,
+        exp: 'Dengarkan tujuan awal yang direncanakan keluarga sebelum cuaca berubah. こうえん = taman, sering menjadi tujuan piknik keluarga.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】あめがふったら、なにをしますか。',
+        q_id: 'Jika hujan, apa yang akan mereka lakukan?',
+        opts: [
+          {jp:'えいがをみる', id:'Menonton film'},
+          {jp:'うちにいる', id:'Tetap di rumah'},
+          {jp:'かいものをする', id:'Belanja'},
+          {jp:'レストランへいく', id:'Pergi ke restoran'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan rencana alternatif jika hujan. えいがをみる = menonton film. Pola 〜たら + rencana cadangan sering muncul dalam choukai N5.'
+      },
+    ]
+  },
+  {
+    id: 6,
+    judul: 'Choukai Practice Test 6',
+    topik: 'Di rumah sakit — sakit & obat',
+    videoId: 'GVf3wc7sa8A',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Perhatikan kosakata medis dasar (あたま・のど・おなか・ねつ・くすり). Dengarkan instruksi dokter tentang cara minum obat.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おとこのひとはどこがいたいですか。',
+        q_id: 'Bagian mana yang sakit pada pria itu?',
+        opts: [
+          {jp:'あたま', id:'Kepala'},
+          {jp:'のど', id:'Tenggorokan'},
+          {jp:'おなか', id:'Perut'},
+          {jp:'あし', id:'Kaki'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan keluhan pasien kepada dokter. あたまがいたい = sakit kepala. Perhatikan "〜がいたいです" sebagai ekspresi sakit.'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】くすりはいつのみますか。',
+        q_id: 'Kapan minum obatnya?',
+        opts: [
+          {jp:'しょくじのまえ', id:'Sebelum makan'},
+          {jp:'しょくじのあと', id:'Setelah makan'},
+          {jp:'ねるまえ', id:'Sebelum tidur'},
+          {jp:'おきたあと', id:'Setelah bangun'},
+        ],
+        answer: 1,
+        exp: 'Dokter memberikan instruksi minum obat. しょくじのあと = setelah makan. Perhatikan partikel の yang menghubungkan しょくじ dengan あと.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】かいしゃをなんにちやすみますか。',
+        q_id: 'Berapa hari istirahat dari kantor?',
+        opts: [
+          {jp:'１にち', id:'1 hari'},
+          {jp:'２にち', id:'2 hari'},
+          {jp:'３にち', id:'3 hari'},
+          {jp:'１しゅうかん', id:'1 minggu'},
+        ],
+        answer: 1,
+        exp: 'Dokter memberikan rekomendasi istirahat. ２にち = dua hari. Perhatikan satuan waktu: にち (hari), しゅうかん (minggu), かげつ (bulan).'
+      },
+    ]
+  },
+  {
+    id: 7,
+    judul: 'Choukai Practice Test 7',
+    topik: 'Sekolah & belajar — kelas bahasa Jepang',
+    videoId: '1z3-CWWA20Y',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Perhatikan kosakata sekolah (せんせい・がくせい・しゅくだい・テスト). Dengarkan pertanyaan tentang jadwal dan kegiatan belajar.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】テストはいつですか。',
+        q_id: 'Kapan ujiannya?',
+        opts: [
+          {jp:'かようび', id:'Selasa'},
+          {jp:'もくようび', id:'Kamis'},
+          {jp:'きんようび', id:'Jumat'},
+          {jp:'らいしゅうのげつようび', id:'Senin minggu depan'},
+        ],
+        answer: 2,
+        exp: 'Dengarkan hari ujian yang disebutkan guru atau siswa. きんようび = Jumat. Perhatikan keterangan waktu seperti "らいしゅう" (minggu depan).'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】しゅくだいはなんですか。',
+        q_id: 'Apa PR-nya?',
+        opts: [
+          {jp:'かんじをかく', id:'Menulis kanji'},
+          {jp:'ぶんしょうをよむ', id:'Membaca teks'},
+          {jp:'たんごをおぼえる', id:'Menghafal kosakata'},
+          {jp:'さくぶんをかく', id:'Menulis karangan'},
+        ],
+        answer: 2,
+        exp: 'Dengarkan instruksi PR dari guru. たんごをおぼえる = menghafal kosakata. おぼえる = menghafal/mengingat.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】がくせいはなんにんいますか。',
+        q_id: 'Ada berapa siswa?',
+        opts: [
+          {jp:'１０にん', id:'10 orang'},
+          {jp:'１２にん', id:'12 orang'},
+          {jp:'１５にん', id:'15 orang'},
+          {jp:'２０にん', id:'20 orang'},
+        ],
+        answer: 2,
+        exp: 'Dengarkan jumlah siswa yang disebutkan. １５にん = じゅうごにん = 15 orang. Perhatikan cara membaca angka belasan dalam bahasa Jepang.'
+      },
+    ]
+  },
+  {
+    id: 8,
+    judul: 'Choukai Practice Test 8',
+    topik: 'Hobi & waktu luang — akhir pekan',
+    videoId: '2zr8KZb1DUs',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Dengarkan kosakata hobi (スポーツ・りょうり・おんがく・えいが). Perhatikan ekspresi kesukaan (〜がすきです) dan kemampuan (〜ができます).',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おんなのひとのしゅみはなんですか。',
+        q_id: 'Apa hobi wanita itu?',
+        opts: [
+          {jp:'りょうり', id:'Memasak'},
+          {jp:'えいがをみる', id:'Menonton film'},
+          {jp:'おんがくをきく', id:'Mendengarkan musik'},
+          {jp:'テニス', id:'Tenis'},
+        ],
+        answer: 0,
+        exp: 'Wanita menyebutkan hobinya dalam percakapan. りょうり = memasak. Perhatikan ekspresi "〜がすきです" atau "しゅみは〜です".'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】おとこのひとはしゅうまつなにをしますか。',
+        q_id: 'Apa yang dilakukan pria itu di akhir pekan?',
+        opts: [
+          {jp:'サッカーをする', id:'Bermain sepak bola'},
+          {jp:'ともだちとあう', id:'Bertemu teman'},
+          {jp:'うちでやすむ', id:'Istirahat di rumah'},
+          {jp:'かいものにいく', id:'Pergi belanja'},
+        ],
+        answer: 1,
+        exp: 'Pria menceritakan rencananya di akhir pekan. ともだちとあう = bertemu teman. Perhatikan partikel と yang menunjukkan "bersama".'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】ふたりはこんしゅうのにちようびになにをしますか。',
+        q_id: 'Apa yang keduanya lakukan Minggu ini?',
+        opts: [
+          {jp:'いっしょにりょうりをする', id:'Memasak bersama'},
+          {jp:'えいがをみにいく', id:'Pergi menonton film'},
+          {jp:'こうえんをさんぽする', id:'Jalan-jalan di taman'},
+          {jp:'スポーツセンターへいく', id:'Pergi ke pusat olahraga'},
+        ],
+        answer: 2,
+        exp: 'Keduanya memutuskan kegiatan bersama. こうえんをさんぽする = jalan-jalan di taman. さんぽ = jalan santai.'
+      },
+    ]
+  },
+  {
+    id: 9,
+    judul: 'Choukai Practice Test 9',
+    topik: 'Restoran & makanan — memesan makanan',
+    videoId: 'ewHktqEnxTQ',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Perhatikan kosakata makanan dan cara memesan. Dengarkan percakapan antara pelayan (ウエイター) dan pelanggan. Perhatikan jumlah porsi.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おとこのひとはなにをたのみましたか。',
+        q_id: 'Apa yang dipesan pria itu?',
+        opts: [
+          {jp:'ラーメン', id:'Ramen'},
+          {jp:'カレーライス', id:'Nasi kari'},
+          {jp:'すし', id:'Sushi'},
+          {jp:'うどん', id:'Udon'},
+        ],
+        answer: 0,
+        exp: 'Pria menyebutkan pesanannya kepada pelayan. ラーメン = ramen. Dengarkan kata setelah "〜をください" atau "〜にします".'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】のみものはなんにしますか。',
+        q_id: 'Minuman apa yang dipilih?',
+        opts: [
+          {jp:'コーヒー', id:'Kopi'},
+          {jp:'おちゃ', id:'Teh'},
+          {jp:'ジュース', id:'Jus'},
+          {jp:'みず', id:'Air putih'},
+        ],
+        answer: 1,
+        exp: 'Dengarkan pilihan minuman. おちゃ = teh Jepang. Pelayan biasanya menanyakan "おのみものはいかがですか" atau "のみものはなんになさいますか".'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】ぜんぶでいくらですか。',
+        q_id: 'Berapa totalnya?',
+        opts: [
+          {jp:'８００えん', id:'800 yen'},
+          {jp:'１０００えん', id:'1.000 yen'},
+          {jp:'１２００えん', id:'1.200 yen'},
+          {jp:'１５００えん', id:'1.500 yen'},
+        ],
+        answer: 2,
+        exp: 'Hitung total harga semua pesanan. １２００えん = せんにひゃくえん = 1.200 yen. ぜんぶで = semuanya / totalnya.'
+      },
+    ]
+  },
+  {
+    id: 10,
+    judul: 'Choukai Practice Test 10',
+    topik: 'Telepon & janji — membuat rencana',
+    videoId: 'sY7L5cfCWno',
+    playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
+    tips: 'Fokus pada percakapan telepon. Perhatikan cara membuat janji (〜ませんか・〜ましょう) dan konfirmasi waktu serta tempat.',
+    questions: [
+      {
+        num: 1,
+        q_jp: '【もんだい1】おとこのひとはだれにでんわをかけましたか。',
+        q_id: 'Siapa yang ditelpon pria itu?',
+        opts: [
+          {jp:'ともだちのたなかさん', id:'Teman bernama Tanaka'},
+          {jp:'かいしゃのひと', id:'Orang dari kantor'},
+          {jp:'おかあさん', id:'Ibu'},
+          {jp:'せんせい', id:'Guru'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan kepada siapa pria menelepon. ともだちのたなかさん = teman bernama Tanaka. Perhatikan sapaan di awal percakapan telepon.'
+      },
+      {
+        num: 2,
+        q_jp: '【もんだい2】ふたりはなんようびにあいますか。',
+        q_id: 'Hari apa keduanya bertemu?',
+        opts: [
+          {jp:'どようび', id:'Sabtu'},
+          {jp:'にちようび', id:'Minggu'},
+          {jp:'もくようび', id:'Kamis'},
+          {jp:'きんようび', id:'Jumat'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan hari yang disepakati keduanya. どようび = Sabtu. Dalam percakapan membuat janji, perhatikan konfirmasi "〜はどうですか" dan jawabannya.'
+      },
+      {
+        num: 3,
+        q_jp: '【もんだい3】どこでいっしょにしょくじをしますか。',
+        q_id: 'Di mana mereka makan bersama?',
+        opts: [
+          {jp:'イタリアンレストラン', id:'Restoran Italia'},
+          {jp:'すしやさん', id:'Restoran sushi'},
+          {jp:'ちゅうかりょうりのみせ', id:'Restoran masakan China'},
+          {jp:'カフェ', id:'Kafe'},
+        ],
+        answer: 0,
+        exp: 'Dengarkan tempat makan yang dipilih. イタリアンレストラン = restoran Italia. Perhatikan konfirmasi tempat di akhir percakapan.'
+      },
+    ]
+  },
+];
+
+// ===== CHOUKAI FUNCTIONS =====
+let choukaiAnswered = {};
+
+function buildChoukai() {
+  const tabsEl = document.getElementById('choukai-tabs');
+  const contentEl = document.getElementById('choukai-content-area');
+  if (!tabsEl || !contentEl) return;
+
+  // Build tabs
+  tabsEl.innerHTML = CHOUKAI_DATA.map((d, i) =>
+    `<button class="choukai-tab ${i===0?'active':''}" onclick="switchChoukai(${i})">Video ${d.id}</button>`
+  ).join('');
+
+  // Build content
+  contentEl.innerHTML = CHOUKAI_DATA.map((d, i) => {
+    const qHTML = d.questions.map(q => `
+      <div class="choukai-q-card" id="ck-q-${d.id}-${q.num}">
+        <div class="choukai-q-num">Soal ${q.num}</div>
+        <div class="choukai-q-text">${q.q_jp}</div>
+        <div class="choukai-q-text-id">${q.q_id}</div>
+        <div class="choukai-opts">
+          ${q.opts.map((o, oi) => `
+            <button class="choukai-opt" id="ck-opt-${d.id}-${q.num}-${oi}"
+              onclick="selectChoukaiOpt(${d.id},${q.num},${oi},${q.opts.length})">
+              <span class="ck-opt-num">${oi+1}.</span>
+              <span>
+                <span class="ck-opt-jp">${o.jp}</span>
+                <span class="ck-opt-id">${o.id}</span>
+              </span>
+            </button>`).join('')}
+        </div>
+        <div class="choukai-exp" id="ck-exp-${d.id}-${q.num}">${q.exp}</div>
+      </div>`).join('');
+
+    return `
+    <div class="choukai-section ${i===0?'active':''}" id="choukai-sect-${i}">
+      <div class="choukai-header">
+        <div class="choukai-header-left">
+          <div class="ck-label">Video ${d.id} — Choukai JLPT N5</div>
+          <div class="ck-title">${d.judul}</div>
+          <div class="ck-topic">${d.topik}</div>
+        </div>
+        <div class="ck-badge">${d.questions.length} soal</div>
+      </div>
+
+      <div class="choukai-tips-box">
+        <div class="ck-tip-icon">💡</div>
+        <div class="ck-tip-text"><strong>Tips mendengarkan:</strong> ${d.tips}</div>
+      </div>
+
+      <div class="choukai-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/${d.videoId}?list=${d.playlist}&rel=0&modestbranding=1&enablejsapi=1"
+          title="${d.judul}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="choukai-q-section">
+        <div class="choukai-q-label">問題 Soal Latihan</div>
+
+        <div class="choukai-score-bar" id="ck-score-${d.id}">
+          <div class="choukai-score-top">
+            <div>
+              <div class="choukai-score-num" id="ck-score-num-${d.id}">0 / ${d.questions.length}</div>
+              <div class="choukai-score-label" id="ck-score-msg-${d.id}">Jawab semua soal dulu!</div>
+            </div>
+          </div>
+          <div class="choukai-score-prog">
+            <div class="choukai-score-fill" id="ck-score-fill-${d.id}" style="width:0%"></div>
+          </div>
+        </div>
+
+        <div class="choukai-q-cards">${qHTML}</div>
+
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:1rem">
+          <button class="btn-choukai-check" onclick="checkChoukai(${d.id},${d.questions.length})">
+            📝 Periksa Jawaban
+          </button>
+          <button class="btn-choukai-reset" onclick="resetChoukai(${d.id},${d.questions.length})">
+            🔄 Ulangi
+          </button>
+        </div>
+      </div>
+
+      <div class="choukai-nav-row">
+        <button class="choukai-nav-btn" onclick="switchChoukai(${i-1})" ${i===0?'disabled':''}>
+          ← Video ${d.id-1}
+        </button>
+        <button class="choukai-nav-btn" onclick="switchChoukai(${i+1})" ${i===CHOUKAI_DATA.length-1?'disabled':''}>
+          Video ${d.id+1} →
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function switchChoukai(idx) {
+  if (idx < 0 || idx >= CHOUKAI_DATA.length) return;
+  document.querySelectorAll('.choukai-section').forEach((el, i) => el.classList.toggle('active', i===idx));
+  document.querySelectorAll('.choukai-tab').forEach((el, i) => {
+    el.classList.toggle('active', i===idx);
+    if (i===idx) el.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function selectChoukaiOpt(videoId, qNum, optIdx, totalOpts) {
+  const key = `${videoId}_${qNum}`;
+  for (let i = 0; i < totalOpts; i++) {
+    const el = document.getElementById(`ck-opt-${videoId}-${qNum}-${i}`);
+    if (el) { el.style.background=''; el.style.borderColor=''; }
+  }
+  const sel = document.getElementById(`ck-opt-${videoId}-${qNum}-${optIdx}`);
+  if (sel) { sel.style.background='#F3EFFF'; sel.style.borderColor='#7C3AED'; }
+  choukaiAnswered[key] = optIdx;
+}
+
+function checkChoukai(videoId, totalQ) {
+  const data = CHOUKAI_DATA.find(d => d.id === videoId);
+  if (!data) return;
+  let correct = 0;
+  data.questions.forEach(q => {
+    const key = `${videoId}_${q.num}`;
+    const chosen = choukaiAnswered[key];
+    for (let i = 0; i < q.opts.length; i++) {
+      const el = document.getElementById(`ck-opt-${videoId}-${q.num}-${i}`);
+      if (el) { el.disabled=true; el.style.background=''; el.style.borderColor=''; }
+    }
+    const correctEl = document.getElementById(`ck-opt-${videoId}-${q.num}-${q.answer}`);
+    if (correctEl) correctEl.classList.add('correct');
+    if (chosen !== undefined && chosen !== q.answer) {
+      const wrongEl = document.getElementById(`ck-opt-${videoId}-${q.num}-${chosen}`);
+      if (wrongEl) wrongEl.classList.add('wrong');
+    }
+    if (chosen === q.answer) correct++;
+    const expEl = document.getElementById(`ck-exp-${videoId}-${q.num}`);
+    if (expEl) expEl.classList.add('show');
+  });
+  const scoreBar = document.getElementById(`ck-score-${videoId}`);
+  if (scoreBar) { scoreBar.classList.add('show'); scoreBar.scrollIntoView({behavior:'smooth', block:'nearest'}); }
+  const numEl = document.getElementById(`ck-score-num-${videoId}`);
+  if (numEl) numEl.textContent = `${correct} / ${totalQ}`;
+  const fillEl = document.getElementById(`ck-score-fill-${videoId}`);
+  if (fillEl) fillEl.style.width = `${Math.round(correct/totalQ*100)}%`;
+  const msgEl = document.getElementById(`ck-score-msg-${videoId}`);
+  if (msgEl) {
+    const pct = correct/totalQ;
+    msgEl.textContent = pct===1 ? '🏆 Sempurna! Pendengaranmu sangat bagus!' :
+                        pct>=0.7 ? '🎉 Bagus! Terus latih pendengaranmu!' :
+                        pct>=0.5 ? '📻 Lumayan! Coba dengarkan video lagi.' :
+                                   '💪 Semangat! Dengarkan videonya dulu, lalu jawab ulang.';
+  }
+}
+
+function resetChoukai(videoId, totalQ) {
+  const data = CHOUKAI_DATA.find(d => d.id === videoId);
+  if (!data) return;
+  data.questions.forEach(q => {
+    delete choukaiAnswered[`${videoId}_${q.num}`];
+    for (let i = 0; i < q.opts.length; i++) {
+      const el = document.getElementById(`ck-opt-${videoId}-${q.num}-${i}`);
+      if (el) { el.disabled=false; el.classList.remove('correct','wrong'); el.style.background=''; el.style.borderColor=''; }
+    }
+    const expEl = document.getElementById(`ck-exp-${videoId}-${q.num}`);
+    if (expEl) expEl.classList.remove('show');
+  });
+  const scoreBar = document.getElementById(`ck-score-${videoId}`);
+  if (scoreBar) scoreBar.classList.remove('show');
+}
+
+
+// ===== INIT =====
+function init() {
+  // Date in topbar
+  const d = new Date();
+  document.getElementById('top-date').textContent = d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+  // Countdown to July 6, 2025
+  const exam = new Date('2025-07-06');
+  const today = new Date();
+  const diff = Math.ceil((exam - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('countdown-days').textContent = diff > 0 ? diff : '—';
+
+  // Streak
+  checkAndUpdateStreak();
+  updateStreakUI();
+
+  // Timer — restore total & update sidebar display
+  updateTimerUI();
+
+  buildKanaTable('hiragana');
+  buildKanaTable('katakana');
+  buildKanjiGrid();
+  buildVocabList();
+  buildGrammarList();
+  initFlashcard();
+  buildMinna();
+  initMinnaFC();
+  buildDokkai();
+  buildChoukai();
+  updateProgress();
+}
+
+function saveState() {
+  localStorage.setItem('lh', JSON.stringify([...learnedHiragana]));
+  localStorage.setItem('lk', JSON.stringify([...learnedKatakana]));
+  localStorage.setItem('lkj', JSON.stringify([...learnedKanji]));
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = 46 + 46 + 80;
+  const done = learnedHiragana.size + learnedKatakana.size + learnedKanji.size;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('main-prog-fill').style.width = pct + '%';
+  document.getElementById('main-prog-pct').textContent = pct + '% selesai';
+}
+
+// ===== NAVIGATION =====
+const PAGE_META = {
+  home:      {title:'Beranda',          jp:'べんきょう'},
+  hiragana:  {title:'Hiragana',         jp:'ひらがな'},
+  katakana:  {title:'Katakana',         jp:'カタカナ'},
+  kanji:     {title:'Kanji N5',         jp:'かんじ'},
+  vocab:     {title:'Kosakata',         jp:'ごい'},
+  grammar:   {title:'Tata Bahasa',      jp:'ぶんぽう'},
+  flashcard: {title:'Flashcard Kanji',  jp:'フラッシュカード'},
+  minna:     {title:'Minna no Nihongo 1', jp:'みんなの日本語'},
+  'minna-flash': {title:'Flashcard Minna no Nihongo', jp:'フラッシュカード'},
+  dokkai:        {title:'Dokkai JLPT N5', jp:'どっかい'},
+  choukai:       {title:'Choukai JLPT N5', jp:'ちょうかい'},
+  quiz:      {title:'Kuis',             jp:'れんしゅう'},
+  tips:      {title:'Tips Belajar',     jp:'アドバイス'},
+};
+
+function goPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const m = PAGE_META[name];
+  document.getElementById('page-title').textContent = m.title;
+  document.getElementById('page-jp').textContent = m.jp;
+  event && event.target && event.target.closest('.nav-item') && event.target.closest('.nav-item').classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(ni=>{
+    if(ni.getAttribute('onclick') && ni.getAttribute('onclick').includes("'"+name+"'")) ni.classList.add('active');
+  });
+  window.scrollTo(0,0);
+}
+
+// ===== KANA TABLE =====
+function buildKanaTable(type) {
+  const data = type === 'hiragana' ? HIRAGANA : KATAKANA;
+  const learned = type === 'hiragana' ? learnedHiragana : learnedKatakana;
+  const tableEl = document.getElementById(type+'-table');
+  const toolbarEl = document.getElementById(type+'-toolbar');
+
+  // Toolbar
+  const groups = ['Semua','Dasar','Dakuten'];
+  toolbarEl.innerHTML = groups.map((g,i)=>`<button class="kana-filter-btn ${i===0?'active':''}" onclick="filterKana('${type}','${g}',this)">${g}</button>`).join('');
+
+  // Header
+  let html = '<thead><tr><th>Baris</th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr></thead><tbody>';
+  
+  data.forEach(row=>{
+    html += `<tr><td style="font-size:11px;color:var(--ink3);padding:4px 8px;font-family:'DM Mono',monospace">${row.row}</td>`;
+    row.chars.forEach(ch=>{
+      if(!ch.c){
+        html += `<td class="kana-cell empty"></td>`;
+      } else {
+        const isLearned = learned.has(ch.c);
+        html += `<td class="kana-cell ${isLearned?'learned':''}" onclick="toggleKana('${type}','${ch.c}',this)" title="${ch.r}">
+          <span class="char">${ch.c}</span>
+          <span class="roma">${ch.r}</span>
+        </td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  tableEl.innerHTML = html;
+}
+
+function toggleKana(type, char, el) {
+  const learned = type === 'hiragana' ? learnedHiragana : learnedKatakana;
+  if(learned.has(char)) { learned.delete(char); el.classList.remove('learned'); }
+  else { learned.add(char); el.classList.add('learned'); }
+  saveState();
+}
+
+function filterKana(type, group, btn) {
+  document.querySelectorAll(`#${type}-toolbar .kana-filter-btn`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const data = type === 'hiragana' ? HIRAGANA : KATAKANA;
+  const tableEl = document.getElementById(type+'-table');
+  const rows = tableEl.querySelectorAll('tbody tr');
+  const dasar = ['Vokal','K','S','T','N','H','M','Y','R','W','N'];
+  rows.forEach((tr, i)=>{
+    const rowName = data[i]?.row;
+    if(group === 'Semua') tr.style.display = '';
+    else if(group === 'Dasar') tr.style.display = dasar.includes(rowName) ? '' : 'none';
+    else tr.style.display = !dasar.includes(rowName) ? '' : 'none';
+  });
+}
+
+// ===== KANJI =====
+function buildKanjiGrid() {
+  const grid = document.getElementById('kanji-grid');
+  grid.innerHTML = KANJI_DATA.map((k,i)=>`
+    <div class="kanji-tile ${learnedKanji.has(k.c)?'known':''}" onclick="openKanjiModal(${i})">
+      <span class="kanji-stroke">${k.s}画</span>
+      <span class="kanji-char">${k.c}</span>
+      <div class="kanji-on">${k.on}</div>
+      <div class="kanji-kun">${k.kun}</div>
+      <div class="kanji-mean">${k.m}</div>
+    </div>
+  `).join('');
+}
+
+function openKanjiModal(idx) {
+  currentKanjiIdx = idx;
+  const k = KANJI_DATA[idx];
+  document.getElementById('modal-char').textContent = k.c;
+  document.getElementById('modal-meaning').textContent = k.m;
+  document.getElementById('modal-readings').innerHTML = `
+    <span class="modal-badge on">音 ${k.on}</span>
+    <span class="modal-badge kun">訓 ${k.kun}</span>
+    <span style="font-size:12px;color:var(--ink3);margin-left:auto">${k.s} goresan</span>
+  `;
+  document.getElementById('modal-example').innerHTML = `<div style="font-size:12px;color:var(--ink3);margin-bottom:4px">Contoh Penggunaan</div><div style="font-size:14px;color:var(--ink2)">${k.ex}</div>`;
+  const isKnown = learnedKanji.has(k.c);
+  const btn = document.getElementById('modal-know-btn');
+  btn.textContent = isKnown ? '✓ Sudah Hafal (klik untuk batal)' : '○ Tandai Sudah Hafal';
+  btn.style.background = isKnown ? 'var(--green)' : 'var(--green-light)';
+  btn.style.color = isKnown ? '#fff' : 'var(--green)';
+  document.getElementById('kanji-modal-overlay').classList.add('open');
+}
+
+function closeKanjiModal(e) {
+  if(!e || e.target === document.getElementById('kanji-modal-overlay') || e.currentTarget.classList.contains('modal-close')) {
+    document.getElementById('kanji-modal-overlay').classList.remove('open');
+  }
+}
+
+function toggleKanjiKnown() {
+  if(currentKanjiIdx < 0) return;
+  const k = KANJI_DATA[currentKanjiIdx];
+  if(learnedKanji.has(k.c)) learnedKanji.delete(k.c);
+  else learnedKanji.add(k.c);
+  saveState();
+  buildKanjiGrid();
+  openKanjiModal(currentKanjiIdx);
+}
+
+// ===== VOCAB =====
+function buildVocabList(filter='', cat='') {
+  const list = document.getElementById('vocab-list');
+  const filtered = VOCAB_DATA.filter(v=>{
+    const matchTxt = !filter || v.w.includes(filter) || v.r.includes(filter) || v.m.toLowerCase().includes(filter.toLowerCase());
+    const matchCat = !cat || v.cat === cat;
+    return matchTxt && matchCat;
+  });
+  list.innerHTML = filtered.map(v=>`
+    <div class="vocab-item">
+      <div class="vocab-word">${v.w}</div>
+      <div class="vocab-reading">${v.r}</div>
+      <div class="vocab-meaning">${v.m}</div>
+      <span class="vocab-cat cat-${v.cat.toLowerCase()}">${v.cat}</span>
+    </div>
+  `).join('') || '<div style="text-align:center;padding:2rem;color:var(--ink3)">Tidak ada kata yang cocok.</div>';
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('vocab-search-input').addEventListener('input', e=>{
+    buildVocabList(e.target.value, document.getElementById('vocab-cat-filter').value);
+  });
+  document.getElementById('vocab-cat-filter').addEventListener('change', e=>{
+    buildVocabList(document.getElementById('vocab-search-input').value, e.target.value);
+  });
+});
+
+// ===== GRAMMAR =====
+function buildGrammarList() {
+  const list = document.getElementById('grammar-list');
+  list.innerHTML = GRAMMAR_DATA.map((g,i)=>`
+    <div class="grammar-card">
+      <div class="grammar-header" onclick="toggleGrammar(${i})">
+        <span class="grammar-num">${g.num}</span>
+        <span class="grammar-pattern">${g.pat}</span>
+        <span class="grammar-title">${g.title}</span>
+        <span class="grammar-chevron" id="chev-${i}">▾</span>
+      </div>
+      <div class="grammar-body" id="gbody-${i}">
+        <p class="grammar-desc">${g.desc}</p>
+        ${g.examples.map(ex=>`
+          <div class="example-item">
+            <div class="example-jp">${ex.jp}</div>
+            <div class="example-rom">${ex.rom}</div>
+            <div class="example-id">${ex.id}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleGrammar(idx) {
+  const body = document.getElementById('gbody-'+idx);
+  const chev = document.getElementById('chev-'+idx);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+// ===== QUIZ =====
+function buildQuizData(cat) {
+  if(cat === 'hiragana') {
+    return HIRAGANA.flatMap(row=>row.chars.filter(c=>c.c)).map(c=>({
+      question: c.c, hint:'Apa bacaan Hiragana ini?', type:'Hiragana → Romaji',
+      answer: c.r, options: shuffle([c.r, ...getOther(HIRAGANA.flatMap(r=>r.chars.filter(x=>x.c&&x.r!==c.r)).map(x=>x.r),3)])
+    }));
+  }
+  if(cat === 'katakana') {
+    return KATAKANA.flatMap(row=>row.chars.filter(c=>c.c)).map(c=>({
+      question: c.c, hint:'Apa bacaan Katakana ini?', type:'Katakana → Romaji',
+      answer: c.r, options: shuffle([c.r, ...getOther(KATAKANA.flatMap(r=>r.chars.filter(x=>x.c&&x.r!==c.r)).map(x=>x.r),3)])
+    }));
+  }
+  if(cat === 'vocab') {
+    return VOCAB_DATA.map(v=>({
+      question: v.w, hint: v.r, type:'Kosakata → Arti',
+      answer: v.m, options: shuffle([v.m, ...getOther(VOCAB_DATA.filter(x=>x.m!==v.m).map(x=>x.m),3)])
+    }));
+  }
+  if(cat === 'kanji') {
+    return KANJI_DATA.map(k=>({
+      question: k.c, hint:'On: '+k.on+' | Kun: '+k.kun, type:'Kanji → Arti',
+      answer: k.m, options: shuffle([k.m, ...getOther(KANJI_DATA.filter(x=>x.m!==k.m).map(x=>x.m),3)])
+    }));
+  }
+  return [];
+}
+
+function shuffle(arr) { return arr.sort(()=>Math.random()-0.5); }
+function getOther(pool, n) {
+  const s = shuffle([...pool]);
+  return s.slice(0,n);
+}
+
+function startQuiz() {
+  const cat = document.getElementById('quiz-cat').value;
+  quizTotal = parseInt(document.getElementById('quiz-num').value);
+  const pool = shuffle(buildQuizData(cat));
+  quizQ = pool.slice(0, quizTotal);
+  quizIdx = 0; quizScore = 0;
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('quiz-result').style.display = 'none';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if(quizIdx >= quizQ.length) { showResult(); return; }
+  const q = quizQ[quizIdx];
+  document.getElementById('q-prog').style.width = (quizIdx/quizTotal*100)+'%';
+  document.getElementById('q-counter').textContent = (quizIdx+1)+'/'+quizTotal;
+  document.getElementById('q-score').textContent = '✓ '+quizScore;
+  document.getElementById('q-type').textContent = q.type;
+  document.getElementById('q-question').textContent = q.question;
+  document.getElementById('q-hint').textContent = q.hint;
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = q.options.map(o=>`<button class="quiz-opt" onclick="answerQuiz('${o.replace(/'/g,"\\'")}','${q.answer.replace(/'/g,"\\'")}',this)">${o}</button>`).join('');
+}
+
+function answerQuiz(chosen, correct, btn) {
+  document.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  if(chosen === correct) {
+    btn.classList.add('correct');
+    quizScore++;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.quiz-opt').forEach(b=>{ if(b.textContent===correct) b.classList.add('correct'); });
+  }
+  document.getElementById('q-score').textContent = '✓ '+quizScore;
+  setTimeout(()=>{ quizIdx++; renderQuestion(); }, 1000);
+}
+
+function showResult() {
+  document.getElementById('quiz-area').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  const pct = Math.round(quizScore/quizTotal*100);
+  document.getElementById('r-score').textContent = quizScore+' / '+quizTotal;
+  let emoji='', title='', msg='';
+  if(pct>=90){emoji='🏆';title='Luar Biasa!';msg='Nilaimu sempurna! Kamu siap menghadapi JLPT N5!';}
+  else if(pct>=70){emoji='🎉';title='Kerja Bagus!';msg='Nilaimu bagus! Terus berlatih untuk hasil yang lebih baik.';}
+  else if(pct>=50){emoji='📚';title='Lumayan!';msg='Kamu sudah berusaha. Ulangi materi yang masih sulit ya!';}
+  else{emoji='💪';title='Semangat!';msg='Jangan menyerah! Belajar lagi dan coba kuis ini sekali lagi.';}
+  document.getElementById('r-emoji').textContent = emoji;
+  document.getElementById('r-title').textContent = title;
+  document.getElementById('r-msg').textContent = msg;
+}
+
+function retryQuiz() {
+  document.getElementById('quiz-result').style.display = 'none';
+  startQuiz();
+}
+
+// ===== MOBILE SIDEBAR =====
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+// Close sidebar when nav item clicked on mobile
+document.querySelectorAll('.nav-item').forEach(el => {
+  el.addEventListener('click', () => {
+    if(window.innerWidth <= 768) closeSidebar();
+  });
+});
+
+// ===== START =====
+init();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
