@@ -245,16 +245,27 @@ function checkAndUpdateStreak() {
   const today = getTodayStr();
   const lastLogin = localStorage.getItem('lastLogin')||'';
   const streak = getStreak();
+  // Sudah login hari ini — tidak perlu update
   if(lastLogin === today) return streak;
-  const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate()-1);
   const yStr = yesterday.toISOString().slice(0,10);
   let newStreak;
-  if(lastLogin === yStr) { newStreak = streak + 1; }
-  else if(lastLogin === '') { newStreak = 1; }
-  else { newStreak = 1; }
+  if(lastLogin === '') {
+    // Login pertama kali
+    newStreak = 1;
+    showStreakToast(newStreak);
+  } else if(lastLogin === yStr) {
+    // Login kemarin → lanjut streak
+    newStreak = streak + 1;
+    showStreakToast(newStreak);
+  } else {
+    // Skip hari → reset ke 1
+    newStreak = 1;
+    showStreakToast(newStreak);
+  }
   localStorage.setItem('streak', newStreak);
   localStorage.setItem('lastLogin', today);
-  if(newStreak > 1) showStreakToast(newStreak);
   return newStreak;
 }
 function showStreakToast(n) {
@@ -2675,12 +2686,14 @@ const CHOUKAI_DATA = [
     topik: 'Percakapan sehari-hari — perkenalan & tempat',
     videoId: 'GVf3wc7sa8A',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Perhatikan kata tanya (どこ・だれ・なに・いつ) dan jawaban yang diberikan. Dengarkan angka dan waktu dengan seksama.',
+    playlistIndex: 1,
+    tips: 'Perhatikan kata tanya (どこ・だれ・なに・いつ) dan jawaban yang diberikan. Dengarkan angka dan waktu dengan seksama. Struktur soal: もんだい1 (gambar), もんだい2 (respons), もんだい3 (percakapan pendek), もんだい4 (kalimat pendek).',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おとこのひとはどこへいきますか。',
-        q_id: 'Ke mana pria itu pergi?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはどこへいきますか。',
+        q_id: '【Soal 1】 Pria itu pergi ke mana?',
         opts: [
           {jp:'としょかん', id:'Perpustakaan'},
           {jp:'ゆうびんきょく', id:'Kantor pos'},
@@ -2688,12 +2701,13 @@ const CHOUKAI_DATA = [
           {jp:'えき', id:'Stasiun'},
         ],
         answer: 0,
-        exp: 'Dengarkan baik-baik tujuan pria dalam percakapan. Kata kunci: としょかん (perpustakaan) yang disebutkan saat menjawab pertanyaan "どこへ行きますか".'
+        exp: 'Kunci: としょかん (perpustakaan). Dengarkan tujuan pria dalam dialog. Kata kunci "本を借りに" mengarah ke perpustakaan.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】おんなのひとはなにをかいますか。',
-        q_id: 'Apa yang akan dibeli wanita itu?',
+        section: 'もんだい1',
+        q_jp: 'おんなのひとはなにをかいますか。',
+        q_id: '【Soal 2】 Apa yang akan dibeli wanita itu?',
         opts: [
           {jp:'パン', id:'Roti'},
           {jp:'たまご', id:'Telur'},
@@ -2701,20 +2715,119 @@ const CHOUKAI_DATA = [
           {jp:'やさい', id:'Sayuran'},
         ],
         answer: 1,
-        exp: 'Wanita menyebutkan apa yang ingin dibelinya di toko. Dengarkan kata benda setelah "〜をかいます" atau "〜がほしいです".'
+        exp: 'Kunci: たまご (telur). Wanita menyebutkan "たまごをかいます" saat membicarakan rencananya ke toko.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】なんじにあいますか。',
-        q_id: 'Jam berapa mereka bertemu?',
+        section: 'もんだい1',
+        q_jp: 'ふたりはなんじにあいますか。',
+        q_id: '【Soal 3】 Jam berapa keduanya bertemu?',
         opts: [
           {jp:'２じ', id:'Jam 2'},
           {jp:'３じ', id:'Jam 3'},
-          {jp:'３じはん', id:'Jam 3 lewat 30'},
+          {jp:'３じはん', id:'Jam 3 lewat 30 menit'},
           {jp:'４じ', id:'Jam 4'},
         ],
         answer: 2,
-        exp: 'Perhatikan waktu yang disebutkan dalam percakapan. ３じはん = jam 3 lewat 30 menit. はん = setengah jam (30 menit).'
+        exp: 'Kunci: ３じはん (jam 3.30). はん = setengah jam. Perhatikan: keduanya awalnya membahas jam 3, lalu sepakat mundur ke ３じはん.'
+      },
+      {
+        num: 4,
+        section: 'もんだい2',
+        q_jp: '「ありがとうございます。」にたいして、ただしいこたえはどれですか。',
+        q_id: '【Soal 4】 Respons yang tepat untuk "Terima kasih" adalah?',
+        opts: [
+          {jp:'はい、そうです。', id:'Ya, betul.'},
+          {jp:'どういたしまして。', id:'Sama-sama.'},
+          {jp:'おねがいします。', id:'Tolong ya.'},
+          {jp:'すみません。', id:'Permisi/Maaf.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: どういたしまして (sama-sama). Ini adalah respons standar untuk ありがとうございます. Pelajari pasangan ekspresi dasar ini.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「おなまえはなんですか。」にたいして、ただしいこたえはどれですか。',
+        q_id: '【Soal 5】 Respons tepat untuk "Siapa nama Anda?" adalah?',
+        opts: [
+          {jp:'たなかです。', id:'(Saya) Tanaka.'},
+          {jp:'にほんじんです。', id:'(Saya) orang Jepang.'},
+          {jp:'がくせいです。', id:'(Saya) pelajar.'},
+          {jp:'２５さいです。', id:'(Saya) 25 tahun.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: たなかです (saya Tanaka). Pertanyaan nama → jawab dengan nama. Pilihan lain menjawab pertanyaan yang berbeda (kewarganegaraan, pekerjaan, usia).'
+      },
+      {
+        num: 6,
+        section: 'もんだい3',
+        q_jp: 'おとこのひとはどうしてがっこうをやすみましたか。',
+        q_id: '【Soal 6】 Mengapa pria itu absen dari sekolah?',
+        opts: [
+          {jp:'びょうきだったから', id:'Karena sakit'},
+          {jp:'りょこうしたから', id:'Karena pergi wisata'},
+          {jp:'かぞくのようじがあったから', id:'Karena ada urusan keluarga'},
+          {jp:'じこにあったから', id:'Karena mengalami kecelakaan'},
+        ],
+        answer: 0,
+        exp: 'Kunci: びょうきだったから (karena sakit). Dalam percakapan, pria menjelaskan alasan absennya dengan "かぜをひいて…".'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おんなのひとはこれからなにをしますか。',
+        q_id: '【Soal 7】 Apa yang akan dilakukan wanita selanjutnya?',
+        opts: [
+          {jp:'うちにかえる', id:'Pulang ke rumah'},
+          {jp:'びょういんへいく', id:'Pergi ke rumah sakit'},
+          {jp:'ともだちにでんわする', id:'Menelepon teman'},
+          {jp:'しゅくだいをする', id:'Mengerjakan PR'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ともだちにでんわする (menelepon teman). Di akhir percakapan, wanita menyebutkan akan "でんわしてみます".'
+      },
+      {
+        num: 8,
+        section: 'もんだい4',
+        q_jp: 'つくえのうえになにがありますか。',
+        q_id: '【Soal 8】 Apa yang ada di atas meja?',
+        opts: [
+          {jp:'ほんとノート', id:'Buku dan buku catatan'},
+          {jp:'ほんとえんぴつ', id:'Buku dan pensil'},
+          {jp:'ノートとえんぴつ', id:'Buku catatan dan pensil'},
+          {jp:'ほんだけ', id:'Hanya buku'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ほんとえんぴつ (buku dan pensil). Dengarkan deskripsi benda-benda di atas meja. Partikel と = dan (menghubungkan dua nomina).'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「このへやはひろいですね。」といわれました。なんといいますか。',
+        q_id: '【Soal 9】 Seseorang berkata "Kamar ini luas ya." Apa responnya?',
+        opts: [
+          {jp:'そうですね、せまいです。', id:'Ya betul, sempit.'},
+          {jp:'ありがとうございます。', id:'Terima kasih.'},
+          {jp:'いいえ、まだです。', id:'Belum.'},
+          {jp:'そうですか、たのしいです。', id:'Begitu ya, menyenangkan.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ありがとうございます (terima kasih). Saat seseorang memuji (pujian positif), jawab dengan terima kasih. そうですね bisa dipakai tapi ありがとう lebih natural.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'きょうはなんようびですか。あしたはにちようびです。',
+        q_id: '【Soal 10】 Hari ini hari apa? (Besok adalah Minggu)',
+        opts: [
+          {jp:'きんようび', id:'Jumat'},
+          {jp:'どようび', id:'Sabtu'},
+          {jp:'もくようび', id:'Kamis'},
+          {jp:'かようび', id:'Selasa'},
+        ],
+        answer: 1,
+        exp: 'Kunci: どようび (Sabtu). Jika besok (あした) = Minggu (にちようび), maka hari ini = sehari sebelum Minggu = Sabtu (どようび). Hafal urutan hari!'
       },
     ]
   },
@@ -2724,12 +2837,14 @@ const CHOUKAI_DATA = [
     topik: 'Aktivitas harian — jadwal & waktu',
     videoId: '1z3-CWWA20Y',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Fokus pada kata kerja kegiatan (たべる・のむ・いく・みる) dan keterangan waktu (まいにち・あさ・よる). Catat urutan kejadian.',
+    playlistIndex: 2,
+    tips: 'Fokus pada kata kerja kegiatan (たべる・のむ・いく・みる) dan keterangan waktu (まいにち・あさ・よる). Catat urutan kejadian dan siapa melakukan apa.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おとこのひとはまいあさなにをしますか。',
-        q_id: 'Apa yang dilakukan pria itu setiap pagi?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはまいあさなにをしますか。',
+        q_id: '【Soal 1】 Apa yang dilakukan pria setiap pagi?',
         opts: [
           {jp:'シャワーをあびる', id:'Mandi shower'},
           {jp:'ジョギングをする', id:'Jogging'},
@@ -2737,25 +2852,27 @@ const CHOUKAI_DATA = [
           {jp:'コーヒーをのむ', id:'Minum kopi'},
         ],
         answer: 1,
-        exp: 'Pria menceritakan rutinitasnya di pagi hari. Dengarkan kata "まいあさ" diikuti kegiatan — dalam hal ini ジョギング (jogging).'
+        exp: 'Kunci: ジョギング (jogging). Pria menyebut "まいあさジョギングをします" sebagai rutinitas pagiya.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】おんなのひとはなんじにおきますか。',
-        q_id: 'Jam berapa wanita itu bangun?',
+        section: 'もんだい1',
+        q_jp: 'おんなのひとはなんじにおきますか。',
+        q_id: '【Soal 2】 Jam berapa wanita bangun?',
         opts: [
           {jp:'６じ', id:'Jam 6'},
-          {jp:'６じはん', id:'Jam 6 lewat 30'},
+          {jp:'６じはん', id:'Jam 6.30'},
           {jp:'７じ', id:'Jam 7'},
-          {jp:'７じはん', id:'Jam 7 lewat 30'},
+          {jp:'７じはん', id:'Jam 7.30'},
         ],
         answer: 0,
-        exp: 'Dengarkan waktu bangun (おきます) yang disebutkan wanita. ６じ = jam 6 tepat. Perhatikan perbedaan ６じ dan ６じはん.'
+        exp: 'Kunci: ６じ (jam 6 tepat). Perhatikan perbedaan ６じ dan ６じはん. Dalam percakapan wanita menyebut "６じにおきます".'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】ふたりはどこでひるごはんをたべますか。',
-        q_id: 'Di mana keduanya makan siang?',
+        section: 'もんだい1',
+        q_jp: 'ふたりはどこでひるごはんをたべますか。',
+        q_id: '【Soal 3】 Di mana keduanya makan siang?',
         opts: [
           {jp:'かいしゃのしょくどう', id:'Kafetaria kantor'},
           {jp:'そとのレストラン', id:'Restoran di luar'},
@@ -2763,7 +2880,105 @@ const CHOUKAI_DATA = [
           {jp:'うちにかえる', id:'Pulang ke rumah'},
         ],
         answer: 0,
-        exp: 'Percakapan membahas rencana makan siang. Dengarkan "しょくどう" (kafetaria) yang sering disebut untuk situasi makan di tempat kerja atau sekolah.'
+        exp: 'Kunci: かいしゃのしょくどう (kafetaria kantor). Keduanya setuju makan di kantor — lebih efisien daripada keluar.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはよるなんじにねますか。',
+        q_id: '【Soal 4】 Jam berapa pria tidur malam?',
+        opts: [
+          {jp:'10じ', id:'Jam 10'},
+          {jp:'11じ', id:'Jam 11'},
+          {jp:'11じはん', id:'Jam 11.30'},
+          {jp:'12じ', id:'Jam 12'},
+        ],
+        answer: 1,
+        exp: 'Kunci: 11じ (jam 11). Pria menyebutkan "だいたいじゅういちじごろねます" — ごろ = sekitar/kira-kira.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「おはようございます。」にたいして、ただしいこたえはどれですか。',
+        q_id: '【Soal 5】 Respons tepat untuk "Selamat pagi" adalah?',
+        opts: [
+          {jp:'おはようございます。', id:'Selamat pagi.'},
+          {jp:'こんにちは。', id:'Selamat siang.'},
+          {jp:'おやすみなさい。', id:'Selamat malam/tidur.'},
+          {jp:'さようなら。', id:'Selamat tinggal.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: おはようございます (selamat pagi). Salam dibalas dengan salam yang sama. こんにちは untuk siang, おやすみ untuk sebelum tidur.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「もうすこしゆっくりはなしてください。」これはなにをおねがいしていますか。',
+        q_id: '【Soal 6】 "Tolong bicara lebih pelan lagi." Ini permintaan apa?',
+        opts: [
+          {jp:'もっとおおきいこえで', id:'Lebih keras suaranya'},
+          {jp:'もっとゆっくり', id:'Lebih pelan'},
+          {jp:'もういちどいう', id:'Ulangi sekali lagi'},
+          {jp:'かんたんなことばで', id:'Dengan kata yang lebih sederhana'},
+        ],
+        answer: 1,
+        exp: 'Kunci: もっとゆっくり (lebih pelan). ゆっくり = pelan/santai. もうすこし = sedikit lagi. Jadi "sedikit lebih pelan" = もっとゆっくり.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おんなのひとはどうしてつかれていますか。',
+        q_id: '【Soal 7】 Mengapa wanita itu kelelahan?',
+        opts: [
+          {jp:'しごとがおおかったから', id:'Karena banyak pekerjaan'},
+          {jp:'ねむれなかったから', id:'Karena tidak bisa tidur'},
+          {jp:'うんどうしすぎたから', id:'Karena terlalu banyak olahraga'},
+          {jp:'たべすぎたから', id:'Karena makan terlalu banyak'},
+        ],
+        answer: 0,
+        exp: 'Kunci: しごとがおおかったから (karena banyak pekerjaan). Wanita menyebut "さいきん、しごとがいそがしくて…" menandakan pekerjaan sebagai alasan kelelahan.'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'おとこのひとはこのあとなにをしますか。',
+        q_id: '【Soal 8】 Apa yang akan dilakukan pria setelah ini?',
+        opts: [
+          {jp:'うちにかえる', id:'Pulang ke rumah'},
+          {jp:'かいものにいく', id:'Pergi belanja'},
+          {jp:'ともだちとあう', id:'Bertemu teman'},
+          {jp:'しゅくだいをする', id:'Mengerjakan PR'},
+        ],
+        answer: 1,
+        exp: 'Kunci: かいものにいく (pergi belanja). Pria menyebut perlu membeli sesuatu sebelum pulang ke rumah.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: 'まいにちなんじかんにほんごをべんきょうしますか。「２じかんです。」',
+        q_id: '【Soal 9】 "Berapa jam belajar bahasa Jepang setiap hari?" — "2 jam." Jawaban benar?',
+        opts: [
+          {jp:'２じかんべんきょうします。', id:'Belajar 2 jam.'},
+          {jp:'２じにべんきょうします。', id:'Belajar jam 2.'},
+          {jp:'２かいべんきょうします。', id:'Belajar 2 kali.'},
+          {jp:'２にちべんきょうします。', id:'Belajar 2 hari.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: ２じかんべんきょうします (belajar 2 jam). じかん = jam (durasi). Bedakan: ２じ (jam 2, waktu), ２じかん (2 jam, durasi), ２かい (2 kali, frekuensi).'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: '「しゅくだいはもうおわりましたか。」にたいするこたえはどれですか。',
+        q_id: '【Soal 10】 Respons tepat untuk "PR sudah selesai?" adalah?',
+        opts: [
+          {jp:'はい、もうおわりました。', id:'Ya, sudah selesai.'},
+          {jp:'はい、まだです。', id:'Ya, belum.'},
+          {jp:'いいえ、もうおわりました。', id:'Tidak, sudah selesai.'},
+          {jp:'いいえ、もうします。', id:'Tidak, akan segera.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: はい、もうおわりました (ya, sudah selesai). もう + kata kerja lampau = sudah. まだ = belum. Hati-hati: "はい、まだ" tidak logis secara bahasa.'
       },
     ]
   },
@@ -2773,12 +2988,14 @@ const CHOUKAI_DATA = [
     topik: 'Belanja & harga — di toko',
     videoId: 'sY7L5cfCWno',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Perhatikan angka dan satuan uang (円・えん). Dengarkan percakapan antara penjual (てんいん) dan pembeli (きゃく) dengan cermat.',
+    playlistIndex: 3,
+    tips: 'Perhatikan angka dan satuan uang (円). Dengarkan warna, ukuran, dan jenis barang. Hati-hati dengan perhitungan harga total dan kembalian (おつり).',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】このシャツはいくらですか。',
-        q_id: 'Berapa harga kemeja ini?',
+        section: 'もんだい1',
+        q_jp: 'このシャツはいくらですか。',
+        q_id: '【Soal 1】 Berapa harga kemeja ini?',
         opts: [
           {jp:'１５００えん', id:'1.500 yen'},
           {jp:'２０００えん', id:'2.000 yen'},
@@ -2786,12 +3003,13 @@ const CHOUKAI_DATA = [
           {jp:'３０００えん', id:'3.000 yen'},
         ],
         answer: 1,
-        exp: 'Dengarkan harga yang disebutkan pegawai toko. ２０００えん = に せん えん = 2.000 yen. Pastikan tidak tertukar dengan angka lain.'
+        exp: 'Kunci: ２０００えん (2.000 yen = にせんえん). Dengarkan dengan seksama saat pegawai menyebut harga.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】おんなのひとはなにいろのかばんをかいますか。',
-        q_id: 'Wanita membeli tas warna apa?',
+        section: 'もんだい1',
+        q_jp: 'おんなのひとはなにいろのかばんをかいますか。',
+        q_id: '【Soal 2】 Wanita membeli tas warna apa?',
         opts: [
           {jp:'あかい', id:'Merah'},
           {jp:'くろい', id:'Hitam'},
@@ -2799,12 +3017,13 @@ const CHOUKAI_DATA = [
           {jp:'あおい', id:'Biru'},
         ],
         answer: 1,
-        exp: 'Wanita memilih warna tas dalam percakapan. くろい = hitam. Perhatikan dialog saat wanita memilih dan mengonfirmasi pilihannya.'
+        exp: 'Kunci: くろい (hitam). Wanita mempertimbangkan beberapa warna lalu memutuskan "やっぱりくろにします" — やっぱり = ternyata/akhirnya.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】おとこのひとはいくらはらいますか。',
-        q_id: 'Berapa yang dibayar pria itu?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはいくらはらいますか。',
+        q_id: '【Soal 3】 Berapa yang dibayar pria itu?',
         opts: [
           {jp:'３５０えん', id:'350 yen'},
           {jp:'５００えん', id:'500 yen'},
@@ -2812,7 +3031,105 @@ const CHOUKAI_DATA = [
           {jp:'７００えん', id:'700 yen'},
         ],
         answer: 2,
-        exp: 'Hitung total yang harus dibayar berdasarkan barang yang dibeli. Perhatikan jika ada diskon atau penambahan barang dalam percakapan.'
+        exp: 'Kunci: ６５０えん (650 yen). Hitung: コーヒー(350) + ケーキ(300) = 650円. Latih perhitungan cepat saat mendengarkan.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: '５０００えんはらいました。おつりはいくらですか。',
+        q_id: '【Soal 4】 Membayar 5.000 yen. Berapa kembaliannya?',
+        opts: [
+          {jp:'１５００えん', id:'1.500 yen'},
+          {jp:'２０００えん', id:'2.000 yen'},
+          {jp:'３０００えん', id:'3.000 yen'},
+          {jp:'３５００えん', id:'3.500 yen'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ３０００えん. おつり (kembalian) = 5000 − 2000 = 3000円. おつり adalah kata penting di konteks belanja.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「これをふたつください。」なにをたのんでいますか。',
+        q_id: '【Soal 5】 "Tolong berikan dua ini." Apa yang diminta?',
+        opts: [
+          {jp:'ひとつのもの', id:'Satu barang'},
+          {jp:'ふたつのもの', id:'Dua barang'},
+          {jp:'みっつのもの', id:'Tiga barang'},
+          {jp:'よっつのもの', id:'Empat barang'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ふたつ (dua buah). Angka Jepang asli: ひとつ(1), ふたつ(2), みっつ(3), よっつ(4), いつつ(5). Digunakan untuk benda umum.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「ちょっとまってください。」これはなにをいっていますか。',
+        q_id: '【Soal 6】 "Tolong tunggu sebentar." Apa artinya?',
+        opts: [
+          {jp:'いまいそがしいです', id:'Sekarang sedang sibuk'},
+          {jp:'もうすこしまってください', id:'Tunggu sebentar lagi'},
+          {jp:'はやくきてください', id:'Tolong cepat datang'},
+          {jp:'またきてください', id:'Tolong datang lagi'},
+        ],
+        answer: 1,
+        exp: 'Kunci: もうすこしまってください (tunggu sebentar lagi). ちょっと = sebentar/sedikit. まつ = menunggu. Frasa ini sangat sering dipakai dalam percakapan sehari-hari.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おんなのひとはどのスカートをかいましたか。',
+        q_id: '【Soal 7】 Rok mana yang dibeli wanita itu?',
+        opts: [
+          {jp:'みじかくてあかいスカート', id:'Rok pendek merah'},
+          {jp:'みじかくてくろいスカート', id:'Rok pendek hitam'},
+          {jp:'ながくてあかいスカート', id:'Rok panjang merah'},
+          {jp:'ながくてくろいスカート', id:'Rok panjang hitam'},
+        ],
+        answer: 3,
+        exp: 'Kunci: ながくてくろいスカート (rok panjang hitam). Dengarkan kombinasi dua sifat. て menghubungkan dua kata sifat: ながくて (panjang) + くろい (hitam).'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'みせはなんじにしまりますか。',
+        q_id: '【Soal 8】 Jam berapa toko tutup?',
+        opts: [
+          {jp:'７じ', id:'Jam 7'},
+          {jp:'８じ', id:'Jam 8'},
+          {jp:'９じ', id:'Jam 9'},
+          {jp:'１０じ', id:'Jam 10'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ８じ (jam 8). しまります = tutup (intransitif). あきます = buka. Bedakan: しまる(tutup sendiri) vs しめる(menutup/transitif).'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: 'てんいん：「いらっしゃいませ。」きゃく：「＿＿＿」',
+        q_id: '【Soal 9】 Pelayan: "Selamat datang." Pelanggan menjawab?',
+        opts: [
+          {jp:'ありがとうございます。', id:'Terima kasih.'},
+          {jp:'Tシャツをみたいんですが。', id:'Saya ingin melihat kaos.'},
+          {jp:'おねがいします。', id:'Tolong ya.'},
+          {jp:'はい、そうです。', id:'Ya, betul.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: Tシャツをみたいんですが (saya ingin melihat kaos). いらっしゃいませ adalah sambutan toko — respons pelanggan biasanya menyatakan kebutuhan mereka.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: '「このズボンをためしてもいいですか。」これはなにをきいていますか。',
+        q_id: '【Soal 10】 "Bolehkah saya mencoba celana ini?" Ini menanyakan apa?',
+        opts: [
+          {jp:'かってもいいですか', id:'Boleh membeli?'},
+          {jp:'しちゃくしてもいいですか', id:'Boleh mencoba (memakai)?'},
+          {jp:'かえしてもいいですか', id:'Boleh mengembalikan?'},
+          {jp:'みてもいいですか', id:'Boleh melihat?'},
+        ],
+        answer: 1,
+        exp: 'Kunci: しちゃくしてもいいですか (boleh mencoba?). ためす = mencoba. しちゃく = fitting/mencoba pakaian. 〜てもいいですか = bolehkah saya 〜?'
       },
     ]
   },
@@ -2822,12 +3139,14 @@ const CHOUKAI_DATA = [
     topik: 'Transportasi & arah — naik kereta',
     videoId: '2zr8KZb1DUs',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Fokus pada kata arah (みぎ・ひだり・まっすぐ) dan transportasi (でんしゃ・バス・タクシー). Perhatikan nama stasiun dan jumlah menit.',
+    playlistIndex: 4,
+    tips: 'Fokus pada arah (みぎ・ひだり・まっすぐ・まがる), transportasi (でんしゃ・バス・タクシー), dan waktu tempuh. Gambar peta sering muncul di soal ini.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】えきまでどうやっていきますか。',
-        q_id: 'Bagaimana cara pergi ke stasiun?',
+        section: 'もんだい1',
+        q_jp: 'えきまでどうやっていきますか。',
+        q_id: '【Soal 1】 Bagaimana cara pergi ke stasiun?',
         opts: [
           {jp:'あるいていく', id:'Jalan kaki'},
           {jp:'バスにのる', id:'Naik bus'},
@@ -2835,12 +3154,13 @@ const CHOUKAI_DATA = [
           {jp:'タクシーにのる', id:'Naik taksi'},
         ],
         answer: 0,
-        exp: 'Dengarkan cara pergi yang disarankan. あるいていく = pergi dengan berjalan kaki. Biasanya diikuti keterangan waktu seperti "〜ふんぐらいです".'
+        exp: 'Kunci: あるいていく (jalan kaki). Petunjuk arah biasanya diikuti "〜ふんぐらいです". Dalam konteks ini stasiun tidak jauh sehingga cukup berjalan.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】えきからびょういんまでなんぷんかかりますか。',
-        q_id: 'Berapa menit dari stasiun ke rumah sakit?',
+        section: 'もんだい1',
+        q_jp: 'えきからびょういんまでなんぷんかかりますか。',
+        q_id: '【Soal 2】 Berapa menit dari stasiun ke rumah sakit?',
         opts: [
           {jp:'５ふん', id:'5 menit'},
           {jp:'１０ふん', id:'10 menit'},
@@ -2848,12 +3168,13 @@ const CHOUKAI_DATA = [
           {jp:'２０ふん', id:'20 menit'},
         ],
         answer: 1,
-        exp: 'Dengarkan keterangan waktu (ふん/ぷん) dalam percakapan. １０ふん = juuppun = 10 menit. Perhatikan perbedaan ふん (fun) dan ぷん (pun).'
+        exp: 'Kunci: １０ふん (10 menit = じゅっぷん). Perhatikan: ふん vs ぷん — 1,3,4,6,8,10 menit = ぷん; sisanya = ふん.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】バスていはどこにありますか。',
-        q_id: 'Di mana halte bus berada?',
+        section: 'もんだい1',
+        q_jp: 'バスていはどこにありますか。',
+        q_id: '【Soal 3】 Di mana halte bus berada?',
         opts: [
           {jp:'ぎんこうのまえ', id:'Di depan bank'},
           {jp:'こうえんのとなり', id:'Di sebelah taman'},
@@ -2861,7 +3182,105 @@ const CHOUKAI_DATA = [
           {jp:'ゆうびんきょくのひだり', id:'Di kiri kantor pos'},
         ],
         answer: 0,
-        exp: 'Dengarkan petunjuk lokasi halte bus. ぎんこうのまえ = di depan bank. Perhatikan partikel の yang menghubungkan tempat dengan posisi.'
+        exp: 'Kunci: ぎんこうのまえ (depan bank). Posisi: まえ(depan), うしろ(belakang), となり(sebelah), ひだり(kiri), みぎ(kanan). の menghubungkan tempat + posisi.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはなんばんのバスにのりますか。',
+        q_id: '【Soal 4】 Pria naik bus nomor berapa?',
+        opts: [
+          {jp:'１５ばん', id:'Nomor 15'},
+          {jp:'５０ばん', id:'Nomor 50'},
+          {jp:'５１ばん', id:'Nomor 51'},
+          {jp:'１５１ばん', id:'Nomor 151'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ５０ばん (nomor 50 = ごじゅうばん). Angka bus/nomor sering membingungkan. Fokus pada angka puluhan dan ratusan dalam bahasa Jepang.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「つぎのかどをひだりにまがってください。」これはどういういみですか。',
+        q_id: '【Soal 5】 "Belok kiri di tikungan berikutnya." Artinya?',
+        opts: [
+          {jp:'つぎのかどをみぎにまがる', id:'Belok kanan di tikungan berikutnya'},
+          {jp:'つぎのかどをひだりにまがる', id:'Belok kiri di tikungan berikutnya'},
+          {jp:'まっすぐいってひだりにまがる', id:'Jalan lurus lalu belok kiri'},
+          {jp:'ふたつめのかどをひだりにまがる', id:'Belok kiri di tikungan kedua'},
+        ],
+        answer: 1,
+        exp: 'Kunci: つぎのかど = tikungan berikutnya (bukan yang kedua). ひだり = kiri. まがる = belok. つぎ(berikutnya) ≠ ふたつめ(yang kedua).'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「でんしゃはあと５ふんできます。」これはどういういみですか。',
+        q_id: '【Soal 6】 "Kereta akan tiba dalam 5 menit lagi." Artinya?',
+        opts: [
+          {jp:'５ふんまえにきた', id:'Datang 5 menit lalu'},
+          {jp:'５ふんごにくる', id:'Datang dalam 5 menit'},
+          {jp:'５ふんおくれている', id:'Terlambat 5 menit'},
+          {jp:'５ふんまつ', id:'Menunggu 5 menit'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ５ふんごにくる (datang dalam 5 menit). あと = lagi/masih tersisa. あと５ふん = 5 menit lagi. Ini berbeda dengan ５ふんまえ (5 menit lalu).'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'ふたりはどこでおります。',
+        q_id: '【Soal 7】 Di mana keduanya turun?',
+        opts: [
+          {jp:'つぎのえき', id:'Stasiun berikutnya'},
+          {jp:'さんばんめのえき', id:'Stasiun ketiga'},
+          {jp:'しゅうてん', id:'Stasiun akhir'},
+          {jp:'のりかえのえき', id:'Stasiun transit'},
+        ],
+        answer: 1,
+        exp: 'Kunci: さんばんめのえき (stasiun ketiga). 〜ばんめ = urutan ke-〜. ひとつめ(pertama), ふたつめ(kedua), さんばんめ(ketiga). おります = turun (dari kendaraan).'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'でんしゃのなかでなにをしていますか。',
+        q_id: '【Soal 8】 Apa yang dilakukan di dalam kereta?',
+        opts: [
+          {jp:'ねている', id:'Tidur'},
+          {jp:'スマホをみている', id:'Melihat smartphone'},
+          {jp:'ほんをよんでいる', id:'Membaca buku'},
+          {jp:'おんがくをきいている', id:'Mendengarkan musik'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ほんをよんでいる (membaca buku). 〜ている = sedang melakukan. Bentuk ini sangat penting untuk menggambarkan kegiatan yang sedang berlangsung.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「このバスはしんじゅくにとまりますか。」てんいんがこたえました。「＿＿＿」',
+        q_id: '【Soal 9】 "Apakah bus ini berhenti di Shinjuku?" Jawaban petugas?',
+        opts: [
+          {jp:'はい、とまります。', id:'Ya, berhenti.'},
+          {jp:'はい、いきます。', id:'Ya, pergi.'},
+          {jp:'いいえ、のりません。', id:'Tidak, tidak naik.'},
+          {jp:'いいえ、しりません。', id:'Tidak, tidak tahu.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: はい、とまります (ya, berhenti). とまる = berhenti. Pertanyaan "〜にとまりますか" dijawab dengan "はい、とまります" atau "いいえ、とまりません".'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'でんしゃとバスとどちらがはやいですか。「でんしゃのほうが＿＿です。」',
+        q_id: '【Soal 10】 "Kereta atau bus, mana yang lebih cepat?" Jawaban yang tepat?',
+        opts: [
+          {jp:'おそい', id:'Lambat'},
+          {jp:'はやい', id:'Cepat'},
+          {jp:'たかい', id:'Mahal'},
+          {jp:'やすい', id:'Murah'},
+        ],
+        answer: 1,
+        exp: 'Kunci: はやい (cepat). Pertanyaan perbandingan "〜のほうが？" dijawab dengan menyebutkan sifatnya. はやい = cepat. Pola: AはBより〜 / AのほうがBより〜.'
       },
     ]
   },
@@ -2871,12 +3290,14 @@ const CHOUKAI_DATA = [
     topik: 'Cuaca & rencana — percakapan keluarga',
     videoId: 'ewHktqEnxTQ',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Dengarkan kosakata cuaca (はれ・くもり・あめ・ゆき) dan kata kondisional (〜たら/〜ば/もし). Perhatikan rencana yang berubah.',
+    playlistIndex: 5,
+    tips: 'Dengarkan kosakata cuaca (はれ・くもり・あめ・ゆき・かぜ) dan kata kondisional (〜たら/〜ば/もし). Perhatikan rencana yang berubah karena cuaca.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】あしたのてんきはどうですか。',
-        q_id: 'Bagaimana cuaca besok?',
+        section: 'もんだい1',
+        q_jp: 'あしたのてんきはどうですか。',
+        q_id: '【Soal 1】 Bagaimana cuaca besok?',
         opts: [
           {jp:'はれ', id:'Cerah'},
           {jp:'くもり', id:'Mendung'},
@@ -2884,12 +3305,13 @@ const CHOUKAI_DATA = [
           {jp:'ゆき', id:'Salju'},
         ],
         answer: 2,
-        exp: 'Dengarkan kosakata cuaca. あめ = hujan. Dalam percakapan tentang rencana, cuaca sering menjadi alasan perubahan rencana.'
+        exp: 'Kunci: あめ (hujan). Dalam percakapan tentang rencana, cuaca sering menjadi faktor penting. あめがふる = hujan turun.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】かぞくはどこへいくよていでしたか。',
-        q_id: 'Ke mana keluarga berencana pergi?',
+        section: 'もんだい1',
+        q_jp: 'かぞくはどこへいくよていでしたか。',
+        q_id: '【Soal 2】 Ke mana keluarga berencana pergi?',
         opts: [
           {jp:'うみ', id:'Pantai'},
           {jp:'やま', id:'Gunung'},
@@ -2897,12 +3319,13 @@ const CHOUKAI_DATA = [
           {jp:'どうぶつえん', id:'Kebun binatang'},
         ],
         answer: 2,
-        exp: 'Dengarkan tujuan awal yang direncanakan keluarga sebelum cuaca berubah. こうえん = taman, sering menjadi tujuan piknik keluarga.'
+        exp: 'Kunci: こうえん (taman). Rencana awal keluarga adalah piknik di taman. よていでした = rencana (lampau/yang direncanakan).'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】あめがふったら、なにをしますか。',
-        q_id: 'Jika hujan, apa yang akan mereka lakukan?',
+        section: 'もんだい1',
+        q_jp: 'あめがふったら、なにをしますか。',
+        q_id: '【Soal 3】 Jika hujan, apa yang akan mereka lakukan?',
         opts: [
           {jp:'えいがをみる', id:'Menonton film'},
           {jp:'うちにいる', id:'Tetap di rumah'},
@@ -2910,7 +3333,105 @@ const CHOUKAI_DATA = [
           {jp:'レストランへいく', id:'Pergi ke restoran'},
         ],
         answer: 0,
-        exp: 'Dengarkan rencana alternatif jika hujan. えいがをみる = menonton film. Pola 〜たら + rencana cadangan sering muncul dalam choukai N5.'
+        exp: 'Kunci: えいがをみる (menonton film). Rencana cadangan saat hujan. Pola: 〜たら、〜 = jika 〜, maka 〜.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'きょうのさいこうきおんはなんどですか。',
+        q_id: '【Soal 4】 Berapa suhu maksimum hari ini?',
+        opts: [
+          {jp:'１８ど', id:'18 derajat'},
+          {jp:'２２ど', id:'22 derajat'},
+          {jp:'２５ど', id:'25 derajat'},
+          {jp:'２８ど', id:'28 derajat'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ２５ど (25 derajat). さいこうきおん = suhu maksimum. さいていきおん = suhu minimum. ど = derajat. Angka suhu sering muncul dalam ramalan cuaca.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「そとはさむいですね。」にたいするこたえはどれですか。',
+        q_id: '【Soal 5】 Respons tepat untuk "Di luar dingin ya" adalah?',
+        opts: [
+          {jp:'そうですね、あついですね。', id:'Ya betul, panas ya.'},
+          {jp:'そうですね、コートをきましょう。', id:'Ya betul, mari pakai mantel.'},
+          {jp:'いいえ、さむくないです。', id:'Tidak, tidak dingin.'},
+          {jp:'そうですか、あめですか。', id:'Begitu ya, hujan?'},
+        ],
+        answer: 1,
+        exp: 'Kunci: そうですね、コートをきましょう (ya betul, mari pakai mantel). Respons natural terhadap pernyataan cuaca dingin adalah menyetujui dan menyarankan tindakan.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「あしたのてんきよほうをしっていますか。」のただしいこたえはどれですか。',
+        q_id: '【Soal 6】 Jawaban tepat untuk "Tahu ramalan cuaca besok?" adalah?',
+        opts: [
+          {jp:'はい、あめだとおもいます。', id:'Ya, saya kira hujan.'},
+          {jp:'はい、きのうみました。', id:'Ya, saya lihat kemarin.'},
+          {jp:'いいえ、あついです。', id:'Tidak, panas.'},
+          {jp:'いいえ、テレビをみません。', id:'Tidak, saya tidak nonton TV.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: はい、あめだとおもいます (ya, saya kira hujan). Pertanyaan "しっていますか" (tahu?) dijawab dengan "はい、〜" atau "いいえ、しりません". 〜とおもいます = saya kira/rasa.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おかあさんはなぜそとにでかけませんでしたか。',
+        q_id: '【Soal 7】 Mengapa ibu tidak pergi keluar?',
+        opts: [
+          {jp:'びょうきだったから', id:'Karena sakit'},
+          {jp:'あめがふっていたから', id:'Karena hujan'},
+          {jp:'しごとがあったから', id:'Karena ada pekerjaan'},
+          {jp:'つかれていたから', id:'Karena kelelahan'},
+        ],
+        answer: 1,
+        exp: 'Kunci: あめがふっていたから (karena hujan). 〜ていた = sedang (lampau). あめがふっていた = sedang hujan. から = karena (sebab).'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'こどもたちはなにがしたいですか。',
+        q_id: '【Soal 8】 Apa yang ingin dilakukan anak-anak?',
+        opts: [
+          {jp:'うちでゲームをする', id:'Main game di rumah'},
+          {jp:'そとであそぶ', id:'Bermain di luar'},
+          {jp:'えいがをみる', id:'Menonton film'},
+          {jp:'ともだちのうちへいく', id:'Pergi ke rumah teman'},
+        ],
+        answer: 1,
+        exp: 'Kunci: そとであそぶ (bermain di luar). Anak-anak mengeluh karena cuaca buruk membuat mereka tidak bisa bermain di luar. 〜たい = ingin 〜.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: 'はるになりました。そとのきのはがなにいろになりましたか。',
+        q_id: '【Soal 9】 Musim semi tiba. Daun pohon di luar berubah warna apa?',
+        opts: [
+          {jp:'きいろ', id:'Kuning'},
+          {jp:'あか', id:'Merah'},
+          {jp:'みどり', id:'Hijau'},
+          {jp:'しろ', id:'Putih'},
+        ],
+        answer: 2,
+        exp: 'Kunci: みどり (hijau). Musim semi (はる) → daun baru tumbuh → warna hijau. Musim gugur (あき) → daun merah/kuning. Musim dingin (ふゆ) → daun rontok.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: '「もしあしたはれたら、どうしますか。」のこたえとしてただしいのはどれですか。',
+        q_id: '【Soal 10】 Jawaban tepat untuk "Jika besok cerah, apa yang kamu lakukan?" adalah?',
+        opts: [
+          {jp:'はれたら、うれしいです。', id:'Kalau cerah, senang.'},
+          {jp:'はれたら、でかけます。', id:'Kalau cerah, akan keluar.'},
+          {jp:'はれても、うちにいます。', id:'Meski cerah, tetap di rumah.'},
+          {jp:'はれないと、こまります。', id:'Kalau tidak cerah, repot.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: はれたら、でかけます (kalau cerah, akan keluar). Pertanyaan "〜たら、どうしますか" dijawab dengan rencana yang akan dilakukan jika kondisi terpenuhi.'
       },
     ]
   },
@@ -2920,12 +3441,14 @@ const CHOUKAI_DATA = [
     topik: 'Di rumah sakit — sakit & obat',
     videoId: 'GVf3wc7sa8A',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Perhatikan kosakata medis dasar (あたま・のど・おなか・ねつ・くすり). Dengarkan instruksi dokter tentang cara minum obat.',
+    playlistIndex: 6,
+    tips: 'Perhatikan kosakata medis (あたま・のど・おなか・ねつ・くすり・びょういん). Dengarkan instruksi dokter tentang cara minum obat dan berapa hari istirahat.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おとこのひとはどこがいたいですか。',
-        q_id: 'Bagian mana yang sakit pada pria itu?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはどこがいたいですか。',
+        q_id: '【Soal 1】 Bagian mana yang sakit pada pria itu?',
         opts: [
           {jp:'あたま', id:'Kepala'},
           {jp:'のど', id:'Tenggorokan'},
@@ -2933,12 +3456,13 @@ const CHOUKAI_DATA = [
           {jp:'あし', id:'Kaki'},
         ],
         answer: 0,
-        exp: 'Dengarkan keluhan pasien kepada dokter. あたまがいたい = sakit kepala. Perhatikan "〜がいたいです" sebagai ekspresi sakit.'
+        exp: 'Kunci: あたま (kepala). あたまがいたい = sakit kepala. Ekspresi: 〜がいたいです = bagian 〜 sakit.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】くすりはいつのみますか。',
-        q_id: 'Kapan minum obatnya?',
+        section: 'もんだい1',
+        q_jp: 'くすりはいつのみますか。',
+        q_id: '【Soal 2】 Kapan minum obatnya?',
         opts: [
           {jp:'しょくじのまえ', id:'Sebelum makan'},
           {jp:'しょくじのあと', id:'Setelah makan'},
@@ -2946,12 +3470,13 @@ const CHOUKAI_DATA = [
           {jp:'おきたあと', id:'Setelah bangun'},
         ],
         answer: 1,
-        exp: 'Dokter memberikan instruksi minum obat. しょくじのあと = setelah makan. Perhatikan partikel の yang menghubungkan しょくじ dengan あと.'
+        exp: 'Kunci: しょくじのあと (setelah makan). まえ = sebelum, あと = setelah. しょくじ = makan. Instruksi obat sangat umum dalam percakapan di klinik.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】かいしゃをなんにちやすみますか。',
-        q_id: 'Berapa hari istirahat dari kantor?',
+        section: 'もんだい1',
+        q_jp: 'かいしゃをなんにちやすみますか。',
+        q_id: '【Soal 3】 Berapa hari istirahat dari kantor?',
         opts: [
           {jp:'１にち', id:'1 hari'},
           {jp:'２にち', id:'2 hari'},
@@ -2959,7 +3484,105 @@ const CHOUKAI_DATA = [
           {jp:'１しゅうかん', id:'1 minggu'},
         ],
         answer: 1,
-        exp: 'Dokter memberikan rekomendasi istirahat. ２にち = dua hari. Perhatikan satuan waktu: にち (hari), しゅうかん (minggu), かげつ (bulan).'
+        exp: 'Kunci: ２にち (2 hari). Dokter menyarankan istirahat selama 2 hari. にち = hari. Bedakan: にち(hari), しゅうかん(minggu), かげつ(bulan).'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'おとこのひとのねつはなんどですか。',
+        q_id: '【Soal 4】 Berapa demam pria itu?',
+        opts: [
+          {jp:'３６ど５ぶ', id:'36,5 derajat'},
+          {jp:'３７ど', id:'37 derajat'},
+          {jp:'３８ど２ぶ', id:'38,2 derajat'},
+          {jp:'３９ど', id:'39 derajat'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ３８ど２ぶ (38,2 derajat). ど = derajat, ぶ = per sepuluh derajat. 37ど以上 = demam dalam standar Jepang. 38度以上 = demam tinggi.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「おだいじに。」はいつつかいますか。',
+        q_id: '【Soal 5】 "Semoga lekas sembuh" digunakan kapan?',
+        opts: [
+          {jp:'ともだちがたんじょうびのとき', id:'Saat ulang tahun teman'},
+          {jp:'ともだちがびょうきのとき', id:'Saat teman sakit'},
+          {jp:'ともだちがりょこうするとき', id:'Saat teman bepergian'},
+          {jp:'ともだちにはじめてあうとき', id:'Saat pertama kali bertemu teman'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ともだちがびょうきのとき (saat teman sakit). おだいじに = semoga lekas sembuh / jaga kesehatan. Diucapkan kepada orang yang sakit.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「くすりは１にち３かいのんでください。」これはどういういみですか。',
+        q_id: '【Soal 6】 "Minum obat 3 kali sehari." Artinya?',
+        opts: [
+          {jp:'１かいに３じょうのむ', id:'Minum 3 tablet sekali minum'},
+          {jp:'１にちに３かいのむ', id:'Minum 3 kali dalam sehari'},
+          {jp:'３にちに１かいのむ', id:'Minum 1 kali dalam 3 hari'},
+          {jp:'まいにち３じょうのむ', id:'Minum 3 tablet setiap hari'},
+        ],
+        answer: 1,
+        exp: 'Kunci: １にちに３かいのむ (minum 3 kali dalam sehari). １にち３かい = 3 kali sehari. かい = kali (frekuensi). Ini adalah instruksi minum obat yang paling umum.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'このひとはどこがわるいですか。',
+        q_id: '【Soal 7】 Apa keluhan orang ini?',
+        opts: [
+          {jp:'あたまといたいとねつ', id:'Sakit kepala dan demam'},
+          {jp:'のどといたいとせき', id:'Sakit tenggorokan dan batuk'},
+          {jp:'おなかがいたい', id:'Sakit perut'},
+          {jp:'めがいたい', id:'Sakit mata'},
+        ],
+        answer: 1,
+        exp: 'Kunci: のどがいたいとせき (sakit tenggorokan dan batuk). Dengarkan kombinasi keluhan. せき = batuk. Dua keluhan sekaligus sering disebutkan bersamaan.'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'びょういんはなんじからなんじまでひらいていますか。',
+        q_id: '【Soal 8】 Klinik buka dari jam berapa sampai jam berapa?',
+        opts: [
+          {jp:'９じから５じ', id:'Jam 9 sampai 5'},
+          {jp:'９じから６じ', id:'Jam 9 sampai 6'},
+          {jp:'１０じから６じ', id:'Jam 10 sampai 6'},
+          {jp:'８じから５じ', id:'Jam 8 sampai 5'},
+        ],
+        answer: 0,
+        exp: 'Kunci: ９じから５じまで (jam 9 sampai 5). から〜まで = dari〜sampai. Jadwal klinik umum di Jepang biasanya 9:00−17:00.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「このくすりはいつのみますか。」「ごはんを＿＿のんでください。」',
+        q_id: '【Soal 9】 "Kapan minum obat ini?" "Minum _____ makan."',
+        opts: [
+          {jp:'たべるまえに', id:'Sebelum makan'},
+          {jp:'たべながら', id:'Sambil makan'},
+          {jp:'たべたあとで', id:'Setelah makan'},
+          {jp:'たべないで', id:'Tanpa makan'},
+        ],
+        answer: 2,
+        exp: 'Kunci: たべたあとで (setelah makan). た形 + あとで = setelah melakukan. たべる + まえに = sebelum makan. Keduanya penting untuk instruksi obat.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'びょういんでよくきくことばはどれですか。',
+        q_id: '【Soal 10】 Kata apa yang sering terdengar di klinik/RS?',
+        opts: [
+          {jp:'いらっしゃいませ', id:'Selamat datang'},
+          {jp:'しんさつけん', id:'Kartu berobat'},
+          {jp:'おかいけい', id:'Kasir/pembayaran'},
+          {jp:'にゅういん', id:'Rawat inap'},
+        ],
+        answer: 1,
+        exp: 'Kunci: しんさつけん (kartu berobat). Saat pertama kali ke klinik, petugas akan meminta しんさつけん. Kosakata RS: しんさつ(pemeriksaan), にゅういん(rawat inap), たいいん(keluar RS).'
       },
     ]
   },
@@ -2969,12 +3592,14 @@ const CHOUKAI_DATA = [
     topik: 'Sekolah & belajar — kelas bahasa Jepang',
     videoId: '1z3-CWWA20Y',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Perhatikan kosakata sekolah (せんせい・がくせい・しゅくだい・テスト). Dengarkan pertanyaan tentang jadwal dan kegiatan belajar.',
+    playlistIndex: 7,
+    tips: 'Dengarkan kosakata sekolah (せんせい・がくせい・しゅくだい・テスト・じゅぎょう). Fokus pada jadwal, instruksi guru, dan pertanyaan siswa.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】テストはいつですか。',
-        q_id: 'Kapan ujiannya?',
+        section: 'もんだい1',
+        q_jp: 'テストはいつですか。',
+        q_id: '【Soal 1】 Kapan ujiannya?',
         opts: [
           {jp:'かようび', id:'Selasa'},
           {jp:'もくようび', id:'Kamis'},
@@ -2982,12 +3607,13 @@ const CHOUKAI_DATA = [
           {jp:'らいしゅうのげつようび', id:'Senin minggu depan'},
         ],
         answer: 2,
-        exp: 'Dengarkan hari ujian yang disebutkan guru atau siswa. きんようび = Jumat. Perhatikan keterangan waktu seperti "らいしゅう" (minggu depan).'
+        exp: 'Kunci: きんようび (Jumat). Guru mengumumkan "こんしゅうのきんようびにテストがあります".'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】しゅくだいはなんですか。',
-        q_id: 'Apa PR-nya?',
+        section: 'もんだい1',
+        q_jp: 'しゅくだいはなんですか。',
+        q_id: '【Soal 2】 Apa PR-nya?',
         opts: [
           {jp:'かんじをかく', id:'Menulis kanji'},
           {jp:'ぶんしょうをよむ', id:'Membaca teks'},
@@ -2995,12 +3621,13 @@ const CHOUKAI_DATA = [
           {jp:'さくぶんをかく', id:'Menulis karangan'},
         ],
         answer: 2,
-        exp: 'Dengarkan instruksi PR dari guru. たんごをおぼえる = menghafal kosakata. おぼえる = menghafal/mengingat.'
+        exp: 'Kunci: たんごをおぼえる (menghafal kosakata). おぼえる = menghafal/mengingat. PR ini diberikan sebagai persiapan ujian.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】がくせいはなんにんいますか。',
-        q_id: 'Ada berapa siswa?',
+        section: 'もんだい1',
+        q_jp: 'がくせいはなんにんいますか。',
+        q_id: '【Soal 3】 Ada berapa siswa?',
         opts: [
           {jp:'１０にん', id:'10 orang'},
           {jp:'１２にん', id:'12 orang'},
@@ -3008,7 +3635,105 @@ const CHOUKAI_DATA = [
           {jp:'２０にん', id:'20 orang'},
         ],
         answer: 2,
-        exp: 'Dengarkan jumlah siswa yang disebutkan. １５にん = じゅうごにん = 15 orang. Perhatikan cara membaca angka belasan dalam bahasa Jepang.'
+        exp: 'Kunci: １５にん (15 orang = じゅうごにん). Angka belasan: じゅういち(11), じゅうに(12), じゅうさん(13), じゅうし(14), じゅうご(15).'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'じゅぎょうはなんじからはじまりますか。',
+        q_id: '【Soal 4】 Jam berapa kelas dimulai?',
+        opts: [
+          {jp:'９じ', id:'Jam 9'},
+          {jp:'９じはん', id:'Jam 9.30'},
+          {jp:'１０じ', id:'Jam 10'},
+          {jp:'１０じはん', id:'Jam 10.30'},
+        ],
+        answer: 2,
+        exp: 'Kunci: １０じ (jam 10). Jadwal kelas sering diumumkan di awal percakapan. Perhatikan perbedaan じ (jam titik) dan じはん (setengah).'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「もういちどいってください。」これはなにをたのんでいますか。',
+        q_id: '【Soal 5】 "Tolong katakan sekali lagi." Ini meminta apa?',
+        opts: [
+          {jp:'もっとゆっくりはなす', id:'Bicara lebih pelan'},
+          {jp:'もういちどくりかえす', id:'Mengulang sekali lagi'},
+          {jp:'かんたんにせつめいする', id:'Menjelaskan dengan sederhana'},
+          {jp:'かいてみせる', id:'Menunjukkan dengan tulisan'},
+        ],
+        answer: 1,
+        exp: 'Kunci: もういちどくりかえす (mengulang sekali lagi). もういちど = sekali lagi. くりかえす = mengulang. Berbeda dengan "もっとゆっくり" (lebih pelan).'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「このかんじはどうよみますか。」のこたえはどれですか。',
+        q_id: '【Soal 6】 Jawaban tepat untuk "Kanji ini dibaca bagaimana?" adalah?',
+        opts: [
+          {jp:'「山」はやまとよみます。', id:'"山" dibaca yama.'},
+          {jp:'「山」はたかいです。', id:'"山" itu tinggi.'},
+          {jp:'「山」はにほんにあります。', id:'"山" ada di Jepang.'},
+          {jp:'「山」はすきです。', id:'Saya suka "山".'},
+        ],
+        answer: 0,
+        exp: 'Kunci: 「山」はやまとよみます (山 dibaca yama). Pertanyaan "どうよみますか" = "dibaca bagaimana?" → jawaban yang tepat memberikan cara bacanya.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'せんせいはどんなしゅくだいをだしましたか。',
+        q_id: '【Soal 7】 PR apa yang diberikan guru?',
+        opts: [
+          {jp:'かんじを10こかく', id:'Menulis 10 kanji'},
+          {jp:'ぶんをよんでもんだいにこたえる', id:'Baca teks dan jawab soal'},
+          {jp:'たんごを20こおぼえる', id:'Hafal 20 kosakata'},
+          {jp:'さくぶんを1まいかく', id:'Tulis karangan 1 lembar'},
+        ],
+        answer: 2,
+        exp: 'Kunci: たんごを20こおぼえる (hafal 20 kosakata). こ = satuan untuk benda kecil. ～こ juga digunakan untuk menghitung soal, kata, dll.'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'がくせいはなぜこまっていますか。',
+        q_id: '【Soal 8】 Mengapa siswa kebingungan?',
+        opts: [
+          {jp:'しゅくだいがむずかしいから', id:'Karena PR-nya sulit'},
+          {jp:'じかんがたりないから', id:'Karena waktunya tidak cukup'},
+          {jp:'せんせいがきびしいから', id:'Karena gurunya ketat'},
+          {jp:'きょうかしょがないから', id:'Karena tidak punya buku teks'},
+        ],
+        answer: 0,
+        exp: 'Kunci: しゅくだいがむずかしいから (karena PR-nya sulit). むずかしい = sulit. Siswa meminta bantuan karena tidak mengerti soal PR.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「テストでいいてんをとりたいです。」これはどういういみですか。',
+        q_id: '【Soal 9】 "Ingin mendapat nilai bagus di ujian." Artinya?',
+        opts: [
+          {jp:'テストをうけたい', id:'Ingin mengikuti ujian'},
+          {jp:'テストでよいせいせきをとりたい', id:'Ingin mendapat hasil baik di ujian'},
+          {jp:'テストをつくりたい', id:'Ingin membuat soal ujian'},
+          {jp:'テストにごうかくしたい', id:'Ingin lulus ujian'},
+        ],
+        answer: 1,
+        exp: 'Kunci: テストでよいせいせきをとりたい (ingin mendapat hasil baik). いいてん = nilai bagus. とりたい = ingin mengambil/mendapat. 〜たい = keinginan.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'せんせいが「しつもんはありますか。」といいました。がくせいのこたえは？',
+        q_id: '【Soal 10】 Guru bertanya "Ada pertanyaan?" Jawaban siswa yang tepat?',
+        opts: [
+          {jp:'はい、あります。〜はどういういみですか。', id:'Ya. Apa arti 〜?'},
+          {jp:'はい、わかりません。', id:'Ya, tidak mengerti.'},
+          {jp:'いいえ、ありません。（わかった場合）', id:'Tidak ada. (kalau sudah mengerti)'},
+          {jp:'どちらでもいいです。', id:'Tidak masalah.'},
+        ],
+        answer: 2,
+        exp: 'Kunci: いいえ、ありません (tidak ada pertanyaan) — digunakan saat sudah paham. Atau はい、あります + pertanyaan spesifik. "はい、わかりません" tidak natural sebagai respons.'
       },
     ]
   },
@@ -3018,12 +3743,14 @@ const CHOUKAI_DATA = [
     topik: 'Hobi & waktu luang — akhir pekan',
     videoId: '2zr8KZb1DUs',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Dengarkan kosakata hobi (スポーツ・りょうり・おんがく・えいが). Perhatikan ekspresi kesukaan (〜がすきです) dan kemampuan (〜ができます).',
+    playlistIndex: 8,
+    tips: 'Dengarkan kosakata hobi (スポーツ・りょうり・おんがく・えいが・よむ). Perhatikan ekspresi kesukaan (〜がすきです) dan kemampuan (〜ができます・〜ことができます).',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おんなのひとのしゅみはなんですか。',
-        q_id: 'Apa hobi wanita itu?',
+        section: 'もんだい1',
+        q_jp: 'おんなのひとのしゅみはなんですか。',
+        q_id: '【Soal 1】 Apa hobi wanita itu?',
         opts: [
           {jp:'りょうり', id:'Memasak'},
           {jp:'えいがをみる', id:'Menonton film'},
@@ -3031,12 +3758,13 @@ const CHOUKAI_DATA = [
           {jp:'テニス', id:'Tenis'},
         ],
         answer: 0,
-        exp: 'Wanita menyebutkan hobinya dalam percakapan. りょうり = memasak. Perhatikan ekspresi "〜がすきです" atau "しゅみは〜です".'
+        exp: 'Kunci: りょうり (memasak). Wanita menyebut "しゅみはりょうりです" — pola untuk menyatakan hobi.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】おとこのひとはしゅうまつなにをしますか。',
-        q_id: 'Apa yang dilakukan pria itu di akhir pekan?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはしゅうまつなにをしますか。',
+        q_id: '【Soal 2】 Apa yang dilakukan pria di akhir pekan?',
         opts: [
           {jp:'サッカーをする', id:'Bermain sepak bola'},
           {jp:'ともだちとあう', id:'Bertemu teman'},
@@ -3044,12 +3772,13 @@ const CHOUKAI_DATA = [
           {jp:'かいものにいく', id:'Pergi belanja'},
         ],
         answer: 1,
-        exp: 'Pria menceritakan rencananya di akhir pekan. ともだちとあう = bertemu teman. Perhatikan partikel と yang menunjukkan "bersama".'
+        exp: 'Kunci: ともだちとあう (bertemu teman). と = bersama. あう = bertemu. Akhir pekan sering diisi dengan kegiatan sosial.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】ふたりはこんしゅうのにちようびになにをしますか。',
-        q_id: 'Apa yang keduanya lakukan Minggu ini?',
+        section: 'もんだい1',
+        q_jp: 'ふたりはこんしゅうのにちようびになにをしますか。',
+        q_id: '【Soal 3】 Apa yang keduanya lakukan Minggu ini?',
         opts: [
           {jp:'いっしょにりょうりをする', id:'Memasak bersama'},
           {jp:'えいがをみにいく', id:'Pergi menonton film'},
@@ -3057,7 +3786,105 @@ const CHOUKAI_DATA = [
           {jp:'スポーツセンターへいく', id:'Pergi ke pusat olahraga'},
         ],
         answer: 2,
-        exp: 'Keduanya memutuskan kegiatan bersama. こうえんをさんぽする = jalan-jalan di taman. さんぽ = jalan santai.'
+        exp: 'Kunci: こうえんをさんぽする (jalan-jalan di taman). さんぽ = jalan santai. Kegiatan yang murah dan santai, cocok untuk akhir pekan.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'おんなのひとはなんのスポーツがすきですか。',
+        q_id: '【Soal 4】 Olahraga apa yang disukai wanita?',
+        opts: [
+          {jp:'テニス', id:'Tenis'},
+          {jp:'バスケットボール', id:'Basket'},
+          {jp:'サッカー', id:'Sepak bola'},
+          {jp:'すいえい', id:'Renang'},
+        ],
+        answer: 3,
+        exp: 'Kunci: すいえい (renang). Wanita menyebutkan suka renang karena "からだにいいから" (bagus untuk tubuh). すいえい = renang, およぐ = berenang.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「どんなおんがくがすきですか。」のこたえはどれですか。',
+        q_id: '【Soal 5】 Jawaban tepat untuk "Suka musik apa?" adalah?',
+        opts: [
+          {jp:'はい、すきです。', id:'Ya, suka.'},
+          {jp:'ポップスがすきです。', id:'Suka pop.'},
+          {jp:'まいにちきいています。', id:'Setiap hari mendengarkan.'},
+          {jp:'おんがくはたのしいです。', id:'Musik itu menyenangkan.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ポップスがすきです (suka pop). Pertanyaan "どんな〜がすきですか" = "suka 〜 jenis apa?" → jawaban menyebut jenisnya. はい、すきです tidak menjawab pertanyaannya.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「ピアノがひけますか。」のこたえはどれですか。',
+        q_id: '【Soal 6】 Jawaban tepat untuk "Bisa main piano?" adalah?',
+        opts: [
+          {jp:'はい、ひけます。すこしですが。', id:'Ya, bisa. Sedikit saja.'},
+          {jp:'はい、ピアノがすきです。', id:'Ya, saya suka piano.'},
+          {jp:'いいえ、ひきません。', id:'Tidak, tidak main.'},
+          {jp:'いいえ、ピアノはありません。', id:'Tidak, tidak punya piano.'},
+        ],
+        answer: 0,
+        exp: 'Kunci: はい、ひけます。すこしですが (ya, bisa. Sedikit saja). ひける = bisa memainkan (bentuk potensial). すこしですが = tapi sedikit (謙遜/merendah).'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おとこのひとはなぜりょうりをはじめましたか。',
+        q_id: '【Soal 7】 Mengapa pria mulai memasak?',
+        opts: [
+          {jp:'たのしいから', id:'Karena menyenangkan'},
+          {jp:'ひとりぐらしをはじめたから', id:'Karena mulai hidup sendiri'},
+          {jp:'かあさんにおそわったから', id:'Karena diajarkan ibu'},
+          {jp:'しごとがりょうりやだから', id:'Karena pekerjaannya di restoran'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ひとりぐらしをはじめたから (karena mulai hidup sendiri). ひとりぐらし = tinggal sendiri. Alasan umum seseorang belajar memasak di Jepang.'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'ふたりはらいしゅうなにをするつもりですか。',
+        q_id: '【Soal 8】 Apa rencana keduanya minggu depan?',
+        opts: [
+          {jp:'えいがをみる', id:'Menonton film'},
+          {jp:'りょうりをならう', id:'Belajar memasak'},
+          {jp:'スポーツをする', id:'Berolahraga'},
+          {jp:'おんがくをきく', id:'Mendengarkan musik'},
+        ],
+        answer: 1,
+        exp: 'Kunci: りょうりをならう (belajar memasak). 〜つもりです = berencana untuk 〜. Keduanya sepakat untuk ikut kelas memasak minggu depan.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「しゅみはなんですか。」「＿＿＿です。」',
+        q_id: '【Soal 9】 "Apa hobimu?" "___" Jawaban yang paling natural?',
+        opts: [
+          {jp:'たのしいこと', id:'Hal yang menyenangkan'},
+          {jp:'ほんをよむこと', id:'Membaca buku'},
+          {jp:'じかんがあるとき', id:'Saat ada waktu'},
+          {jp:'すきなこと', id:'Hal yang disukai'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ほんをよむこと (membaca buku). Hobi dinyatakan dengan "〜こと" (nominalisasi kata kerja). Contoh: りょうりをすること, うたをうたうこと, など.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: '「ゴルフができますか。」「いいえ、＿＿＿。」',
+        q_id: '【Soal 10】 "Bisa main golf?" "Tidak, ___"',
+        opts: [
+          {jp:'できません', id:'Tidak bisa'},
+          {jp:'しません', id:'Tidak melakukan'},
+          {jp:'ありません', id:'Tidak ada'},
+          {jp:'いきません', id:'Tidak pergi'},
+        ],
+        answer: 0,
+        exp: 'Kunci: できません (tidak bisa). Pertanyaan "〜ができますか" (bisa 〜?) dijawab "できます" atau "できません". できる = bisa (kata kerja potensial).'
       },
     ]
   },
@@ -3067,12 +3894,14 @@ const CHOUKAI_DATA = [
     topik: 'Restoran & makanan — memesan makanan',
     videoId: 'ewHktqEnxTQ',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Perhatikan kosakata makanan dan cara memesan. Dengarkan percakapan antara pelayan (ウエイター) dan pelanggan. Perhatikan jumlah porsi.',
+    playlistIndex: 9,
+    tips: 'Dengarkan cara memesan (〜をください/〜にします/〜はいかがですか). Perhatikan jumlah, ukuran, dan pilihan makanan/minuman. Hitung total harga.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おとこのひとはなにをたのみましたか。',
-        q_id: 'Apa yang dipesan pria itu?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはなにをたのみましたか。',
+        q_id: '【Soal 1】 Apa yang dipesan pria itu?',
         opts: [
           {jp:'ラーメン', id:'Ramen'},
           {jp:'カレーライス', id:'Nasi kari'},
@@ -3080,12 +3909,13 @@ const CHOUKAI_DATA = [
           {jp:'うどん', id:'Udon'},
         ],
         answer: 0,
-        exp: 'Pria menyebutkan pesanannya kepada pelayan. ラーメン = ramen. Dengarkan kata setelah "〜をください" atau "〜にします".'
+        exp: 'Kunci: ラーメン (ramen). Dengarkan kata setelah "〜をください" atau "〜にします". にします = memutuskan/memesan.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】のみものはなんにしますか。',
-        q_id: 'Minuman apa yang dipilih?',
+        section: 'もんだい1',
+        q_jp: 'のみものはなんにしましたか。',
+        q_id: '【Soal 2】 Minuman apa yang dipilih?',
         opts: [
           {jp:'コーヒー', id:'Kopi'},
           {jp:'おちゃ', id:'Teh'},
@@ -3093,12 +3923,13 @@ const CHOUKAI_DATA = [
           {jp:'みず', id:'Air putih'},
         ],
         answer: 1,
-        exp: 'Dengarkan pilihan minuman. おちゃ = teh Jepang. Pelayan biasanya menanyakan "おのみものはいかがですか" atau "のみものはなんになさいますか".'
+        exp: 'Kunci: おちゃ (teh). Pelayan menanyakan "おのみものはなんになさいますか" — なさいます adalah bentuk hormat dari します.'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】ぜんぶでいくらですか。',
-        q_id: 'Berapa totalnya?',
+        section: 'もんだい1',
+        q_jp: 'ぜんぶでいくらですか。',
+        q_id: '【Soal 3】 Berapa totalnya?',
         opts: [
           {jp:'８００えん', id:'800 yen'},
           {jp:'１０００えん', id:'1.000 yen'},
@@ -3106,7 +3937,105 @@ const CHOUKAI_DATA = [
           {jp:'１５００えん', id:'1.500 yen'},
         ],
         answer: 2,
-        exp: 'Hitung total harga semua pesanan. １２００えん = せんにひゃくえん = 1.200 yen. ぜんぶで = semuanya / totalnya.'
+        exp: 'Kunci: １２００えん (1.200 yen = せんにひゃくえん). ぜんぶで = semuanya/total. Hitung: ラーメン(800) + おちゃ(400) = 1.200円.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'このレストランのやすみはいつですか。',
+        q_id: '【Soal 4】 Kapan restoran ini tutup?',
+        opts: [
+          {jp:'にちようび', id:'Minggu'},
+          {jp:'げつようび', id:'Senin'},
+          {jp:'もくようび', id:'Kamis'},
+          {jp:'やすみはない', id:'Tidak ada hari tutup'},
+        ],
+        answer: 1,
+        exp: 'Kunci: げつようび (Senin). Banyak restoran di Jepang tutup hari Senin setelah ramai di akhir pekan. やすみ dalam konteks bisnis = hari tutup.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: 'ウエーター：「ごちゅうもんはおきまりですか。」これはなにをきいていますか。',
+        q_id: '【Soal 5】 Pelayan: "Sudah siap memesan?" Ini menanyakan apa?',
+        opts: [
+          {jp:'なにをたべたいか', id:'Ingin makan apa'},
+          {jp:'ちゅうもんをきめたか', id:'Apakah sudah memutuskan pesanan'},
+          {jp:'おかねをはらうか', id:'Apakah akan membayar'},
+          {jp:'もっとたべるか', id:'Apakah ingin makan lagi'},
+        ],
+        answer: 1,
+        exp: 'Kunci: ちゅうもんをきめたか (sudah memutuskan pesanan). ごちゅうもんはおきまりですか = sudah siap memesan? Ungkapan sopan khas restoran Jepang.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「おかわりはいかがですか。」これはどういういみですか。',
+        q_id: '【Soal 6】 "Mau tambah lagi?" (おかわり) Apa artinya?',
+        opts: [
+          {jp:'もういちどたのむ', id:'Memesan sekali lagi'},
+          {jp:'おなじものをもっとほしいか', id:'Mau (makanan/minuman) yang sama lagi?'},
+          {jp:'べつのものをたのむ', id:'Memesan yang berbeda'},
+          {jp:'おかいけいをする', id:'Membayar'},
+        ],
+        answer: 1,
+        exp: 'Kunci: おなじものをもっとほしいか (mau yang sama lagi?). おかわり = refill/tambahan dari menu yang sama. Sering digunakan untuk nasi, minum, dll.'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おんなのひとはなぜこのレストランがすきですか。',
+        q_id: '【Soal 7】 Mengapa wanita itu suka restoran ini?',
+        opts: [
+          {jp:'やすいから', id:'Karena murah'},
+          {jp:'おいしいから', id:'Karena enak'},
+          {jp:'きれいだから', id:'Karena bersih/cantik'},
+          {jp:'ちかいから', id:'Karena dekat'},
+        ],
+        answer: 1,
+        exp: 'Kunci: おいしいから (karena enak). Alasan paling umum seseorang menyukai restoran. から = karena (alasan).'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'ふたりはつぎにどこへいきますか。',
+        q_id: '【Soal 8】 Ke mana keduanya pergi setelah ini?',
+        opts: [
+          {jp:'カフェ', id:'Kafe'},
+          {jp:'えいがかん', id:'Bioskop'},
+          {jp:'こうえん', id:'Taman'},
+          {jp:'うち', id:'Rumah'},
+        ],
+        answer: 0,
+        exp: 'Kunci: カフェ (kafe). Setelah makan, percakapan berakhir dengan rencana ke kafe untuk minum kopi sambil mengobrol.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「このりょうりはからいですか。」「＿＿＿、そんなにからくないです。」',
+        q_id: '【Soal 9】 "Masakan ini pedas?" "_____, tidak terlalu pedas."',
+        opts: [
+          {jp:'はい', id:'Ya'},
+          {jp:'いいえ', id:'Tidak'},
+          {jp:'そうですね', id:'Ya memang'},
+          {jp:'すこし', id:'Sedikit'},
+        ],
+        answer: 1,
+        exp: 'Kunci: いいえ (tidak). "そんなにからくない" = tidak terlalu pedas = negasi. Jawaban "いいえ" cocok sebelum pernyataan negatif. そんなに + negatif = tidak terlalu 〜.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'レストランで「おかいけいをおねがいします。」これはなにをたのんでいますか。',
+        q_id: '【Soal 10】 Di restoran: "Tolong tagihan ya." Ini meminta apa?',
+        opts: [
+          {jp:'みずをもってくる', id:'Membawakan air'},
+          {jp:'メニューをみせる', id:'Menunjukkan menu'},
+          {jp:'おかねをはらう', id:'Membayar tagihan'},
+          {jp:'りょうりをもってくる', id:'Membawakan makanan'},
+        ],
+        answer: 2,
+        exp: 'Kunci: おかねをはらう (membayar tagihan). おかいけい = kasir/tagihan. おねがいします = tolong. Frasa ini digunakan saat ingin meminta nota/bill di restoran.'
       },
     ]
   },
@@ -3116,12 +4045,14 @@ const CHOUKAI_DATA = [
     topik: 'Telepon & janji — membuat rencana',
     videoId: 'sY7L5cfCWno',
     playlist: 'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',
-    tips: 'Fokus pada percakapan telepon. Perhatikan cara membuat janji (〜ませんか・〜ましょう) dan konfirmasi waktu serta tempat.',
+    playlistIndex: 10,
+    tips: 'Fokus pada percakapan telepon. Perhatikan cara membuat janji (〜ませんか/〜ましょう), konfirmasi waktu dan tempat, serta ekspresi menolak dengan sopan.',
     questions: [
       {
         num: 1,
-        q_jp: '【もんだい1】おとこのひとはだれにでんわをかけましたか。',
-        q_id: 'Siapa yang ditelpon pria itu?',
+        section: 'もんだい1',
+        q_jp: 'おとこのひとはだれにでんわをかけましたか。',
+        q_id: '【Soal 1】 Siapa yang ditelpon pria itu?',
         opts: [
           {jp:'ともだちのたなかさん', id:'Teman bernama Tanaka'},
           {jp:'かいしゃのひと', id:'Orang dari kantor'},
@@ -3129,12 +4060,13 @@ const CHOUKAI_DATA = [
           {jp:'せんせい', id:'Guru'},
         ],
         answer: 0,
-        exp: 'Dengarkan kepada siapa pria menelepon. ともだちのたなかさん = teman bernama Tanaka. Perhatikan sapaan di awal percakapan telepon.'
+        exp: 'Kunci: ともだちのたなかさん (teman Tanaka). Dengarkan sapaan di awal: "もしもし、たなかさんですか" adalah cara membuka percakapan telepon.'
       },
       {
         num: 2,
-        q_jp: '【もんだい2】ふたりはなんようびにあいますか。',
-        q_id: 'Hari apa keduanya bertemu?',
+        section: 'もんだい1',
+        q_jp: 'ふたりはなんようびにあいますか。',
+        q_id: '【Soal 2】 Hari apa keduanya bertemu?',
         opts: [
           {jp:'どようび', id:'Sabtu'},
           {jp:'にちようび', id:'Minggu'},
@@ -3142,12 +4074,13 @@ const CHOUKAI_DATA = [
           {jp:'きんようび', id:'Jumat'},
         ],
         answer: 0,
-        exp: 'Dengarkan hari yang disepakati keduanya. どようび = Sabtu. Dalam percakapan membuat janji, perhatikan konfirmasi "〜はどうですか" dan jawabannya.'
+        exp: 'Kunci: どようび (Sabtu). Dalam percakapan janji, perhatikan hari yang disepakati setelah beberapa tawaran. "〜はどうですか" = bagaimana kalau 〜?'
       },
       {
         num: 3,
-        q_jp: '【もんだい3】どこでいっしょにしょくじをしますか。',
-        q_id: 'Di mana mereka makan bersama?',
+        section: 'もんだい1',
+        q_jp: 'どこでいっしょにしょくじをしますか。',
+        q_id: '【Soal 3】 Di mana mereka makan bersama?',
         opts: [
           {jp:'イタリアンレストラン', id:'Restoran Italia'},
           {jp:'すしやさん', id:'Restoran sushi'},
@@ -3155,11 +4088,110 @@ const CHOUKAI_DATA = [
           {jp:'カフェ', id:'Kafe'},
         ],
         answer: 0,
-        exp: 'Dengarkan tempat makan yang dipilih. イタリアンレストラン = restoran Italia. Perhatikan konfirmasi tempat di akhir percakapan.'
+        exp: 'Kunci: イタリアンレストラン (restoran Italia). Tempat makan disepakati di akhir percakapan. Dengarkan konfirmasi terakhir.'
+      },
+      {
+        num: 4,
+        section: 'もんだい1',
+        q_jp: 'なんじにあいますか。',
+        q_id: '【Soal 4】 Jam berapa mereka bertemu?',
+        opts: [
+          {jp:'１２じ', id:'Jam 12'},
+          {jp:'１２じはん', id:'Jam 12.30'},
+          {jp:'１じ', id:'Jam 1'},
+          {jp:'１じはん', id:'Jam 1.30'},
+        ],
+        answer: 2,
+        exp: 'Kunci: １じ (jam 1). Setelah negosiasi waktu, keduanya sepakat bertemu jam 1 siang. Dengarkan angka jam dengan teliti.'
+      },
+      {
+        num: 5,
+        section: 'もんだい2',
+        q_jp: '「もしもし」はいつつかいますか。',
+        q_id: '【Soal 5】 "Halo" (もしもし) digunakan kapan?',
+        opts: [
+          {jp:'ひとにはじめてあうとき', id:'Saat pertama bertemu seseorang'},
+          {jp:'でんわをかけるとき', id:'Saat menelepon'},
+          {jp:'みせにはいるとき', id:'Saat masuk toko'},
+          {jp:'じゅぎょうをはじめるとき', id:'Saat memulai kelas'},
+        ],
+        answer: 1,
+        exp: 'Kunci: でんわをかけるとき (saat menelepon). もしもし = halo (di telepon). Ini ekspresi khusus untuk telepon — tidak digunakan dalam pertemuan langsung.'
+      },
+      {
+        num: 6,
+        section: 'もんだい2',
+        q_jp: '「ざんねんですが、そのひはちょっと...」これはどういういみですか。',
+        q_id: '【Soal 6】 "Sayang sekali, hari itu agak..." Ini artinya?',
+        opts: [
+          {jp:'よろこんでいく', id:'Dengan senang akan pergi'},
+          {jp:'かんがえてみる', id:'Akan dipikirkan dulu'},
+          {jp:'ていねいにことわる', id:'Menolak dengan sopan'},
+          {jp:'べつのひにする', id:'Ganti ke hari lain'},
+        ],
+        answer: 2,
+        exp: 'Kunci: ていねいにことわる (menolak dengan sopan). "ざんねんですが" = sayang sekali tapi. "ちょっと..." = agak... (tanpa menyelesaikan kalimat = penolakan halus dalam budaya Jepang).'
+      },
+      {
+        num: 7,
+        section: 'もんだい3',
+        q_jp: 'おんなのひとはなぜでんわにでませんでしたか。',
+        q_id: '【Soal 7】 Mengapa wanita tidak angkat telepon?',
+        opts: [
+          {jp:'ねていたから', id:'Karena sedang tidur'},
+          {jp:'シャワーをあびていたから', id:'Karena sedang mandi'},
+          {jp:'そとにいたから', id:'Karena sedang di luar'},
+          {jp:'でんわがこわれていたから', id:'Karena teleponnya rusak'},
+        ],
+        answer: 1,
+        exp: 'Kunci: シャワーをあびていたから (karena sedang mandi). 〜ていた = sedang (lampau). シャワーをあびる = mandi shower.'
+      },
+      {
+        num: 8,
+        section: 'もんだい3',
+        q_jp: 'このでんわのもくてきはなんですか。',
+        q_id: '【Soal 8】 Apa tujuan telepon ini?',
+        opts: [
+          {jp:'やくそくをする', id:'Membuat janji'},
+          {jp:'しごとのれんらく', id:'Menghubungi soal pekerjaan'},
+          {jp:'きゅうにいけなくなったことをつたえる', id:'Memberi tahu tidak bisa pergi mendadak'},
+          {jp:'たんじょうびをいわう', id:'Mengucapkan selamat ulang tahun'},
+        ],
+        answer: 0,
+        exp: 'Kunci: やくそくをする (membuat janji). もくてき = tujuan. Percakapan telepon ini berisi proses membuat dan mengkonfirmasi janji pertemuan.'
+      },
+      {
+        num: 9,
+        section: 'もんだい4',
+        q_jp: '「たなかさんはいますか。」「＿＿＿、いまはいません。」',
+        q_id: '【Soal 9】 "Apakah Tanaka ada?" "___, sekarang tidak ada."',
+        opts: [
+          {jp:'はい', id:'Ya'},
+          {jp:'いいえ', id:'Tidak'},
+          {jp:'すみません', id:'Maaf'},
+          {jp:'もしもし', id:'Halo'},
+        ],
+        answer: 2,
+        exp: 'Kunci: すみません (maaf). Saat memberitahu seseorang tidak ada, orang Jepang biasanya memulai dengan "すみません" sebagai ekspresi sopan sebelum menyampaikan berita yang mungkin mengecewakan.'
+      },
+      {
+        num: 10,
+        section: 'もんだい4',
+        q_jp: 'でんわでやくそくをかえるとき、なんといいますか。',
+        q_id: '【Soal 10】 Saat mengubah janji lewat telepon, apa yang dikatakan?',
+        opts: [
+          {jp:'やくそくはいいです。', id:'Janji tidak masalah.'},
+          {jp:'もうしわけありませんが、やくそくをかえてもいいですか。', id:'Mohon maaf, bolehkah saya mengubah janji?'},
+          {jp:'やくそくをわすれました。', id:'Saya lupa janjinya.'},
+          {jp:'やくそくはありません。', id:'Tidak ada janji.'},
+        ],
+        answer: 1,
+        exp: 'Kunci: もうしわけありませんが、やくそくをかえてもいいですか (mohon maaf, bolehkah mengubah janji?). もうしわけありません = sangat minta maaf (sangat formal). 〜てもいいですか = bolehkah 〜?'
       },
     ]
   },
 ];
+
 
 // ===== CHOUKAI FUNCTIONS =====
 let choukaiAnswered = {};
@@ -3213,11 +4245,19 @@ function buildChoukai() {
 
       <div class="choukai-video-wrap">
         <iframe
-          src="https://www.youtube.com/embed/${d.videoId}?list=${d.playlist}&rel=0&modestbranding=1&enablejsapi=1"
+          src="https://www.youtube.com/embed/${d.videoId}?list=${d.playlist}&index=${d.playlistIndex||d.id}&rel=0&modestbranding=1&cc_load_policy=1"
           title="${d.judul}"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
+          allowfullscreen
+          loading="lazy">
         </iframe>
+      </div>
+      <div class="ck-fallback-link">
+        🎬 Video tidak muncul?
+        <a href="https://www.youtube.com/watch?v=${d.videoId}&list=${d.playlist}"
+           target="_blank" rel="noopener noreferrer">
+          Buka di YouTube →
+        </a>
       </div>
 
       <div class="choukai-q-section">
@@ -3334,14 +4374,33 @@ function resetChoukai(videoId, totalQ) {
 }
 
 
+// ===== UTILITIES =====
+function resetAllProgress() {
+  if(!confirm('Reset semua progress hafalan? Data streak & timer tidak akan direset.')) return;
+  learnedHiragana.clear();
+  learnedKatakana.clear();
+  learnedKanji.clear();
+  localStorage.removeItem('lh');
+  localStorage.removeItem('lk');
+  localStorage.removeItem('lkj');
+  buildKanaTable('hiragana');
+  buildKanaTable('katakana');
+  buildKanjiGrid();
+  updateProgress();
+  const t = document.getElementById('streak-toast');
+  t.textContent = '🔄 Progress hafalan berhasil direset!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
 // ===== INIT =====
 function init() {
   // Date in topbar
   const d = new Date();
   document.getElementById('top-date').textContent = d.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
-  // Countdown to July 6, 2025
-  const exam = new Date('2025-07-06');
+  // Countdown to July 5, 2026 (JLPT N5)
+  const exam = new Date('2026-07-05');
   const today = new Date();
   const diff = Math.ceil((exam - today) / (1000 * 60 * 60 * 24));
   document.getElementById('countdown-days').textContent = diff > 0 ? diff : '—';
@@ -3604,7 +4663,15 @@ function buildQuizData(cat) {
   return [];
 }
 
-function shuffle(arr) { return arr.sort(()=>Math.random()-0.5); }
+function shuffle(arr) {
+  // Fisher-Yates shuffle — lebih merata dari sort random
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 function getOther(pool, n) {
   const s = shuffle([...pool]);
   return s.slice(0,n);
