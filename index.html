@@ -1909,7 +1909,7 @@
     </div>
     <div class="nav-item" onclick="goPage('vocab')">
       <span class="nav-icon">📚</span> Kosakata
-      <span class="nav-badge">800</span>
+      <span class="nav-badge">367</span>
     </div>
     <div class="nav-item" onclick="goPage('grammar')">
       <span class="nav-icon">📝</span> Tata Bahasa
@@ -1929,7 +1929,7 @@
     </div>
     <div class="nav-item" onclick="goPage('dokkai')">
       <span class="nav-icon">📖</span> Dokkai N5
-      <span class="nav-badge">10 soal</span>
+      <span class="nav-badge">10 teks</span>
     </div>
     <div class="nav-item" onclick="goPage('choukai')">
       <span class="nav-icon">🎧</span> Choukai N5
@@ -2001,7 +2001,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-label">Kosakata</div>
-          <div class="stat-val">800</div>
+          <div class="stat-val">367</div>
           <div class="stat-sub">kata penting</div>
         </div>
         <div class="stat-card">
@@ -2062,7 +2062,7 @@
           <p>80 kanji dasar yang wajib dikuasai untuk N5.</p>
         </div>
         <div class="menu-card green" onclick="goPage('vocab')">
-          <span class="card-count">800 kata</span>
+          <span class="card-count">367 kata</span>
           <span class="card-emoji">📖</span>
           <div class="jp-sub">ごい</div>
           <h3>Kosakata</h3>
@@ -2570,46 +2570,213 @@ const KANJI_DATA = [
 ];
 
 const VOCAB_DATA = [
+  // ── NOMINA: Orang & Keluarga ──
   {w:'私',r:'わたし (watashi)',m:'saya',cat:'Nomina'},
   {w:'あなた',r:'anata',m:'kamu (formal)',cat:'Nomina'},
   {w:'彼',r:'かれ (kare)',m:'dia (laki-laki)',cat:'Nomina'},
   {w:'彼女',r:'かのじょ (kanojo)',m:'dia (perempuan)',cat:'Nomina'},
-  {w:'先生',r:'せんせい (sensei)',m:'guru / dokter',cat:'Nomina'},
-  {w:'学生',r:'がくせい (gakusei)',m:'pelajar / mahasiswa',cat:'Nomina'},
-  {w:'友達',r:'ともだち (tomodachi)',m:'teman',cat:'Nomina'},
-  {w:'家族',r:'かぞく (kazoku)',m:'keluarga',cat:'Nomina'},
+  {w:'みんな',r:'minna',m:'semua orang',cat:'Nomina'},
   {w:'お父さん',r:'おとうさん (otousan)',m:'ayah (sopan)',cat:'Nomina'},
   {w:'お母さん',r:'おかあさん (okaasan)',m:'ibu (sopan)',cat:'Nomina'},
+  {w:'父',r:'ちち (chichi)',m:'ayah (bicara tentang ayah sendiri)',cat:'Nomina'},
+  {w:'母',r:'はは (haha)',m:'ibu (bicara tentang ibu sendiri)',cat:'Nomina'},
+  {w:'兄',r:'あに (ani)',m:'kakak laki-laki',cat:'Nomina'},
+  {w:'姉',r:'あね (ane)',m:'kakak perempuan',cat:'Nomina'},
+  {w:'弟',r:'おとうと (otouto)',m:'adik laki-laki',cat:'Nomina'},
+  {w:'妹',r:'いもうと (imouto)',m:'adik perempuan',cat:'Nomina'},
+  {w:'子供',r:'こども (kodomo)',m:'anak',cat:'Nomina'},
+  {w:'家族',r:'かぞく (kazoku)',m:'keluarga',cat:'Nomina'},
+  {w:'友達',r:'ともだち (tomodachi)',m:'teman',cat:'Nomina'},
+  {w:'先生',r:'せんせい (sensei)',m:'guru / dokter',cat:'Nomina'},
+  {w:'学生',r:'がくせい (gakusei)',m:'pelajar / mahasiswa',cat:'Nomina'},
+  {w:'会社員',r:'かいしゃいん (kaishain)',m:'karyawan perusahaan',cat:'Nomina'},
+  {w:'医者',r:'いしゃ (isha)',m:'dokter',cat:'Nomina'},
+  {w:'看護師',r:'かんごし (kangoshi)',m:'perawat',cat:'Nomina'},
+  {w:'店員',r:'てんいん (ten-in)',m:'pegawai toko',cat:'Nomina'},
+  {w:'警察',r:'けいさつ (keisatsu)',m:'polisi',cat:'Nomina'},
+  // ── NOMINA: Tempat ──
   {w:'家',r:'いえ (ie)',m:'rumah',cat:'Nomina'},
   {w:'学校',r:'がっこう (gakkou)',m:'sekolah',cat:'Nomina'},
   {w:'大学',r:'だいがく (daigaku)',m:'universitas',cat:'Nomina'},
-  {w:'会社',r:'かいしゃ (kaisha)',m:'perusahaan',cat:'Nomina'},
+  {w:'会社',r:'かいしゃ (kaisha)',m:'perusahaan / kantor',cat:'Nomina'},
+  {w:'病院',r:'びょういん (byouin)',m:'rumah sakit',cat:'Nomina'},
+  {w:'銀行',r:'ぎんこう (ginkou)',m:'bank',cat:'Nomina'},
+  {w:'郵便局',r:'ゆうびんきょく (yuubinkyoku)',m:'kantor pos',cat:'Nomina'},
   {w:'駅',r:'えき (eki)',m:'stasiun kereta',cat:'Nomina'},
+  {w:'空港',r:'くうこう (kuukou)',m:'bandara',cat:'Nomina'},
+  {w:'図書館',r:'としょかん (toshokan)',m:'perpustakaan',cat:'Nomina'},
+  {w:'公園',r:'こうえん (kouen)',m:'taman',cat:'Nomina'},
+  {w:'スーパー',r:'suupaa',m:'supermarket',cat:'Nomina'},
+  {w:'デパート',r:'depaato',m:'department store',cat:'Nomina'},
+  {w:'レストラン',r:'resutoran',m:'restoran',cat:'Nomina'},
+  {w:'食堂',r:'しょくどう (shokudou)',m:'kantin / ruang makan',cat:'Nomina'},
+  {w:'喫茶店',r:'きっさてん (kissaten)',m:'kedai kopi',cat:'Nomina'},
+  {w:'ホテル',r:'hoteru',m:'hotel',cat:'Nomina'},
+  {w:'部屋',r:'へや (heya)',m:'kamar / ruangan',cat:'Nomina'},
+  {w:'トイレ',r:'toire',m:'toilet',cat:'Nomina'},
+  {w:'入口',r:'いりぐち (iriguchi)',m:'pintu masuk',cat:'Nomina'},
+  {w:'出口',r:'でぐち (deguchi)',m:'pintu keluar',cat:'Nomina'},
+  // ── NOMINA: Transportasi ──
   {w:'電車',r:'でんしゃ (densha)',m:'kereta listrik',cat:'Nomina'},
+  {w:'地下鉄',r:'ちかてつ (chikatetsu)',m:'kereta bawah tanah',cat:'Nomina'},
   {w:'バス',r:'basu',m:'bus',cat:'Nomina'},
-  {w:'車',r:'くるま (kuruma)',m:'mobil',cat:'Nomina'},
+  {w:'タクシー',r:'takushii',m:'taksi',cat:'Nomina'},
   {w:'飛行機',r:'ひこうき (hikouki)',m:'pesawat terbang',cat:'Nomina'},
-  {w:'食べ物',r:'たべもの (tabemono)',m:'makanan',cat:'Nomina'},
-  {w:'飲み物',r:'のみもの (nomimono)',m:'minuman',cat:'Nomina'},
-  {w:'水',r:'みず (mizu)',m:'air',cat:'Nomina'},
-  {w:'お茶',r:'おちゃ (ocha)',m:'teh',cat:'Nomina'},
-  {w:'ご飯',r:'ごはん (gohan)',m:'nasi / makan',cat:'Nomina'},
-  {w:'パン',r:'pan',m:'roti',cat:'Nomina'},
-  {w:'魚',r:'さかな (sakana)',m:'ikan',cat:'Nomina'},
-  {w:'肉',r:'にく (niku)',m:'daging',cat:'Nomina'},
-  {w:'野菜',r:'やさい (yasai)',m:'sayuran',cat:'Nomina'},
-  {w:'果物',r:'くだもの (kudamono)',m:'buah-buahan',cat:'Nomina'},
-  {w:'本',r:'ほん (hon)',m:'buku',cat:'Nomina'},
-  {w:'新聞',r:'しんぶん (shinbun)',m:'koran',cat:'Nomina'},
-  {w:'手紙',r:'てがみ (tegami)',m:'surat',cat:'Nomina'},
-  {w:'映画',r:'えいが (eiga)',m:'film',cat:'Nomina'},
-  {w:'音楽',r:'おんがく (ongaku)',m:'musik',cat:'Nomina'},
-  {w:'スポーツ',r:'supootsu',m:'olahraga',cat:'Nomina'},
-  {w:'天気',r:'てんき (tenki)',m:'cuaca',cat:'Nomina'},
-  {w:'時間',r:'じかん (jikan)',m:'waktu',cat:'Nomina'},
+  {w:'船',r:'ふね (fune)',m:'kapal',cat:'Nomina'},
+  {w:'自転車',r:'じてんしゃ (jitensha)',m:'sepeda',cat:'Nomina'},
+  {w:'車',r:'くるま (kuruma)',m:'mobil',cat:'Nomina'},
+  {w:'バス停',r:'バスてい (basutei)',m:'halte bus',cat:'Nomina'},
+  // ── NOMINA: Waktu ──
   {w:'今日',r:'きょう (kyou)',m:'hari ini',cat:'Nomina'},
   {w:'明日',r:'あした (ashita)',m:'besok',cat:'Nomina'},
   {w:'昨日',r:'きのう (kinou)',m:'kemarin',cat:'Nomina'},
+  {w:'今週',r:'こんしゅう (konshuu)',m:'minggu ini',cat:'Nomina'},
+  {w:'来週',r:'らいしゅう (raishuu)',m:'minggu depan',cat:'Nomina'},
+  {w:'先週',r:'せんしゅう (senshuu)',m:'minggu lalu',cat:'Nomina'},
+  {w:'今月',r:'こんげつ (kongetsu)',m:'bulan ini',cat:'Nomina'},
+  {w:'来月',r:'らいげつ (raigetsu)',m:'bulan depan',cat:'Nomina'},
+  {w:'先月',r:'せんげつ (sengetsu)',m:'bulan lalu',cat:'Nomina'},
+  {w:'今年',r:'ことし (kotoshi)',m:'tahun ini',cat:'Nomina'},
+  {w:'来年',r:'らいねん (rainen)',m:'tahun depan',cat:'Nomina'},
+  {w:'去年',r:'きょねん (kyonen)',m:'tahun lalu',cat:'Nomina'},
+  {w:'朝',r:'あさ (asa)',m:'pagi',cat:'Nomina'},
+  {w:'昼',r:'ひる (hiru)',m:'siang',cat:'Nomina'},
+  {w:'夜',r:'よる (yoru)',m:'malam',cat:'Nomina'},
+  {w:'午前',r:'ごぜん (gozen)',m:'pagi / AM',cat:'Nomina'},
+  {w:'午後',r:'ごご (gogo)',m:'siang-sore / PM',cat:'Nomina'},
+  {w:'時間',r:'じかん (jikan)',m:'waktu / jam (durasi)',cat:'Nomina'},
+  {w:'分',r:'ふん/ぷん (fun/pun)',m:'menit',cat:'Nomina'},
+  {w:'半',r:'はん (han)',m:'setengah (30 menit)',cat:'Nomina'},
+  {w:'週末',r:'しゅうまつ (shuumatsu)',m:'akhir pekan',cat:'Nomina'},
+  {w:'休み',r:'やすみ (yasumi)',m:'hari libur / istirahat',cat:'Nomina'},
+  // ── NOMINA: Hari & Bulan ──
+  {w:'月曜日',r:'げつようび (getsuyoubi)',m:'Senin',cat:'Nomina'},
+  {w:'火曜日',r:'かようび (kayoubi)',m:'Selasa',cat:'Nomina'},
+  {w:'水曜日',r:'すいようび (suiyoubi)',m:'Rabu',cat:'Nomina'},
+  {w:'木曜日',r:'もくようび (mokuyoubi)',m:'Kamis',cat:'Nomina'},
+  {w:'金曜日',r:'きんようび (kin-youbi)',m:'Jumat',cat:'Nomina'},
+  {w:'土曜日',r:'どようび (doyoubi)',m:'Sabtu',cat:'Nomina'},
+  {w:'日曜日',r:'にちようび (nichiyoubi)',m:'Minggu',cat:'Nomina'},
+  {w:'一月',r:'いちがつ (ichigatsu)',m:'Januari',cat:'Nomina'},
+  {w:'二月',r:'にがつ (nigatsu)',m:'Februari',cat:'Nomina'},
+  {w:'三月',r:'さんがつ (sangatsu)',m:'Maret',cat:'Nomina'},
+  {w:'四月',r:'しがつ (shigatsu)',m:'April',cat:'Nomina'},
+  {w:'五月',r:'ごがつ (gogatsu)',m:'Mei',cat:'Nomina'},
+  {w:'六月',r:'ろくがつ (rokugatsu)',m:'Juni',cat:'Nomina'},
+  {w:'七月',r:'しちがつ (shichigatsu)',m:'Juli',cat:'Nomina'},
+  {w:'八月',r:'はちがつ (hachigatsu)',m:'Agustus',cat:'Nomina'},
+  {w:'九月',r:'くがつ (kugatsu)',m:'September',cat:'Nomina'},
+  {w:'十月',r:'じゅうがつ (juugatsu)',m:'Oktober',cat:'Nomina'},
+  {w:'十一月',r:'じゅういちがつ (juuichigatsu)',m:'November',cat:'Nomina'},
+  {w:'十二月',r:'じゅうにがつ (juunigatsu)',m:'Desember',cat:'Nomina'},
+  // ── NOMINA: Makanan & Minuman ──
+  {w:'食べ物',r:'たべもの (tabemono)',m:'makanan',cat:'Nomina'},
+  {w:'飲み物',r:'のみもの (nomimono)',m:'minuman',cat:'Nomina'},
+  {w:'朝ごはん',r:'あさごはん (asagohan)',m:'sarapan',cat:'Nomina'},
+  {w:'昼ごはん',r:'ひるごはん (hirugohan)',m:'makan siang',cat:'Nomina'},
+  {w:'晩ごはん',r:'ばんごはん (bangohan)',m:'makan malam',cat:'Nomina'},
+  {w:'ご飯',r:'ごはん (gohan)',m:'nasi / makan',cat:'Nomina'},
+  {w:'パン',r:'pan',m:'roti',cat:'Nomina'},
+  {w:'肉',r:'にく (niku)',m:'daging',cat:'Nomina'},
+  {w:'魚',r:'さかな (sakana)',m:'ikan',cat:'Nomina'},
+  {w:'野菜',r:'やさい (yasai)',m:'sayuran',cat:'Nomina'},
+  {w:'果物',r:'くだもの (kudamono)',m:'buah-buahan',cat:'Nomina'},
+  {w:'卵',r:'たまご (tamago)',m:'telur',cat:'Nomina'},
+  {w:'牛乳',r:'ぎゅうにゅう (gyuunyuu)',m:'susu',cat:'Nomina'},
+  {w:'水',r:'みず (mizu)',m:'air (putih)',cat:'Nomina'},
+  {w:'お茶',r:'おちゃ (ocha)',m:'teh',cat:'Nomina'},
+  {w:'コーヒー',r:'koohii',m:'kopi',cat:'Nomina'},
+  {w:'ジュース',r:'juusu',m:'jus',cat:'Nomina'},
+  {w:'お酒',r:'おさけ (osake)',m:'minuman beralkohol',cat:'Nomina'},
+  {w:'ラーメン',r:'raamen',m:'mi ramen',cat:'Nomina'},
+  {w:'すし',r:'sushi',m:'sushi',cat:'Nomina'},
+  {w:'てんぷら',r:'tenpura',m:'tempura',cat:'Nomina'},
+  {w:'砂糖',r:'さとう (satou)',m:'gula',cat:'Nomina'},
+  {w:'塩',r:'しお (shio)',m:'garam',cat:'Nomina'},
+  // ── NOMINA: Barang & Benda ──
+  {w:'本',r:'ほん (hon)',m:'buku',cat:'Nomina'},
+  {w:'雑誌',r:'ざっし (zasshi)',m:'majalah',cat:'Nomina'},
+  {w:'新聞',r:'しんぶん (shinbun)',m:'koran',cat:'Nomina'},
+  {w:'手紙',r:'てがみ (tegami)',m:'surat',cat:'Nomina'},
+  {w:'鉛筆',r:'えんぴつ (enpitsu)',m:'pensil',cat:'Nomina'},
+  {w:'ボールペン',r:'boorupen',m:'pulpen',cat:'Nomina'},
+  {w:'ノート',r:'nooto',m:'buku catatan',cat:'Nomina'},
+  {w:'かばん',r:'kaban',m:'tas',cat:'Nomina'},
+  {w:'財布',r:'さいふ (saifu)',m:'dompet',cat:'Nomina'},
+  {w:'傘',r:'かさ (kasa)',m:'payung',cat:'Nomina'},
+  {w:'時計',r:'とけい (tokei)',m:'jam tangan / jam',cat:'Nomina'},
+  {w:'眼鏡',r:'めがね (megane)',m:'kacamata',cat:'Nomina'},
+  {w:'携帯',r:'けいたい (keitai)',m:'ponsel',cat:'Nomina'},
+  {w:'パソコン',r:'pasokon',m:'komputer / laptop',cat:'Nomina'},
+  {w:'テレビ',r:'terebi',m:'televisi',cat:'Nomina'},
+  {w:'ラジオ',r:'rajio',m:'radio',cat:'Nomina'},
+  {w:'カメラ',r:'kamera',m:'kamera',cat:'Nomina'},
+  {w:'鍵',r:'かぎ (kagi)',m:'kunci',cat:'Nomina'},
+  {w:'電話',r:'でんわ (denwa)',m:'telepon',cat:'Nomina'},
+  {w:'机',r:'つくえ (tsukue)',m:'meja',cat:'Nomina'},
+  {w:'椅子',r:'いす (isu)',m:'kursi',cat:'Nomina'},
+  {w:'窓',r:'まど (mado)',m:'jendela',cat:'Nomina'},
+  {w:'ドア',r:'doa',m:'pintu',cat:'Nomina'},
+  // ── NOMINA: Pakaian ──
+  {w:'服',r:'ふく (fuku)',m:'pakaian',cat:'Nomina'},
+  {w:'シャツ',r:'shatsu',m:'kemeja / kaos',cat:'Nomina'},
+  {w:'ズボン',r:'zubon',m:'celana panjang',cat:'Nomina'},
+  {w:'スカート',r:'sukaato',m:'rok',cat:'Nomina'},
+  {w:'コート',r:'kooto',m:'mantel',cat:'Nomina'},
+  {w:'靴',r:'くつ (kutsu)',m:'sepatu',cat:'Nomina'},
+  {w:'靴下',r:'くつした (kutsushita)',m:'kaus kaki',cat:'Nomina'},
+  {w:'帽子',r:'ぼうし (boushi)',m:'topi / topi',cat:'Nomina'},
+  // ── NOMINA: Alam & Cuaca ──
+  {w:'天気',r:'てんき (tenki)',m:'cuaca',cat:'Nomina'},
+  {w:'晴れ',r:'はれ (hare)',m:'cerah',cat:'Nomina'},
+  {w:'曇り',r:'くもり (kumori)',m:'mendung',cat:'Nomina'},
+  {w:'雨',r:'あめ (ame)',m:'hujan',cat:'Nomina'},
+  {w:'雪',r:'ゆき (yuki)',m:'salju',cat:'Nomina'},
+  {w:'風',r:'かぜ (kaze)',m:'angin',cat:'Nomina'},
+  {w:'山',r:'やま (yama)',m:'gunung',cat:'Nomina'},
+  {w:'川',r:'かわ (kawa)',m:'sungai',cat:'Nomina'},
+  {w:'海',r:'うみ (umi)',m:'laut',cat:'Nomina'},
+  {w:'空',r:'そら (sora)',m:'langit',cat:'Nomina'},
+  {w:'花',r:'はな (hana)',m:'bunga',cat:'Nomina'},
+  {w:'木',r:'き (ki)',m:'pohon',cat:'Nomina'},
+  {w:'季節',r:'きせつ (kisetsu)',m:'musim',cat:'Nomina'},
+  {w:'春',r:'はる (haru)',m:'musim semi',cat:'Nomina'},
+  {w:'夏',r:'なつ (natsu)',m:'musim panas',cat:'Nomina'},
+  {w:'秋',r:'あき (aki)',m:'musim gugur',cat:'Nomina'},
+  {w:'冬',r:'ふゆ (fuyu)',m:'musim dingin',cat:'Nomina'},
+  // ── NOMINA: Angka & Satuan ──
+  {w:'円',r:'えん (en)',m:'yen (mata uang Jepang)',cat:'Nomina'},
+  {w:'枚',r:'まい (mai)',m:'lembar (satuan hitung benda tipis)',cat:'Nomina'},
+  {w:'本',r:'ほん (hon)',m:'batang (satuan hitung benda panjang)',cat:'Nomina'},
+  {w:'冊',r:'さつ (satsu)',m:'eksemplar (satuan hitung buku)',cat:'Nomina'},
+  {w:'台',r:'だい (dai)',m:'buah (satuan hitung mesin/kendaraan)',cat:'Nomina'},
+  {w:'杯',r:'はい (hai)',m:'cangkir / gelas (satuan minum)',cat:'Nomina'},
+  // ── NOMINA: Lainnya ──
+  {w:'言葉',r:'ことば (kotoba)',m:'kata / bahasa',cat:'Nomina'},
+  {w:'名前',r:'なまえ (namae)',m:'nama',cat:'Nomina'},
+  {w:'住所',r:'じゅうしょ (juusho)',m:'alamat',cat:'Nomina'},
+  {w:'電話番号',r:'でんわばんごう (denwa bangou)',m:'nomor telepon',cat:'Nomina'},
+  {w:'仕事',r:'しごと (shigoto)',m:'pekerjaan',cat:'Nomina'},
+  {w:'勉強',r:'べんきょう (benkyou)',m:'belajar (nomina)',cat:'Nomina'},
+  {w:'試験',r:'しけん (shiken)',m:'ujian / tes',cat:'Nomina'},
+  {w:'宿題',r:'しゅくだい (shukudai)',m:'pekerjaan rumah / PR',cat:'Nomina'},
+  {w:'問題',r:'もんだい (mondai)',m:'soal / masalah',cat:'Nomina'},
+  {w:'答え',r:'こたえ (kotae)',m:'jawaban',cat:'Nomina'},
+  {w:'映画',r:'えいが (eiga)',m:'film',cat:'Nomina'},
+  {w:'音楽',r:'おんがく (ongaku)',m:'musik',cat:'Nomina'},
+  {w:'写真',r:'しゃしん (shashin)',m:'foto',cat:'Nomina'},
+  {w:'旅行',r:'りょこう (ryokou)',m:'perjalanan / wisata',cat:'Nomina'},
+  {w:'趣味',r:'しゅみ (shumi)',m:'hobi',cat:'Nomina'},
+  {w:'スポーツ',r:'supootsu',m:'olahraga',cat:'Nomina'},
+  {w:'病気',r:'びょうき (byouki)',m:'sakit / penyakit',cat:'Nomina'},
+  {w:'薬',r:'くすり (kusuri)',m:'obat',cat:'Nomina'},
+  {w:'お金',r:'おかね (okane)',m:'uang',cat:'Nomina'},
+  {w:'値段',r:'ねだん (nedan)',m:'harga',cat:'Nomina'},
+  {w:'料金',r:'りょうきん (ryoukin)',m:'tarif / biaya',cat:'Nomina'},
+  {w:'切符',r:'きっぷ (kippu)',m:'tiket',cat:'Nomina'},
+  {w:'予約',r:'よやく (yoyaku)',m:'reservasi / booking',cat:'Nomina'},
+  {w:'地図',r:'ちず (chizu)',m:'peta',cat:'Nomina'},
+  // ── VERBA ──
   {w:'食べる',r:'たべる (taberu)',m:'makan',cat:'Verba'},
   {w:'飲む',r:'のむ (nomu)',m:'minum',cat:'Verba'},
   {w:'見る',r:'みる (miru)',m:'melihat / menonton',cat:'Verba'},
@@ -2620,45 +2787,175 @@ const VOCAB_DATA = [
   {w:'行く',r:'いく (iku)',m:'pergi',cat:'Verba'},
   {w:'来る',r:'くる (kuru)',m:'datang',cat:'Verba'},
   {w:'帰る',r:'かえる (kaeru)',m:'pulang',cat:'Verba'},
-  {w:'買う',r:'かう (kau)',m:'membeli',cat:'Verba'},
-  {w:'売る',r:'うる (uru)',m:'menjual',cat:'Verba'},
   {w:'起きる',r:'おきる (okiru)',m:'bangun tidur',cat:'Verba'},
   {w:'寝る',r:'ねる (neru)',m:'tidur',cat:'Verba'},
+  {w:'買う',r:'かう (kau)',m:'membeli',cat:'Verba'},
+  {w:'売る',r:'うる (uru)',m:'menjual',cat:'Verba'},
+  {w:'使う',r:'つかう (tsukau)',m:'menggunakan',cat:'Verba'},
+  {w:'作る',r:'つくる (tsukuru)',m:'membuat',cat:'Verba'},
   {w:'働く',r:'はたらく (hataraku)',m:'bekerja',cat:'Verba'},
   {w:'勉強する',r:'べんきょうする',m:'belajar',cat:'Verba'},
-  {w:'休む',r:'やすむ (yasumu)',m:'beristirahat',cat:'Verba'},
+  {w:'休む',r:'やすむ (yasumu)',m:'beristirahat / libur',cat:'Verba'},
   {w:'待つ',r:'まつ (matsu)',m:'menunggu',cat:'Verba'},
   {w:'会う',r:'あう (au)',m:'bertemu',cat:'Verba'},
   {w:'分かる',r:'わかる (wakaru)',m:'mengerti / paham',cat:'Verba'},
+  {w:'知る',r:'しる (shiru)',m:'mengetahui',cat:'Verba'},
+  {w:'思う',r:'おもう (omou)',m:'berpikir / merasa',cat:'Verba'},
+  {w:'言う',r:'いう (iu)',m:'berkata / mengatakan',cat:'Verba'},
+  {w:'教える',r:'おしえる (oshieru)',m:'mengajar / memberitahu',cat:'Verba'},
+  {w:'習う',r:'ならう (narau)',m:'belajar (dari guru)',cat:'Verba'},
+  {w:'覚える',r:'おぼえる (oboeru)',m:'menghafal / mengingat',cat:'Verba'},
+  {w:'忘れる',r:'わすれる (wasureru)',m:'melupakan',cat:'Verba'},
+  {w:'始める',r:'はじめる (hajimeru)',m:'memulai',cat:'Verba'},
+  {w:'終わる',r:'おわる (owaru)',m:'selesai / berakhir',cat:'Verba'},
+  {w:'開ける',r:'あける (akeru)',m:'membuka',cat:'Verba'},
+  {w:'閉める',r:'しめる (shimeru)',m:'menutup',cat:'Verba'},
+  {w:'入る',r:'はいる (hairu)',m:'masuk',cat:'Verba'},
+  {w:'出る',r:'でる (deru)',m:'keluar',cat:'Verba'},
+  {w:'乗る',r:'のる (noru)',m:'naik (kendaraan)',cat:'Verba'},
+  {w:'降りる',r:'おりる (oriru)',m:'turun (dari kendaraan)',cat:'Verba'},
+  {w:'歩く',r:'あるく (aruku)',m:'berjalan kaki',cat:'Verba'},
+  {w:'走る',r:'はしる (hashiru)',m:'berlari',cat:'Verba'},
+  {w:'泳ぐ',r:'およぐ (oyogu)',m:'berenang',cat:'Verba'},
+  {w:'遊ぶ',r:'あそぶ (asobu)',m:'bermain / bersenang-senang',cat:'Verba'},
+  {w:'借りる',r:'かりる (kariru)',m:'meminjam',cat:'Verba'},
+  {w:'貸す',r:'かす (kasu)',m:'meminjamkan',cat:'Verba'},
+  {w:'もらう',r:'morau',m:'menerima',cat:'Verba'},
+  {w:'あげる',r:'ageru',m:'memberikan',cat:'Verba'},
+  {w:'くれる',r:'kureru',m:'memberi (kepada saya)',cat:'Verba'},
+  {w:'洗う',r:'あらう (arau)',m:'mencuci',cat:'Verba'},
+  {w:'切る',r:'きる (kiru)',m:'memotong',cat:'Verba'},
+  {w:'消す',r:'けす (kesu)',m:'memadamkan / menghapus',cat:'Verba'},
+  {w:'つける',r:'tsukeru',m:'menyalakan / menempelkan',cat:'Verba'},
+  {w:'撮る',r:'とる (toru)',m:'mengambil (foto)',cat:'Verba'},
+  {w:'見せる',r:'みせる (miseru)',m:'memperlihatkan',cat:'Verba'},
+  {w:'持つ',r:'もつ (motsu)',m:'memegang / membawa',cat:'Verba'},
+  {w:'置く',r:'おく (oku)',m:'menaruh / meletakkan',cat:'Verba'},
+  {w:'座る',r:'すわる (suwaru)',m:'duduk',cat:'Verba'},
+  {w:'立つ',r:'たつ (tatsu)',m:'berdiri',cat:'Verba'},
+  {w:'住む',r:'すむ (sumu)',m:'tinggal / bermukim',cat:'Verba'},
+  {w:'結婚する',r:'けっこんする (kekkon suru)',m:'menikah',cat:'Verba'},
+  {w:'練習する',r:'れんしゅうする (renshuu suru)',m:'berlatih',cat:'Verba'},
+  {w:'散歩する',r:'さんぽする (sanpo suru)',m:'jalan-jalan santai',cat:'Verba'},
+  {w:'電話する',r:'でんわする (denwa suru)',m:'menelepon',cat:'Verba'},
+  {w:'料理する',r:'りょうりする (ryouri suru)',m:'memasak',cat:'Verba'},
+  {w:'運転する',r:'うんてんする (unten suru)',m:'mengemudi',cat:'Verba'},
+  {w:'掃除する',r:'そうじする (souji suru)',m:'membersihkan / menyapu',cat:'Verba'},
+  {w:'洗濯する',r:'せんたくする (sentaku suru)',m:'mencuci pakaian',cat:'Verba'},
+  // ── ADJEKTIVA い ──
   {w:'大きい',r:'おおきい (ookii)',m:'besar',cat:'Adjektiva'},
   {w:'小さい',r:'ちいさい (chiisai)',m:'kecil',cat:'Adjektiva'},
   {w:'高い',r:'たかい (takai)',m:'tinggi / mahal',cat:'Adjektiva'},
+  {w:'低い',r:'ひくい (hikui)',m:'rendah',cat:'Adjektiva'},
   {w:'安い',r:'やすい (yasui)',m:'murah',cat:'Adjektiva'},
+  {w:'長い',r:'ながい (nagai)',m:'panjang',cat:'Adjektiva'},
+  {w:'短い',r:'みじかい (mijikai)',m:'pendek',cat:'Adjektiva'},
+  {w:'広い',r:'ひろい (hiroi)',m:'luas',cat:'Adjektiva'},
+  {w:'狭い',r:'せまい (semai)',m:'sempit',cat:'Adjektiva'},
+  {w:'重い',r:'おもい (omoi)',m:'berat',cat:'Adjektiva'},
+  {w:'軽い',r:'かるい (karui)',m:'ringan',cat:'Adjektiva'},
   {w:'新しい',r:'あたらしい (atarashii)',m:'baru',cat:'Adjektiva'},
   {w:'古い',r:'ふるい (furui)',m:'lama / tua',cat:'Adjektiva'},
-  {w:'良い',r:'いい (ii)',m:'bagus / baik',cat:'Adjektiva'},
+  {w:'良い',r:'いい/よい (ii/yoi)',m:'bagus / baik',cat:'Adjektiva'},
   {w:'悪い',r:'わるい (warui)',m:'buruk / jahat',cat:'Adjektiva'},
-  {w:'好き',r:'すき (suki)',m:'suka',cat:'Adjektiva'},
-  {w:'嫌い',r:'きらい (kirai)',m:'tidak suka',cat:'Adjektiva'},
+  {w:'多い',r:'おおい (ooi)',m:'banyak',cat:'Adjektiva'},
+  {w:'少ない',r:'すくない (sukunai)',m:'sedikit / langka',cat:'Adjektiva'},
+  {w:'速い',r:'はやい (hayai)',m:'cepat',cat:'Adjektiva'},
+  {w:'遅い',r:'おそい (osoi)',m:'lambat / terlambat',cat:'Adjektiva'},
   {w:'暑い',r:'あつい (atsui)',m:'panas (cuaca)',cat:'Adjektiva'},
   {w:'寒い',r:'さむい (samui)',m:'dingin (cuaca)',cat:'Adjektiva'},
+  {w:'熱い',r:'あつい (atsui)',m:'panas (benda)',cat:'Adjektiva'},
+  {w:'冷たい',r:'つめたい (tsumetai)',m:'dingin (benda)',cat:'Adjektiva'},
+  {w:'難しい',r:'むずかしい (muzukashii)',m:'sulit',cat:'Adjektiva'},
+  {w:'易しい',r:'やさしい (yasashii)',m:'mudah',cat:'Adjektiva'},
+  {w:'忙しい',r:'いそがしい (isogashii)',m:'sibuk',cat:'Adjektiva'},
+  {w:'楽しい',r:'たのしい (tanoshii)',m:'menyenangkan',cat:'Adjektiva'},
+  {w:'面白い',r:'おもしろい (omoshiroi)',m:'menarik / lucu',cat:'Adjektiva'},
+  {w:'つまらない',r:'tsumaranai',m:'membosankan',cat:'Adjektiva'},
+  {w:'おいしい',r:'oishii',m:'enak (rasa)',cat:'Adjektiva'},
+  {w:'まずい',r:'mazui',m:'tidak enak',cat:'Adjektiva'},
+  {w:'甘い',r:'あまい (amai)',m:'manis',cat:'Adjektiva'},
+  {w:'辛い',r:'からい (karai)',m:'pedas',cat:'Adjektiva'},
+  {w:'苦い',r:'にがい (nigai)',m:'pahit',cat:'Adjektiva'},
+  {w:'白い',r:'しろい (shiroi)',m:'putih',cat:'Adjektiva'},
+  {w:'黒い',r:'くろい (kuroi)',m:'hitam',cat:'Adjektiva'},
+  {w:'赤い',r:'あかい (akai)',m:'merah',cat:'Adjektiva'},
+  {w:'青い',r:'あおい (aoi)',m:'biru / hijau',cat:'Adjektiva'},
+  {w:'黄色い',r:'きいろい (kiiroi)',m:'kuning',cat:'Adjektiva'},
+  {w:'かわいい',r:'kawaii',m:'imut / menggemaskan',cat:'Adjektiva'},
+  {w:'怖い',r:'こわい (kowai)',m:'menakutkan',cat:'Adjektiva'},
+  {w:'痛い',r:'いたい (itai)',m:'sakit / nyeri',cat:'Adjektiva'},
+  {w:'眠い',r:'ねむい (nemui)',m:'mengantuk',cat:'Adjektiva'},
+  // ── ADJEKTIVA な ──
+  {w:'好き',r:'すき (suki)',m:'suka',cat:'Adjektiva'},
+  {w:'嫌い',r:'きらい (kirai)',m:'tidak suka',cat:'Adjektiva'},
+  {w:'上手',r:'じょうず (jouzu)',m:'pandai / mahir',cat:'Adjektiva'},
+  {w:'下手',r:'へた (heta)',m:'tidak pandai',cat:'Adjektiva'},
+  {w:'有名',r:'ゆうめい (yuumei)',m:'terkenal',cat:'Adjektiva'},
+  {w:'元気',r:'げんき (genki)',m:'sehat / bersemangat',cat:'Adjektiva'},
+  {w:'大丈夫',r:'だいじょうぶ (daijoubu)',m:'tidak apa-apa / baik-baik saja',cat:'Adjektiva'},
+  {w:'大切',r:'たいせつ (taisetsu)',m:'penting / berharga',cat:'Adjektiva'},
+  {w:'親切',r:'しんせつ (shinsetsu)',m:'baik hati / ramah',cat:'Adjektiva'},
+  {w:'きれい',r:'kirei',m:'cantik / bersih',cat:'Adjektiva'},
+  {w:'にぎやか',r:'nigiyaka',m:'ramai / hidup',cat:'Adjektiva'},
+  {w:'静か',r:'しずか (shizuka)',m:'tenang / sepi',cat:'Adjektiva'},
+  {w:'便利',r:'べんり (benri)',m:'praktis / nyaman',cat:'Adjektiva'},
+  {w:'不便',r:'ふべん (fuben)',m:'tidak praktis',cat:'Adjektiva'},
+  {w:'暇',r:'ひま (hima)',m:'senggang / tidak sibuk',cat:'Adjektiva'},
+  {w:'いろいろ',r:'iroiro',m:'bermacam-macam',cat:'Adjektiva'},
+  // ── ADVERBIA ──
   {w:'とても',r:'totemo',m:'sangat',cat:'Adverbia'},
   {w:'少し',r:'すこし (sukoshi)',m:'sedikit',cat:'Adverbia'},
+  {w:'たくさん',r:'takusan',m:'banyak',cat:'Adverbia'},
   {w:'もう',r:'mou',m:'sudah / lagi',cat:'Adverbia'},
   {w:'まだ',r:'mada',m:'masih / belum',cat:'Adverbia'},
   {w:'また',r:'mata',m:'lagi / sampai jumpa',cat:'Adverbia'},
   {w:'すぐ',r:'sugu',m:'segera',cat:'Adverbia'},
   {w:'よく',r:'yoku',m:'sering / baik-baik',cat:'Adverbia'},
   {w:'時々',r:'ときどき (tokidoki)',m:'kadang-kadang',cat:'Adverbia'},
-  {w:'ありがとう',r:'arigatou',m:'terima kasih',cat:'Ungkapan'},
+  {w:'毎日',r:'まいにち (mainichi)',m:'setiap hari',cat:'Adverbia'},
+  {w:'毎朝',r:'まいあさ (maiasa)',m:'setiap pagi',cat:'Adverbia'},
+  {w:'毎晩',r:'まいばん (maiban)',m:'setiap malam',cat:'Adverbia'},
+  {w:'一緒に',r:'いっしょに (issho ni)',m:'bersama-sama',cat:'Adverbia'},
+  {w:'ゆっくり',r:'yukkuri',m:'pelan-pelan / santai',cat:'Adverbia'},
+  {w:'はやく',r:'hayaku',m:'cepat / segera',cat:'Adverbia'},
+  {w:'だいたい',r:'daitai',m:'kira-kira / umumnya',cat:'Adverbia'},
+  {w:'ぜんぶ',r:'zenbu',m:'semuanya',cat:'Adverbia'},
+  {w:'だけ',r:'dake',m:'hanya / saja',cat:'Adverbia'},
+  {w:'もっと',r:'motto',m:'lebih (lagi)',cat:'Adverbia'},
+  {w:'いちばん',r:'ichiban',m:'paling / nomor satu',cat:'Adverbia'},
+  {w:'はじめて',r:'hajimete',m:'pertama kali',cat:'Adverbia'},
+  {w:'また',r:'mata',m:'lagi',cat:'Adverbia'},
+  {w:'もちろん',r:'mochiron',m:'tentu saja',cat:'Adverbia'},
+  {w:'たぶん',r:'tabun',m:'mungkin',cat:'Adverbia'},
+  {w:'ぜひ',r:'zehi',m:'dengan senang hati / pasti',cat:'Adverbia'},
+  // ── UNGKAPAN ──
+  {w:'ありがとうございます',r:'arigatou gozaimasu',m:'terima kasih (formal)',cat:'Ungkapan'},
   {w:'すみません',r:'sumimasen',m:'permisi / maaf',cat:'Ungkapan'},
-  {w:'おはよう',r:'ohayou',m:'selamat pagi',cat:'Ungkapan'},
+  {w:'ごめんなさい',r:'gomen nasai',m:'maaf (minta maaf)',cat:'Ungkapan'},
+  {w:'おはようございます',r:'ohayou gozaimasu',m:'selamat pagi (formal)',cat:'Ungkapan'},
   {w:'こんにちは',r:'konnichiwa',m:'selamat siang / halo',cat:'Ungkapan'},
   {w:'こんばんは',r:'konbanwa',m:'selamat malam',cat:'Ungkapan'},
+  {w:'おやすみなさい',r:'oyasumi nasai',m:'selamat tidur',cat:'Ungkapan'},
   {w:'さようなら',r:'sayounara',m:'selamat tinggal',cat:'Ungkapan'},
+  {w:'じゃ、また',r:'jya mata',m:'sampai jumpa (santai)',cat:'Ungkapan'},
   {w:'はじめまして',r:'hajimemashite',m:'senang berkenalan',cat:'Ungkapan'},
-  {w:'よろしく',r:'yoroshiku',m:'mohon bantuannya',cat:'Ungkapan'},
+  {w:'よろしくお願いします',r:'yoroshiku onegaishimasu',m:'mohon bantuannya',cat:'Ungkapan'},
+  {w:'どうぞ',r:'douzo',m:'silakan',cat:'Ungkapan'},
+  {w:'いただきます',r:'itadakimasu',m:'selamat makan (sebelum makan)',cat:'Ungkapan'},
+  {w:'ごちそうさまでした',r:'gochisousama deshita',m:'terima kasih atas makanannya',cat:'Ungkapan'},
+  {w:'いってきます',r:'itte kimasu',m:'permisi, saya pergi dulu',cat:'Ungkapan'},
+  {w:'いってらっしゃい',r:'itterasshai',m:'hati-hati di jalan',cat:'Ungkapan'},
+  {w:'ただいま',r:'tadaima',m:'saya pulang',cat:'Ungkapan'},
+  {w:'おかえりなさい',r:'okaeri nasai',m:'selamat datang kembali',cat:'Ungkapan'},
+  {w:'お願いします',r:'onegaishimasu',m:'tolong / mohon',cat:'Ungkapan'},
+  {w:'大丈夫ですか',r:'daijoubu desuka',m:'apakah tidak apa-apa?',cat:'Ungkapan'},
+  {w:'お元気ですか',r:'ogenki desuka',m:'apakah Anda baik-baik saja?',cat:'Ungkapan'},
+  {w:'おめでとうございます',r:'omedetou gozaimasu',m:'selamat (atas pencapaian)',cat:'Ungkapan'},
+  {w:'お大事に',r:'odaiji ni',m:'semoga lekas sembuh',cat:'Ungkapan'},
 ];
+
+
 
 const GRAMMAR_DATA = [
   {num:'01',pat:'〜は〜です',title:'Predikat Nomina (kalimat identifikasi)',desc:'Pola dasar bahasa Jepang. "wa" adalah partikel topik, "desu" adalah kopula sopan setara "adalah".',examples:[{jp:'私は学生です。',rom:'Watashi wa gakusei desu.',id:'Saya adalah seorang pelajar.'},{jp:'これは本です。',rom:'Kore wa hon desu.',id:'Ini adalah sebuah buku.'}]},
@@ -4151,61 +4448,30 @@ const DOKKAI_DATA = [
 　<ruby>田中<rt>たなか</rt></ruby>さんは<ruby>動物<rt>どうぶつ</rt></ruby>が<ruby>好<rt>す</rt></ruby>きですか。<ruby>今度<rt>こんど</rt></ruby><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>動物園<rt>どうぶつえん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きましょう。
 
 　<ruby>山田<rt>やまだ</rt></ruby>より`,
-    passage_id: `Kepada Tanaka,
-
-Halo. Apakah kamu baik-baik saja? Saya baik-baik saja.
-Minggu lalu, saya pergi ke kebun binatang bersama keluarga. Kami melihat gajah, jerapah, monyet, dan lain-lain. Sangat menyenangkan.
-Di dekat kebun binatang ada taman yang besar. Kami makan siang di taman. Di taman banyak bunga cantik yang sedang mekar.
-Apakah Tanaka suka binatang? Lain kali mari kita pergi ke kebun binatang bersama.
-
-Dari Yamada`,
+    passage_id: `Kepada Tanaka,\n\nHalo. Apakah kamu baik-baik saja? Saya baik-baik saja.\nMinggu lalu, saya pergi ke kebun binatang bersama keluarga. Kami melihat gajah, jerapah, monyet, dan lain-lain. Sangat menyenangkan.\nDi dekat kebun binatang ada taman yang besar. Kami makan siang di taman. Di taman banyak bunga cantik yang sedang mekar.\nApakah Tanaka suka binatang? Lain kali mari kita pergi ke kebun binatang bersama.\n\nDari Yamada`,
     vocab: [
-      {jp:'どうぶつえん', rom:'doubutsuen', id:'kebun binatang'},
-      {jp:'かぞく', rom:'kazoku', id:'keluarga'},
-      {jp:'こうえん', rom:'kouen', id:'taman'},
+      {jp:'動物園', rom:'doubutsuen', id:'kebun binatang'},
+      {jp:'家族', rom:'kazoku', id:'keluarga'},
+      {jp:'公園', rom:'kouen', id:'taman'},
       {jp:'さいていました', rom:'saite imashita', id:'sedang mekar'},
-      {jp:'こんど', rom:'kondo', id:'lain kali'},
+      {jp:'今度', rom:'kondo', id:'lain kali'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'やまださんはせんしゅう、どこへいきましたか。',
-        q_id: 'Minggu lalu Yamada pergi ke mana?',
-        opts: [
-          {jp:'こうえん', id:'Taman'},
-          {jp:'どうぶつえん', id:'Kebun binatang'},
-          {jp:'がっこう', id:'Sekolah'},
-          {jp:'レストラン', id:'Restoran'},
-        ],
-        answer: 1,
-        exp: '「せんしゅう、かぞくといっしょにどうぶつえんへいきました」— Yamada pergi ke どうぶつえん (kebun binatang) bersama keluarga minggu lalu.'
-      },
-      {
-        num: 2,
-        q_jp: 'やまださんはどこでひるごはんをたべましたか。',
-        q_id: 'Yamada makan siang di mana?',
-        opts: [
-          {jp:'どうぶつえんのなか', id:'Di dalam kebun binatang'},
-          {jp:'レストラン', id:'Di restoran'},
-          {jp:'こうえん', id:'Di taman'},
-          {jp:'いえ', id:'Di rumah'},
-        ],
-        answer: 2,
-        exp: '「こうえんでひるごはんをたべました」— Makan siang di こうえん (taman). Partikel で menunjukkan tempat kegiatan.'
-      },
-      {
-        num: 3,
-        q_jp: 'このてがみをかいたひとのなまえはなんですか。',
-        q_id: 'Siapa nama orang yang menulis surat ini?',
-        opts: [
-          {jp:'たなか', id:'Tanaka'},
-          {jp:'やまだ', id:'Yamada'},
-          {jp:'かぞく', id:'Keluarga'},
-          {jp:'わかりません', id:'Tidak diketahui'},
-        ],
-        answer: 1,
-        exp: '「やまだより」— Surat ditandatangani "dari Yamada" (やまだより). より setelah nama berarti "dari".'
-      },
+      {num:1, q_jp:'やまださんはせんしゅう、どこへいきましたか。', q_id:'Minggu lalu Yamada pergi ke mana?',
+       opts:[{jp:'こうえん',id:'Taman'},{jp:'どうぶつえん',id:'Kebun binatang'},{jp:'がっこう',id:'Sekolah'},{jp:'レストラン',id:'Restoran'}],
+       answer:1, exp:'「せんしゅう、かぞくといっしょにどうぶつえんへいきました」— Yamada pergi ke どうぶつえん (kebun binatang) bersama keluarga minggu lalu.'},
+      {num:2, q_jp:'やまださんはどこでひるごはんをたべましたか。', q_id:'Yamada makan siang di mana?',
+       opts:[{jp:'どうぶつえんのなか',id:'Di dalam kebun binatang'},{jp:'レストラン',id:'Di restoran'},{jp:'こうえん',id:'Di taman'},{jp:'いえ',id:'Di rumah'}],
+       answer:2, exp:'「こうえんでひるごはんをたべました」— Makan siang di こうえん (taman). Partikel で menunjukkan tempat kegiatan.'},
+      {num:3, q_jp:'このてがみをかいたひとのなまえはなんですか。', q_id:'Siapa nama orang yang menulis surat ini?',
+       opts:[{jp:'たなか',id:'Tanaka'},{jp:'やまだ',id:'Yamada'},{jp:'かぞく',id:'Keluarga'},{jp:'わかりません',id:'Tidak diketahui'}],
+       answer:1, exp:'「やまだより」— Surat ditandatangani "dari Yamada" (やまだより). より setelah nama berarti "dari".'},
+      {num:4, q_jp:'こうえんにはなにがありましたか。', q_id:'Apa yang ada di taman?',
+       opts:[{jp:'たくさんのどうぶつ',id:'Banyak binatang'},{jp:'きれいなはな',id:'Bunga-bunga cantik'},{jp:'おおきいいけ',id:'Danau besar'},{jp:'こどもたち',id:'Anak-anak'}],
+       answer:1, exp:'「こうえんにはきれいなはながたくさんさいていました」— Di taman banyak bunga cantik (きれいなはな) yang sedang mekar.'},
+      {num:5, q_jp:'やまださんはつぎになにをしたいですか。', q_id:'Apa yang ingin Yamada lakukan selanjutnya?',
+       opts:[{jp:'ひとりでどうぶつえんへいく',id:'Pergi ke kebun binatang sendirian'},{jp:'たなかさんとどうぶつえんへいく',id:'Pergi ke kebun binatang bersama Tanaka'},{jp:'こうえんでおひるをたべる',id:'Makan siang di taman'},{jp:'てがみをかく',id:'Menulis surat'}],
+       answer:1, exp:'「こんどいっしょにどうぶつえんへいきましょう」— Yamada mengajak Tanaka pergi ke kebun binatang bersama (いっしょに).'},
     ]
   },
   {
@@ -4222,75 +4488,33 @@ Dari Yamada`,
 　<ruby>金曜日<rt>きんようび</rt></ruby>：<ruby>花子<rt>はなこ</rt></ruby>さんと<ruby>買<rt>か</rt></ruby>い<ruby>物<rt>もの</rt></ruby>をする
 　<ruby>土曜日<rt>どようび</rt></ruby>：<ruby>家族<rt>かぞく</rt></ruby>とレストランでごはんを<ruby>食<rt>た</rt></ruby>べる（<ruby>夕方<rt>ゆうがた</rt></ruby>６<ruby>時<rt>じ</rt></ruby>）
 　<ruby>日曜日<rt>にちようび</rt></ruby>：<ruby>家<rt>うち</rt></ruby>でゆっくり<ruby>休<rt>やす</rt></ruby>む`,
-    passage_id: `【Rencana Minggu Depan】
-
-Senin    : Belajar di perpustakaan
-Selasa   : Menonton film bersama teman (mulai jam 3)
-Rabu     : Kelas bahasa Jepang (pukul 10.00–12.00)
-Kamis    : Libur
-Jumat    : Belanja bersama Hanako
-Sabtu    : Makan malam di restoran bersama keluarga (sore jam 6)
-Minggu   : Istirahat santai di rumah`,
+    passage_id: `【Rencana Minggu Depan】\n\nSenin: Belajar di perpustakaan\nSelasa: Menonton film bersama teman (mulai jam 3)\nRabu: Kelas bahasa Jepang (pukul 10.00–12.00)\nKamis: Libur\nJumat: Belanja bersama Hanako\nSabtu: Makan malam di restoran bersama keluarga (sore jam 6)\nMinggu: Istirahat santai di rumah`,
     vocab: [
-      {jp:'よてい', rom:'yotei', id:'rencana / jadwal'},
-      {jp:'としょかん', rom:'toshokan', id:'perpustakaan'},
+      {jp:'予定', rom:'yotei', id:'rencana / jadwal'},
+      {jp:'図書館', rom:'toshokan', id:'perpustakaan'},
       {jp:'ゆっくり', rom:'yukkuri', id:'santai / pelan-pelan'},
-      {jp:'ゆうがた', rom:'yuugata', id:'sore hari'},
-      {jp:'かいもの', rom:'kaimono', id:'belanja'},
+      {jp:'夕方', rom:'yuugata', id:'sore hari'},
+      {jp:'買い物', rom:'kaimono', id:'belanja'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'にほんごのクラスはなんようびですか。',
-        q_id: 'Kelas bahasa Jepang hari apa?',
-        opts: [
-          {jp:'げつようび', id:'Senin'},
-          {jp:'かようび', id:'Selasa'},
-          {jp:'すいようび', id:'Rabu'},
-          {jp:'もくようび', id:'Kamis'},
-        ],
-        answer: 2,
-        exp: '「すいようび：にほんごのクラス」— Kelas bahasa Jepang ada pada hari すいようび (Rabu).'
-      },
-      {
-        num: 2,
-        q_jp: 'えいがはなんじからですか。',
-        q_id: 'Film dimulai jam berapa?',
-        opts: [
-          {jp:'１０じ', id:'Jam 10'},
-          {jp:'１２じ', id:'Jam 12'},
-          {jp:'３じ', id:'Jam 3'},
-          {jp:'６じ', id:'Jam 6'},
-        ],
-        answer: 2,
-        exp: '「ともだちとえいがをみる（３じから）」— Film bersama teman mulai dari jam 3 (３じ). から = dari/mulai.'
-      },
-      {
-        num: 3,
-        q_jp: 'やすみはなんようびですか。',
-        q_id: 'Hari libur adalah hari apa?',
-        opts: [
-          {jp:'かようび', id:'Selasa'},
-          {jp:'もくようび', id:'Kamis'},
-          {jp:'きんようび', id:'Jumat'},
-          {jp:'にちようび', id:'Minggu'},
-        ],
-        answer: 1,
-        exp: '「もくようび：やすみ」— Hari libur adalah もくようび (Kamis).'
-      },
-      {
-        num: 4,
-        q_jp: 'どようびのよていはなんですか。',
-        q_id: 'Apa rencana hari Sabtu?',
-        opts: [
-          {jp:'としょかんでべんきょうする', id:'Belajar di perpustakaan'},
-          {jp:'かいものをする', id:'Belanja'},
-          {jp:'かぞくとレストランでごはんをたべる', id:'Makan di restoran bersama keluarga'},
-          {jp:'うちでやすむ', id:'Istirahat di rumah'},
-        ],
-        answer: 2,
-        exp: '「どようび：かぞくとレストランでごはんをたべる」— Sabtu rencananya makan di restoran bersama keluarga.'
-      },
+      {num:1, q_jp:'にほんごのクラスはなんようびですか。', q_id:'Kelas bahasa Jepang hari apa?',
+       opts:[{jp:'げつようび',id:'Senin'},{jp:'かようび',id:'Selasa'},{jp:'すいようび',id:'Rabu'},{jp:'もくようび',id:'Kamis'}],
+       answer:2, exp:'「すいようび：にほんごのクラス」— Kelas bahasa Jepang ada pada hari すいようび (Rabu).'},
+      {num:2, q_jp:'えいがはなんじからですか。', q_id:'Film dimulai jam berapa?',
+       opts:[{jp:'10じ',id:'Jam 10'},{jp:'12じ',id:'Jam 12'},{jp:'3じ',id:'Jam 3'},{jp:'6じ',id:'Jam 6'}],
+       answer:2, exp:'「ともだちとえいがをみる（3じから）」— Film bersama teman mulai dari jam 3 (3じ). から = dari/mulai.'},
+      {num:3, q_jp:'やすみはなんようびですか。', q_id:'Hari libur adalah hari apa?',
+       opts:[{jp:'かようび',id:'Selasa'},{jp:'もくようび',id:'Kamis'},{jp:'きんようび',id:'Jumat'},{jp:'にちようび',id:'Minggu'}],
+       answer:1, exp:'「もくようび：やすみ」— Hari libur adalah もくようび (Kamis).'},
+      {num:4, q_jp:'どようびのよていはなんですか。', q_id:'Apa rencana hari Sabtu?',
+       opts:[{jp:'としょかんでべんきょうする',id:'Belajar di perpustakaan'},{jp:'かいものをする',id:'Belanja'},{jp:'かぞくとレストランでごはんをたべる',id:'Makan di restoran bersama keluarga'},{jp:'うちでやすむ',id:'Istirahat di rumah'}],
+       answer:2, exp:'「どようび：かぞくとレストランでごはんをたべる」— Sabtu rencananya makan di restoran bersama keluarga.'},
+      {num:5, q_jp:'にちようびはなにをしますか。', q_id:'Apa yang dilakukan hari Minggu?',
+       opts:[{jp:'ともだちとあう',id:'Bertemu teman'},{jp:'かいものをする',id:'Belanja'},{jp:'うちでゆっくりやすむ',id:'Istirahat santai di rumah'},{jp:'えいがをみる',id:'Menonton film'}],
+       answer:2, exp:'「にちようび：うちでゆっくりやすむ」— Minggu istirahat santai (ゆっくり) di rumah.'},
+      {num:6, q_jp:'かいものはだれとしますか。', q_id:'Belanja bersama siapa?',
+       opts:[{jp:'かぞく',id:'Keluarga'},{jp:'はなこさん',id:'Hanako'},{jp:'ともだち',id:'Teman'},{jp:'ひとりで',id:'Sendirian'}],
+       answer:1, exp:'「きんようび：はなこさんとかいものをする」— Belanja bersama はなこさん (Hanako) pada hari Jumat.'},
     ]
   },
   {
@@ -4307,75 +4531,33 @@ Minggu   : Istirahat santai di rumah`,
 　<ruby>友達<rt>ともだち</rt></ruby>を<ruby>連<rt>つ</rt></ruby>れてきてもいいです。
 　<ruby>日曜日<rt>にちようび</rt></ruby>は<ruby>学校<rt>がっこう</rt></ruby>が<ruby>休<rt>やす</rt></ruby>みです。
 　わからないことがあれば、<ruby>事務所<rt>じむしょ</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いてください。`,
-    passage_id: `【Pengumuman】
-
-Rabu minggu depan adalah "Festival Sekolah".
-Mulai pukul 10.00 pagi sampai pukul 16.00 sore.
-Akan ada berbagai makanan dan permainan.
-Guru dan siswa semuanya berpartisipasi.
-Boleh membawa teman.
-Hari Minggu sekolah libur.
-Jika ada yang tidak dimengerti, silakan tanya ke kantor.`,
+    passage_id: `【Pengumuman】\n\nRabu minggu depan adalah "Festival Sekolah".\nMulai pukul 10.00 pagi sampai pukul 16.00 sore.\nAkan ada berbagai makanan dan permainan.\nGuru dan siswa semuanya berpartisipasi.\nBoleh membawa teman.\nHari Minggu sekolah libur.\nJika ada yang tidak dimengerti, silakan tanya ke kantor.`,
     vocab: [
       {jp:'おしらせ', rom:'oshirase', id:'pengumuman'},
-      {jp:'まつり', rom:'matsuri', id:'festival / perayaan'},
-      {jp:'さんかします', rom:'sanka shimasu', id:'berpartisipasi'},
-      {jp:'つれてきてもいい', rom:'tsurete kite mo ii', id:'boleh membawa'},
-      {jp:'じむしょ', rom:'jimusho', id:'kantor / ruang tata usaha'},
+      {jp:'まつり', rom:'matsuri', id:'festival'},
+      {jp:'参加します', rom:'sanka shimasu', id:'berpartisipasi'},
+      {jp:'連れてきてもいい', rom:'tsurete kite mo ii', id:'boleh membawa'},
+      {jp:'事務所', rom:'jimusho', id:'kantor / ruang tata usaha'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: '「がっこうまつり」はなんようびですか。',
-        q_id: '"Festival Sekolah" diadakan hari apa?',
-        opts: [
-          {jp:'げつようび', id:'Senin'},
-          {jp:'すいようび', id:'Rabu'},
-          {jp:'きんようび', id:'Jumat'},
-          {jp:'にちようび', id:'Minggu'},
-        ],
-        answer: 1,
-        exp: '「らいしゅうのすいようびは「がっこうまつり」です」— Festival diadakan pada すいようび (Rabu) minggu depan.'
-      },
-      {
-        num: 2,
-        q_jp: '「がっこうまつり」はなんじからなんじまでですか。',
-        q_id: '"Festival Sekolah" dari jam berapa sampai jam berapa?',
-        opts: [
-          {jp:'８じから１２じまで', id:'Jam 8 sampai 12'},
-          {jp:'１０じからごご４じまで', id:'Jam 10 pagi sampai 4 sore'},
-          {jp:'１２じから６じまで', id:'Jam 12 sampai 6'},
-          {jp:'９じから５じまで', id:'Jam 9 sampai 5'},
-        ],
-        answer: 1,
-        exp: '「ごぜん１０じからごご４じまで」— Dari jam 10 pagi (ごぜん) sampai jam 4 sore (ごご). から〜まで = dari〜sampai.'
-      },
-      {
-        num: 3,
-        q_jp: 'ともだちをつれてきてもいいですか。',
-        q_id: 'Apakah boleh membawa teman?',
-        opts: [
-          {jp:'はい、いいです', id:'Ya, boleh'},
-          {jp:'いいえ、だめです', id:'Tidak, tidak boleh'},
-          {jp:'せんせいだけいいです', id:'Hanya guru yang boleh'},
-          {jp:'わかりません', id:'Tidak diketahui'},
-        ],
-        answer: 0,
-        exp: '「ともだちをつれてきてもいいです」— Boleh membawa teman. 〜てもいいです = boleh melakukan 〜.'
-      },
-      {
-        num: 4,
-        q_jp: 'わからないことがあれば、どうしますか。',
-        q_id: 'Jika ada yang tidak dimengerti, harus bagaimana?',
-        opts: [
-          {jp:'せんせいにきく', id:'Tanya ke guru'},
-          {jp:'じむしょにいく', id:'Pergi ke kantor'},
-          {jp:'ともだちにきく', id:'Tanya ke teman'},
-          {jp:'インターネットでしらべる', id:'Cari di internet'},
-        ],
-        answer: 1,
-        exp: '「じむしょにきいてください」— Silakan tanya ke じむしょ (kantor/ruang tata usaha). Kunci: きいてください = tolong tanya/dengar.'
-      },
+      {num:1, q_jp:'「がっこうまつり」はなんようびですか。', q_id:'"Festival Sekolah" diadakan hari apa?',
+       opts:[{jp:'げつようび',id:'Senin'},{jp:'すいようび',id:'Rabu'},{jp:'きんようび',id:'Jumat'},{jp:'にちようび',id:'Minggu'}],
+       answer:1, exp:'「らいしゅうのすいようびは「がっこうまつり」です」— Festival diadakan pada すいようび (Rabu) minggu depan.'},
+      {num:2, q_jp:'「がっこうまつり」はなんじからなんじまでですか。', q_id:'"Festival Sekolah" dari jam berapa sampai jam berapa?',
+       opts:[{jp:'8じから12じまで',id:'Jam 8 sampai 12'},{jp:'10じからごご4じまで',id:'Jam 10 pagi sampai 4 sore'},{jp:'12じから6じまで',id:'Jam 12 sampai 6'},{jp:'9じから5じまで',id:'Jam 9 sampai 5'}],
+       answer:1, exp:'「ごぜん10じからごご4じまで」— Dari jam 10 pagi (ごぜん) sampai jam 4 sore (ごご). から〜まで = dari〜sampai.'},
+      {num:3, q_jp:'ともだちをつれてきてもいいですか。', q_id:'Apakah boleh membawa teman?',
+       opts:[{jp:'はい、いいです',id:'Ya, boleh'},{jp:'いいえ、だめです',id:'Tidak, tidak boleh'},{jp:'せんせいだけいいです',id:'Hanya guru yang boleh'},{jp:'わかりません',id:'Tidak diketahui'}],
+       answer:0, exp:'「ともだちをつれてきてもいいです」— Boleh membawa teman. 〜てもいいです = boleh melakukan 〜.'},
+      {num:4, q_jp:'わからないことがあれば、どうしますか。', q_id:'Jika ada yang tidak dimengerti, harus bagaimana?',
+       opts:[{jp:'せんせいにきく',id:'Tanya ke guru'},{jp:'じむしょにいく',id:'Pergi ke kantor'},{jp:'ともだちにきく',id:'Tanya ke teman'},{jp:'インターネットでしらべる',id:'Cari di internet'}],
+       answer:1, exp:'「じむしょにきいてください」— Silakan tanya ke じむしょ (kantor). きいてください = tolong tanya/dengar.'},
+      {num:5, q_jp:'まつりにはだれがさんかしますか。', q_id:'Siapa yang berpartisipasi dalam festival?',
+       opts:[{jp:'せんせいだけ',id:'Hanya guru'},{jp:'がくせいだけ',id:'Hanya siswa'},{jp:'せんせいもがくせいも',id:'Guru dan siswa keduanya'},{jp:'ともだちだけ',id:'Hanya teman'}],
+       answer:2, exp:'「せんせいもがくせいもさんかします」— Guru (せんせい) dan siswa (がくせい) keduanya berpartisipasi. も〜も = baik〜maupun〜.'},
+      {num:6, q_jp:'にちようびはがっこうはどうですか。', q_id:'Bagaimana kondisi sekolah hari Minggu?',
+       opts:[{jp:'まつりがある',id:'Ada festival'},{jp:'やすみだ',id:'Libur'},{jp:'じゅぎょうがある',id:'Ada pelajaran'},{jp:'そうじをする',id:'Bersih-bersih'}],
+       answer:1, exp:'「にちようびはがっこうがやすみです」— Hari Minggu sekolah libur (やすみ).'},
     ]
   },
   {
@@ -4399,69 +4581,33 @@ Jika ada yang tidak dimengerti, silakan tanya ke kantor.`,
 　ジュース　　　　　　　３００<ruby>円<rt>えん</rt></ruby>
 
 　※ランチタイム（１１<ruby>時<rt>じ</rt></ruby>〜２<ruby>時<rt>じ</rt></ruby>）はドリンクが１００<ruby>円<rt>えん</rt></ruby><ruby>引<rt>び</rt></ruby>きです。`,
-    passage_id: `【Menu Restoran Yama】
-
-<Makanan>
-  Nasi kari          : 800 yen
-  Omelet rice        : 750 yen
-  Hamburger steak    : 950 yen
-  Mie goreng Jepang  : 650 yen
-  Salad (ukuran S)   : 300 yen
-  Salad (ukuran M)   : 450 yen
-
-<Minuman>
-  Kopi               : 350 yen
-  Teh                : 250 yen
-  Jus                : 300 yen
-
-※ Saat makan siang (pukul 11.00–14.00) minuman diskon 100 yen.`,
+    passage_id: `【Menu Restoran Yama】\n\n<Makanan>\n  Nasi kari: 800 yen\n  Omelet rice: 750 yen\n  Hamburger steak: 950 yen\n  Mie goreng: 650 yen\n  Salad (S): 300 yen\n  Salad (M): 450 yen\n\n<Minuman>\n  Kopi: 350 yen\n  Teh: 250 yen\n  Jus: 300 yen\n\n※ Saat makan siang (11.00–14.00) minuman diskon 100 yen.`,
     vocab: [
       {jp:'メニュー', rom:'menyuu', id:'menu'},
       {jp:'ランチタイム', rom:'ranchi taimu', id:'jam makan siang'},
-      {jp:'びき', rom:'biki (ne-biki)', id:'diskon'},
+      {jp:'引き', rom:'biki (ne-biki)', id:'diskon'},
       {jp:'サイズ', rom:'saizu', id:'ukuran'},
       {jp:'ドリンク', rom:'dorinku', id:'minuman'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'いちばんたかいたべものはなんですか。',
-        q_id: 'Makanan yang paling mahal adalah apa?',
-        opts: [
-          {jp:'カレーライス', id:'Nasi kari (800 yen)'},
-          {jp:'オムライス', id:'Omelet rice (750 yen)'},
-          {jp:'ハンバーグ', id:'Hamburger steak (950 yen)'},
-          {jp:'やきそば', id:'Mie goreng (650 yen)'},
-        ],
-        answer: 2,
-        exp: 'Dari daftar harga: ハンバーグ = 950円 adalah yang termahal dibanding カレーライス (800), オムライス (750), dan やきそば (650).'
-      },
-      {
-        num: 2,
-        q_jp: 'ランチタイムにコーヒーはいくらですか。',
-        q_id: 'Berapa harga kopi saat jam makan siang?',
-        opts: [
-          {jp:'３５０えん', id:'350 yen'},
-          {jp:'３００えん', id:'300 yen'},
-          {jp:'２５０えん', id:'250 yen'},
-          {jp:'２００えん', id:'200 yen'},
-        ],
-        answer: 2,
-        exp: 'Harga kopi normal = 350円. Saat ランチタイム (makan siang) ada diskon 100円 (１００えんびき). Jadi: 350 − 100 = 250円.'
-      },
-      {
-        num: 3,
-        q_jp: 'やきそばとMサイズのサラダをたのみました。いくらですか。',
-        q_id: 'Memesan mie goreng dan salad ukuran M. Berapa totalnya?',
-        opts: [
-          {jp:'９５０えん', id:'950 yen'},
-          {jp:'１１００えん', id:'1100 yen'},
-          {jp:'１０５０えん', id:'1050 yen'},
-          {jp:'１２００えん', id:'1200 yen'},
-        ],
-        answer: 1,
-        exp: 'やきそば (650円) + Mサイズのサラダ (450円) = 1100円。計算: 650 + 450 = 1100.'
-      },
+      {num:1, q_jp:'いちばんたかいたべものはなんですか。', q_id:'Makanan yang paling mahal adalah?',
+       opts:[{jp:'カレーライス',id:'Nasi kari (800 yen)'},{jp:'オムライス',id:'Omelet rice (750 yen)'},{jp:'ハンバーグ',id:'Hamburger steak (950 yen)'},{jp:'やきそば',id:'Mie goreng (650 yen)'}],
+       answer:2, exp:'ハンバーグ = 950円 adalah yang termahal dibanding yang lain.'},
+      {num:2, q_jp:'ランチタイムにコーヒーはいくらですか。', q_id:'Berapa harga kopi saat jam makan siang?',
+       opts:[{jp:'350えん',id:'350 yen'},{jp:'300えん',id:'300 yen'},{jp:'250えん',id:'250 yen'},{jp:'200えん',id:'200 yen'}],
+       answer:2, exp:'コーヒー通常350円 − ランチ割引100円 = 250円. ランチタイムはドリンクが100円引き。'},
+      {num:3, q_jp:'やきそばとMサイズのサラダをたのみました。いくらですか。', q_id:'Pesan mie goreng dan salad ukuran M. Berapa totalnya?',
+       opts:[{jp:'950えん',id:'950 yen'},{jp:'1100えん',id:'1.100 yen'},{jp:'1050えん',id:'1.050 yen'},{jp:'1200えん',id:'1.200 yen'}],
+       answer:1, exp:'やきそば(650円) + Mサイズのサラダ(450円) = 1100円.'},
+      {num:4, q_jp:'いちばんやすいたべものはなんですか。', q_id:'Makanan yang paling murah adalah?',
+       opts:[{jp:'オムライス',id:'Omelet rice'},{jp:'やきそば',id:'Mie goreng'},{jp:'Sサイズのサラダ',id:'Salad ukuran S'},{jp:'カレーライス',id:'Nasi kari'}],
+       answer:2, exp:'Sサイズのサラダ = 300円 adalah yang termurah dari semua menu makanan yang ada.'},
+      {num:5, q_jp:'ランチタイムにおちゃはいくらですか。', q_id:'Berapa harga teh saat jam makan siang?',
+       opts:[{jp:'350えん',id:'350 yen'},{jp:'250えん',id:'250 yen'},{jp:'150えん',id:'150 yen'},{jp:'200えん',id:'200 yen'}],
+       answer:2, exp:'お茶通常250円 − ランチ割引100円 = 150円。ランチタイムはすべてのドリンクが100円引き。'},
+      {num:6, q_jp:'ランチタイムはなんじからなんじまでですか。', q_id:'Jam makan siang dari jam berapa sampai jam berapa?',
+       opts:[{jp:'10じから2じまで',id:'Jam 10 sampai 2'},{jp:'11じから2じまで',id:'Jam 11 sampai 2'},{jp:'11じから3じまで',id:'Jam 11 sampai 3'},{jp:'12じから2じまで',id:'Jam 12 sampai 2'}],
+       answer:1, exp:'「ランチタイム（11時〜2時）」— Jam makan siang dari jam 11 sampai jam 2.'},
     ]
   },
   {
@@ -4474,71 +4620,33 @@ Jika ada yang tidak dimengerti, silakan tanya ke kantor.`,
 　<ruby>友達<rt>ともだち</rt></ruby>の<ruby>健二<rt>けんじ</rt></ruby>さんはケーキを<ruby>買<rt>か</rt></ruby>ってきました。<ruby>甘<rt>あま</rt></ruby>くておいしかったです。
 　パーティーは<ruby>午後<rt>ごご</rt></ruby>３<ruby>時<rt>じ</rt></ruby>から<ruby>始<rt>はじ</rt></ruby>まって、<ruby>夜<rt>よる</rt></ruby>１０<ruby>時<rt>じ</rt></ruby>に<ruby>終<rt>お</rt></ruby>わりました。７<ruby>時間<rt>じかん</rt></ruby>の<ruby>長<rt>なが</rt></ruby>いパーティーでした。
 　みんなとても<ruby>楽<rt>たの</rt></ruby>しかったと<ruby>思<rt>おも</rt></ruby>います。またやりたいです。`,
-    passage_id: `Sabtu minggu lalu saya mengadakan pesta di rumah. Enam teman datang.
-Saya memasak. Saya membuat salad dan nasi kari. Nasi karinya sangat enak.
-Teman saya Kenji membeli kue. Manisnya enak.
-Pesta dimulai jam 3 sore dan berakhir jam 10 malam. Pesta yang panjang, 7 jam.
-Saya pikir semua orang sangat senang. Ingin mengadakannya lagi.`,
+    passage_id: `Sabtu minggu lalu saya mengadakan pesta di rumah. Enam teman datang.\nSaya memasak salad dan nasi kari. Nasi karinya sangat enak.\nTeman saya Kenji membeli kue. Manisnya enak.\nPesta dimulai jam 3 sore dan berakhir jam 10 malam. 7 jam pesta yang panjang.\nSaya pikir semua orang sangat senang. Ingin mengadakannya lagi.`,
     vocab: [
       {jp:'パーティー', rom:'paatii', id:'pesta'},
-      {jp:'はじまって', rom:'hajimatte', id:'dimulai (bentuk て)'},
-      {jp:'おわりました', rom:'owarimashita', id:'selesai / berakhir'},
-      {jp:'あまくておいしい', rom:'amakute oishii', id:'manis dan enak'},
+      {jp:'始まって', rom:'hajimatte', id:'dimulai (bentuk て)'},
+      {jp:'終わりました', rom:'owarimashita', id:'selesai'},
+      {jp:'甘くておいしい', rom:'amakute oishii', id:'manis dan enak'},
       {jp:'またやりたい', rom:'mata yaritai', id:'ingin melakukannya lagi'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'パーティーにともだちはなんにんきましたか。',
-        q_id: 'Berapa banyak teman yang datang ke pesta?',
-        opts: [
-          {jp:'３にん', id:'3 orang'},
-          {jp:'５にん', id:'5 orang'},
-          {jp:'６にん', id:'6 orang'},
-          {jp:'７にん', id:'7 orang'},
-        ],
-        answer: 2,
-        exp: '「ともだちが６にんきました」— 6人 (rokunin) teman datang ke pesta.'
-      },
-      {
-        num: 2,
-        q_jp: 'けんじさんはパーティーになにをもってきましたか。',
-        q_id: 'Apa yang Kenji bawa ke pesta?',
-        opts: [
-          {jp:'サラダ', id:'Salad'},
-          {jp:'カレーライス', id:'Nasi kari'},
-          {jp:'ケーキ', id:'Kue'},
-          {jp:'ジュース', id:'Jus'},
-        ],
-        answer: 2,
-        exp: '「ともだちのけんじさんはケーキをかってきました」— Kenji membeli dan membawa ケーキ (kue). かってきました = membeli dan datang membawa.'
-      },
-      {
-        num: 3,
-        q_jp: 'パーティーはなんじかんでしたか。',
-        q_id: 'Berapa jam lamanya pesta berlangsung?',
-        opts: [
-          {jp:'３じかん', id:'3 jam'},
-          {jp:'５じかん', id:'5 jam'},
-          {jp:'６じかん', id:'6 jam'},
-          {jp:'７じかん', id:'7 jam'},
-        ],
-        answer: 3,
-        exp: '「７じかんのながいパーティーでした」— Disebutkan langsung bahwa pestanya berlangsung 7 jam (７じかん).'
-      },
-      {
-        num: 4,
-        q_jp: 'パーティーはなんじにはじまりましたか。',
-        q_id: 'Pesta dimulai jam berapa?',
-        opts: [
-          {jp:'ごご１じ', id:'Jam 1 siang'},
-          {jp:'ごご３じ', id:'Jam 3 sore'},
-          {jp:'ごご５じ', id:'Jam 5 sore'},
-          {jp:'よる７じ', id:'Jam 7 malam'},
-        ],
-        answer: 1,
-        exp: '「パーティーはごご３じからはじまって」— Pesta dimulai dari ごご３じ (jam 3 sore). ごご = sore/PM.'
-      },
+      {num:1, q_jp:'パーティーにともだちはなんにんきましたか。', q_id:'Berapa banyak teman yang datang ke pesta?',
+       opts:[{jp:'3にん',id:'3 orang'},{jp:'5にん',id:'5 orang'},{jp:'6にん',id:'6 orang'},{jp:'7にん',id:'7 orang'}],
+       answer:2, exp:'「ともだちが6にんきました」— 6人 (rokunin) teman datang ke pesta.'},
+      {num:2, q_jp:'けんじさんはパーティーになにをもってきましたか。', q_id:'Apa yang Kenji bawa ke pesta?',
+       opts:[{jp:'サラダ',id:'Salad'},{jp:'カレーライス',id:'Nasi kari'},{jp:'ケーキ',id:'Kue'},{jp:'ジュース',id:'Jus'}],
+       answer:2, exp:'「けんじさんはケーキをかってきました」— Kenji membeli dan membawa ケーキ (kue).'},
+      {num:3, q_jp:'パーティーはなんじかんでしたか。', q_id:'Berapa jam lamanya pesta berlangsung?',
+       opts:[{jp:'3じかん',id:'3 jam'},{jp:'5じかん',id:'5 jam'},{jp:'6じかん',id:'6 jam'},{jp:'7じかん',id:'7 jam'}],
+       answer:3, exp:'「7じかんのながいパーティーでした」— Disebutkan langsung bahwa pestanya berlangsung 7 jam (7じかん).'},
+      {num:4, q_jp:'パーティーはなんじにはじまりましたか。', q_id:'Pesta dimulai jam berapa?',
+       opts:[{jp:'ごご1じ',id:'Jam 1 siang'},{jp:'ごご3じ',id:'Jam 3 sore'},{jp:'ごご5じ',id:'Jam 5 sore'},{jp:'よる7じ',id:'Jam 7 malam'}],
+       answer:1, exp:'「パーティーはごご3じからはじまって」— Pesta dimulai dari ごご3じ (jam 3 sore).'},
+      {num:5, q_jp:'わたしはパーティーでなにをつくりましたか。', q_id:'Apa yang dibuat untuk pesta?',
+       opts:[{jp:'サラダだけ',id:'Hanya salad'},{jp:'カレーライスだけ',id:'Hanya nasi kari'},{jp:'サラダとカレーライス',id:'Salad dan nasi kari'},{jp:'ケーキとサラダ',id:'Kue dan salad'}],
+       answer:2, exp:'「サラダとカレーライスをつくりました」— Membuat サラダ (salad) と カレーライス (nasi kari).'},
+      {num:6, q_jp:'このひとはこのパーティーについてどうおもいましたか。', q_id:'Apa pendapat orang ini tentang pesta tersebut?',
+       opts:[{jp:'たのしくなかった',id:'Tidak menyenangkan'},{jp:'みんなたのしかったとおもう',id:'Pikir semua orang senang'},{jp:'つぎはしたくない',id:'Tidak mau lagi lain kali'},{jp:'りょうりがむずかしかった',id:'Masakannya sulit'}],
+       answer:1, exp:'「みんなとてもたのしかったとおもいます。またやりたいです」— Merasa semua orang senang dan ingin mengadakan lagi.'},
     ]
   },
   {
@@ -4553,27 +4661,14 @@ Saya pikir semua orang sangat senang. Ingin mengadakannya lagi.`,
 
 　＜クラスのじょうほう＞
 　・クラス<ruby>名<rt>めい</rt></ruby>：<ruby>日本語<rt>にほんご</rt></ruby>Aクラス
-　・<ruby>時間<rt>じかん</rt></ruby>　：まいしゅう<ruby>火曜日<rt>かようび</rt></ruby>と<ruby>水曜日<rt>すいようび</rt></ruby>、<ruby>午後<rt>ごご</rt></ruby>６<ruby>時<rt>じ</rt></ruby>から８<ruby>時<rt>じ</rt></ruby>まで
-　・ばしょ　：<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>のぶんかセンター３かい
+　・<ruby>時間<rt>じかん</rt></ruby>：まいしゅう<ruby>火曜日<rt>かようび</rt></ruby>と<ruby>水曜日<rt>すいようび</rt></ruby>、<ruby>午後<rt>ごご</rt></ruby>６<ruby>時<rt>じ</rt></ruby>から８<ruby>時<rt>じ</rt></ruby>まで
+　・ばしょ：<ruby>駅<rt>えき</rt></ruby><ruby>前<rt>まえ</rt></ruby>のぶんかセンター３かい
 　・じゅぎょうりょう：<ruby>一<rt>ひと</rt></ruby>つき５０００<ruby>円<rt>えん</rt></ruby>
 　・もちもの：テキスト、ノート、えんぴつ
 
 　くわしいことは<ruby>電話<rt>でんわ</rt></ruby>かメールでおといあわせください。
 　<ruby>電話<rt>でんわ</rt></ruby>：０３−１２３４−５６７８`,
-    passage_id: `【Pengumuman Kelas Bahasa Jepang】
-
-Mulai bulan depan, kelas bahasa Jepang baru akan dimulai.
-Pendaftaran sampai Jumat minggu ini.
-
-<Informasi Kelas>
-・Nama kelas  : Kelas Bahasa Jepang A
-・Jadwal      : Setiap Selasa dan Rabu, pukul 18.00–20.00
-・Tempat      : Lantai 3 Pusat Budaya depan stasiun
-・Biaya       : 5.000 yen per bulan
-・Perlengkapan: Buku teks, buku catatan, pensil
-
-Untuk informasi lebih lanjut, hubungi via telepon atau email.
-Telepon: 03-1234-5678`,
+    passage_id: `【Pengumuman Kelas Bahasa Jepang】\n\nMulai bulan depan, kelas bahasa Jepang baru akan dimulai.\nPendaftaran sampai Jumat minggu ini.\n\n<Informasi Kelas>\n・Nama: Kelas Bahasa Jepang A\n・Jadwal: Setiap Selasa dan Rabu, pukul 18.00–20.00\n・Tempat: Lantai 3 Pusat Budaya depan stasiun\n・Biaya: 5.000 yen per bulan\n・Perlengkapan: Buku teks, buku catatan, pensil`,
     vocab: [
       {jp:'もうしこみ', rom:'moushikomi', id:'pendaftaran'},
       {jp:'じょうほう', rom:'jouhou', id:'informasi'},
@@ -4582,58 +4677,24 @@ Telepon: 03-1234-5678`,
       {jp:'おといあわせ', rom:'otoiawase', id:'pertanyaan / hubungi'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'クラスはまいしゅうなんようびにありますか。',
-        q_id: 'Kelas diadakan setiap hari apa dalam seminggu?',
-        opts: [
-          {jp:'かようびだけ', id:'Hanya Selasa'},
-          {jp:'かようびとすいようび', id:'Selasa dan Rabu'},
-          {jp:'すいようびときんようび', id:'Rabu dan Jumat'},
-          {jp:'げつようびからきんようびまで', id:'Senin sampai Jumat'},
-        ],
-        answer: 1,
-        exp: '「まいしゅうかようびとすいようび」— Kelas diadakan setiap Selasa (かようび) dan Rabu (すいようび).'
-      },
-      {
-        num: 2,
-        q_jp: 'じゅぎょうりょうはいくらですか。',
-        q_id: 'Berapa biaya kelasnya?',
-        opts: [
-          {jp:'いっかげつ３０００えん', id:'3.000 yen per bulan'},
-          {jp:'いっかげつ５０００えん', id:'5.000 yen per bulan'},
-          {jp:'いっかげつ８０００えん', id:'8.000 yen per bulan'},
-          {jp:'いっかいごとに１０００えん', id:'1.000 yen per sesi'},
-        ],
-        answer: 1,
-        exp: '「じゅぎょうりょう：いっかげつ５０００えん」— Biaya kelas adalah 5.000 yen per bulan (いっかげつ).'
-      },
-      {
-        num: 3,
-        q_jp: 'もうしこみはいつまでですか。',
-        q_id: 'Pendaftaran sampai kapan?',
-        opts: [
-          {jp:'こんしゅうのかようび', id:'Selasa minggu ini'},
-          {jp:'こんしゅうのきんようび', id:'Jumat minggu ini'},
-          {jp:'らいしゅうのげつようび', id:'Senin minggu depan'},
-          {jp:'らいげつのついたち', id:'Tanggal 1 bulan depan'},
-        ],
-        answer: 1,
-        exp: '「もうしこみはこんしゅうのきんようびまでです」— Pendaftaran sampai きんようび (Jumat) minggu ini. まで = sampai.'
-      },
-      {
-        num: 4,
-        q_jp: 'クラスのばしょはどこですか。',
-        q_id: 'Di mana tempat kelas diadakan?',
-        opts: [
-          {jp:'がっこうの２かい', id:'Lantai 2 sekolah'},
-          {jp:'えきのなか', id:'Di dalam stasiun'},
-          {jp:'えきまえのぶんかセンター３かい', id:'Lantai 3 Pusat Budaya depan stasiun'},
-          {jp:'としょかんのよこ', id:'Di samping perpustakaan'},
-        ],
-        answer: 2,
-        exp: '「ばしょ：えき前のぶんかセンター３かい」— Tempatnya di lantai 3 (３かい) Pusat Budaya (ぶんかセンター) depan stasiun (えき前).'
-      },
+      {num:1, q_jp:'クラスはまいしゅうなんようびにありますか。', q_id:'Kelas diadakan setiap hari apa?',
+       opts:[{jp:'かようびだけ',id:'Hanya Selasa'},{jp:'かようびとすいようび',id:'Selasa dan Rabu'},{jp:'すいようびときんようび',id:'Rabu dan Jumat'},{jp:'げつようびからきんようびまで',id:'Senin sampai Jumat'}],
+       answer:1, exp:'「まいしゅうかようびとすいようび」— Kelas diadakan setiap Selasa (かようび) dan Rabu (すいようび).'},
+      {num:2, q_jp:'じゅぎょうりょうはいくらですか。', q_id:'Berapa biaya kelasnya?',
+       opts:[{jp:'いっかげつ3000えん',id:'3.000 yen/bulan'},{jp:'いっかげつ5000えん',id:'5.000 yen/bulan'},{jp:'いっかげつ8000えん',id:'8.000 yen/bulan'},{jp:'いっかいごとに1000えん',id:'1.000 yen/sesi'}],
+       answer:1, exp:'「じゅぎょうりょう：いっかげつ5000えん」— Biaya kelas 5.000 yen per bulan (いっかげつ).'},
+      {num:3, q_jp:'もうしこみはいつまでですか。', q_id:'Pendaftaran sampai kapan?',
+       opts:[{jp:'こんしゅうのかようび',id:'Selasa minggu ini'},{jp:'こんしゅうのきんようび',id:'Jumat minggu ini'},{jp:'らいしゅうのげつようび',id:'Senin minggu depan'},{jp:'らいげつのついたち',id:'Tanggal 1 bulan depan'}],
+       answer:1, exp:'「もうしこみはこんしゅうのきんようびまでです」— Pendaftaran sampai きんようび (Jumat) minggu ini. まで = sampai.'},
+      {num:4, q_jp:'クラスのばしょはどこですか。', q_id:'Di mana tempat kelas?',
+       opts:[{jp:'がっこうの2かい',id:'Lantai 2 sekolah'},{jp:'えきのなか',id:'Di dalam stasiun'},{jp:'えきまえのぶんかセンター3かい',id:'Lantai 3 Pusat Budaya depan stasiun'},{jp:'としょかんのよこ',id:'Di samping perpustakaan'}],
+       answer:2, exp:'「ばしょ：えき前のぶんかセンター3かい」— Lantai 3 Pusat Budaya (ぶんかセンター) depan stasiun.'},
+      {num:5, q_jp:'クラスはなんじからなんじまでですか。', q_id:'Kelas dari jam berapa sampai jam berapa?',
+       opts:[{jp:'ごご4じから6じ',id:'Jam 4 sampai 6 sore'},{jp:'ごご6じから8じ',id:'Jam 6 sampai 8 sore'},{jp:'ごぜん10じから12じ',id:'Jam 10 sampai 12 pagi'},{jp:'ごご7じから9じ',id:'Jam 7 sampai 9 sore'}],
+       answer:1, exp:'「ごご6じから8じまで」— Kelas dari jam 6 sore sampai jam 8 malam.'},
+      {num:6, q_jp:'もちものにはいっていないものはどれですか。', q_id:'Barang apa yang TIDAK termasuk dalam perlengkapan?',
+       opts:[{jp:'テキスト',id:'Buku teks'},{jp:'ノート',id:'Buku catatan'},{jp:'えんぴつ',id:'Pensil'},{jp:'じしょ',id:'Kamus'}],
+       answer:3, exp:'Perlengkapan yang disebutkan: テキスト, ノート, えんぴつ. じしょ (kamus) tidak disebutkan.'},
     ]
   },
   {
@@ -4649,66 +4710,38 @@ Telepon: 03-1234-5678`,
 　<ruby>桜<rt>さくら</rt></ruby>さんは<ruby>海<rt>うみ</rt></ruby>が<ruby>好<rt>す</rt></ruby>きですか。<ruby>今度<rt>こんど</rt></ruby><ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きたいです。
 
 　リサより`,
-    passage_id: `Kepada Sakura,
-
-Bagaimana akhir pekan yang lalu?
-Saya pergi ke laut bersama keluarga. Lautnya sangat indah. Anak-anak bermain di pantai berpasir.
-Saya dan suami makan masakan ikan di restoran terdekat. Sangat enak. Tapi, saat pulang hujan turun dan itu menyulitkan.
-Apakah Sakura suka laut? Lain kali ingin pergi bersama.
-
-Dari Risa`,
+    passage_id: `Kepada Sakura,\n\nBagaimana akhir pekan yang lalu?\nSaya pergi ke laut bersama keluarga. Lautnya sangat indah. Anak-anak bermain di pantai berpasir.\nSaya dan suami makan masakan ikan di restoran terdekat. Sangat enak. Tapi, saat pulang hujan turun dan itu menyulitkan.\nApakah Sakura suka laut? Lain kali ingin pergi bersama.\n\nDari Risa`,
     vocab: [
       {jp:'すなはま', rom:'sunahama', id:'pantai berpasir'},
-      {jp:'おっと', rom:'otto', id:'suami (bicara tentang suami sendiri)'},
-      {jp:'さかなりょうり', rom:'sakana ryouri', id:'masakan ikan'},
-      {jp:'かえり', rom:'kaeri', id:'perjalanan pulang'},
+      {jp:'おっと', rom:'otto', id:'suami'},
+      {jp:'魚料理', rom:'sakana ryouri', id:'masakan ikan'},
+      {jp:'帰り', rom:'kaeri', id:'perjalanan pulang'},
       {jp:'たいへん', rom:'taihen', id:'menyulitkan / susah'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'リサさんはしゅうまつにどこへいきましたか。',
-        q_id: 'Risa pergi ke mana saat akhir pekan?',
-        opts: [
-          {jp:'やま', id:'Gunung'},
-          {jp:'こうえん', id:'Taman'},
-          {jp:'うみ', id:'Laut'},
-          {jp:'としょかん', id:'Perpustakaan'},
-        ],
-        answer: 2,
-        exp: '「わたしはかぞくとうみにいきました」— Risa pergi ke うみ (laut) bersama keluarga.'
-      },
-      {
-        num: 2,
-        q_jp: 'こどもたちはなにをしましたか。',
-        q_id: 'Apa yang dilakukan anak-anak?',
-        opts: [
-          {jp:'さかなをたべた', id:'Makan ikan'},
-          {jp:'すなはまであそんだ', id:'Bermain di pantai berpasir'},
-          {jp:'レストランにいった', id:'Pergi ke restoran'},
-          {jp:'あめのなかであそんだ', id:'Bermain di tengah hujan'},
-        ],
-        answer: 1,
-        exp: '「こどもたちはすなはまであそびました」— Anak-anak bermain di すなはま (pantai berpasir). で = di (tempat kegiatan).'
-      },
-      {
-        num: 3,
-        q_jp: 'かえりにどうなりましたか。',
-        q_id: 'Apa yang terjadi saat pulang?',
-        opts: [
-          {jp:'てんきがよくなった', id:'Cuaca membaik'},
-          {jp:'でんしゃがこなかった', id:'Kereta tidak datang'},
-          {jp:'あめがふった', id:'Hujan turun'},
-          {jp:'くるまがこわれた', id:'Mobil rusak'},
-        ],
-        answer: 2,
-        exp: '「かえりにあめがふって、たいへんでした」— Saat pulang (かえりに) hujan turun (あめがふって) sehingga menyulitkan.'
-      },
+      {num:1, q_jp:'リサさんはしゅうまつにどこへいきましたか。', q_id:'Risa pergi ke mana saat akhir pekan?',
+       opts:[{jp:'やま',id:'Gunung'},{jp:'こうえん',id:'Taman'},{jp:'うみ',id:'Laut'},{jp:'としょかん',id:'Perpustakaan'}],
+       answer:2, exp:'「わたしはかぞくとうみにいきました」— Risa pergi ke うみ (laut) bersama keluarga.'},
+      {num:2, q_jp:'こどもたちはなにをしましたか。', q_id:'Apa yang dilakukan anak-anak?',
+       opts:[{jp:'さかなをたべた',id:'Makan ikan'},{jp:'すなはまであそんだ',id:'Bermain di pantai berpasir'},{jp:'レストランにいった',id:'Pergi ke restoran'},{jp:'あめのなかであそんだ',id:'Bermain di tengah hujan'}],
+       answer:1, exp:'「こどもたちはすなはまであそびました」— Anak-anak bermain di すなはま (pantai berpasir).'},
+      {num:3, q_jp:'かえりにどうなりましたか。', q_id:'Apa yang terjadi saat pulang?',
+       opts:[{jp:'てんきがよくなった',id:'Cuaca membaik'},{jp:'でんしゃがこなかった',id:'Kereta tidak datang'},{jp:'あめがふった',id:'Hujan turun'},{jp:'くるまがこわれた',id:'Mobil rusak'}],
+       answer:2, exp:'「かえりにあめがふって、たいへんでした」— Saat pulang (かえりに) hujan turun (あめがふって).'},
+      {num:4, q_jp:'リサさんのおっとはなにをたべましたか。', q_id:'Apa yang dimakan suami Risa?',
+       opts:[{jp:'カレーライス',id:'Nasi kari'},{jp:'さかなりょうり',id:'Masakan ikan'},{jp:'やきそば',id:'Mie goreng'},{jp:'すし',id:'Sushi'}],
+       answer:1, exp:'「わたしとおっとはちかくのレストランでさかなりょうりをたべました」— Risa dan suaminya makan さかなりょうり (masakan ikan).'},
+      {num:5, q_jp:'リサさんはつぎになにをしたいですか。', q_id:'Apa yang ingin Risa lakukan selanjutnya?',
+       opts:[{jp:'ひとりでうみにいく',id:'Pergi ke laut sendirian'},{jp:'さくらさんといっしょにうみにいく',id:'Pergi ke laut bersama Sakura'},{jp:'やまにいく',id:'Pergi ke gunung'},{jp:'うちでやすむ',id:'Istirahat di rumah'}],
+       answer:1, exp:'「こんどいっしょにいきたいです」— Ingin pergi bersama (いっしょに) — bersama Sakura.'},
+      {num:6, q_jp:'うみはどうでしたか。', q_id:'Bagaimana kondisi lautnya?',
+       opts:[{jp:'きたなかった',id:'Kotor'},{jp:'さむかった',id:'Dingin'},{jp:'きれいだった',id:'Indah / bersih'},{jp:'こんでいた',id:'Ramai'}],
+       answer:2, exp:'「うみはとてもきれいでした」— Laut sangat きれい (indah/bersih).'},
     ]
   },
   {
     id: 8,
-    judul: 'Petunjuk Penggunaan',
+    judul: 'Petunjuk Penggunaan Mesin',
     topik: 'Membaca instruksi dan petunjuk',
     level: 'N5',
     passage: `【<ruby>自動販売機<rt>じどうはんばいき</rt></ruby>のつかいかた】
@@ -4723,65 +4756,33 @@ Dari Risa`,
 　※<ruby>温<rt>あたた</rt></ruby>かい<ruby>飲<rt>の</rt></ruby>み<ruby>物<rt>もの</rt></ruby>はあかいボタンです。
 　※こしょうのときはこの<ruby>電話<rt>でんわ</rt></ruby><ruby>番号<rt>ばんごう</rt></ruby>に<ruby>連絡<rt>れんらく</rt></ruby>してください。
 　　<ruby>電話<rt>でんわ</rt></ruby>：０８０−０００−１２３４`,
-    passage_id: `【Cara Penggunaan Mesin Penjual Otomatis】
-
-① Masukkan uang.
-② Pilih barang yang diinginkan.
-③ Tekan tombol.
-④ Ambil barang dari lubang di bawah.
-
-※ Kembalian keluar dari sisi kanan.
-※ Tombol warna biru adalah untuk minuman dingin.
-※ Tombol warna merah adalah untuk minuman hangat.
-※ Jika ada kerusakan, silakan hubungi nomor telepon ini.
-   Telepon: 080-000-1234`,
+    passage_id: `【Cara Penggunaan Mesin Penjual Otomatis】\n\n①Masukkan uang. ②Pilih barang. ③Tekan tombol. ④Ambil barang dari bawah.\n\n※Kembalian dari sisi kanan.\n※Tombol biru = minuman dingin.\n※Tombol merah = minuman hangat.\n※Jika rusak, hubungi 080-000-1234`,
     vocab: [
-      {jp:'じどうはんばいき', rom:'jidou hanbaiki', id:'mesin penjual otomatis'},
+      {jp:'自動販売機', rom:'jidou hanbaiki', id:'mesin penjual otomatis'},
       {jp:'えらぶ', rom:'erabu', id:'memilih'},
       {jp:'ボタン', rom:'botan', id:'tombol'},
       {jp:'おつり', rom:'otsuri', id:'kembalian'},
-      {jp:'こしょう', rom:'koshou', id:'kerusakan / kecelakaan'},
+      {jp:'こしょう', rom:'koshou', id:'kerusakan'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'どのじゅんばんでつかいますか。ただしいものをえらんでください。',
-        q_id: 'Urutan penggunaan yang benar adalah?',
-        opts: [
-          {jp:'おかねをいれる→ボタンをおす→ものをえらぶ', id:'Masukkan uang → Tekan tombol → Pilih barang'},
-          {jp:'ものをえらぶ→おかねをいれる→ボタンをおす', id:'Pilih barang → Masukkan uang → Tekan tombol'},
-          {jp:'おかねをいれる→ものをえらぶ→ボタンをおす', id:'Masukkan uang → Pilih barang → Tekan tombol'},
-          {jp:'ボタンをおす→おかねをいれる→ものをえらぶ', id:'Tekan tombol → Masukkan uang → Pilih barang'},
-        ],
-        answer: 2,
-        exp: 'Urutan: ①おかねをいれる (masukkan uang) → ②ものをえらぶ (pilih barang) → ③ボタンをおす (tekan tombol) → ④ものをとる (ambil barang).'
-      },
-      {
-        num: 2,
-        q_jp: 'あたたかいのみものはどのボタンですか。',
-        q_id: 'Tombol mana untuk minuman hangat?',
-        opts: [
-          {jp:'みずいろのボタン', id:'Tombol warna biru'},
-          {jp:'あかいボタン', id:'Tombol warna merah'},
-          {jp:'きいろのボタン', id:'Tombol warna kuning'},
-          {jp:'みどりのボタン', id:'Tombol warna hijau'},
-        ],
-        answer: 1,
-        exp: '「あたたかいのみものはあかいボタンです」— Minuman hangat (あたたかい) = tombol merah (あかいボタン). Minuman dingin = biru.'
-      },
-      {
-        num: 3,
-        q_jp: 'おつりはどこからでますか。',
-        q_id: 'Kembalian keluar dari mana?',
-        opts: [
-          {jp:'したのくち', id:'Lubang di bawah'},
-          {jp:'みぎのところ', id:'Sisi kanan'},
-          {jp:'ひだりのところ', id:'Sisi kiri'},
-          {jp:'うえのくち', id:'Lubang di atas'},
-        ],
-        answer: 1,
-        exp: '「おつりはみぎのところからでます」— Kembalian (おつり) keluar dari みぎ (kanan). Jangan tertukar dengan lubang pengambilan barang (した).'
-      },
+      {num:1, q_jp:'どのじゅんばんでつかいますか。', q_id:'Urutan penggunaan yang benar adalah?',
+       opts:[{jp:'おかねをいれる→ボタンをおす→ものをえらぶ',id:'Masukkan uang→Tekan tombol→Pilih'},{jp:'ものをえらぶ→おかねをいれる→ボタンをおす',id:'Pilih→Masukkan uang→Tekan tombol'},{jp:'おかねをいれる→ものをえらぶ→ボタンをおす',id:'Masukkan uang→Pilih→Tekan tombol'},{jp:'ボタンをおす→おかねをいれる→ものをえらぶ',id:'Tekan tombol→Masukkan uang→Pilih'}],
+       answer:2, exp:'①おかねをいれる→②ものをえらぶ→③ボタンをおす→④ものをとる. Urutan harus diikuti.'},
+      {num:2, q_jp:'あたたかいのみものはどのボタンですか。', q_id:'Tombol mana untuk minuman hangat?',
+       opts:[{jp:'みずいろのボタン',id:'Tombol biru'},{jp:'あかいボタン',id:'Tombol merah'},{jp:'きいろのボタン',id:'Tombol kuning'},{jp:'みどりのボタン',id:'Tombol hijau'}],
+       answer:1, exp:'「あたたかいのみものはあかいボタンです」— Minuman hangat = tombol merah. Minuman dingin = tombol biru.'},
+      {num:3, q_jp:'おつりはどこからでますか。', q_id:'Kembalian keluar dari mana?',
+       opts:[{jp:'したのくち',id:'Lubang bawah'},{jp:'みぎのところ',id:'Sisi kanan'},{jp:'ひだりのところ',id:'Sisi kiri'},{jp:'うえのくち',id:'Lubang atas'}],
+       answer:1, exp:'「おつりはみぎのところからでます」— Kembalian keluar dari みぎ (kanan). Benda yang dibeli keluar dari した (bawah).'},
+      {num:4, q_jp:'こしょうのとき、なんばんにでんわしますか。', q_id:'Jika rusak, nomor berapa yang dihubungi?',
+       opts:[{jp:'080-000-1234',id:'080-000-1234'},{jp:'03-1234-5678',id:'03-1234-5678'},{jp:'0120-000-111',id:'0120-000-111'},{jp:'090-111-2222',id:'090-111-2222'}],
+       answer:0, exp:'「こしょうのときは080-000-1234にれんらくしてください」— Saat ada kerusakan (こしょう) hubungi nomor 080-000-1234.'},
+      {num:5, q_jp:'つめたいのみものはどのボタンですか。', q_id:'Tombol mana untuk minuman dingin?',
+       opts:[{jp:'あかいボタン',id:'Tombol merah'},{jp:'みずいろのボタン',id:'Tombol biru'},{jp:'くろいボタン',id:'Tombol hitam'},{jp:'しろいボタン',id:'Tombol putih'}],
+       answer:1, exp:'「つめたいのみものはみずいろのボタンです」— Minuman dingin = tombol berwarna biru (みずいろ).'},
+      {num:6, q_jp:'このきかいでかったものはどこからとりますか。', q_id:'Barang yang dibeli diambil dari mana?',
+       opts:[{jp:'うえのくち',id:'Lubang atas'},{jp:'みぎのところ',id:'Sisi kanan'},{jp:'したのくち',id:'Lubang bawah'},{jp:'ひだりのところ',id:'Sisi kiri'}],
+       answer:2, exp:'「したのくちからものをとってください」— Ambil barang dari くち (lubang) di した (bawah).'},
     ]
   },
   {
@@ -4803,86 +4804,34 @@ Dari Risa`,
 　＜もちもの＞
 　　<ruby>運動<rt>うんどう</rt></ruby>のできるふく、タオル、<ruby>水<rt>みず</rt></ruby>
 
-　もうしこみ：７<ruby>月<rt>がつ</rt></ruby>１０<ruby>日<rt>にち</rt></ruby>までに<ruby>電話<rt>でんわ</rt></ruby>かウェブサイトから
-
-　みなさんのさんかをおまちしています！`,
-    passage_id: `【Pertandingan Olahraga Musim Panas】
-
-Ayo bergerak dengan senang! Olahraga bersama semua orang!
-
-Tanggal  : 20 Juli (Sabtu) pukul 09.00–15.00
-Tempat   : Pusat Olahraga Sakura
-Biaya    : Dewasa 1.000 yen, Anak-anak (12 tahun ke bawah) gratis
-
-<Cabang Olahraga>
-  Tenis, Bulu tangkis, Bola basket, Yoga
-
-<Perlengkapan>
-  Baju olahraga, Handuk, Air minum
-
-Pendaftaran: Sampai 10 Juli via telepon atau website
-
-Kami menunggu keikutsertaan Anda semua!`,
+　もうしこみ：７<ruby>月<rt>がつ</rt></ruby>１０<ruby>日<rt>にち</rt></ruby>までに<ruby>電話<rt>でんわ</rt></ruby>かウェブサイトから`,
+    passage_id: `【Pertandingan Olahraga Musim Panas】\n\nTanggal: 20 Juli (Sabtu) 09.00–15.00\nTempat: Pusat Olahraga Sakura\nBiaya: Dewasa 1.000 yen, Anak-anak (≤12 tahun) gratis\n\nCabang: Tenis, Bulu tangkis, Basket, Yoga\nPerlengkapan: Baju olahraga, Handuk, Air minum\n\nPendaftaran: Sampai 10 Juli via telepon atau website`,
     vocab: [
-      {jp:'たいかい', rom:'taikai', id:'pertandingan / turnamen'},
-      {jp:'さんかひ', rom:'sankahi', id:'biaya pendaftaran'},
-      {jp:'いか', rom:'ika', id:'ke bawah / kurang dari'},
-      {jp:'しゅもく', rom:'shumoku', id:'cabang / jenis (olahraga)'},
-      {jp:'おまちしています', rom:'omachi shite imasu', id:'menunggu (sopan)'},
+      {jp:'大会', rom:'taikai', id:'pertandingan / turnamen'},
+      {jp:'参加費', rom:'sankahi', id:'biaya pendaftaran'},
+      {jp:'以下', rom:'ika', id:'ke bawah / kurang dari'},
+      {jp:'種目', rom:'shumoku', id:'cabang olahraga'},
+      {jp:'無料', rom:'muryou', id:'gratis'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'たいかいはなんがつなんにちですか。',
-        q_id: 'Pertandingan diadakan tanggal berapa?',
-        opts: [
-          {jp:'６がつ２０にち', id:'20 Juni'},
-          {jp:'７がつ１０にち', id:'10 Juli'},
-          {jp:'７がつ２０にち', id:'20 Juli'},
-          {jp:'８がつ２０にち', id:'20 Agustus'},
-        ],
-        answer: 2,
-        exp: '「７がつ２０にち（どようび）」— Pertandingan diadakan pada tanggal 20 Juli (７がつ２０にち). Jangan tertukar dengan batas pendaftaran (10 Juli).'
-      },
-      {
-        num: 2,
-        q_jp: '１０さいのこどものさんかひはいくらですか。',
-        q_id: 'Berapa biaya untuk anak berusia 10 tahun?',
-        opts: [
-          {jp:'５００えん', id:'500 yen'},
-          {jp:'１０００えん', id:'1.000 yen'},
-          {jp:'５０００えん', id:'5.000 yen'},
-          {jp:'むりょう', id:'Gratis'},
-        ],
-        answer: 3,
-        exp: '「こども（１２さいいか）むりょう」— Anak-anak 12 tahun ke bawah (１２さいいか) gratis (むりょう). 10 tahun ≤ 12, jadi gratis.'
-      },
-      {
-        num: 3,
-        q_jp: 'もうしこみはいつまでですか。',
-        q_id: 'Batas pendaftaran sampai kapan?',
-        opts: [
-          {jp:'７がつ１０にち', id:'10 Juli'},
-          {jp:'７がつ１５にち', id:'15 Juli'},
-          {jp:'７がつ２０にち', id:'20 Juli'},
-          {jp:'８がつ１にち', id:'1 Agustus'},
-        ],
-        answer: 0,
-        exp: '「もうしこみ：７がつ１０にちまでに」— Pendaftaran (もうしこみ) sampai 10 Juli (７がつ１０にち). まで = sampai.'
-      },
-      {
-        num: 4,
-        q_jp: 'もちものにはいっていないものはどれですか。',
-        q_id: 'Barang apa yang TIDAK termasuk dalam perlengkapan yang harus dibawa?',
-        opts: [
-          {jp:'タオル', id:'Handuk'},
-          {jp:'みず', id:'Air minum'},
-          {jp:'うんどうのできるふく', id:'Baju olahraga'},
-          {jp:'くつ', id:'Sepatu'},
-        ],
-        answer: 3,
-        exp: 'Perlengkapan yang disebutkan: うんどうのできるふく (baju olahraga), タオル (handuk), みず (air minum). くつ (sepatu) tidak disebutkan.'
-      },
+      {num:1, q_jp:'たいかいはなんがつなんにちですか。', q_id:'Pertandingan diadakan tanggal berapa?',
+       opts:[{jp:'6がつ20にち',id:'20 Juni'},{jp:'7がつ10にち',id:'10 Juli'},{jp:'7がつ20にち',id:'20 Juli'},{jp:'8がつ20にち',id:'20 Agustus'}],
+       answer:2, exp:'「7がつ20にち（どようび）」— Pertandingan diadakan pada 20 Juli. Jangan keliru dengan batas pendaftaran (10 Juli).'},
+      {num:2, q_jp:'10さいのこどものさんかひはいくらですか。', q_id:'Berapa biaya untuk anak berusia 10 tahun?',
+       opts:[{jp:'500えん',id:'500 yen'},{jp:'1000えん',id:'1.000 yen'},{jp:'5000えん',id:'5.000 yen'},{jp:'むりょう',id:'Gratis'}],
+       answer:3, exp:'「こども（12さいいか）むりょう」— Anak-anak 12 tahun ke bawah gratis. 10歳 ≤ 12歳, jadi gratis.'},
+      {num:3, q_jp:'もうしこみはいつまでですか。', q_id:'Batas pendaftaran sampai kapan?',
+       opts:[{jp:'7がつ10にち',id:'10 Juli'},{jp:'7がつ15にち',id:'15 Juli'},{jp:'7がつ20にち',id:'20 Juli'},{jp:'8がつ1にち',id:'1 Agustus'}],
+       answer:0, exp:'「もうしこみ：7がつ10にちまでに」— Pendaftaran sampai 10 Juli. まで = sampai.'},
+      {num:4, q_jp:'もちものにはいっていないものはどれですか。', q_id:'Barang apa yang TIDAK termasuk perlengkapan?',
+       opts:[{jp:'タオル',id:'Handuk'},{jp:'みず',id:'Air minum'},{jp:'うんどうのできるふく',id:'Baju olahraga'},{jp:'くつ',id:'Sepatu'}],
+       answer:3, exp:'Perlengkapan disebutkan: ふく, タオル, みず. くつ (sepatu) tidak disebutkan dalam daftar もちもの.'},
+      {num:5, q_jp:'たいかいはなんじからなんじまでですか。', q_id:'Pertandingan dari jam berapa sampai jam berapa?',
+       opts:[{jp:'8じから3じ',id:'Jam 8 sampai 3'},{jp:'9じからごご3じ',id:'Jam 9 pagi sampai 3 sore'},{jp:'10じから5じ',id:'Jam 10 sampai 5'},{jp:'9じから5じ',id:'Jam 9 sampai 5'}],
+       answer:1, exp:'「ごぜん9じ〜ごご3じ」— Dari jam 9 pagi (ごぜん) sampai jam 3 sore (ごご).'},
+      {num:6, q_jp:'このたいかいのしゅもくはいくつありますか。', q_id:'Ada berapa cabang olahraga dalam pertandingan ini?',
+       opts:[{jp:'2つ',id:'2 cabang'},{jp:'3つ',id:'3 cabang'},{jp:'4つ',id:'4 cabang'},{jp:'5つ',id:'5 cabang'}],
+       answer:2, exp:'Cabang yang disebutkan: テニス, バドミントン, バスケットボール, ヨガ = 4 cabang (4つ).'},
     ]
   },
   {
@@ -4901,67 +4850,37 @@ Kami menunggu keikutsertaan Anda semua!`,
 　たびびと：わかりました。きっぷはここで<ruby>買<rt>か</rt></ruby>えますか。
 　がかり　：はい、あのきかいでも<ruby>買<rt>か</rt></ruby>えますし、<ruby>窓口<rt>まどぐち</rt></ruby>でも<ruby>買<rt>か</rt></ruby>えます。
 　たびびと：ありがとうございました。`,
-    passage_id: `Di Pusat Informasi Stasiun
-
-Wisatawan : Permisi. Kereta ini berangkat jam berapa?
-Petugas   : Yang berikutnya jam 10.15.
-Wisatawan : Butuh berapa menit sampai Shinjuku?
-Petugas   : Naik kereta biasa sekitar 40 menit. Kalau kereta ekspres 25 menit.
-Wisatawan : Kereta ekspres lebih cepat ya. Kereta ekspres berikutnya jam berapa?
-Petugas   : Jam 10.25.
-Wisatawan : Mengerti. Bisa beli tiket di sini?
-Petugas   : Ya, bisa beli di mesin itu, atau juga bisa di loket.
-Wisatawan : Terima kasih.`,
+    passage_id: `Di Pusat Informasi Stasiun\n\nWisatawan: Permisi. Kereta ini berangkat jam berapa?\nPetugas: Yang berikutnya jam 10.15.\nWisatawan: Butuh berapa menit sampai Shinjuku?\nPetugas: Naik kereta biasa sekitar 40 menit. Kereta ekspres 25 menit.\nWisatawan: Kereta ekspres lebih cepat ya. Kereta ekspres berikutnya jam berapa?\nPetugas: Jam 10.25.\nWisatawan: Mengerti. Bisa beli tiket di sini?\nPetugas: Ya, bisa di mesin itu atau di loket.\nWisatawan: Terima kasih.`,
     vocab: [
-      {jp:'たびびと', rom:'tabibito', id:'wisatawan / musafir'},
+      {jp:'たびびと', rom:'tabibito', id:'wisatawan'},
       {jp:'がかり', rom:'gakari', id:'petugas'},
-      {jp:'ふつうでんしゃ', rom:'futsuu densha', id:'kereta biasa'},
-      {jp:'きゅうこう', rom:'kyuukou', id:'kereta ekspres'},
-      {jp:'まどぐち', rom:'madoguchi', id:'loket / jendela layanan'},
+      {jp:'普通電車', rom:'futsuu densha', id:'kereta biasa'},
+      {jp:'急行', rom:'kyuukou', id:'kereta ekspres'},
+      {jp:'窓口', rom:'madoguchi', id:'loket'},
     ],
     questions: [
-      {
-        num: 1,
-        q_jp: 'ふつうでんしゃでしんじゅくまでなんぷんかかりますか。',
-        q_id: 'Berapa menit waktu tempuh ke Shinjuku naik kereta biasa?',
-        opts: [
-          {jp:'２５ふん', id:'25 menit'},
-          {jp:'３０ふん', id:'30 menit'},
-          {jp:'４０ふん', id:'40 menit'},
-          {jp:'４５ふん', id:'45 menit'},
-        ],
-        answer: 2,
-        exp: '「ふつうでんしゃで４０ぷんぐらいです」— Kereta biasa (ふつうでんしゃ) membutuhkan sekitar 40 menit (４０ぷん). ぐらい = sekitar/kira-kira.'
-      },
-      {
-        num: 2,
-        q_jp: 'つぎのきゅうこうはなんじなんぷんですか。',
-        q_id: 'Kereta ekspres berikutnya jam berapa?',
-        opts: [
-          {jp:'１０じ１５ふん', id:'Jam 10.15'},
-          {jp:'１０じ２５ふん', id:'Jam 10.25'},
-          {jp:'１０じ４０ふん', id:'Jam 10.40'},
-          {jp:'１１じ', id:'Jam 11.00'},
-        ],
-        answer: 1,
-        exp: '「きゅうこうのつぎはなんじですか。１０じ２５ふんです」— Kereta ekspres (きゅうこう) berikutnya jam 10.25 (１０じ２５ふん).'
-      },
-      {
-        num: 3,
-        q_jp: 'きっぷはどこでかえますか。ただしくないものをえらんでください。',
-        q_id: 'Di mana TIDAK bisa membeli tiket?',
-        opts: [
-          {jp:'きかい', id:'Mesin'},
-          {jp:'まどぐち', id:'Loket'},
-          {jp:'インターネット', id:'Internet'},
-          {jp:'１と２のりょうほう', id:'Mesin dan loket keduanya bisa'},
-        ],
-        answer: 2,
-        exp: '「あのきかいでもかえますし、まどぐちでもかえます」— Tiket bisa dibeli di mesin (きかい) dan loket (まどぐち). Internet tidak disebutkan, jadi itu yang TIDAK bisa.'
-      },
+      {num:1, q_jp:'ふつうでんしゃでしんじゅくまでなんぷんかかりますか。', q_id:'Berapa menit naik kereta biasa ke Shinjuku?',
+       opts:[{jp:'25ふん',id:'25 menit'},{jp:'30ふん',id:'30 menit'},{jp:'40ふん',id:'40 menit'},{jp:'45ふん',id:'45 menit'}],
+       answer:2, exp:'「ふつうでんしゃで40ぷんぐらいです」— Kereta biasa membutuhkan sekitar 40 menit. ぐらい = sekitar/kira-kira.'},
+      {num:2, q_jp:'つぎのきゅうこうはなんじなんぷんですか。', q_id:'Kereta ekspres berikutnya jam berapa?',
+       opts:[{jp:'10じ15ふん',id:'Jam 10.15'},{jp:'10じ25ふん',id:'Jam 10.25'},{jp:'10じ40ふん',id:'Jam 10.40'},{jp:'11じ',id:'Jam 11.00'}],
+       answer:1, exp:'「きゅうこうのつぎは10じ25ふんです」— Kereta ekspres berikutnya jam 10.25.'},
+      {num:3, q_jp:'きっぷはどこでかえますか。（ただしくないものをえらんでください）', q_id:'Di mana TIDAK bisa membeli tiket?',
+       opts:[{jp:'きかい',id:'Mesin'},{jp:'まどぐち',id:'Loket'},{jp:'インターネット',id:'Internet'},{jp:'1と2のりょうほう',id:'Mesin dan loket keduanya bisa'}],
+       answer:2, exp:'「あのきかいでもかえますし、まどぐちでもかえます」— Bisa di mesin dan loket. Internet tidak disebutkan.'},
+      {num:4, q_jp:'きゅうこうとふつうでんしゃ、どちらがはやいですか。', q_id:'Mana yang lebih cepat, ekspres atau biasa?',
+       opts:[{jp:'ふつうでんしゃのほうがはやい',id:'Kereta biasa lebih cepat'},{jp:'きゅうこうのほうがはやい',id:'Kereta ekspres lebih cepat'},{jp:'おなじぐらい',id:'Hampir sama'},{jp:'わかりません',id:'Tidak tahu'}],
+       answer:1, exp:'「きゅうこうのほうがはやいですね」— Wisatawan sendiri yang menyimpulkan きゅうこう lebih cepat. 25 menit vs 40 menit.'},
+      {num:5, q_jp:'つぎのふつうでんしゃはなんじですか。', q_id:'Kereta biasa berikutnya jam berapa?',
+       opts:[{jp:'10じ15ふん',id:'Jam 10.15'},{jp:'10じ25ふん',id:'Jam 10.25'},{jp:'11じ',id:'Jam 11.00'},{jp:'わかりません',id:'Tidak disebutkan'}],
+       answer:0, exp:'「つぎは10じ15ふんです」— Petugas menyebut kereta berikutnya jam 10.15 (bukan spesifik jenis kereta, tapi inilah yang pertama disebut).'},
+      {num:6, q_jp:'このかいわはどこでしていますか。', q_id:'Di mana percakapan ini berlangsung?',
+       opts:[{jp:'レストランで',id:'Di restoran'},{jp:'えきのインフォメーションセンターで',id:'Di pusat informasi stasiun'},{jp:'でんしゃのなかで',id:'Di dalam kereta'},{jp:'ホテルで',id:'Di hotel'}],
+       answer:1, exp:'「えきのインフォメーションセンターで」— Tertulis jelas di awal percakapan bahwa ini berlangsung di pusat informasi stasiun.'},
     ]
   },
 ];
+
 
 // ===== DOKKAI FUNCTIONS =====
 let dokkaiAnswered = {}; // {teksId_qNum: selectedIdx}
