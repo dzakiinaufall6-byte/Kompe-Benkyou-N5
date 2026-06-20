@@ -267,7 +267,7 @@
     margin-bottom: 2rem;
   }
   /* Card lebar penuh — pastikan selalu 3 kolom */
-  .menu-card[style*="span 3"] { grid-column: 1 / -1; }
+  .menu-card[style*="span 3"] { grid-column: 1 / -1 !important; }
   .menu-card {
     background: #fff;
     border: 1px solid var(--border);
@@ -1661,7 +1661,7 @@
     .sidebar-stats { margin: 0 1rem 0.5rem; }
 
     /* --- Remove grid colspan on mobile --- */
-    .menu-card[style*="span 3"] { grid-column: span 2; }
+    .menu-card[style*="span 3"] { grid-column: 1 / -1 !important; }
     .stats-grid [style*="span 2"] { grid-column: span 2; }
   }
 
@@ -1866,11 +1866,221 @@
   .bab-nav-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
   .bab-nav-btn:disabled { opacity: 0.35; cursor: default; }
   .bab-nav-btn:disabled:hover { background: #fff; color: var(--ink2); border-color: var(--border); }
+
+  /* === LEVEL SWITCHER === */
+  .level-switcher {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-right: 4px;
+  }
+  .level-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    color: var(--ink3);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+  .level-btn:hover { background: var(--bg2); color: var(--ink); }
+  .level-btn.active-n5 { background: var(--gold); color: #fff; border-color: var(--gold); }
+  .level-btn.active-n4 { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+
+  /* N4 color overrides */
+  body.level-n4 .hero-banner { background: linear-gradient(135deg, #1E0A3C 0%, #2D1060 100%); }
+  body.level-n4 .hero-banner::before { content: '語'; }
+  body.level-n4 #sidebar { background: linear-gradient(180deg, #1E0A3C 0%, #150729 100%); }
+  body.level-n4 .nav-section-label { color: rgba(200,160,255,0.5); }
+  body.level-n4 .nav-item:hover, body.level-n4 .nav-item.active { background: rgba(124,58,237,0.15); color: #C084FC; }
+  body.level-n4 .nav-item.active { border-left: 3px solid #7C3AED; }
+
+  /* N4 section badge */
+  .n4-badge {
+    display: inline-block;
+    background: #7C3AED;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-family: 'DM Mono', monospace;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+
+  /* N4 pages hidden by default */
+  #n4-pages { display: none; }
+  #nav-n4 { display: none; }
+
+  /* === N4 MISSING STYLES FIX === */
+
+  /* Hero banner sub elements (dipakai N4 home) */
+  .hero-left { flex: 1; min-width: 0; }
+  .hero-sub { font-size: 13.5px; color: rgba(255,255,255,0.65); margin-top: 6px; line-height: 1.6; max-width: 480px; }
+
+  /* Vocab controls wrapper (N4 vocab page) */
+  .vocab-controls { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .n4-vocab-search-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-family: 'Noto Sans JP', sans-serif;
+    outline: none;
+    background: #fff;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .n4-vocab-search-input:focus { border-color: #7C3AED; }
+  .vocab-filter-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .vocab-filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink2);
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.15s;
+    box-shadow: var(--shadow-sm);
+  }
+  .vocab-filter-btn:hover { background: rgba(124,58,237,0.08); border-color: #7C3AED; color: #7C3AED; }
+  .vocab-filter-btn.active { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+  .vocab-empty { text-align: center; padding: 2.5rem 1rem; color: var(--ink3); font-size: 13.5px; }
+
+  /* Vocab category badge inline (N4 vocab list items) */
+  .vocab-cat-badge {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Grammar examples block (N4 grammar — different structure from N5) */
+  .grammar-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0.875rem;
+    padding-top: 0.875rem;
+    border-top: 1px dashed var(--border);
+  }
+  .grammar-example {
+    background: var(--bg2);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid #7C3AED;
+  }
+  .ex-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-bottom: 3px;
+  }
+  .ex-rom {
+    font-family: 'DM Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink3);
+    margin-bottom: 4px;
+  }
+  .ex-id {
+    font-size: 12.5px;
+    color: var(--ink2);
+    font-style: italic;
+  }
+
+  /* Minna N4 section sub-blocks */
+  .bab-tema {
+    font-size: 12.5px;
+    color: var(--ink3);
+    margin-top: 4px;
+  }
+  .minna-pola, .minna-contoh, .minna-kaiwa, .minna-vocab {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .minna-pola h4, .minna-contoh h4, .minna-kaiwa h4, .minna-vocab h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #7C3AED;
+    margin-bottom: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .kaiwa-id {
+    font-size: 12px;
+    color: var(--ink3);
+    margin-top: 2px;
+  }
+
+  /* Dokkai / Choukai header-left wrapper (N4 versions) */
+  .dokkai-header-left, .choukai-header-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Kana table row label */
+  .kana-row-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink3);
+    text-align: center;
+    vertical-align: middle;
+    padding: 0 8px;
+    white-space: nowrap;
+  }
+
+  /* === N4 THEME REFINEMENTS === */
+  body.level-n4 .menu-card:hover { border-color: rgba(124,58,237,0.3); box-shadow: 0 8px 24px rgba(124,58,237,0.12); }
+  body.level-n4 .stat-card { border-top: 3px solid #7C3AED; }
+  body.level-n4 .section-header h2 { color: #4C1D95; }
+  body.level-n4 .tip-card { background: #F3EFFF; border-color: rgba(124,58,237,0.2); }
+  body.level-n4 .tip-card .tip-text { color: #4C1D95; }
+  body.level-n4 .grammar-pattern { color: #7C3AED; }
+  body.level-n4 .vocab-word { color: #4C1D95; }
+  body.level-n4 .kanji-tile:hover { border-color: rgba(124,58,237,0.4); }
+  body.level-n4 .minna-tab.active { background: #7C3AED; border-color: #7C3AED; }
+  body.level-n4 .bab-nav-btn:hover { background: #7C3AED; border-color: #7C3AED; }
+  body.level-n4 .fc-btn.good { background: #7C3AED; }
+
+  /* Ensure N4 pages container behaves like N5 content-area */
+  #n4-pages {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 1.75rem 2rem 4rem;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1024px) {
+    #n4-pages { padding: 1.25rem 1.5rem 3rem; }
+  }
+  @media (max-width: 768px) {
+    #n4-pages { padding: 1rem 0.875rem 4rem; max-width: 100%; }
+    .hero-sub { font-size: 12.5px; }
+    .grammar-example { padding: 0.625rem 0.75rem; }
+    .ex-jp { font-size: 13.5px; }
+    .minna-pola, .minna-contoh, .minna-kaiwa, .minna-vocab { padding: 1rem; }
+  }
+
 </style>
 </head>
 <body>
 <!-- SIDEBAR -->
 <nav id="sidebar">
+  <div id="n5-nav">
   <div class="sidebar-logo">
     <div class="jp-title">日本語 N5</div>
     <div class="sub">JLPT Study Guide</div>
@@ -1945,7 +2155,59 @@
       <span class="nav-icon">💡</span> Tips Belajar
     </div>
   </div>
-  <div class="nav-section" style="margin-top:auto;padding-top:0.5rem;">
+  </div><!-- end n5-nav -->
+  <!-- N4 NAV (hidden by default) -->
+  <div id="nav-n4" style="display:none">
+    <div class="nav-section">
+      <div class="nav-section-label">JLPT N4 <span class="n4-badge">N4</span></div>
+      <div class="nav-item" onclick="goPageN4('n4-home')">
+        <span class="nav-icon">🏠</span> Beranda N4
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Kana & Kanji</div>
+      <div class="nav-item" onclick="goPageN4('n4-hiragana')">
+        <span class="nav-icon">あ</span> Hiragana + Kombinasi
+        <span class="nav-badge">46+</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-katakana')">
+        <span class="nav-icon">ア</span> Katakana + Kombinasi
+        <span class="nav-badge">46+</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-kanji')">
+        <span class="nav-icon">漢</span> Kanji N4
+        <span class="nav-badge">168</span>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Materi</div>
+      <div class="nav-item" onclick="goPageN4('n4-vocab')">
+        <span class="nav-icon">📚</span> Kosakata N4
+        <span class="nav-badge">113 kata</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-grammar')">
+        <span class="nav-icon">📝</span> Tata Bahasa N4
+        <span class="nav-badge">30 pola</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-flashcard')">
+        <span class="nav-icon">🃏</span> Flashcard N4
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-minna')">
+        <span class="nav-icon">📗</span> Minna N4
+        <span class="nav-badge">Bab 26–35</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-dokkai')">
+        <span class="nav-icon">📖</span> Dokkai N4
+        <span class="nav-badge">3 teks</span>
+      </div>
+      <div class="nav-item" onclick="goPageN4('n4-choukai')">
+        <span class="nav-icon">🎧</span> Choukai N4
+        <span class="nav-badge">3 video</span>
+      </div>
+    </div>
+  </div>
+  <!-- END N4 NAV -->
+    <div class="nav-section" style="margin-top:auto;padding-top:0.5rem;">
     <div class="nav-section-label">Pengaturan</div>
     <div class="nav-item" onclick="resetAllProgress()" style="color:rgba(255,100,100,0.7)">
       <span class="nav-icon">🔄</span> Reset Progress
@@ -1963,6 +2225,10 @@
       <span class="topbar-jp" id="page-jp">べんきょう</span>
     </div>
     <div class="topbar-right">
+      <div class="level-switcher">
+        <button class="level-btn active-n5" id="btn-n5" onclick="switchLevel('n5')">N5</button>
+        <button class="level-btn" id="btn-n4" onclick="switchLevel('n4')">N4</button>
+      </div>
       <div class="timer-pill" id="timer-pill" onclick="toggleTimer()" title="Klik untuk mulai/pause timer belajar">
         <span class="timer-dot"></span>
         <span id="timer-display">00:00</span>
@@ -1971,7 +2237,7 @@
     </div>
   </div>
 
-  <div class="content-area">
+  <div class="content-area" id="n5-pages">
 
     <!-- HOME -->
     <div class="page active" id="page-home">
@@ -2429,6 +2695,205 @@
     </div>
 
   </div>
+    <!-- ====== N4 PAGES ====== -->
+    <div id="n4-pages" style="display:none">
+
+    <!-- N4 HOME -->
+    <div class="page" id="page-n4-home">
+      <div class="hero-banner" style="background:linear-gradient(135deg,#1E0A3C 0%,#4C1D95 100%)">
+        <div class="hero-left">
+          <div class="hero-label">JLPT N4 <span class="n4-badge">N4</span></div>
+          <h1>Kompe Benkyou <span style="color:#C084FC">N4</span></h1>
+          <p class="hero-sub">Tingkat lanjutan — kuasai grammar pasif, kausatif, keigo, dan lebih banyak lagi!</p>
+        </div>
+      </div>
+      <div class="stats-grid" style="margin-bottom:1.5rem">
+        <div class="stat-card"><div class="stat-val">168</div><div class="stat-sub">kanji N4</div></div>
+        <div class="stat-card"><div class="stat-val">113</div><div class="stat-sub">kosakata N4</div></div>
+        <div class="stat-card"><div class="stat-val">30</div><div class="stat-sub">pola grammar</div></div>
+        <div class="stat-card"><div class="stat-val">10</div><div class="stat-sub">bab Minna N4</div></div>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card" onclick="goPageN4('n4-hiragana')">
+          <span class="card-emoji">あ</span>
+          <div class="jp-sub">ひらがな</div>
+          <h3>Hiragana + Kombinasi</h3>
+          <p>Semua hiragana dasar + kombinasi きゃ, しゃ, ちゃ, にゃ dll.</p>
+        </div>
+        <div class="menu-card" onclick="goPageN4('n4-katakana')">
+          <span class="card-emoji">ア</span>
+          <div class="jp-sub">カタカナ</div>
+          <h3>Katakana + Kombinasi</h3>
+          <p>Semua katakana dasar + kombinasi khusus: ファ, フィ, フェ, フォ dll.</p>
+        </div>
+        <div class="menu-card" onclick="goPageN4('n4-kanji')">
+          <span class="card-emoji">漢</span>
+          <div class="jp-sub">かんじ</div>
+          <h3>Kanji N4</h3>
+          <p>168 kanji level N4 — lebih kompleks dari N5 dengan makna lebih kaya.</p>
+        </div>
+        <div class="menu-card" onclick="goPageN4('n4-vocab')">
+          <span class="card-emoji">📚</span>
+          <div class="jp-sub">ごい</div>
+          <h3>Kosakata N4</h3>
+          <p>113 kata kunci N4 — verba, adjektiva, nomina, dan adverbia tingkat lanjut.</p>
+        </div>
+        <div class="menu-card" onclick="goPageN4('n4-grammar')">
+          <span class="card-emoji">📝</span>
+          <div class="jp-sub">ぶんぽう</div>
+          <h3>Tata Bahasa N4</h3>
+          <p>30 pola grammar N4 — pasif, kausatif, kondisional, keigo, dan lainnya.</p>
+        </div>
+        <div class="menu-card" onclick="goPageN4('n4-flashcard')">
+          <span class="card-emoji">🃏</span>
+          <div class="jp-sub">フラッシュカード</div>
+          <h3>Flashcard N4</h3>
+          <p>Latih kosakata N4 dengan kartu bolak-balik 3D interaktif.</p>
+        </div>
+        <div class="menu-card" style="grid-column:span 3" onclick="goPageN4('n4-minna')">
+          <span class="card-emoji">📗</span>
+          <div class="jp-sub">みんなの日本語</div>
+          <h3>Minna no Nihongo — Bab 26–35</h3>
+          <p>Materi Minna no Nihongo level N4: pola kalimat, kosakata, percakapan, dari Bab 26 sampai Bab 35.</p>
+        </div>
+        <div class="menu-card" style="grid-column:span 3" onclick="goPageN4('n4-dokkai')">
+          <span class="card-emoji">📖</span>
+          <div class="jp-sub">どっかい</div>
+          <h3>Dokkai N4</h3>
+          <p>3 teks bacaan N4 — email resmi, artikel berita, peraturan. Soal pilihan ganda + pembahasan.</p>
+        </div>
+        <div class="menu-card" style="grid-column:span 3" onclick="goPageN4('n4-choukai')">
+          <span class="card-emoji">🎧</span>
+          <div class="jp-sub">ちょうかい</div>
+          <h3>Choukai N4</h3>
+          <p>3 video latihan mendengar N4 — percakapan formal, berita, konsultasi. Soal + pembahasan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- N4 HIRAGANA -->
+    <div class="page" id="page-n4-hiragana">
+      <div class="section-header"><h2>あ Hiragana + Kombinasi <span class="n4-badge">N4</span></h2></div>
+      <div class="tip-card"><div class="tip-icon">💡</div><div class="tip-text">N4 menambahkan kombinasi seperti <strong>きゃ・しゃ・ちゃ・にゃ・ひゃ・みゃ・りゃ・ぎゃ・じゃ・びゃ・ぴゃ</strong>. Kuasai ini untuk membaca kata-kata N4!</div></div>
+      <div id="n4-hiragana-table"></div>
+    </div>
+
+    <!-- N4 KATAKANA -->
+    <div class="page" id="page-n4-katakana">
+      <div class="section-header"><h2>ア Katakana + Kombinasi <span class="n4-badge">N4</span></h2></div>
+      <div class="tip-card"><div class="tip-icon">💡</div><div class="tip-text">N4 menambahkan kombinasi khusus: <strong>キャ・シャ・チャ・FA (ファ・フィ・フェ・フォ)</strong>. Penting untuk kata serapan asing!</div></div>
+      <div id="n4-katakana-table"></div>
+    </div>
+
+    <!-- N4 KANJI -->
+    <div class="page" id="page-n4-kanji">
+      <div class="section-header"><h2>漢 Kanji N4 <span class="n4-badge">168 kanji</span></h2></div>
+      <div id="n4-kanji-grid"></div>
+    </div>
+
+    <!-- N4 VOCAB -->
+    <div class="page" id="page-n4-vocab">
+      <div class="section-header"><h2>📚 Kosakata N4 <span class="n4-badge">N4</span></h2></div>
+      <div class="vocab-controls">
+        <input type="text" class="n4-vocab-search-input" id="n4-vocab-search" placeholder="Cari kata Jepang / Indonesia…" oninput="filterN4Vocab()">
+        <div class="vocab-filter-row" id="n4-vocab-cats"></div>
+      </div>
+      <div class="vocab-list" id="n4-vocab-list"></div>
+    </div>
+
+    <!-- N4 GRAMMAR -->
+    <div class="page" id="page-n4-grammar">
+      <div class="section-header"><h2>📝 Tata Bahasa N4 <span class="n4-badge">30 pola</span></h2></div>
+      <div id="n4-grammar-list"></div>
+    </div>
+
+    <!-- N4 FLASHCARD -->
+    <div class="page" id="page-n4-flashcard">
+      <div class="section-header"><h2>🃏 Flashcard Kosakata N4 <span class="n4-badge">N4</span></h2></div>
+      <div class="tip-card"><div class="tip-icon">🃏</div><div class="tip-text">Klik kartu untuk melihat arti. Pilih <strong>✓ Hafal</strong> atau <strong>✗ Ulangi</strong> untuk melacak progress belajar kosakata N4!</div></div>
+      <div class="minna-fc-controls">
+        <div class="minna-fc-field">
+          <label>Kategori</label>
+          <select id="n4-fc-cat" onchange="initN4FC()">
+            <option value="all">Semua Kategori</option>
+            <option value="Verba">Verba</option>
+            <option value="Adjektiva">Adjektiva</option>
+            <option value="Nomina">Nomina</option>
+            <option value="Adverbia">Adverbia</option>
+          </select>
+        </div>
+        <div class="minna-fc-field">
+          <label>Urutan</label>
+          <select id="n4-fc-order" onchange="initN4FC()">
+            <option value="shuffle">Acak</option>
+            <option value="order">Berurutan</option>
+          </select>
+        </div>
+        <span class="fc-counter-txt" id="n4-fc-counter">0 / 0</span>
+      </div>
+      <div id="n4-fc-main">
+        <div class="fc-scene" onclick="flipN4Card()" id="n4-fc-scene">
+          <div class="fc-inner" id="n4-fc-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-char" id="n4-fc-front" style="font-size:32px;text-align:center;padding:0 1rem;line-height:1.4"></div>
+              <div class="fc-hint">Klik untuk lihat arti</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-reading" id="n4-fc-reading"></div>
+              <div class="fc-meaning" id="n4-fc-meaning" style="font-size:20px"></div>
+              <div class="fc-on" id="n4-fc-cat-label"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-actions fc-actions-hidden" id="n4-fc-actions">
+          <button class="fc-btn again" onclick="n4FCAnswer(false)">✗ Ulangi</button>
+          <button class="fc-btn good" onclick="n4FCAnswer(true)">✓ Hafal</button>
+        </div>
+        <div style="text-align:center;display:none" id="n4-fc-next-wrap">
+          <button class="fc-btn next" onclick="n4FCNext()">Kartu Berikutnya →</button>
+        </div>
+        <div class="fc-progress-row" id="n4-fc-dots"></div>
+      </div>
+      <div class="fc-result" id="n4-fc-result">
+        <div class="fc-result-emoji">🎉</div>
+        <div class="fc-result-title">Sesi Selesai!</div>
+        <div class="fc-result-stats">
+          <div class="fc-result-stat green"><div class="rsv" id="n4-fc-res-good">0</div><div class="rsl">Hafal</div></div>
+          <div class="fc-result-stat red"><div class="rsv" id="n4-fc-res-bad">0</div><div class="rsl">Ulangi</div></div>
+        </div>
+        <button class="btn-fc-restart" onclick="initN4FC()">🔄 Mulai Lagi</button>
+      </div>
+    </div>
+
+    <!-- N4 MINNA -->
+    <div class="page" id="page-n4-minna">
+      <div class="section-header"><h2>📗 Minna no Nihongo — Bab 26–35 <span class="n4-badge">N4</span></h2></div>
+      <div id="n4-minna-content"></div>
+    </div>
+
+    <!-- N4 DOKKAI -->
+    <div class="page" id="page-n4-dokkai">
+      <div class="tip-card" style="background:#F3EFFF;border-color:rgba(124,58,237,0.2)">
+        <div class="tip-icon">📖</div>
+        <div class="tip-text" style="color:#4C1D95">Latihan <strong>membaca (読解 Dokkai)</strong> JLPT N4 — teks lebih panjang dan formal dari N5. Jawab soal lalu cek skor dan pembahasan. <span class="n4-badge">N4</span></div>
+      </div>
+      <div class="dokkai-tabs" id="n4-dokkai-tabs"></div>
+      <div id="n4-dokkai-content"></div>
+    </div>
+
+    <!-- N4 CHOUKAI -->
+    <div class="page" id="page-n4-choukai">
+      <div class="tip-card" style="background:#F3EFFF;border-color:rgba(124,58,237,0.2)">
+        <div class="tip-icon">🎧</div>
+        <div class="tip-text" style="color:#4C1D95">Latihan <strong>mendengar (聴解 Choukai)</strong> JLPT N4 — percakapan lebih formal, keigo, dan berita. <span class="n4-badge">N4</span></div>
+      </div>
+      <div class="choukai-tabs" id="n4-choukai-tabs"></div>
+      <div id="n4-choukai-content"></div>
+    </div>
+
+    </div>
+    <!-- ====== END N4 PAGES ====== -->
+
 </main>
 
 <!-- KANJI MODAL -->
@@ -6824,9 +7289,10 @@ const PAGE_META = {
 };
 
 function goPage(name) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('#n5-pages .page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#n5-nav .nav-item').forEach(n=>n.classList.remove('active'));
+  const pg = document.getElementById('page-'+name);
+  if (pg) pg.classList.add('active');
   const m = PAGE_META[name];
   document.getElementById('page-title').textContent = m.title;
   document.getElementById('page-jp').textContent = m.jp;
@@ -7120,6 +7586,1364 @@ document.querySelectorAll('.nav-item').forEach(el => {
 
 // ===== START =====
 init();
+
+
+// ===== N4 DATA =====
+const N4_HIRAGANA = [
+  {row:'Vokal', chars:[{c:'あ',r:'a'},{c:'い',r:'i'},{c:'う',r:'u'},{c:'え',r:'e'},{c:'お',r:'o'}]},
+  {row:'K', chars:[{c:'か',r:'ka'},{c:'き',r:'ki'},{c:'く',r:'ku'},{c:'け',r:'ke'},{c:'こ',r:'ko'}]},
+  {row:'S', chars:[{c:'さ',r:'sa'},{c:'し',r:'shi'},{c:'す',r:'su'},{c:'せ',r:'se'},{c:'そ',r:'so'}]},
+  {row:'T', chars:[{c:'た',r:'ta'},{c:'ち',r:'chi'},{c:'つ',r:'tsu'},{c:'て',r:'te'},{c:'と',r:'to'}]},
+  {row:'N', chars:[{c:'な',r:'na'},{c:'に',r:'ni'},{c:'ぬ',r:'nu'},{c:'ね',r:'ne'},{c:'の',r:'no'}]},
+  {row:'H', chars:[{c:'は',r:'ha'},{c:'ひ',r:'hi'},{c:'ふ',r:'fu'},{c:'へ',r:'he'},{c:'ほ',r:'ho'}]},
+  {row:'M', chars:[{c:'ま',r:'ma'},{c:'み',r:'mi'},{c:'む',r:'mu'},{c:'め',r:'me'},{c:'も',r:'mo'}]},
+  {row:'Y', chars:[{c:'や',r:'ya'},{c:'',r:''},{c:'ゆ',r:'yu'},{c:'',r:''},{c:'よ',r:'yo'}]},
+  {row:'R', chars:[{c:'ら',r:'ra'},{c:'り',r:'ri'},{c:'る',r:'ru'},{c:'れ',r:'re'},{c:'ろ',r:'ro'}]},
+  {row:'W', chars:[{c:'わ',r:'wa'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'を',r:'wo'}]},
+  {row:'N', chars:[{c:'ん',r:'n'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'',r:''}]},
+  {row:'G', chars:[{c:'が',r:'ga'},{c:'ぎ',r:'gi'},{c:'ぐ',r:'gu'},{c:'げ',r:'ge'},{c:'ご',r:'go'}]},
+  {row:'Z', chars:[{c:'ざ',r:'za'},{c:'じ',r:'ji'},{c:'ず',r:'zu'},{c:'ぜ',r:'ze'},{c:'ぞ',r:'zo'}]},
+  {row:'D', chars:[{c:'だ',r:'da'},{c:'ぢ',r:'ji'},{c:'づ',r:'zu'},{c:'で',r:'de'},{c:'ど',r:'do'}]},
+  {row:'B', chars:[{c:'ば',r:'ba'},{c:'び',r:'bi'},{c:'ぶ',r:'bu'},{c:'べ',r:'be'},{c:'ぼ',r:'bo'}]},
+  {row:'P', chars:[{c:'ぱ',r:'pa'},{c:'ぴ',r:'pi'},{c:'ぷ',r:'pu'},{c:'ぺ',r:'pe'},{c:'ぽ',r:'po'}]},
+  {row:'KY', chars:[{c:'きゃ',r:'kya'},{c:'',r:''},{c:'きゅ',r:'kyu'},{c:'',r:''},{c:'きょ',r:'kyo'}]},
+  {row:'SH', chars:[{c:'しゃ',r:'sha'},{c:'',r:''},{c:'しゅ',r:'shu'},{c:'',r:''},{c:'しょ',r:'sho'}]},
+  {row:'CH', chars:[{c:'ちゃ',r:'cha'},{c:'',r:''},{c:'ちゅ',r:'chu'},{c:'',r:''},{c:'ちょ',r:'cho'}]},
+  {row:'NY', chars:[{c:'にゃ',r:'nya'},{c:'',r:''},{c:'にゅ',r:'nyu'},{c:'',r:''},{c:'にょ',r:'nyo'}]},
+  {row:'RY', chars:[{c:'りゃ',r:'rya'},{c:'',r:''},{c:'りゅ',r:'ryu'},{c:'',r:''},{c:'りょ',r:'ryo'}]},
+  {row:'GY', chars:[{c:'ぎゃ',r:'gya'},{c:'',r:''},{c:'ぎゅ',r:'gyu'},{c:'',r:''},{c:'ぎょ',r:'gyo'}]},
+  {row:'JY', chars:[{c:'じゃ',r:'ja'},{c:'',r:''},{c:'じゅ',r:'ju'},{c:'',r:''},{c:'じょ',r:'jo'}]},
+  {row:'BY', chars:[{c:'びゃ',r:'bya'},{c:'',r:''},{c:'びゅ',r:'byu'},{c:'',r:''},{c:'びょ',r:'byo'}]},
+  {row:'PY', chars:[{c:'ぴゃ',r:'pya'},{c:'',r:''},{c:'ぴゅ',r:'pyu'},{c:'',r:''},{c:'ぴょ',r:'pyo'}]},
+];
+const N4_KATAKANA = [
+  {row:'Vokal', chars:[{c:'ア',r:'a'},{c:'イ',r:'i'},{c:'ウ',r:'u'},{c:'エ',r:'e'},{c:'オ',r:'o'}]},
+  {row:'K', chars:[{c:'カ',r:'ka'},{c:'キ',r:'ki'},{c:'ク',r:'ku'},{c:'ケ',r:'ke'},{c:'コ',r:'ko'}]},
+  {row:'S', chars:[{c:'サ',r:'sa'},{c:'シ',r:'shi'},{c:'ス',r:'su'},{c:'セ',r:'se'},{c:'ソ',r:'so'}]},
+  {row:'T', chars:[{c:'タ',r:'ta'},{c:'チ',r:'chi'},{c:'ツ',r:'tsu'},{c:'テ',r:'te'},{c:'ト',r:'to'}]},
+  {row:'N', chars:[{c:'ナ',r:'na'},{c:'ニ',r:'ni'},{c:'ヌ',r:'nu'},{c:'ネ',r:'ne'},{c:'ノ',r:'no'}]},
+  {row:'H', chars:[{c:'ハ',r:'ha'},{c:'ヒ',r:'hi'},{c:'フ',r:'fu'},{c:'ヘ',r:'he'},{c:'ホ',r:'ho'}]},
+  {row:'M', chars:[{c:'マ',r:'ma'},{c:'ミ',r:'mi'},{c:'ム',r:'mu'},{c:'メ',r:'me'},{c:'モ',r:'mo'}]},
+  {row:'Y', chars:[{c:'ヤ',r:'ya'},{c:'',r:''},{c:'ユ',r:'yu'},{c:'',r:''},{c:'ヨ',r:'yo'}]},
+  {row:'R', chars:[{c:'ラ',r:'ra'},{c:'リ',r:'ri'},{c:'ル',r:'ru'},{c:'レ',r:'re'},{c:'ロ',r:'ro'}]},
+  {row:'W', chars:[{c:'ワ',r:'wa'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'ヲ',r:'wo'}]},
+  {row:'N', chars:[{c:'ン',r:'n'},{c:'',r:''},{c:'',r:''},{c:'',r:''},{c:'',r:''}]},
+  {row:'G', chars:[{c:'ガ',r:'ga'},{c:'ギ',r:'gi'},{c:'グ',r:'gu'},{c:'ゲ',r:'ge'},{c:'ゴ',r:'go'}]},
+  {row:'Z', chars:[{c:'ザ',r:'za'},{c:'ジ',r:'ji'},{c:'ズ',r:'zu'},{c:'ゼ',r:'ze'},{c:'ゾ',r:'zo'}]},
+  {row:'B', chars:[{c:'バ',r:'ba'},{c:'ビ',r:'bi'},{c:'ブ',r:'bu'},{c:'ベ',r:'be'},{c:'ボ',r:'bo'}]},
+  {row:'P', chars:[{c:'パ',r:'pa'},{c:'ピ',r:'pi'},{c:'プ',r:'pu'},{c:'ペ',r:'pe'},{c:'ポ',r:'po'}]},
+  {row:'KY', chars:[{c:'キャ',r:'kya'},{c:'',r:''},{c:'キュ',r:'kyu'},{c:'',r:''},{c:'キョ',r:'kyo'}]},
+  {row:'SH', chars:[{c:'シャ',r:'sha'},{c:'',r:''},{c:'シュ',r:'shu'},{c:'',r:''},{c:'ショ',r:'sho'}]},
+  {row:'CH', chars:[{c:'チャ',r:'cha'},{c:'',r:''},{c:'チュ',r:'chu'},{c:'',r:''},{c:'チョ',r:'cho'}]},
+  {row:'FA', chars:[{c:'ファ',r:'fa'},{c:'フィ',r:'fi'},{c:'',r:''},{c:'フェ',r:'fe'},{c:'フォ',r:'fo'}]},
+];
+
+const N4_KANJI_DATA = [
+  {c:'以',on:'イ',kun:'もち(いる)',m:'dengan / oleh karena',s:5,ex:'以上 (ijou) — lebih dari'},
+  {c:'内',on:'ナイ',kun:'うち',m:'dalam / bagian dalam',s:4,ex:'内容 (naiyou) — isi'},
+  {c:'間',on:'カン',kun:'あいだ',m:'antara / interval',s:12,ex:'時間 (jikan) — waktu'},
+  {c:'次',on:'ジ',kun:'つぎ',m:'berikutnya',s:6,ex:'次回 (jikai) — kali berikutnya'},
+  {c:'週',on:'シュウ',kun:'—',m:'minggu',s:11,ex:'来週 (raishuu) — minggu depan'},
+  {c:'朝',on:'チョウ',kun:'あさ',m:'pagi',s:12,ex:'毎朝 (maiasa) — setiap pagi'},
+  {c:'夜',on:'ヤ',kun:'よる',m:'malam',s:8,ex:'今夜 (konya) — malam ini'},
+  {c:'去',on:'キョ',kun:'さ(る)',m:'pergi / lewat',s:5,ex:'去年 (kyonen) — tahun lalu'},
+  {c:'昨',on:'サク',kun:'—',m:'kemarin',s:9,ex:'昨日 (kinou) — kemarin'},
+  {c:'父',on:'フ',kun:'ちち',m:'ayah',s:4,ex:'父親 (chichioya) — ayah'},
+  {c:'母',on:'ボ',kun:'はは',m:'ibu',s:5,ex:'母親 (hahaoya) — ibu'},
+  {c:'兄',on:'ケイ',kun:'あに',m:'kakak laki-laki',s:5,ex:'お兄さん (oniisan)'},
+  {c:'姉',on:'シ',kun:'あね',m:'kakak perempuan',s:8,ex:'お姉さん (oneesan)'},
+  {c:'弟',on:'テイ',kun:'おとうと',m:'adik laki-laki',s:7,ex:'弟 (otouto)'},
+  {c:'妹',on:'マイ',kun:'いもうと',m:'adik perempuan',s:8,ex:'妹 (imouto)'},
+  {c:'夫',on:'フウ',kun:'おっと',m:'suami',s:4,ex:'夫婦 (fuufu) — pasangan'},
+  {c:'妻',on:'サイ',kun:'つま',m:'istri',s:8,ex:'妻 (tsuma)'},
+  {c:'親',on:'シン',kun:'おや',m:'orang tua',s:16,ex:'両親 (ryoushin) — kedua orang tua'},
+  {c:'体',on:'タイ',kun:'からだ',m:'tubuh',s:7,ex:'体力 (tairyoku) — kekuatan fisik'},
+  {c:'頭',on:'ズ',kun:'あたま',m:'kepala',s:16,ex:'頭痛 (zutsuu) — sakit kepala'},
+  {c:'顔',on:'ガン',kun:'かお',m:'wajah',s:18,ex:'顔色 (kaoiro) — warna muka'},
+  {c:'声',on:'セイ',kun:'こえ',m:'suara',s:7,ex:'大声 (oogoe) — suara keras'},
+  {c:'病',on:'ビョウ',kun:'や(む)',m:'sakit / penyakit',s:10,ex:'病院 (byouin) — rumah sakit'},
+  {c:'医',on:'イ',kun:'—',m:'pengobatan / dokter',s:7,ex:'医者 (isha) — dokter'},
+  {c:'薬',on:'ヤク',kun:'くすり',m:'obat',s:16,ex:'薬局 (yakkyoku) — apotek'},
+  {c:'痛',on:'ツウ',kun:'いた(い)',m:'sakit / nyeri',s:12,ex:'頭痛 (zutsuu) — sakit kepala'},
+  {c:'所',on:'ショ',kun:'ところ',m:'tempat',s:8,ex:'近所 (kinjo) — lingkungan sekitar'},
+  {c:'場',on:'ジョウ',kun:'ば',m:'tempat / arena',s:12,ex:'場所 (basho) — tempat'},
+  {c:'道',on:'ドウ',kun:'みち',m:'jalan',s:12,ex:'道路 (douro) — jalan raya'},
+  {c:'橋',on:'キョウ',kun:'はし',m:'jembatan',s:16,ex:'橋 (hashi) — jembatan'},
+  {c:'近',on:'キン',kun:'ちか(い)',m:'dekat',s:7,ex:'近所 (kinjo) — tetangga'},
+  {c:'遠',on:'エン',kun:'とお(い)',m:'jauh',s:13,ex:'遠足 (ensoku) — piknik sekolah'},
+  {c:'室',on:'シツ',kun:'—',m:'ruangan',s:9,ex:'教室 (kyoushitsu) — ruang kelas'},
+  {c:'館',on:'カン',kun:'—',m:'gedung',s:16,ex:'図書館 (toshokan) — perpustakaan'},
+  {c:'港',on:'コウ',kun:'みなと',m:'pelabuhan',s:12,ex:'空港 (kuukou) — bandara'},
+  {c:'地',on:'チ',kun:'つち',m:'tanah / tempat',s:6,ex:'地下 (chika) — bawah tanah'},
+  {c:'神',on:'シン',kun:'かみ',m:'dewa',s:9,ex:'神社 (jinja) — kuil Shinto'},
+  {c:'働',on:'ドウ',kun:'はたら(く)',m:'bekerja',s:13,ex:'労働 (roudou) — pekerjaan'},
+  {c:'始',on:'シ',kun:'はじ(まる)',m:'mulai',s:8,ex:'開始 (kaishi) — mulai'},
+  {c:'終',on:'シュウ',kun:'お(わる)',m:'selesai',s:11,ex:'終了 (shuuryou) — selesai'},
+  {c:'動',on:'ドウ',kun:'うご(く)',m:'bergerak',s:11,ex:'運動 (undou) — olahraga'},
+  {c:'運',on:'ウン',kun:'はこ(ぶ)',m:'mengangkut / nasib',s:12,ex:'運転 (unten) — mengemudi'},
+  {c:'転',on:'テン',kun:'ころ(がる)',m:'berputar',s:11,ex:'自転車 (jitensha) — sepeda'},
+  {c:'送',on:'ソウ',kun:'おく(る)',m:'mengirim',s:9,ex:'送信 (soushin) — mengirim'},
+  {c:'受',on:'ジュ',kun:'う(ける)',m:'menerima',s:8,ex:'受付 (uketsuke) — resepsionis'},
+  {c:'払',on:'フツ',kun:'はら(う)',m:'membayar',s:5,ex:'支払い (shiharai) — pembayaran'},
+  {c:'返',on:'ヘン',kun:'かえ(す)',m:'mengembalikan',s:7,ex:'返事 (henji) — balasan'},
+  {c:'集',on:'シュウ',kun:'あつ(まる)',m:'berkumpul',s:12,ex:'集中 (shuuchuu) — konsentrasi'},
+  {c:'急',on:'キュウ',kun:'いそ(ぐ)',m:'tergesa-gesa',s:9,ex:'急行 (kyuukou) — kereta ekspres'},
+  {c:'走',on:'ソウ',kun:'はし(る)',m:'berlari',s:7,ex:'走る (hashiru) — berlari'},
+  {c:'泳',on:'エイ',kun:'およ(ぐ)',m:'berenang',s:8,ex:'水泳 (suiei) — renang'},
+  {c:'飛',on:'ヒ',kun:'と(ぶ)',m:'terbang',s:9,ex:'飛行機 (hikouki) — pesawat'},
+  {c:'起',on:'キ',kun:'お(きる)',m:'bangun / terjadi',s:10,ex:'起床 (kishou) — bangun pagi'},
+  {c:'寝',on:'シン',kun:'ね(る)',m:'tidur',s:13,ex:'就寝 (shuushin) — waktu tidur'},
+  {c:'着',on:'チャク',kun:'き(る)',m:'memakai / tiba',s:12,ex:'着物 (kimono) — kimono'},
+  {c:'開',on:'カイ',kun:'あ(ける)',m:'membuka',s:12,ex:'開始 (kaishi) — mulai'},
+  {c:'閉',on:'ヘイ',kun:'し(める)',m:'menutup',s:11,ex:'閉店 (heiten) — tutup toko'},
+  {c:'切',on:'セツ',kun:'き(る)',m:'memotong',s:4,ex:'切符 (kippu) — tiket'},
+  {c:'売',on:'バイ',kun:'う(る)',m:'menjual',s:7,ex:'販売 (hanbai) — penjualan'},
+  {c:'使',on:'シ',kun:'つか(う)',m:'menggunakan',s:8,ex:'使用 (shiyou) — penggunaan'},
+  {c:'感',on:'カン',kun:'—',m:'perasaan',s:13,ex:'感謝 (kansha) — rasa syukur'},
+  {c:'思',on:'シ',kun:'おも(う)',m:'berpikir',s:9,ex:'思想 (shisou) — pikiran'},
+  {c:'考',on:'コウ',kun:'かんが(える)',m:'memikirkan',s:6,ex:'考え (kangae) — pemikiran'},
+  {c:'知',on:'チ',kun:'し(る)',m:'mengetahui',s:8,ex:'知識 (chishiki) — pengetahuan'},
+  {c:'覚',on:'カク',kun:'おぼ(える)',m:'menghafal',s:12,ex:'覚える (oboeru) — menghafal'},
+  {c:'忘',on:'ボウ',kun:'わす(れる)',m:'melupakan',s:7,ex:'忘れ物 (wasuremono) — barang ketinggalan'},
+  {c:'心',on:'シン',kun:'こころ',m:'hati / pikiran',s:4,ex:'安心 (anshin) — tenang hati'},
+  {c:'楽',on:'ガク',kun:'たの(しい)',m:'menyenangkan',s:13,ex:'音楽 (ongaku) — musik'},
+  {c:'困',on:'コン',kun:'こま(る)',m:'kesulitan',s:7,ex:'困難 (konnan) — kesulitan'},
+  {c:'笑',on:'ショウ',kun:'わら(う)',m:'tertawa',s:10,ex:'笑顔 (egao) — wajah tersenyum'},
+  {c:'海',on:'カイ',kun:'うみ',m:'laut',s:9,ex:'海外 (kaigai) — luar negeri'},
+  {c:'森',on:'シン',kun:'もり',m:'hutan',s:12,ex:'森林 (shinrin) — hutan'},
+  {c:'島',on:'トウ',kun:'しま',m:'pulau',s:10,ex:'島国 (shimaguni) — negara kepulauan'},
+  {c:'村',on:'ソン',kun:'むら',m:'desa',s:7,ex:'村長 (sonchou) — kepala desa'},
+  {c:'市',on:'シ',kun:'いち',m:'kota / pasar',s:5,ex:'市場 (ichiba) — pasar'},
+  {c:'都',on:'ト',kun:'みやこ',m:'ibu kota',s:11,ex:'都会 (tokai) — kota besar'},
+  {c:'県',on:'ケン',kun:'—',m:'prefektur',s:9,ex:'県庁 (kenchou) — kantor prefektur'},
+  {c:'語',on:'ゴ',kun:'かた(る)',m:'bahasa / kata',s:14,ex:'日本語 (nihongo) — bahasa Jepang'},
+  {c:'文',on:'ブン',kun:'ふみ',m:'kalimat / tulisan',s:4,ex:'文章 (bunshou) — kalimat'},
+  {c:'字',on:'ジ',kun:'あざ',m:'huruf / karakter',s:6,ex:'文字 (moji) — karakter'},
+  {c:'読',on:'ドク',kun:'よ(む)',m:'membaca',s:14,ex:'読書 (dokusho) — membaca buku'},
+  {c:'書',on:'ショ',kun:'か(く)',m:'menulis',s:10,ex:'書類 (shorui) — dokumen'},
+  {c:'話',on:'ワ',kun:'はな(す)',m:'berbicara',s:13,ex:'会話 (kaiwa) — percakapan'},
+  {c:'答',on:'トウ',kun:'こた(える)',m:'menjawab',s:12,ex:'回答 (kaitou) — jawaban'},
+  {c:'問',on:'モン',kun:'と(う)',m:'bertanya / masalah',s:11,ex:'問題 (mondai) — soal'},
+  {c:'教',on:'キョウ',kun:'おし(える)',m:'mengajar',s:11,ex:'教育 (kyouiku) — pendidikan'},
+  {c:'習',on:'シュウ',kun:'なら(う)',m:'belajar',s:11,ex:'練習 (renshuu) — latihan'},
+  {c:'試',on:'シ',kun:'ため(す)',m:'mencoba / ujian',s:13,ex:'試験 (shiken) — ujian'},
+  {c:'合',on:'ゴウ',kun:'あ(う)',m:'sesuai / bergabung',s:6,ex:'合格 (goukaku) — lulus ujian'},
+  {c:'同',on:'ドウ',kun:'おな(じ)',m:'sama',s:6,ex:'同様 (douyou) — demikian pula'},
+  {c:'違',on:'イ',kun:'ちが(う)',m:'berbeda / salah',s:13,ex:'違い (chigai) — perbedaan'},
+  {c:'正',on:'セイ',kun:'ただ(しい)',m:'benar',s:5,ex:'正確 (seikaku) — akurat'},
+  {c:'変',on:'ヘン',kun:'か(わる)',m:'berubah / aneh',s:9,ex:'変化 (henka) — perubahan'},
+  {c:'特',on:'トク',kun:'—',m:'khusus / istimewa',s:10,ex:'特別 (tokubetsu) — khusus'},
+  {c:'全',on:'ゼン',kun:'すべ(て)',m:'semua',s:6,ex:'全部 (zenbu) — semuanya'},
+  {c:'新',on:'シン',kun:'あたら(しい)',m:'baru',s:13,ex:'新聞 (shinbun) — koran'},
+  {c:'世',on:'セ',kun:'よ',m:'dunia / generasi',s:5,ex:'世界 (sekai) — dunia'},
+  {c:'界',on:'カイ',kun:'—',m:'dunia / batas',s:9,ex:'世界 (sekai) — dunia'},
+  {c:'連',on:'レン',kun:'つ(れる)',m:'menghubungkan',s:10,ex:'連絡 (renraku) — kontak'},
+  {c:'伝',on:'デン',kun:'つた(える)',m:'menyampaikan',s:6,ex:'伝言 (dengon) — pesan titipan'},
+  {c:'報',on:'ホウ',kun:'むく(いる)',m:'laporan / membalas',s:12,ex:'情報 (jouhou) — informasi'},
+  {c:'銀',on:'ギン',kun:'—',m:'perak / bank',s:14,ex:'銀行 (ginkou) — bank'},
+  {c:'税',on:'ゼイ',kun:'—',m:'pajak',s:12,ex:'消費税 (shouhizei) — pajak konsumsi'},
+  {c:'商',on:'ショウ',kun:'あきな(う)',m:'perdagangan',s:11,ex:'商品 (shouhin) — produk'},
+  {c:'客',on:'キャク',kun:'—',m:'tamu / pelanggan',s:9,ex:'お客様 (okyakusama) — pelanggan'},
+];
+
+const N4_VOCAB_DATA = [
+  {w:'決める',r:'きめる',m:'memutuskan',cat:'Verba'},
+  {w:'変える',r:'かえる',m:'mengubah',cat:'Verba'},
+  {w:'続ける',r:'つづける',m:'melanjutkan',cat:'Verba'},
+  {w:'増える',r:'ふえる',m:'bertambah',cat:'Verba'},
+  {w:'減る',r:'へる',m:'berkurang',cat:'Verba'},
+  {w:'集める',r:'あつめる',m:'mengumpulkan',cat:'Verba'},
+  {w:'調べる',r:'しらべる',m:'menyelidiki / mencari tahu',cat:'Verba'},
+  {w:'確認する',r:'かくにんする',m:'mengkonfirmasi / memastikan',cat:'Verba'},
+  {w:'説明する',r:'せつめいする',m:'menjelaskan',cat:'Verba'},
+  {w:'紹介する',r:'しょうかいする',m:'memperkenalkan',cat:'Verba'},
+  {w:'連絡する',r:'れんらくする',m:'menghubungi',cat:'Verba'},
+  {w:'予約する',r:'よやくする',m:'memesan / reservasi',cat:'Verba'},
+  {w:'準備する',r:'じゅんびする',m:'mempersiapkan',cat:'Verba'},
+  {w:'参加する',r:'さんかする',m:'berpartisipasi',cat:'Verba'},
+  {w:'利用する',r:'りようする',m:'memanfaatkan / menggunakan',cat:'Verba'},
+  {w:'心配する',r:'しんぱいする',m:'mengkhawatirkan',cat:'Verba'},
+  {w:'注意する',r:'ちゅういする',m:'berhati-hati / memperhatikan',cat:'Verba'},
+  {w:'失敗する',r:'しっぱいする',m:'gagal',cat:'Verba'},
+  {w:'成功する',r:'せいこうする',m:'berhasil / sukses',cat:'Verba'},
+  {w:'合格する',r:'ごうかくする',m:'lulus ujian',cat:'Verba'},
+  {w:'卒業する',r:'そつぎょうする',m:'lulus / wisuda',cat:'Verba'},
+  {w:'引っ越す',r:'ひっこす',m:'pindah rumah',cat:'Verba'},
+  {w:'比べる',r:'くらべる',m:'membandingkan',cat:'Verba'},
+  {w:'選ぶ',r:'えらぶ',m:'memilih',cat:'Verba'},
+  {w:'断る',r:'ことわる',m:'menolak',cat:'Verba'},
+  {w:'諦める',r:'あきらめる',m:'menyerah',cat:'Verba'},
+  {w:'頑張る',r:'がんばる',m:'berusaha keras',cat:'Verba'},
+  {w:'迷う',r:'まよう',m:'bimbang / tersesat',cat:'Verba'},
+  {w:'間違える',r:'まちがえる',m:'membuat kesalahan',cat:'Verba'},
+  {w:'気づく',r:'きづく',m:'menyadari',cat:'Verba'},
+  {w:'慣れる',r:'なれる',m:'terbiasa',cat:'Verba'},
+  {w:'疲れる',r:'つかれる',m:'kelelahan',cat:'Verba'},
+  {w:'怒る',r:'おこる',m:'marah',cat:'Verba'},
+  {w:'喜ぶ',r:'よろこぶ',m:'gembira / senang',cat:'Verba'},
+  {w:'驚く',r:'おどろく',m:'terkejut',cat:'Verba'},
+  {w:'困る',r:'こまる',m:'kesulitan / dalam masalah',cat:'Verba'},
+  {w:'直す',r:'なおす',m:'memperbaiki / mengoreksi',cat:'Verba'},
+  {w:'壊れる',r:'こわれる',m:'rusak',cat:'Verba'},
+  {w:'壊す',r:'こわす',m:'merusak',cat:'Verba'},
+  {w:'捨てる',r:'すてる',m:'membuang',cat:'Verba'},
+  {w:'拾う',r:'ひろう',m:'memungut',cat:'Verba'},
+  {w:'落とす',r:'おとす',m:'menjatuhkan',cat:'Verba'},
+  {w:'触る',r:'さわる',m:'menyentuh',cat:'Verba'},
+  {w:'複雑',r:'ふくざつ',m:'rumit / kompleks',cat:'Adjektiva'},
+  {w:'簡単',r:'かんたん',m:'mudah / sederhana',cat:'Adjektiva'},
+  {w:'丁寧',r:'ていねい',m:'sopan / teliti',cat:'Adjektiva'},
+  {w:'大切',r:'たいせつ',m:'penting / berharga',cat:'Adjektiva'},
+  {w:'大変',r:'たいへん',m:'sangat / menyulitkan',cat:'Adjektiva'},
+  {w:'必要',r:'ひつよう',m:'perlu / diperlukan',cat:'Adjektiva'},
+  {w:'十分',r:'じゅうぶん',m:'cukup / memadai',cat:'Adjektiva'},
+  {w:'危険',r:'きけん',m:'berbahaya',cat:'Adjektiva'},
+  {w:'安全',r:'あんぜん',m:'aman',cat:'Adjektiva'},
+  {w:'自由',r:'じゆう',m:'bebas / kebebasan',cat:'Adjektiva'},
+  {w:'正確',r:'せいかく',m:'akurat / tepat',cat:'Adjektiva'},
+  {w:'残念',r:'ざんねん',m:'sayang / mengecewakan',cat:'Adjektiva'},
+  {w:'親切',r:'しんせつ',m:'ramah / baik hati',cat:'Adjektiva'},
+  {w:'正直',r:'しょうじき',m:'jujur',cat:'Adjektiva'},
+  {w:'熱心',r:'ねっしん',m:'bersemangat / antusias',cat:'Adjektiva'},
+  {w:'得意',r:'とくい',m:'pandai / jagoan',cat:'Adjektiva'},
+  {w:'苦手',r:'にがて',m:'tidak pandai / tidak suka',cat:'Adjektiva'},
+  {w:'理由',r:'りゆう',m:'alasan / sebab',cat:'Nomina'},
+  {w:'目的',r:'もくてき',m:'tujuan / maksud',cat:'Nomina'},
+  {w:'方法',r:'ほうほう',m:'metode / cara',cat:'Nomina'},
+  {w:'機会',r:'きかい',m:'kesempatan',cat:'Nomina'},
+  {w:'場合',r:'ばあい',m:'situasi / kasus',cat:'Nomina'},
+  {w:'意味',r:'いみ',m:'arti / makna',cat:'Nomina'},
+  {w:'結果',r:'けっか',m:'hasil / akibat',cat:'Nomina'},
+  {w:'原因',r:'げんいん',m:'penyebab',cat:'Nomina'},
+  {w:'経験',r:'けいけん',m:'pengalaman',cat:'Nomina'},
+  {w:'知識',r:'ちしき',m:'pengetahuan',cat:'Nomina'},
+  {w:'情報',r:'じょうほう',m:'informasi',cat:'Nomina'},
+  {w:'意見',r:'いけん',m:'pendapat',cat:'Nomina'},
+  {w:'感想',r:'かんそう',m:'kesan / tanggapan',cat:'Nomina'},
+  {w:'習慣',r:'しゅうかん',m:'kebiasaan',cat:'Nomina'},
+  {w:'文化',r:'ぶんか',m:'budaya',cat:'Nomina'},
+  {w:'社会',r:'しゃかい',m:'masyarakat',cat:'Nomina'},
+  {w:'環境',r:'かんきょう',m:'lingkungan',cat:'Nomina'},
+  {w:'関係',r:'かんけい',m:'hubungan / relasi',cat:'Nomina'},
+  {w:'連絡',r:'れんらく',m:'kontak / hubungi',cat:'Nomina'},
+  {w:'会議',r:'かいぎ',m:'rapat / konferensi',cat:'Nomina'},
+  {w:'報告',r:'ほうこく',m:'laporan',cat:'Nomina'},
+  {w:'計画',r:'けいかく',m:'rencana',cat:'Nomina'},
+  {w:'締め切り',r:'しめきり',m:'batas waktu / deadline',cat:'Nomina'},
+  {w:'手続き',r:'てつづき',m:'prosedur / proses',cat:'Nomina'},
+  {w:'申し込み',r:'もうしこみ',m:'pendaftaran / aplikasi',cat:'Nomina'},
+  {w:'許可',r:'きょか',m:'izin / persetujuan',cat:'Nomina'},
+  {w:'禁止',r:'きんし',m:'larangan',cat:'Nomina'},
+  {w:'事故',r:'じこ',m:'kecelakaan',cat:'Nomina'},
+  {w:'症状',r:'しょうじょう',m:'gejala penyakit',cat:'Nomina'},
+  {w:'治療',r:'ちりょう',m:'pengobatan / terapi',cat:'Nomina'},
+  {w:'手術',r:'しゅじゅつ',m:'operasi medis',cat:'Nomina'},
+  {w:'入院',r:'にゅういん',m:'rawat inap',cat:'Nomina'},
+  {w:'退院',r:'たいいん',m:'keluar dari rumah sakit',cat:'Nomina'},
+  {w:'出張',r:'しゅっちょう',m:'perjalanan dinas',cat:'Nomina'},
+  {w:'会社員',r:'かいしゃいん',m:'karyawan perusahaan',cat:'Nomina'},
+  {w:'部長',r:'ぶちょう',m:'kepala divisi / manajer',cat:'Nomina'},
+  {w:'社長',r:'しゃちょう',m:'direktur / presiden perusahaan',cat:'Nomina'},
+  {w:'だから',r:'dakara',m:'karena itu / oleh sebab itu',cat:'Adverbia'},
+  {w:'しかし',r:'shikashi',m:'namun / tetapi (formal)',cat:'Adverbia'},
+  {w:'それでも',r:'soredemo',m:'meski begitu / tetap saja',cat:'Adverbia'},
+  {w:'もし',r:'moshi',m:'seandainya / jika',cat:'Adverbia'},
+  {w:'かならず',r:'kanarazu',m:'pasti / tanpa kecuali',cat:'Adverbia'},
+  {w:'絶対に',r:'ぜったいに',m:'sama sekali / pasti',cat:'Adverbia'},
+  {w:'なるべく',r:'narubeku',m:'sedapat mungkin',cat:'Adverbia'},
+  {w:'できるだけ',r:'dekirudake',m:'sebisa mungkin',cat:'Adverbia'},
+  {w:'ほとんど',r:'hotondo',m:'hampir semua / nyaris',cat:'Adverbia'},
+  {w:'全然',r:'ぜんぜん',m:'sama sekali tidak',cat:'Adverbia'},
+  {w:'特に',r:'とくに',m:'terutama / khususnya',cat:'Adverbia'},
+  {w:'実は',r:'じつは',m:'sebenarnya',cat:'Adverbia'},
+  {w:'つまり',r:'tsumari',m:'artinya / dengan kata lain',cat:'Adverbia'},
+  {w:'たとえば',r:'tatoeba',m:'misalnya / contohnya',cat:'Adverbia'},
+  {w:'急に',r:'きゅうに',m:'tiba-tiba',cat:'Adverbia'},
+  {w:'すでに',r:'sudeni',m:'sudah / telah',cat:'Adverbia'},
+];
+
+const N4_GRAMMAR_DATA = [
+  {num:'01',pat:'〜ている / 〜ていた',title:'Keadaan Berlanjut & Hasil Tindakan',
+   desc:'〜ている: (1) sedang melakukan, (2) keadaan hasil tindakan. 結婚している = sudah menikah. 走っている = sedang berlari.',
+   examples:[
+     {jp:'彼女は今、電話で話しています。',rom:'Kanojo wa ima denwa de hanashite imasu.',id:'Dia sedang bicara di telepon.'},
+     {jp:'田中さんはもう結婚しています。',rom:'Tanaka san wa mou kekkon shite imasu.',id:'Tanaka-san sudah menikah.'},
+   ]},
+  {num:'02',pat:'〜てしまう',title:'Menyesal / Sudah Selesai Sepenuhnya',
+   desc:'〜てしまう: tindakan sudah selesai atau penyesalan. Kasual: ちゃう/じゃう.',
+   examples:[
+     {jp:'財布を家に忘れてしまいました。',rom:'Saifu wo ie ni wasurete shimaimashita.',id:'Lupa ketinggalan dompet di rumah.'},
+     {jp:'ケーキを全部食べちゃった。',rom:'Keeki wo zenbu tabechatta.',id:'Kuenya dimakan habis.'},
+   ]},
+  {num:'03',pat:'〜ておく',title:'Melakukan sebagai Persiapan',
+   desc:'〜ておく = melakukan sesuatu terlebih dahulu sebagai persiapan. Kasual: とく.',
+   examples:[
+     {jp:'旅行の前にホテルを予約しておきます。',rom:'Ryokou no mae ni hoteru wo yoyaku shite okimasu.',id:'Sebelum perjalanan, pesan hotel dulu.'},
+     {jp:'単語を覚えておいてください。',rom:'Tango wo oboete oite kudasai.',id:'Tolong hafalkan kosakata terlebih dahulu.'},
+   ]},
+  {num:'04',pat:'〜てみる',title:'Mencoba Melakukan',
+   desc:'〜てみる = mencoba melakukan sesuatu untuk melihat hasilnya.',
+   examples:[
+     {jp:'この料理を食べてみてください。',rom:'Kono ryouri wo tabete mite kudasai.',id:'Coba makanlah masakan ini.'},
+     {jp:'日本語で話してみました。',rom:'Nihongo de hanashite mimashita.',id:'Saya mencoba berbicara dalam bahasa Jepang.'},
+   ]},
+  {num:'05',pat:'〜てあげる / 〜てくれる / 〜てもらう',title:'Memberi & Menerima Tindakan',
+   desc:'〜てあげる = melakukan untuk orang lain. 〜てくれる = orang lain melakukan untuk kita. 〜てもらう = menerima tindakan dari orang lain.',
+   examples:[
+     {jp:'妹に日本語を教えてあげました。',rom:'Imouto ni nihongo wo oshiete agemashita.',id:'Mengajari adik perempuan bahasa Jepang.'},
+     {jp:'先生が説明してくれました。',rom:'Sensei ga setsumei shite kuremashita.',id:'Guru menjelaskan untuk saya.'},
+   ]},
+  {num:'06',pat:'〜なければならない',title:'Keharusan — Harus Melakukan',
+   desc:'〜なければならない = harus melakukan. Kasual: 〜なきゃ / 〜なくちゃ.',
+   examples:[
+     {jp:'明日までにレポートを出さなければなりません。',rom:'Ashita made ni repooto wo dasanakereba narimasen.',id:'Harus mengumpulkan laporan sampai besok.'},
+     {jp:'もう帰らなきゃ。',rom:'Mou kaeranakya.',id:'Harus pulang sekarang.'},
+   ]},
+  {num:'07',pat:'〜てはいけない',title:'Larangan — Tidak Boleh',
+   desc:'〜てはいけない = tidak boleh melakukan. Lebih kuat dari 〜ないでください.',
+   examples:[
+     {jp:'この部屋でタバコを吸ってはいけません。',rom:'Kono heya de tabako wo sutte wa ikemasen.',id:'Tidak boleh merokok di ruangan ini.'},
+     {jp:'試験中に携帯電話を使ってはいけない。',rom:'Shiken chuu ni keitai denwa wo tsukatte wa ikenai.',id:'Tidak boleh pakai ponsel saat ujian.'},
+   ]},
+  {num:'08',pat:'〜ことができる',title:'Kemampuan — Bisa Melakukan',
+   desc:'KK (kamus) + ことができる = bisa melakukan. Lebih formal dari できる saja.',
+   examples:[
+     {jp:'私は漢字を500字読むことができます。',rom:'Watashi wa kanji wo 500 ji yomu koto ga dekimasu.',id:'Saya bisa membaca 500 karakter kanji.'},
+   ]},
+  {num:'09',pat:'〜ことがある',title:'Pengalaman / Kadang Terjadi',
+   desc:'KK (た) + ことがある = pernah melakukan. KK (kamus) + ことがある = kadang-kadang terjadi.',
+   examples:[
+     {jp:'富士山に登ったことがありますか。',rom:'Fujisan ni nobotta koto ga arimasuka?',id:'Pernahkah mendaki Gunung Fuji?'},
+     {jp:'授業に遅刻することがあります。',rom:'Jugyou ni chikoku suru koto ga arimasu.',id:'Kadang-kadang terlambat masuk kelas.'},
+   ]},
+  {num:'10',pat:'〜ようになる',title:'Perubahan Bertahap — Menjadi Bisa',
+   desc:'〜ようになる = perubahan bertahap menuju kondisi baru. Tidak disengaja — terjadi secara alami.',
+   examples:[
+     {jp:'練習して、泳げるようになりました。',rom:'Renshuu shite, oyogeru you ni narimashita.',id:'Setelah latihan, jadi bisa berenang.'},
+   ]},
+  {num:'11',pat:'〜ようにする',title:'Berusaha Melakukan Secara Konsisten',
+   desc:'〜ようにする = berusaha secara sadar untuk melakukan/tidak melakukan sesuatu secara konsisten.',
+   examples:[
+     {jp:'毎日運動するようにしています。',rom:'Mainichi undou suru you ni shite imasu.',id:'Saya berusaha berolahraga setiap hari.'},
+     {jp:'遅刻しないようにしてください。',rom:'Chikoku shinai you ni shite kudasai.',id:'Tolong usahakan agar tidak terlambat.'},
+   ]},
+  {num:'12',pat:'〜そうだ (様態)',title:'Kelihatan Seperti — Berdasarkan Penglihatan',
+   desc:'〜そうだ = kelihatan/terasa seperti akan ~. Dugaan dari apa yang dilihat/dirasakan langsung.',
+   examples:[
+     {jp:'この料理は辛そうです。',rom:'Kono ryouri wa karasou desu.',id:'Masakan ini kelihatannya pedas.'},
+     {jp:'空が暗くて、雨が降りそうです。',rom:'Sora ga kurakute, ame ga furisou desu.',id:'Langit gelap, sepertinya akan hujan.'},
+   ]},
+  {num:'13',pat:'〜らしい',title:'Sepertinya — Berdasarkan Informasi',
+   desc:'〜らしい = kesimpulan berdasarkan informasi dari luar atau kesan umum.',
+   examples:[
+     {jp:'田中さんは風邪を引いたらしいです。',rom:'Tanaka san wa kaze wo hiita rashii desu.',id:'Sepertinya Tanaka-san kena flu.'},
+     {jp:'彼はほんとうに男らしいですね。',rom:'Kare wa hontou ni otoko rashii desu ne.',id:'Dia benar-benar lelaki sejati ya.'},
+   ]},
+  {num:'14',pat:'〜ば〜ほど',title:'Semakin ~ Semakin ~',
+   desc:'〜ば〜ほど = hubungan proporsional. Semakin A, semakin B.',
+   examples:[
+     {jp:'練習すればするほど、上手になります。',rom:'Renshuu sureba suru hodo, jouzu ni narimasu.',id:'Semakin banyak latihan, semakin mahir.'},
+   ]},
+  {num:'15',pat:'〜ために',title:'Tujuan — Demi / Untuk',
+   desc:'KK kamus + ために = untuk tujuan melakukan ~. Nomina + のために = demi ~.',
+   examples:[
+     {jp:'日本語を勉強するために、毎日練習しています。',rom:'Nihongo wo benkyou suru tame ni, mainichi renshuu shite imasu.',id:'Demi belajar bahasa Jepang, latihan setiap hari.'},
+   ]},
+  {num:'16',pat:'〜のに',title:'Padahal — Kontras + Kecewa',
+   desc:'〜のに = kontras atau kekecewaan. Padahal ~ tapi ~. Pembicara merasa ada yang tidak sesuai harapan.',
+   examples:[
+     {jp:'一生懸命勉強したのに、試験に落ちてしまいました。',rom:'Isshoukenmei benkyou shita no ni, shiken ni ochite shimaimashita.',id:'Padahal sudah belajar keras, tapi gagal ujian.'},
+   ]},
+  {num:'17',pat:'〜ので',title:'Karena — Alasan Objektif',
+   desc:'〜ので = alasan/sebab yang objektif dan logis. Lebih sopan dari 〜から.',
+   examples:[
+     {jp:'電車が遅れたので、会議に遅刻しました。',rom:'Densha ga okureta node, kaigi ni chikoku shimashita.',id:'Karena kereta terlambat, saya terlambat ke rapat.'},
+   ]},
+  {num:'18',pat:'〜ても',title:'Meskipun / Walaupun',
+   desc:'〜ても = konsesi: kondisi yang tidak mengubah hasil. Meskipun ~, tetap ~.',
+   examples:[
+     {jp:'雨が降っても、練習します。',rom:'Ame ga futte mo, renshuu shimasu.',id:'Meskipun hujan, tetap latihan.'},
+     {jp:'どんなに疲れても、諦めません。',rom:'Donna ni tsukarete mo, akiramemasen.',id:'Seberapa lelah pun, tidak menyerah.'},
+   ]},
+  {num:'19',pat:'〜たら',title:'Kondisional — Kalau / Setelah',
+   desc:'〜たら = kalau/jika/setelah ~ terjadi, maka ~. Untuk kondisi masa depan atau hipotetis.',
+   examples:[
+     {jp:'宿題が終わったら、遊んでいいですよ。',rom:'Shukudai ga owattara, asonde ii desu yo.',id:'Kalau PR sudah selesai, boleh bermain.'},
+     {jp:'もし100万円あったら、何を買いますか。',rom:'Moshi hyakuman-en attara, nani wo kaimasuka?',id:'Kalau punya 1 juta yen, mau beli apa?'},
+   ]},
+  {num:'20',pat:'〜ば',title:'Kondisional Formal — Jika',
+   desc:'〜ば = jika ~ (kondisi). Lebih formal dari たら. KK: ubah akhiran う→え + ば. い-adj: ganti い → ければ.',
+   examples:[
+     {jp:'時間があれば、来てください。',rom:'Jikan ga areba, kite kudasai.',id:'Jika ada waktu, tolong datang.'},
+     {jp:'安ければ、買います。',rom:'Yasukereba, kaimasu.',id:'Jika murah, akan dibeli.'},
+   ]},
+  {num:'21',pat:'〜てから',title:'Setelah Melakukan — Urutan Ketat',
+   desc:'〜てから = setelah melakukan A, kemudian B. Menekankan urutan yang harus diikuti.',
+   examples:[
+     {jp:'ご飯を食べてから、薬を飲んでください。',rom:'Gohan wo tabete kara, kusuri wo nonde kudasai.',id:'Setelah makan, minumlah obatnya.'},
+   ]},
+  {num:'22',pat:'〜まで / 〜までに',title:'Sampai / Sebelum Batas Waktu',
+   desc:'〜まで = sampai (batas akhir keadaan). 〜までに = paling lambat / deadline.',
+   examples:[
+     {jp:'朝まで起きていました。',rom:'Asa made okite imashita.',id:'Terjaga sampai pagi.'},
+     {jp:'金曜日までにレポートを出してください。',rom:'Kin-youbi made ni repooto wo dashite kudasai.',id:'Kumpulkan laporan paling lambat Jumat.'},
+   ]},
+  {num:'23',pat:'〜だけ / 〜しか〜ない',title:'Hanya / Tidak Lebih dari',
+   desc:'〜だけ = hanya (netral). 〜しか〜ない = hanya (nuansa kekurangan/terbatas).',
+   examples:[
+     {jp:'私だけが知っています。',rom:'Watashi dake ga shitte imasu.',id:'Hanya saya yang tahu.'},
+     {jp:'お金が500円しかありません。',rom:'Okane ga 500-en shika arimasen.',id:'Uang saya hanya 500 yen.'},
+   ]},
+  {num:'24',pat:'〜ながら',title:'Sambil — Dua Kegiatan Bersamaan',
+   desc:'〜ながら = sambil melakukan ~. Kegiatan utama di akhir kalimat.',
+   examples:[
+     {jp:'音楽を聴きながら勉強します。',rom:'Ongaku wo kikinagara benkyou shimasu.',id:'Belajar sambil mendengarkan musik.'},
+   ]},
+  {num:'25',pat:'〜という',title:'Yang Disebut ~ / Yang Bernama ~',
+   desc:'〜という = yang disebut ~ / yang bernama ~. Mendefinisikan istilah atau nama.',
+   examples:[
+     {jp:'「おもてなし」という日本の文化があります。',rom:'"Omotenashi" to iu nihon no bunka ga arimasu.',id:'Ada budaya Jepang yang disebut "omotenashi".'},
+   ]},
+  {num:'26',pat:'〜かもしれない',title:'Mungkin — Tidak Yakin',
+   desc:'〜かもしれない = mungkin ~ / bisa jadi ~. Lebih tidak pasti dari 〜でしょう.',
+   examples:[
+     {jp:'明日は雨が降るかもしれません。',rom:'Ashita wa ame ga furu kamo shiremasen.',id:'Besok mungkin akan hujan.'},
+   ]},
+  {num:'27',pat:'〜はずだ',title:'Seharusnya / Pastilah',
+   desc:'〜はずだ = seharusnya ~ / pasti ~. Keyakinan logis berdasarkan fakta atau ekspektasi.',
+   examples:[
+     {jp:'彼は5時に来るはずです。',rom:'Kare wa 5-ji ni kuru hazu desu.',id:'Dia seharusnya datang jam 5.'},
+     {jp:'そんなことができるはずがない。',rom:'Sonna koto ga dekiru hazu ga nai.',id:'Tidak mungkin bisa melakukan itu.'},
+   ]},
+  {num:'28',pat:'〜ようだ / 〜みたいだ',title:'Sepertinya — Berdasarkan Observasi',
+   desc:'〜ようだ = sepertinya ~ (formal). 〜みたいだ = kayaknya ~ (kasual).',
+   examples:[
+     {jp:'彼女は怒っているようです。',rom:'Kanojo wa okotte iru you desu.',id:'Sepertinya dia sedang marah.'},
+     {jp:'今日は授業がないみたいだ。',rom:'Kyou wa jugyou ga nai mitai da.',id:'Kayaknya hari ini tidak ada kelas.'},
+   ]},
+  {num:'29',pat:'受身形 〜られる',title:'Bentuk Pasif',
+   desc:'Dari 〜ない → ganti ない → られる (Gr.2) / れる (Gr.1). Subjek = yang terkena tindakan.',
+   examples:[
+     {jp:'私は先生に褒められました。',rom:'Watashi wa sensei ni homeraremashita.',id:'Saya dipuji oleh guru.'},
+     {jp:'財布を盗まれてしまいました。',rom:'Saifu wo nusumarete shimaimashita.',id:'Dompet saya dicuri.'},
+   ]},
+  {num:'30',pat:'使役形 〜させる',title:'Bentuk Kausatif — Menyuruh/Membiarkan',
+   desc:'〜させる = menyuruh/membiarkan seseorang melakukan sesuatu. 〜させてください = bolehkah saya melakukan ~.',
+   examples:[
+     {jp:'母は私に野菜を食べさせました。',rom:'Haha wa watashi ni yasai wo tabesasemashita.',id:'Ibu membuat saya makan sayuran.'},
+     {jp:'ちょっと考えさせてください。',rom:'Chotto kangaesasete kudasai.',id:'Tolong izinkan saya berpikir sebentar.'},
+   ]},
+];
+
+const N4_MINNA_DATA = [
+  {bab:26,tema:'Kalimat Relatif & Waktu',judul_jp:'私が子供のころ、よく川で泳ぎました。',judul_id:'Waktu saya kecil, sering berenang di sungai.',
+   pola:[
+     {pat:'〜ころ/〜ごろ',desc:'ころ/ごろ = sekitar waktu/masa. 子供のころ = waktu kecil. 3時ごろ = sekitar jam 3.'},
+     {pat:'〜とき',desc:'とき = ketika/saat. Menyatakan waktu tertentu.'},
+   ],
+   contoh:[
+     {jp:'子供のころ、毎日外で遊んでいました。',rom:'Kodomo no koro, mainichi soto de asonde imashita.',id:'Waktu kecil, setiap hari bermain di luar.'},
+     {jp:'困ったとき、先生に相談します。',rom:'Komatta toki, sensei ni soudan shimasu.',id:'Saat kesulitan, berkonsultasi ke guru.'},
+   ],
+   kaiwa:{judul:'Percakapan: Kenangan Masa Kecil',baris:[
+     {speaker:'A',jp:'子供のころ、どんな子でしたか。',id:'Waktu kecil, kamu anak seperti apa?'},
+     {speaker:'B',jp:'活発な子でした。毎日外で遊んでいました。',id:'Anak yang aktif. Setiap hari bermain di luar.'},
+   ]},
+   vocab:[{jp:'ころ',rom:'koro',id:'sekitar waktu/masa'},{jp:'活発',rom:'kappatsu',id:'aktif/energik'},{jp:'懐かしい',rom:'natsukashii',id:'nostalgia'}]},
+  {bab:27,tema:'Transitif & Intransitif',judul_jp:'電気がついています。誰かがつけました。',judul_id:'Lampu menyala. Seseorang menyalakannya.',
+   pola:[
+     {pat:'自動詞 vs 他動詞',desc:'Intransitif: subjek sendiri berubah (つく・あく). Transitif: ada objek yang dikenai (つける・あける). Sangat penting dibedakan!'},
+   ],
+   contoh:[
+     {jp:'窓が開いています。→ 誰かが窓を開けました。',rom:'Mado ga aite imasu. Dareka ga mado wo akemashita.',id:'Jendela terbuka. → Seseorang membuka jendela.'},
+     {jp:'電気が消えました。→ 電気を消してください。',rom:'Denki ga kiemashita. Denki wo keshite kudasai.',id:'Lampu mati. → Tolong matikan lampu.'},
+   ],
+   kaiwa:{judul:'Percakapan: Keadaan Ruangan',baris:[
+     {speaker:'A',jp:'あれ、エアコンがついていますね。',id:'Eh, AC-nya menyala ya.'},
+     {speaker:'B',jp:'誰かがつけたんでしょう。じゃ、消しておきます。',id:'Pasti ada yang menyalakannya. Saya matikan.'},
+   ]},
+   vocab:[{jp:'自動詞',rom:'jidoushi',id:'kata kerja intransitif'},{jp:'他動詞',rom:'tadoushi',id:'kata kerja transitif'},{jp:'〜ている',rom:'~te iru',id:'sedang/dalam keadaan'}]},
+  {bab:28,tema:'Keigo Dasar',judul_jp:'先生に本を貸していただきました。',judul_id:'Saya mendapat pinjaman buku dari guru.',
+   pola:[
+     {pat:'〜ていただく',desc:'Bentuk sopan dari 〜てもらう. Digunakan saat menerima tindakan dari orang yang statusnya lebih tinggi.'},
+     {pat:'尊敬語 vs 謙譲語',desc:'尊敬語: meninggikan tindakan orang lain (いらっしゃる・おっしゃる・なさる). 謙譲語: merendahkan tindakan diri sendiri (おる・もうす・いたす).'},
+   ],
+   contoh:[
+     {jp:'先生に推薦状を書いていただきました。',rom:'Sensei ni suisenjou wo kaite itadakimashita.',id:'Guru menuliskan surat rekomendasi untuk saya.'},
+     {jp:'荷物を持っていただけますか。',rom:'Nimotsu wo motte itadakemasu ka?',id:'Bisakah Anda membawakan barang saya?'},
+   ],
+   kaiwa:{judul:'Percakapan: Meminta Tolong Sopan',baris:[
+     {speaker:'学生',jp:'先生、レポートを見ていただけないでしょうか。',id:'Sensei, apakah berkenan melihat laporan saya?'},
+     {speaker:'先生',jp:'いいですよ。来週の月曜日に持ってきてください。',id:'Boleh. Bawa ke sini Senin depan.'},
+   ]},
+   vocab:[{jp:'いただく',rom:'itadaku',id:'menerima (hormat)'},{jp:'いらっしゃる',rom:'irassharu',id:'ada/pergi (hormat)'},{jp:'おっしゃる',rom:'ossharu',id:'berkata (hormat)'}]},
+  {bab:29,tema:'Kalimat Pasif',judul_jp:'私は先生に褒められました。',judul_id:'Saya dipuji oleh guru.',
+   pola:[
+     {pat:'〜られる (pasif)',desc:'Dari ない → ganti ない → られる (Gr.2) / れる (Gr.1). Subjek = yang terkena tindakan. Pasif penderitaan sering menyiratkan dampak negatif.'},
+   ],
+   contoh:[
+     {jp:'私は先生に褒められました。',rom:'Watashi wa sensei ni homeraremashita.',id:'Saya dipuji oleh guru.'},
+     {jp:'雨に降られて、びしょびしょになりました。',rom:'Ame ni furarete, bishobisho ni narimashita.',id:'Kena hujan, jadi basah kuyup.'},
+   ],
+   kaiwa:{judul:'Percakapan: Pengalaman Tidak Menyenangkan',baris:[
+     {speaker:'A',jp:'どうしたんですか、元気がないですね。',id:'Kenapa? Kelihatannya tidak bersemangat.'},
+     {speaker:'B',jp:'電車の中で財布を盗まれてしまったんです。',id:'Dompet saya dicuri di dalam kereta.'},
+     {speaker:'A',jp:'それは大変でしたね。',id:'Itu menyulitkan sekali ya.'},
+   ]},
+   vocab:[{jp:'受身',rom:'ukemi',id:'pasif'},{jp:'褒める',rom:'homeru',id:'memuji'},{jp:'盗む',rom:'nusumu',id:'mencuri'}]},
+  {bab:30,tema:'Kalimat Kausatif',judul_jp:'先生は学生に作文を書かせました。',judul_id:'Guru menyuruh murid menulis karangan.',
+   pola:[
+     {pat:'〜させる (kausatif)',desc:'Dari ない → ganti ない → させる (Gr.2) / せる (Gr.1). Menyatakan menyuruh atau membiarkan seseorang melakukan sesuatu.'},
+     {pat:'〜させてください',desc:'Meminta izin untuk melakukan sesuatu sendiri. Lebih sopan dari してもいいですか.'},
+   ],
+   contoh:[
+     {jp:'母は私に野菜を食べさせました。',rom:'Haha wa watashi ni yasai wo tabesasemashita.',id:'Ibu membuat saya makan sayuran.'},
+     {jp:'ちょっと考えさせてください。',rom:'Chotto kangaesasete kudasai.',id:'Tolong izinkan saya berpikir sebentar.'},
+   ],
+   kaiwa:{judul:'Percakapan: Meminta Kesempatan',baris:[
+     {speaker:'社員',jp:'部長、このプロジェクトを担当させていただけませんか。',id:'Pak Manajer, bolehkah saya menangani proyek ini?'},
+     {speaker:'部長',jp:'いいでしょう。頑張ってください。',id:'Baiklah. Silakan lakukan yang terbaik.'},
+   ]},
+   vocab:[{jp:'使役',rom:'shieki',id:'kausatif'},{jp:'担当する',rom:'tantou suru',id:'menangani'},{jp:'部長',rom:'buchou',id:'kepala divisi'}]},
+  {bab:31,tema:'Keigo Lanjutan',judul_jp:'社長はただいまお出かけになっています。',judul_id:'Direktur sedang keluar saat ini.',
+   pola:[
+     {pat:'尊敬語 (Sonkeigo)',desc:'Meninggikan tindakan orang lain. いる→いらっしゃる, 言う→おっしゃる, 食べる→召し上がる, する→なさる.'},
+     {pat:'謙譲語 (Kenjougo)',desc:'Merendahkan tindakan diri sendiri. いる→おる, 言う→申す, 食べる→いただく, する→いたす, 行く→参る.'},
+   ],
+   contoh:[
+     {jp:'先生はもういらっしゃいますか。',rom:'Sensei wa mou irasshaimasu ka?',id:'Apakah guru sudah ada?'},
+     {jp:'私が説明いたします。',rom:'Watashi ga setsumei itashimasu.',id:'Saya yang akan menjelaskan.'},
+   ],
+   kaiwa:{judul:'Percakapan: Di Kantor (Keigo)',baris:[
+     {speaker:'来客',jp:'田中部長はいらっしゃいますか。',id:'Apakah Manajer Tanaka ada?'},
+     {speaker:'受付',jp:'少々お待ちください。ただいまお呼びいたします。',id:'Sebentar. Saya panggilkan sekarang.'},
+   ]},
+   vocab:[{jp:'尊敬語',rom:'sonkeigo',id:'bahasa hormat'},{jp:'謙譲語',rom:'kenjougo',id:'bahasa merendah'},{jp:'丁寧語',rom:'teineigo',id:'bahasa sopan'}]},
+  {bab:32,tema:'〜そうだ (伝聞)',judul_jp:'天気予報によると、明日は雪が降るそうです。',judul_id:'Menurut ramalan cuaca, besok akan turun salju.',
+   pola:[
+     {pat:'〜そうだ (伝聞)',desc:'Menyampaikan informasi dari sumber lain. Katanya~/Menurut kabar. Berbeda dari そうだ (様態) yang berdasarkan penglihatan langsung.'},
+     {pat:'〜によると',desc:'によると = menurut ~. Sering berpasangan dengan そうです untuk menyebut sumber informasi.'},
+   ],
+   contoh:[
+     {jp:'ニュースによると、大きい地震があったそうです。',rom:'Nyuusu ni yoru to, ookii jishin ga atta sou desu.',id:'Menurut berita, terjadi gempa besar.'},
+     {jp:'田中さんは来月結婚するそうです。',rom:'Tanaka san wa raigetsu kekkon suru sou desu.',id:'Katanya Tanaka-san menikah bulan depan.'},
+   ],
+   kaiwa:{judul:'Percakapan: Berbagi Berita',baris:[
+     {speaker:'A',jp:'聞きましたか？山田さんが入院したそうですよ。',id:'Sudah dengar? Katanya Yamada-san dirawat di RS.'},
+     {speaker:'B',jp:'えっ、本当ですか？何があったんですか。',id:'Eh, benarkah? Ada apa ya?'},
+   ]},
+   vocab:[{jp:'伝聞',rom:'denbun',id:'laporan tidak langsung'},{jp:'によると',rom:'ni yoru to',id:'menurut ~'},{jp:'らしい',rom:'rashii',id:'sepertinya'}]},
+  {bab:33,tema:'〜ば / 〜なら',judul_jp:'時間があれば、手伝います。',judul_id:'Jika ada waktu, saya akan membantu.',
+   pola:[
+     {pat:'〜ば',desc:'Jika A, maka B. Lebih formal dari たら. KK: ubah akhiran う→え+ば. い-adj: ganti い→ければ.'},
+     {pat:'〜なら',desc:'なら digunakan merespons konteks yang sudah ada. Tidak mensyaratkan urutan waktu seperti ば.'},
+   ],
+   contoh:[
+     {jp:'困っているなら、言ってください。',rom:'Komatte iru nara, itte kudasai.',id:'Kalau kesulitan, tolong bilang.'},
+     {jp:'安ければ、買います。高ければ、買いません。',rom:'Yasukereba kaimasu. Takakereba kaimasen.',id:'Kalau murah beli. Kalau mahal tidak beli.'},
+   ],
+   kaiwa:{judul:'Percakapan: Saran dan Kondisi',baris:[
+     {speaker:'A',jp:'頭が痛いんですが。',id:'Kepala saya sakit.'},
+     {speaker:'B',jp:'それなら、早く帰って休んだほうがいいですよ。',id:'Kalau begitu, lebih baik pulang dan istirahat.'},
+   ]},
+   vocab:[{jp:'条件',rom:'jouken',id:'kondisi/syarat'},{jp:'仮定',rom:'katei',id:'asumsi/hipotesis'},{jp:'もし〜なら',rom:'moshi ~nara',id:'seandainya ~'}]},
+  {bab:34,tema:'〜ようにする・〜ようになる',judul_jp:'毎日日本語を話すようにしています。',judul_id:'Saya berusaha berbicara bahasa Jepang setiap hari.',
+   pola:[
+     {pat:'〜ようにする',desc:'Berusaha secara sadar untuk melakukan/tidak melakukan sesuatu secara konsisten.'},
+     {pat:'〜ようになる',desc:'Perubahan bertahap (kemajuan). Tidak disengaja — terjadi secara alami seiring waktu.'},
+   ],
+   contoh:[
+     {jp:'夜更かしをしないようにしています。',rom:'Yofukashi wo shinai you ni shite imasu.',id:'Berusaha untuk tidak begadang.'},
+     {jp:'1年間で漢字が読めるようになりました。',rom:'Ichinenkande kanji ga yomeru you ni narimashita.',id:'Dalam 1 tahun, jadi bisa membaca kanji.'},
+   ],
+   kaiwa:{judul:'Percakapan: Kemajuan Belajar',baris:[
+     {speaker:'A',jp:'最近、日本語が上手になりましたね。',id:'Belakangan bahasa Jepangnya semakin bagus ya.'},
+     {speaker:'B',jp:'ありがとうございます。毎日話すようにしているんです。',id:'Terima kasih. Saya selalu berusaha berbicara setiap hari.'},
+   ]},
+   vocab:[{jp:'努力する',rom:'doryoku suru',id:'berusaha keras'},{jp:'継続する',rom:'keizoku suru',id:'konsisten'},{jp:'上達する',rom:'joutatsu suru',id:'meningkat kemampuan'}]},
+  {bab:35,tema:'〜てしまう・〜てしまった',judul_jp:'大切なものを忘れてしまいました。',judul_id:'Saya lupa membawa barang penting.',
+   pola:[
+     {pat:'〜てしまう',desc:'(1) selesai sepenuhnya/tuntas, (2) penyesalan atas sesuatu tidak diinginkan. Kasual: ちゃう/じゃう.'},
+   ],
+   contoh:[
+     {jp:'宿題を全部やってしまいました。',rom:'Shukudai wo zenbu yatte shimaimashita.',id:'PR sudah selesai dikerjakan semua.'},
+     {jp:'傘を電車に忘れてきてしまいました。',rom:'Kasa wo densha ni wasurete kite shimaimashita.',id:'Ketinggalan payung di kereta.'},
+   ],
+   kaiwa:{judul:'Percakapan: Kelupaan',baris:[
+     {speaker:'A',jp:'どうしたんですか、そんな顔して。',id:'Ada apa? Kenapa raut muka seperti itu?'},
+     {speaker:'B',jp:'パスポートを家に置いてきてしまったんです。',id:'Paspor ketinggalan di rumah.'},
+     {speaker:'A',jp:'それは大変！早く取りに帰ったほうがいいですよ。',id:'Gawat! Lebih baik segera pulang ambil.'},
+   ]},
+   vocab:[{jp:'失くす',rom:'nakusu',id:'kehilangan'},{jp:'うっかり',rom:'ukkari',id:'tanpa sengaja/ceroboh'},{jp:'置き忘れる',rom:'okiwasureru',id:'lupa menaruh'}]},
+];
+
+const N4_DOKKAI_DATA = [
+  {id:1,judul:'Email Resmi ke Atasan',topik:'Membaca email formal di lingkungan kerja',level:'N4',
+   passage:`<ruby>山田<rt>やまだ</rt></ruby><ruby>部長<rt>ぶちょう</rt></ruby>へ
+
+　いつもお<ruby>世話<rt>せわ</rt></ruby>になっております。<ruby>営業部<rt>えいぎょうぶ</rt></ruby>の<ruby>田中<rt>たなか</rt></ruby>です。
+　<ruby>来月<rt>らいげつ</rt></ruby>の<ruby>出張<rt>しゅっちょう</rt></ruby>について、ご<ruby>報告<rt>ほうこく</rt></ruby>いたします。
+　<ruby>出発<rt>しゅっぱつ</rt></ruby>は<ruby>来月<rt>らいげつ</rt></ruby>15<ruby>日<rt>にち</rt></ruby>（<ruby>火曜日<rt>かようび</rt></ruby>）<ruby>午前<rt>ごぜん</rt></ruby>9<ruby>時<rt>じ</rt></ruby>の<ruby>新幹線<rt>しんかんせん</rt></ruby>を<ruby>予定<rt>よてい</rt></ruby>しております。<ruby>帰社<rt>きしゃ</rt></ruby>は17<ruby>日<rt>にち</rt></ruby>（<ruby>木曜日<rt>もくようび</rt></ruby>）の<ruby>夕方<rt>ゆうがた</rt></ruby>になる<ruby>見込<rt>みこ</rt></ruby>みです。
+　<ruby>出張中<rt>しゅっちょうちゅう</rt></ruby>は<ruby>携帯電話<rt>けいたいでんわ</rt></ruby>にて<ruby>連絡<rt>れんらく</rt></ruby>が<ruby>取<rt>と</rt></ruby>れますので、<ruby>何<rt>なん</rt></ruby>かございましたらご<ruby>連絡<rt>れんらく</rt></ruby>ください。
+　<ruby>以上<rt>いじょう</rt></ruby>、よろしくお<ruby>願<rt>ねが</rt></ruby>いいたします。
+
+　<ruby>田中<rt>たなか</rt></ruby><ruby>一郎<rt>いちろう</rt></ruby>`,
+   passage_id:'Kepada Manajer Yamada,\n\nSaya Tanaka dari Divisi Penjualan. Mengenai perjalanan dinas bulan depan, izinkan saya melaporkan rencananya.\nKeberangkatan direncanakan naik shinkansen pukul 9 pagi Selasa tanggal 15. Perkiraan kembali ke kantor sore Kamis tanggal 17.\nSelama perjalanan dinas bisa dihubungi via ponsel.\nDemikian, mohon perhatiannya.\n\nTanaka Ichiro',
+   vocab:[{jp:'出張',rom:'shucchou',id:'perjalanan dinas'},{jp:'帰社',rom:'kisha',id:'kembali ke kantor'},{jp:'見込み',rom:'mikomi',id:'perkiraan'},{jp:'部長',rom:'buchou',id:'kepala divisi'},{jp:'以上',rom:'ijou',id:'demikian/lebih dari'}],
+   questions:[
+     {num:1,q_jp:'このメールを書いたのは誰ですか。',q_id:'Siapa yang menulis email ini?',
+      opts:[{jp:'山田部長',id:'Manajer Yamada'},{jp:'田中一郎',id:'Tanaka Ichiro'},{jp:'営業部全員',id:'Seluruh divisi penjualan'},{jp:'わからない',id:'Tidak diketahui'}],
+      answer:1,exp:'「営業部の田中です」「田中一郎」— Pengirim adalah Tanaka Ichiro dari divisi penjualan.'},
+     {num:2,q_jp:'出発はいつですか。',q_id:'Kapan keberangkatannya?',
+      opts:[{jp:'来月15日火曜日午前9時',id:'Selasa 15 bulan depan jam 9 pagi'},{jp:'来月17日木曜日',id:'Kamis 17 bulan depan'},{jp:'今月15日',id:'Tanggal 15 bulan ini'},{jp:'来週火曜日',id:'Selasa depan'}],
+      answer:0,exp:'「出発は来月15日（火曜日）午前9時の新幹線を予定」— Berangkat Selasa tanggal 15 bulan depan jam 9 pagi.'},
+     {num:3,q_jp:'出張中の連絡方法はどれですか。',q_id:'Bagaimana cara menghubungi selama perjalanan dinas?',
+      opts:[{jp:'メールで',id:'Via email'},{jp:'携帯電話で',id:'Via ponsel'},{jp:'会社の電話で',id:'Via telepon kantor'},{jp:'連絡できない',id:'Tidak bisa dihubungi'}],
+      answer:1,exp:'「出張中は携帯電話にて連絡が取れます」— Selama perjalanan dinas bisa dihubungi via ponsel.'},
+     {num:4,q_jp:'帰社はいつの予定ですか。',q_id:'Kapan rencana kembali ke kantor?',
+      opts:[{jp:'来月15日の夕方',id:'Sore tanggal 15'},{jp:'来月17日の夕方',id:'Sore tanggal 17'},{jp:'来月18日の朝',id:'Pagi tanggal 18'},{jp:'まだ決まっていない',id:'Belum diputuskan'}],
+      answer:1,exp:'「帰社は17日（木曜日）の夕方になる見込みです」— Kembali ke kantor diperkirakan sore tanggal 17 Kamis.'},
+     {num:5,q_jp:'「いつもお世話になっております」はどんな表現ですか。',q_id:'Ekspresi "いつもお世話になっております" adalah apa?',
+      opts:[{jp:'感謝の言葉',id:'Ucapan terima kasih'},{jp:'ビジネスメールのあいさつ',id:'Salam standar email bisnis'},{jp:'謝罪の言葉',id:'Permohonan maaf'},{jp:'自己紹介',id:'Perkenalan diri'}],
+      answer:1,exp:'「いつもお世話になっております」adalah salam pembuka standar email bisnis Jepang.'},
+     {num:6,q_jp:'「以上、よろしくお願いいたします」はどこに使いますか。',q_id:'"以上、よろしくお願いいたします" digunakan di bagian mana?',
+      opts:[{jp:'書き出し',id:'Pembuka'},{jp:'本文',id:'Isi'},{jp:'締めくくり',id:'Penutup'},{jp:'件名',id:'Subjek'}],
+      answer:2,exp:'「以上、よろしくお願いいたします」adalah kalimat penutup (締めくくり) standar email bisnis Jepang.'},
+   ]},
+  {id:2,judul:'Artikel Berita',topik:'Membaca berita dan artikel formal',level:'N4',
+   passage:`<ruby>新<rt>しん</rt></ruby><ruby>図書館<rt>としょかん</rt></ruby>が<ruby>来年<rt>らいねん</rt></ruby><ruby>春<rt>はる</rt></ruby>にオープン
+
+　<ruby>市<rt>し</rt></ruby>は<ruby>駅前<rt>えきまえ</rt></ruby>に<ruby>新<rt>あたら</rt></ruby>しい<ruby>市立図書館<rt>しりつとしょかん</rt></ruby>を<ruby>建設<rt>けんせつ</rt></ruby>することを<ruby>発表<rt>はっぴょう</rt></ruby>した。<ruby>来年<rt>らいねん</rt></ruby>3<ruby>月<rt>がつ</rt></ruby>のオープンを<ruby>予定<rt>よてい</rt></ruby>しており、<ruby>現在<rt>げんざい</rt></ruby>の<ruby>図書館<rt>としょかん</rt></ruby>の<ruby>約<rt>やく</rt></ruby>3<ruby>倍<rt>ばい</rt></ruby>の<ruby>蔵書数<rt>ぞうしょすう</rt></ruby>を<ruby>誇<rt>ほこ</rt></ruby>る<ruby>予定<rt>よてい</rt></ruby>だ。
+　<ruby>新<rt>あたら</rt></ruby>しい<ruby>図書館<rt>としょかん</rt></ruby>には<ruby>子供<rt>こども</rt></ruby>向けの<ruby>読書<rt>どくしょ</rt></ruby>スペースや、インターネットが<ruby>利用<rt>りよう</rt></ruby>できる<ruby>学習室<rt>がくしゅうしつ</rt></ruby>も<ruby>設置<rt>せっち</rt></ruby>される。<ruby>入場<rt>にゅうじょう</rt></ruby>は<ruby>無料<rt>むりょう</rt></ruby>で、<ruby>市民<rt>しみん</rt></ruby>なら<ruby>誰<rt>だれ</rt></ruby>でも<ruby>利用<rt>りよう</rt></ruby>できる。`,
+   passage_id:'Perpustakaan Baru Dibuka Musim Semi Tahun Depan\n\nKota mengumumkan akan membangun perpustakaan kota baru di depan stasiun. Direncanakan dibuka Maret tahun depan, koleksi 3 kali lipat dari sekarang.\nAkan ada ruang baca anak-anak dan ruang belajar internet. Masuk gratis untuk semua warga kota.',
+   vocab:[{jp:'建設',rom:'kensetsu',id:'pembangunan'},{jp:'発表',rom:'happyou',id:'pengumuman'},{jp:'蔵書数',rom:'zoushosuu',id:'jumlah koleksi buku'},{jp:'設置',rom:'secchi',id:'pemasangan'},{jp:'市民',rom:'shimin',id:'warga kota'}],
+   questions:[
+     {num:1,q_jp:'新しい図書館はどこにできますか。',q_id:'Di mana perpustakaan baru dibangun?',
+      opts:[{jp:'市の中心部',id:'Pusat kota'},{jp:'駅前',id:'Depan stasiun'},{jp:'公園の隣',id:'Samping taman'},{jp:'学校の近く',id:'Dekat sekolah'}],
+      answer:1,exp:'「駅前に新しい市立図書館を建設する」— Perpustakaan baru dibangun di 駅前 (depan stasiun).'},
+     {num:2,q_jp:'オープンはいつですか。',q_id:'Kapan dibuka?',
+      opts:[{jp:'今年の春',id:'Musim semi tahun ini'},{jp:'来年の3月',id:'Maret tahun depan'},{jp:'再来年の春',id:'Dua tahun lagi'},{jp:'まだ決まっていない',id:'Belum ditentukan'}],
+      answer:1,exp:'「来年3月のオープンを予定」— Direncanakan dibuka Maret tahun depan.'},
+     {num:3,q_jp:'蔵書数は現在の何倍ですか。',q_id:'Koleksi berapa kali lipat dari sekarang?',
+      opts:[{jp:'2倍',id:'2 kali lipat'},{jp:'3倍',id:'3 kali lipat'},{jp:'5倍',id:'5 kali lipat'},{jp:'10倍',id:'10 kali lipat'}],
+      answer:1,exp:'「現在の図書館の約3倍の蔵書数」— Koleksi sekitar 3 kali lipat (3倍).'},
+     {num:4,q_jp:'誰が利用できますか。',q_id:'Siapa yang bisa menggunakannya?',
+      opts:[{jp:'学生だけ',id:'Hanya pelajar'},{jp:'大人だけ',id:'Hanya orang dewasa'},{jp:'市民なら誰でも',id:'Semua warga kota'},{jp:'会員のみ',id:'Hanya anggota'}],
+      answer:2,exp:'「市民なら誰でも利用できる」— Semua warga kota bisa menggunakannya.'},
+     {num:5,q_jp:'新しい図書館にない設備はどれですか。',q_id:'Fasilitas apa yang TIDAK disebutkan?',
+      opts:[{jp:'子供向けの読書スペース',id:'Ruang baca anak'},{jp:'インターネット学習室',id:'Ruang belajar internet'},{jp:'レストラン',id:'Restoran'},{jp:'無料入場',id:'Masuk gratis'}],
+      answer:2,exp:'Yang disebutkan: ruang baca anak, ruang belajar internet, masuk gratis. レストラン tidak disebutkan.'},
+     {num:6,q_jp:'この記事はどんな内容ですか。',q_id:'Artikel ini membahas apa?',
+      opts:[{jp:'図書館の廃止',id:'Penutupan perpustakaan'},{jp:'新図書館の建設計画',id:'Rencana pembangunan perpustakaan baru'},{jp:'図書館の利用方法',id:'Cara menggunakan perpustakaan'},{jp:'図書館員の募集',id:'Rekrutmen pustakawan'}],
+      answer:1,exp:'Artikel membahas rencana pembangunan (建設計画) perpustakaan kota baru.'},
+   ]},
+  {id:3,judul:'Peraturan Tempat Umum',topik:'Membaca aturan dan regulasi formal',level:'N4',
+   passage:`【<ruby>図書館<rt>としょかん</rt></ruby><ruby>利用規則<rt>りようきそく</rt></ruby>】
+
+１．<ruby>館内<rt>かんない</rt></ruby>では<ruby>静<rt>しず</rt></ruby>かにしてください。
+２．<ruby>飲食<rt>いんしょく</rt></ruby>は<ruby>指定<rt>してい</rt></ruby>された<ruby>場所<rt>ばしょ</rt></ruby>でのみ。
+３．<ruby>携帯電話<rt>けいたいでんわ</rt></ruby>はマナーモードにするか、<ruby>電源<rt>でんげん</rt></ruby>をお<ruby>切<rt>き</rt></ruby>りください。
+４．<ruby>貸<rt>か</rt></ruby>し<ruby>出<rt>だ</rt></ruby>しは1<ruby>人<rt>にん</rt></ruby>5<ruby>冊<rt>さつ</rt></ruby>まで、2<ruby>週間<rt>しゅうかん</rt></ruby>。
+５．<ruby>返却期限<rt>へんきゃくきげん</rt></ruby>を<ruby>過<rt>す</rt></ruby>ぎた<ruby>場合<rt>ばあい</rt></ruby>は<ruby>延長手続<rt>えんちょうてつづ</rt></ruby>きが<ruby>必要<rt>ひつよう</rt></ruby>。
+６．<ruby>館内<rt>かんない</rt></ruby>の<ruby>写真撮影<rt>しゃしんさつえい</rt></ruby>は<ruby>禁止<rt>きんし</rt></ruby>。
+７．<ruby>貸<rt>か</rt></ruby>し<ruby>出<rt>だ</rt></ruby>しカードは<ruby>本人<rt>ほんにん</rt></ruby>のみ<ruby>使用<rt>しよう</rt></ruby>可。`,
+   passage_id:'【Peraturan Perpustakaan】\n1. Harap tenang. 2. Makan-minum di tempat yang ditentukan. 3. Ponsel mode senyap atau dimatikan. 4. Pinjam max 5 buku, 2 minggu. 5. Lewat batas → prosedur perpanjangan. 6. Foto dilarang. 7. Kartu pinjam hanya untuk pemegang.',
+   vocab:[{jp:'利用規則',rom:'riyou kisoku',id:'peraturan penggunaan'},{jp:'館内',rom:'kannai',id:'di dalam gedung'},{jp:'飲食',rom:'inshoku',id:'makan dan minum'},{jp:'返却期限',rom:'henkyaku kigen',id:'batas waktu pengembalian'},{jp:'延長',rom:'enchou',id:'perpanjangan'}],
+   questions:[
+     {num:1,q_jp:'本は何冊まで借りられますか。',q_id:'Maksimal berapa buku yang bisa dipinjam?',
+      opts:[{jp:'2冊',id:'2 buku'},{jp:'3冊',id:'3 buku'},{jp:'5冊',id:'5 buku'},{jp:'10冊',id:'10 buku'}],
+      answer:2,exp:'「1人5冊まで」— Maksimal 5 buku per orang.'},
+     {num:2,q_jp:'貸し出し期間はどのくらいですか。',q_id:'Berapa lama periode peminjaman?',
+      opts:[{jp:'1週間',id:'1 minggu'},{jp:'2週間',id:'2 minggu'},{jp:'1か月',id:'1 bulan'},{jp:'3か月',id:'3 bulan'}],
+      answer:1,exp:'「2週間」— Periode peminjaman adalah 2 minggu.'},
+     {num:3,q_jp:'館内での写真撮影は？',q_id:'Bagaimana soal foto di dalam gedung?',
+      opts:[{jp:'自由にできる',id:'Bebas'},{jp:'許可が必要',id:'Perlu izin'},{jp:'禁止されている',id:'Dilarang'},{jp:'フラッシュなしならOK',id:'OK tanpa flash'}],
+      answer:2,exp:'「館内の写真撮影は禁止」— Pengambilan foto dilarang (禁止).'},
+     {num:4,q_jp:'返却期限を過ぎたらどうしますか。',q_id:'Apa yang harus dilakukan jika melewati batas pengembalian?',
+      opts:[{jp:'罰金を払う',id:'Membayar denda'},{jp:'延長手続きが必要',id:'Perlu prosedur perpanjangan'},{jp:'すぐに返す',id:'Langsung kembalikan'},{jp:'何もしなくていい',id:'Tidak perlu melakukan apa-apa'}],
+      answer:1,exp:'「返却期限を過ぎた場合は延長手続きが必要」— Perlu prosedur perpanjangan.'},
+     {num:5,q_jp:'友達に貸し出しカードを貸してあげることはできますか。',q_id:'Bisakah meminjamkan kartu pinjam ke teman?',
+      opts:[{jp:'できる',id:'Bisa'},{jp:'できない',id:'Tidak bisa'},{jp:'受付に聞く必要がある',id:'Perlu tanya ke resepsionis'},{jp:'家族ならできる',id:'Kalau keluarga bisa'}],
+      answer:1,exp:'「貸し出しカードは本人のみ使用可」— Kartu pinjam hanya untuk pemegang sendiri (本人のみ).'},
+     {num:6,q_jp:'館内で飲食はできますか。',q_id:'Apakah bisa makan minum di dalam gedung?',
+      opts:[{jp:'どこでもできる',id:'Di mana saja boleh'},{jp:'指定された場所ならできる',id:'Di tempat yang ditentukan'},{jp:'飲み物だけならできる',id:'Minuman saja boleh'},{jp:'全面禁止',id:'Sepenuhnya dilarang'}],
+      answer:1,exp:'「飲食は指定された場所でのみ」— Hanya boleh di tempat yang ditentukan.'},
+   ]},
+];
+
+const N4_CHOUKAI_DATA = [
+  {id:1,judul:'N4 Choukai Test 1 — Percakapan Formal',topik:'Percakapan di tempat kerja & situasi formal',
+   videoId:'GVf3wc7sa8A',playlist:'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',playlistIndex:1,
+   tips:'Perhatikan keigo: いらっしゃいます, おっしゃいます, いたします. Dengarkan siapa berbicara kepada siapa dan hubungan sosial mereka.',
+   questions:[
+     {num:1,section:'もんだい1',q_jp:'男の人はどこへ行きますか。',q_id:'【Soal 1】 Pria pergi ke mana?',
+      opts:[{jp:'会議室',id:'Ruang rapat'},{jp:'社長室',id:'Ruang direktur'},{jp:'受付',id:'Resepsionis'},{jp:'食堂',id:'Kafetaria'}],
+      answer:0,exp:'「会議があるので」会議室へ。Kunci: 会議室 (ruang rapat).'},
+     {num:2,section:'もんだい1',q_jp:'会議は何時に始まりますか。',q_id:'【Soal 2】 Rapat dimulai jam berapa?',
+      opts:[{jp:'2時',id:'Jam 2'},{jp:'2時半',id:'Jam 2.30'},{jp:'3時',id:'Jam 3'},{jp:'3時半',id:'Jam 3.30'}],
+      answer:2,exp:'Kunci: 3時. Perhatikan waktu rapat yang disebutkan.'},
+     {num:3,section:'もんだい2',q_jp:'「少々お待ちください」はどういう意味ですか。',q_id:'【Soal 3】 Apa arti "少々お待ちください"?',
+      opts:[{jp:'すぐ来てください',id:'Segera datang'},{jp:'しばらく待ってください',id:'Tolong tunggu sebentar'},{jp:'帰ってください',id:'Silakan pulang'},{jp:'もう一度来てください',id:'Datang lagi'}],
+      answer:1,exp:'少々 = sebentar (sopan). お待ちください = tolong tunggu (sopan). Ekspresi sopan untuk meminta menunggu.'},
+     {num:4,section:'もんだい2',q_jp:'「おっしゃる通りです」はどういう意味ですか。',q_id:'【Soal 4】 Apa arti "おっしゃる通りです"?',
+      opts:[{jp:'あなたの言う通りです',id:'Seperti yang Anda katakan'},{jp:'違います',id:'Berbeda'},{jp:'わかりません',id:'Tidak mengerti'},{jp:'もう一度言ってください',id:'Tolong ulangi'}],
+      answer:0,exp:'おっしゃる = 言う (hormat). 通り = seperti. "おっしゃる通り" = "seperti yang Anda katakan" — menyetujui dengan sopan.'},
+     {num:5,section:'もんだい3',q_jp:'この会話はどんな場面ですか。',q_id:'【Soal 5】 Percakapan ini berlangsung dalam situasi apa?',
+      opts:[{jp:'友達の家',id:'Rumah teman'},{jp:'ビジネスの場',id:'Lingkungan bisnis'},{jp:'学校',id:'Sekolah'},{jp:'お店',id:'Toko'}],
+      answer:1,exp:'Penggunaan keigo konsisten (おっしゃる, いたします, でございます) menunjukkan percakapan bisnis/formal.'},
+     {num:6,section:'もんだい3',q_jp:'女の人は何をしなければなりませんか。',q_id:'【Soal 6】 Apa yang harus dilakukan wanita?',
+      opts:[{jp:'レポートを提出する',id:'Mengumpulkan laporan'},{jp:'会議に出席する',id:'Menghadiri rapat'},{jp:'お客様に連絡する',id:'Menghubungi klien'},{jp:'書類を準備する',id:'Menyiapkan dokumen'}],
+      answer:3,exp:'Kunci: 書類を準備する. Wanita diminta menyiapkan dokumen untuk pertemuan.'},
+     {num:7,section:'もんだい4',q_jp:'「いたします」は何の言葉ですか。',q_id:'【Soal 7】 "いたします" adalah kata apa?',
+      opts:[{jp:'普通の「します」',id:'します biasa'},{jp:'謙譲語の「します」',id:'します merendah (kenjougo)'},{jp:'尊敬語の「します」',id:'します hormat (sonkeigo)'},{jp:'命令の「します」',id:'します perintah'}],
+      answer:1,exp:'いたします = 謙譲語 (merendah) dari します. Digunakan tentang tindakan diri sendiri kepada yang dihormati.'},
+     {num:8,section:'もんだい4',q_jp:'「誠にありがとうございます」は何が違いますか。',q_id:'【Soal 8】 Apa bedanya "誠にありがとうございます"?',
+      opts:[{jp:'ありがとうと同じ',id:'Sama dengan ありがとう'},{jp:'より丁寧な表現',id:'Ekspresi yang lebih sopan/formal'},{jp:'怒っている',id:'Sedang marah'},{jp:'断るときの言葉',id:'Kata untuk menolak'}],
+      answer:1,exp:'誠に = sungguh-sungguh. 誠にありがとうございます adalah bentuk terima kasih paling formal dalam konteks bisnis.'},
+   ]},
+  {id:2,judul:'N4 Choukai Test 2 — Berita & Pengumuman',topik:'Mendengar pengumuman resmi dan siaran berita',
+   videoId:'1z3-CWWA20Y',playlist:'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',playlistIndex:2,
+   tips:'Berita menggunakan bentuk biasa. Perhatikan angka, tanggal, lokasi. Pola kunci: 〜によると, 〜そうです, 〜予定です.',
+   questions:[
+     {num:1,section:'もんだい1',q_jp:'このニュースは何について話していますか。',q_id:'【Soal 1】 Berita ini tentang apa?',
+      opts:[{jp:'新しい公園のオープン',id:'Pembukaan taman baru'},{jp:'台風の接近',id:'Pendekatan topan'},{jp:'選挙の結果',id:'Hasil pemilu'},{jp:'新しい法律',id:'Undang-undang baru'}],
+      answer:1,exp:'Kunci: 台風の接近. Berita membahas topan yang mendekati wilayah.'},
+     {num:2,section:'もんだい1',q_jp:'台風はいつ上陸する予定ですか。',q_id:'【Soal 2】 Kapan topan diperkirakan mendarat?',
+      opts:[{jp:'今夜',id:'Malam ini'},{jp:'明日の朝',id:'Pagi besok'},{jp:'明日の夜',id:'Malam besok'},{jp:'あさって',id:'Lusa'}],
+      answer:1,exp:'「明日の朝、上陸する予定」— Topan mendarat besok pagi.'},
+     {num:3,section:'もんだい1',q_jp:'避難が必要な地域はどこですか。',q_id:'【Soal 3】 Area mana yang perlu dievakuasi?',
+      opts:[{jp:'海沿いの地域',id:'Area pesisir pantai'},{jp:'山の近くの地域',id:'Area dekat gunung'},{jp:'市の中心部',id:'Pusat kota'},{jp:'全域',id:'Seluruh wilayah'}],
+      answer:0,exp:'海沿い (pesisir) adalah area paling berbahaya saat topan.'},
+     {num:4,section:'もんだい2',q_jp:'「によると」はどういう意味ですか。',q_id:'【Soal 4】 Apa arti "によると"?',
+      opts:[{jp:'〜のために',id:'Untuk ~'},{jp:'〜の情報では',id:'Menurut ~ / Berdasarkan info dari ~'},{jp:'〜のそばに',id:'Di dekat ~'},{jp:'〜のあとで',id:'Setelah ~'}],
+      answer:1,exp:'によると = menurut / berdasarkan. 天気予報によると = menurut ramalan cuaca.'},
+     {num:5,section:'もんだい3',q_jp:'電車のアナウンスは何についてですか。',q_id:'【Soal 5】 Pengumuman kereta ini tentang apa?',
+      opts:[{jp:'電車の遅延',id:'Keterlambatan kereta'},{jp:'特売セール',id:'Obral spesial'},{jp:'閉店時間の変更',id:'Perubahan jam tutup'},{jp:'新商品の紹介',id:'Produk baru'}],
+      answer:0,exp:'Pengumuman stasiun tentang 遅延 (keterlambatan) kereta sangat umum di Jepang.'},
+     {num:6,section:'もんだい3',q_jp:'電車はどのくらい遅れていますか。',q_id:'【Soal 6】 Berapa lama keterlambatan kereta?',
+      opts:[{jp:'5分',id:'5 menit'},{jp:'10分',id:'10 menit'},{jp:'20分',id:'20 menit'},{jp:'30分以上',id:'Lebih dari 30 menit'}],
+      answer:2,exp:'20分 (20 menit) disebutkan sebagai perkiraan keterlambatan.'},
+     {num:7,section:'もんだい4',q_jp:'「ご迷惑をおかけして申し訳ございません」はどんな場面で使いますか。',q_id:'【Soal 7】 Kapan ekspresi ini digunakan?',
+      opts:[{jp:'誰かを歓迎するとき',id:'Menyambut seseorang'},{jp:'サービスに問題があったとき',id:'Saat ada masalah layanan'},{jp:'ありがとうを言うとき',id:'Mengucapkan terima kasih'},{jp:'注文するとき',id:'Memesan'}],
+      answer:1,exp:'「ご迷惑をおかけして申し訳ございません」= maaf atas ketidaknyamanan. Digunakan saat ada gangguan layanan.'},
+     {num:8,section:'もんだい4',q_jp:'「〜という情報が入っています」はどういう意味ですか。',q_id:'【Soal 8】 Apa arti "〜という情報が入っています"?',
+      opts:[{jp:'確かな情報だ',id:'Informasi pasti'},{jp:'報告されている情報だ',id:'Informasi yang dilaporkan masuk'},{jp:'嘘の情報だ',id:'Informasi bohong'},{jp:'古い情報だ',id:'Informasi lama'}],
+      answer:1,exp:'「〜という情報が入っています」= kami menerima informasi bahwa ~. Informasi sedang masuk/dilaporkan, belum tentu dikonfirmasi.'},
+   ]},
+  {id:3,judul:'N4 Choukai Test 3 — Konsultasi & Saran',topik:'Percakapan konsultasi dan memberi saran',
+   videoId:'sY7L5cfCWno',playlist:'PLkGU7DnOLgRMl-h4NxxrGbK-UdZHIXzKQ',playlistIndex:3,
+   tips:'Perhatikan pola 〜たほうがいい, 〜ないほうがいい, 〜てみたら. Dengarkan masalah yang dihadapi dan saran yang diberikan.',
+   questions:[
+     {num:1,section:'もんだい1',q_jp:'女の人はどんな悩みがありますか。',q_id:'【Soal 1】 Apa masalah wanita?',
+      opts:[{jp:'仕事が見つからない',id:'Tidak bisa menemukan pekerjaan'},{jp:'日本語が上達しない',id:'Bahasa Jepang tidak berkembang'},{jp:'友達ができない',id:'Tidak bisa mendapat teman'},{jp:'お金が足りない',id:'Uang tidak cukup'}],
+      answer:1,exp:'Kunci: 日本語が上達しない. Wanita mengeluh bahasa Jepangnya tidak berkembang.'},
+     {num:2,section:'もんだい1',q_jp:'男の人はどんなアドバイスをしましたか。',q_id:'【Soal 2】 Saran apa yang diberikan pria?',
+      opts:[{jp:'単語をもっと覚える',id:'Hafal lebih banyak kosakata'},{jp:'日本人の友達を作る',id:'Membuat teman orang Jepang'},{jp:'別の学校に行く',id:'Pindah ke sekolah lain'},{jp:'休む',id:'Beristirahat'}],
+      answer:1,exp:'Kunci: 日本人の友達を作ったほうがいい. Saran: membuat teman orang Jepang.'},
+     {num:3,section:'もんだい2',q_jp:'「〜たほうがいいですよ」は何を表していますか。',q_id:'【Soal 3】 "〜たほうがいいですよ" menyatakan apa?',
+      opts:[{jp:'命令',id:'Perintah'},{jp:'アドバイス・提案',id:'Saran / rekomendasi'},{jp:'禁止',id:'Larangan'},{jp:'許可',id:'Izin'}],
+      answer:1,exp:'〜たほうがいい = lebih baik melakukan ~. Ekspresi saran yang tidak memaksa.'},
+     {num:4,section:'もんだい2',q_jp:'「試してみたらどうですか」の意味は何ですか。',q_id:'【Soal 4】 Apa arti "試してみたらどうですか"?',
+      opts:[{jp:'試してはいけない',id:'Tidak boleh mencoba'},{jp:'試すかどうか聞いている',id:'Menanyakan apakah akan mencoba'},{jp:'試してみることを提案している',id:'Menyarankan untuk mencoba'},{jp:'試したことがあるか聞いている',id:'Menanyakan apakah pernah mencoba'}],
+      answer:2,exp:'「〜てみたらどうですか」= bagaimana kalau mencoba ~? Cara menyarankan yang lebih lembut.'},
+     {num:5,section:'もんだい3',q_jp:'女の人は最終的にどうすることにしましたか。',q_id:'【Soal 5】 Apa yang akhirnya diputuskan wanita?',
+      opts:[{jp:'日本語の勉強をやめる',id:'Berhenti belajar'},{jp:'日本人の友達を作ることにした',id:'Membuat teman orang Jepang'},{jp:'別の方法を探す',id:'Mencari cara lain'},{jp:'何もしないことにした',id:'Tidak melakukan apa-apa'}],
+      answer:1,exp:'Setelah mendapat saran, wanita setuju mencoba membuat teman orang Jepang.'},
+     {num:6,section:'もんだい3',q_jp:'この会話のトーンはどんな感じですか。',q_id:'【Soal 6】 Bagaimana nuansa percakapan ini?',
+      opts:[{jp:'怒っている',id:'Marah'},{jp:'悲しんでいる',id:'Bersedih'},{jp:'親切に相談に乗っている',id:'Membantu dengan ramah'},{jp:'命令している',id:'Memerintah'}],
+      answer:2,exp:'Percakapan berlangsung dalam suasana 相談 (konsultasi) yang ramah.'},
+     {num:7,section:'もんだい4',q_jp:'「悩んでいる」はどういう意味ですか。',q_id:'【Soal 7】 Apa arti "悩んでいる"?',
+      opts:[{jp:'楽しんでいる',id:'Menikmati'},{jp:'困って考えている',id:'Kesulitan dan memikirkan'},{jp:'寝ている',id:'Tidur'},{jp:'笑っている',id:'Tertawa'}],
+      answer:1,exp:'悩む = mencemaskan/memikirkan masalah. 悩んでいる = sedang khawatir/bimbang.'},
+     {num:8,section:'もんだい4',q_jp:'「〜ようになりました」はどんな変化ですか。',q_id:'【Soal 8】 "〜ようになりました" menyatakan perubahan apa?',
+      opts:[{jp:'昔からずっとしていること',id:'Sesuatu yang selalu dilakukan'},{jp:'これからすること',id:'Sesuatu yang akan dilakukan'},{jp:'だんだんできるようになった変化',id:'Perubahan bertahap menjadi bisa'},{jp:'急にやめたこと',id:'Tiba-tiba dihentikan'}],
+      answer:2,exp:'〜ようになる = perubahan bertahap. ようになりました = (sekarang sudah) menjadi bisa/terbiasa.'},
+   ]},
+];
+
+
+
+// ===== N4 LEVEL SWITCHER =====
+let currentLevel = 'n5';
+
+function switchLevel(level) {
+  currentLevel = level;
+  const n5Pages = document.getElementById('n5-pages');
+  const n4Pages = document.getElementById('n4-pages');
+  const n5Nav   = document.getElementById('n5-nav');
+  const n4Nav   = document.getElementById('nav-n4');
+  const btnN5   = document.getElementById('btn-n5');
+  const btnN4   = document.getElementById('btn-n4');
+
+  if (level === 'n4') {
+    // Sembunyikan N5
+    if (n5Pages) n5Pages.style.display = 'none';
+    if (n5Nav)   n5Nav.style.display   = 'none';
+    // Tampilkan N4
+    if (n4Pages) n4Pages.style.display = 'block';
+    if (n4Nav)   n4Nav.style.display   = 'block';
+    // Aktifkan home N4
+    document.querySelectorAll('#n4-pages .page').forEach(p => p.classList.remove('active'));
+    const homeN4 = document.getElementById('page-n4-home');
+    if (homeN4) homeN4.classList.add('active');
+    // Reset nav active state
+    document.querySelectorAll('#nav-n4 .nav-item').forEach(n => n.classList.remove('active'));
+    // Tombol
+    if (btnN5) btnN5.className = 'level-btn';
+    if (btnN4) btnN4.className = 'level-btn active-n4';
+    // Update judul topbar
+    const ptN4 = document.getElementById('page-title');
+    const pjN4 = document.getElementById('page-jp');
+    if (ptN4) ptN4.textContent = 'Beranda N4';
+    if (pjN4) pjN4.textContent = 'べんきょう N4';
+    // Tema
+    document.body.classList.add('level-n4');
+    document.body.classList.remove('level-n5');
+    // Build konten N4
+    buildN4All();
+  } else {
+    // Sembunyikan N4
+    if (n4Pages) n4Pages.style.display = 'none';
+    if (n4Nav)   n4Nav.style.display   = 'none';
+    // Tampilkan N5
+    if (n5Pages) n5Pages.style.display = 'block';
+    if (n5Nav)   n5Nav.style.display   = 'block';
+    // Aktifkan home N5
+    document.querySelectorAll('#n5-pages .page').forEach(p => p.classList.remove('active'));
+    const homeN5 = document.getElementById('page-home');
+    if (homeN5) homeN5.classList.add('active');
+    // Tombol
+    if (btnN5) btnN5.className = 'level-btn active-n5';
+    if (btnN4) btnN4.className = 'level-btn';
+    // Update judul topbar
+    const ptN5 = document.getElementById('page-title');
+    const pjN5 = document.getElementById('page-jp');
+    if (ptN5) ptN5.textContent = 'Beranda';
+    if (pjN5) pjN5.textContent = 'べんきょう';
+    // Tema
+    document.body.classList.remove('level-n4');
+    document.body.classList.add('level-n5');
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // Tutup sidebar mobile
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  if (window.innerWidth <= 768) {
+    if (sb) sb.classList.remove('open');
+    if (ov) ov.style.display = 'none';
+  }
+}
+
+// Metadata judul halaman N4
+const N4_PAGE_META = {
+  'n4-home':      {title:'Beranda N4', jp:'べんきょう N4'},
+  'n4-hiragana':  {title:'Hiragana + Kombinasi', jp:'ひらがな'},
+  'n4-katakana':  {title:'Katakana + Kombinasi', jp:'カタカナ'},
+  'n4-kanji':     {title:'Kanji N4', jp:'かんじ'},
+  'n4-vocab':     {title:'Kosakata N4', jp:'ごい'},
+  'n4-grammar':   {title:'Tata Bahasa N4', jp:'ぶんぽう'},
+  'n4-flashcard': {title:'Flashcard N4', jp:'フラッシュカード'},
+  'n4-minna':     {title:'Minna no Nihongo N4', jp:'みんなの日本語'},
+  'n4-dokkai':    {title:'Dokkai N4', jp:'どっかい'},
+  'n4-choukai':   {title:'Choukai N4', jp:'ちょうかい'},
+};
+
+function goPageN4(name) {
+  // Deactivate semua N4 pages
+  document.querySelectorAll('#n4-pages .page').forEach(p => p.classList.remove('active'));
+  // Activate target page
+  const pg = document.getElementById('page-' + name);
+  if (pg) pg.classList.add('active');
+  // Nav highlight
+  document.querySelectorAll('#nav-n4 .nav-item').forEach(n => n.classList.remove('active'));
+  const ni = document.querySelector('#nav-n4 .nav-item[onclick*="' + name + '"]');
+  if (ni) ni.classList.add('active');
+  // Update judul topbar
+  const meta = N4_PAGE_META[name];
+  if (meta) {
+    const pt = document.getElementById('page-title');
+    const pj = document.getElementById('page-jp');
+    if (pt) pt.textContent = meta.title;
+    if (pj) pj.textContent = meta.jp;
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // Tutup sidebar mobile
+  if (window.innerWidth <= 768) {
+    const sb = document.getElementById('sidebar');
+    const ov = document.getElementById('sidebar-overlay');
+    if (sb) sb.classList.remove('open');
+    if (ov) ov.style.display = 'none';
+  }
+}
+
+// Alias untuk navigasi N5
+function goPageN5(name) { goPage(name); }
+
+let n4Built = false;
+function buildN4All() {
+  if (n4Built) return;
+  n4Built = true;
+  buildN4KanaTable('hiragana');
+  buildN4KanaTable('katakana');
+  buildN4KanjiGrid();
+  buildN4VocabList();
+  buildN4GrammarList();
+  initN4FC();
+  buildN4Minna();
+  buildN4Dokkai();
+  buildN4Choukai();
+}
+
+// ── N4 Kana Table ──
+function buildN4KanaTable(type) {
+  const data = type === 'hiragana' ? N4_HIRAGANA : N4_KATAKANA;
+  const el = document.getElementById('n4-' + type + '-table');
+  if (!el) return;
+  el.innerHTML = '<div class="kana-table-wrap"><table class="kana-table">' +
+    data.map(row => '<tr><td class="kana-row-label">' + row.row + '</td>' +
+      row.chars.map(c => c.c
+        ? '<td class="kana-cell"><span class="char">' + c.c + '</span><span class="roma">' + c.r + '</span></td>'
+        : '<td class="kana-cell empty"></td>'
+      ).join('') + '</tr>'
+    ).join('') + '</table></div>';
+}
+
+// ── N4 Kanji Grid ──
+function buildN4KanjiGrid() {
+  const el = document.getElementById('n4-kanji-grid');
+  if (!el) return;
+  el.innerHTML = '<div class="kanji-grid">' +
+    N4_KANJI_DATA.map((k,i) =>
+      '<div class="kanji-tile" onclick="showN4KanjiModal(' + i + ')" title="' + k.m + '">' +
+        '<div class="kanji-char">' + k.c + '</div>' +
+        '<div class="kanji-mean">' + k.m.split(' /')[0] + '</div>' +
+        '<div class="kanji-on">' + k.on + '</div>' +
+      '</div>'
+    ).join('') + '</div>';
+}
+
+function showN4KanjiModal(idx) {
+  const k = N4_KANJI_DATA[idx];
+  const m = document.getElementById('kanji-modal');
+  if (!m) return;
+  document.getElementById('modal-kanji-char').textContent = k.c;
+  document.getElementById('modal-kanji-meaning').textContent = k.m;
+  document.getElementById('modal-kanji-on').textContent = k.on;
+  document.getElementById('modal-kanji-kun').textContent = k.kun;
+  document.getElementById('modal-kanji-stroke').textContent = k.s + ' coretan';
+  document.getElementById('modal-kanji-example').textContent = k.ex;
+  m.style.display = 'flex';
+}
+
+// ── N4 Vocab ──
+let n4VocabCatFilter = 'all';
+function buildN4VocabList() {
+  const catsEl = document.getElementById('n4-vocab-cats');
+  if (!catsEl) return;
+  const cats = ['all', ...new Set(N4_VOCAB_DATA.map(v => v.cat))];
+  catsEl.innerHTML = cats.map(c =>
+    '<button class="vocab-filter-btn' + (c === 'all' ? ' active' : '') + '" onclick="setN4VocabCat(&quot;' + c + '&quot;)">' +
+    (c === 'all' ? 'Semua' : c) + '</button>'
+  ).join('');
+  renderN4Vocab();
+}
+
+function setN4VocabCat(cat) {
+  n4VocabCatFilter = cat;
+  document.querySelectorAll('#n4-vocab-cats .vocab-filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === (cat === 'all' ? 'Semua' : cat));
+  });
+  renderN4Vocab();
+}
+
+function filterN4Vocab() { renderN4Vocab(); }
+
+function renderN4Vocab() {
+  const el = document.getElementById('n4-vocab-list');
+  if (!el) return;
+  const q = (document.getElementById('n4-vocab-search')?.value || '').toLowerCase();
+  const filtered = N4_VOCAB_DATA.filter(v =>
+    (n4VocabCatFilter === 'all' || v.cat === n4VocabCatFilter) &&
+    (!q || v.w.includes(q) || v.r.toLowerCase().includes(q) || v.m.toLowerCase().includes(q))
+  );
+  if (!filtered.length) { el.innerHTML = '<div class="vocab-empty">Tidak ada hasil.</div>'; return; }
+  el.innerHTML = filtered.map(v =>
+    '<div class="vocab-item">' +
+      '<span class="vocab-word">' + v.w + '</span>' +
+      '<span class="vocab-reading">' + v.r + '</span>' +
+      '<span class="vocab-meaning">' + v.m + '</span>' +
+      '<span class="vocab-cat-badge" style="font-size:10px;background:rgba(124,58,237,0.1);color:#7C3AED;padding:2px 7px;border-radius:10px">' + v.cat + '</span>' +
+    '</div>'
+  ).join('');
+}
+
+// ── N4 Grammar ──
+function buildN4GrammarList() {
+  const el = document.getElementById('n4-grammar-list');
+  if (!el) return;
+  el.innerHTML = N4_GRAMMAR_DATA.map((g,i) =>
+    '<div class="grammar-card">' +
+      '<div class="grammar-header" onclick="toggleN4Grammar(' + i + ')">' +
+        '<span class="grammar-num">' + g.num + '</span>' +
+        '<span class="grammar-pattern">' + g.pat + '</span>' +
+        '<span class="grammar-title">' + g.title + '</span>' +
+        '<span class="grammar-chevron" id="n4chev-' + i + '">▾</span>' +
+      '</div>' +
+      '<div class="grammar-body" id="n4gbody-' + i + '">' +
+        '<p class="grammar-desc">' + g.desc + '</p>' +
+        g.examples.map(e =>
+          '<div class="example-item">' +
+            '<div class="example-jp">' + e.jp + '</div>' +
+            '<div class="example-rom">' + e.rom + '</div>' +
+            '<div class="example-id">' + e.id + '</div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+    '</div>'
+  ).join('');
+}
+
+function toggleN4Grammar(idx) {
+  const body = document.getElementById('n4gbody-' + idx);
+  const chev = document.getElementById('n4chev-' + idx);
+  if (body) body.classList.toggle('open');
+  if (chev) chev.classList.toggle('open');
+}
+
+// ── N4 Flashcard ──
+let n4FCDeck=[], n4FCIdx=0, n4FCGood=0, n4FCBad=0, n4FCFlipped=false;
+function initN4FC() {
+  const cat = document.getElementById('n4-fc-cat')?.value || 'all';
+  const order = document.getElementById('n4-fc-order')?.value || 'shuffle';
+  let pool = cat === 'all' ? [...N4_VOCAB_DATA] : N4_VOCAB_DATA.filter(v => v.cat === cat);
+  if (order === 'shuffle') pool = pool.sort(() => Math.random() - 0.5);
+  n4FCDeck = pool; n4FCIdx = 0; n4FCGood = 0; n4FCBad = 0; n4FCFlipped = false;
+  document.getElementById('n4-fc-result').style.display = 'none';
+  document.getElementById('n4-fc-main').style.display = 'block';
+  document.getElementById('n4-fc-inner')?.classList.remove('flipped');
+  document.getElementById('n4-fc-actions')?.classList.add('fc-actions-hidden');
+  const nw = document.getElementById('n4-fc-next-wrap');
+  if (nw) nw.style.display = 'none';
+  buildN4FCDots(); renderN4FCCard();
+}
+function renderN4FCCard() {
+  if (n4FCIdx >= n4FCDeck.length) { showN4FCResult(); return; }
+  const c = n4FCDeck[n4FCIdx];
+  document.getElementById('n4-fc-front').textContent = c.w;
+  document.getElementById('n4-fc-reading').textContent = c.r;
+  document.getElementById('n4-fc-meaning').textContent = c.m;
+  document.getElementById('n4-fc-cat-label').textContent = c.cat;
+  document.getElementById('n4-fc-counter').textContent = (n4FCIdx+1) + ' / ' + n4FCDeck.length;
+  n4FCFlipped = false;
+  document.getElementById('n4-fc-inner')?.classList.remove('flipped');
+  document.getElementById('n4-fc-actions')?.classList.add('fc-actions-hidden');
+  const nw = document.getElementById('n4-fc-next-wrap');
+  if (nw) nw.style.display = 'none';
+  updateN4FCDots();
+}
+function flipN4Card() {
+  if (n4FCIdx >= n4FCDeck.length) return;
+  n4FCFlipped = !n4FCFlipped;
+  document.getElementById('n4-fc-inner')?.classList.toggle('flipped', n4FCFlipped);
+  if (n4FCFlipped) document.getElementById('n4-fc-actions')?.classList.remove('fc-actions-hidden');
+}
+function n4FCAnswer(good) {
+  if (good) n4FCGood++; else n4FCBad++;
+  markN4FCDot(n4FCIdx, good);
+  document.getElementById('n4-fc-actions')?.classList.add('fc-actions-hidden');
+  const nw = document.getElementById('n4-fc-next-wrap');
+  if (nw) nw.style.display = 'block';
+}
+function n4FCNext() { n4FCIdx++; renderN4FCCard(); }
+function buildN4FCDots() {
+  const row = document.getElementById('n4-fc-dots');
+  if (!row) return;
+  const show = Math.min(n4FCDeck.length, 40);
+  row.innerHTML = Array.from({length:show},(_,i) => '<div class="fc-dot" id="n4dot-'+i+'"></div>').join('');
+}
+function updateN4FCDots() {
+  const show = Math.min(n4FCDeck.length, 40);
+  for (let i=0;i<show;i++) { const d=document.getElementById('n4dot-'+i); if(d) d.classList.toggle('seen',i<n4FCIdx); }
+}
+function markN4FCDot(i,good) {
+  if(i>=40) return;
+  const d=document.getElementById('n4dot-'+i);
+  if(d) { d.classList.add('seen'); if(good) d.classList.add('known'); }
+}
+function showN4FCResult() {
+  document.getElementById('n4-fc-main').style.display = 'none';
+  document.getElementById('n4-fc-result').style.display = 'block';
+  document.getElementById('n4-fc-res-good').textContent = n4FCGood;
+  document.getElementById('n4-fc-res-bad').textContent = n4FCBad;
+}
+
+// ── N4 Minna ──
+let n4MinnaBab = 0;
+function buildN4Minna() {
+  const el = document.getElementById('n4-minna-content');
+  if (!el || !N4_MINNA_DATA) return;
+  const tabs = '<div class="minna-tabs-wrap"><div class="minna-tabs">' +
+    N4_MINNA_DATA.map((b,i) =>
+      '<button class="minna-tab' + (i===0?' active':'') + '" onclick="switchN4Minna('+i+')" id="n4-minna-tab-'+i+'">Bab '+b.bab+'</button>'
+    ).join('') + '</div></div>';
+  const sections = N4_MINNA_DATA.map((b,i) =>
+    '<div class="minna-section' + (i===0?' active':'') + '" id="n4-minna-sect-'+i+'">' +
+      '<div class="bab-header"><div class="bab-title-jp">' + b.judul_jp + '</div>' +
+        '<div class="bab-title-id">' + b.judul_id + '</div>' +
+        '<div class="bab-tema">Bab ' + b.bab + ' — ' + b.tema + '</div></div>' +
+      '<div class="minna-pola"><h4>📌 Pola Kalimat</h4>' +
+        b.pola.map(p =>
+          '<div class="pola-item"><div class="pola-pat">' + p.pat + '</div>' +
+          '<div class="pola-desc">' + p.desc + '</div></div>'
+        ).join('') + '</div>' +
+      '<div class="minna-contoh"><h4>📝 Contoh Kalimat</h4>' +
+        b.contoh.map(c =>
+          '<div class="contoh-item"><div class="contoh-jp">' + c.jp + '</div>' +
+          '<div class="contoh-rom">' + c.rom + '</div>' +
+          '<div class="contoh-id">' + c.id + '</div></div>'
+        ).join('') + '</div>' +
+      '<div class="minna-kaiwa"><h4>💬 ' + b.kaiwa.judul + '</h4>' +
+        b.kaiwa.baris.map(l =>
+          '<div class="kaiwa-line"><span class="kaiwa-speaker">' + l.speaker + '</span>' +
+          '<div><div class="kaiwa-jp">' + l.jp + '</div><div class="kaiwa-id">' + l.id + '</div></div></div>'
+        ).join('') + '</div>' +
+      '<div class="minna-vocab"><h4>📚 Kosakata Bab ' + b.bab + '</h4>' +
+        '<div class="vocab-minna-grid">' +
+          b.vocab.map(v =>
+            '<div class="vocab-minna-item"><span class="vocab-minna-jp">' + v.jp + '</span>' +
+            '<span class="vocab-minna-rom">' + v.rom + '</span>' +
+            '<span class="vocab-minna-id">' + v.id + '</span></div>'
+          ).join('') + '</div></div>' +
+      '<div class="bab-nav-row">' +
+        (i>0 ? '<button class="bab-nav-btn" onclick="switchN4Minna('+(i-1)+')">← Bab '+(b.bab-1)+'</button>' : '<span></span>') +
+        (i<N4_MINNA_DATA.length-1 ? '<button class="bab-nav-btn" onclick="switchN4Minna('+(i+1)+')">Bab '+(b.bab+1)+' →</button>' : '<span></span>') +
+      '</div>' +
+    '</div>'
+  ).join('');
+  el.innerHTML = tabs + sections;
+}
+function switchN4Minna(idx) {
+  document.querySelectorAll('[id^="n4-minna-sect-"]').forEach((s,i) => s.classList.toggle('active',i===idx));
+  document.querySelectorAll('[id^="n4-minna-tab-"]').forEach((t,i) => {
+    t.classList.toggle('active',i===idx);
+    if(i===idx) t.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  });
+}
+
+// ── N4 Dokkai ──
+let n4DokkaiAnswered = {};
+function buildN4Dokkai() {
+  const tabsEl = document.getElementById('n4-dokkai-tabs');
+  const contentEl = document.getElementById('n4-dokkai-content');
+  if (!tabsEl || !contentEl) return;
+  tabsEl.innerHTML = N4_DOKKAI_DATA.map((d,i) =>
+    '<button class="dokkai-tab'+(i===0?' active':'')+'" onclick="switchN4Dokkai('+i+')">Teks '+d.id+'</button>'
+  ).join('');
+  contentEl.innerHTML = N4_DOKKAI_DATA.map((d,i) => {
+    const qHTML = d.questions.map(q =>
+      '<div class="dokkai-q-card" id="n4dk-q-'+d.id+'-'+q.num+'">' +
+        '<div class="dokkai-q-num">Soal '+q.num+'</div>' +
+        '<div class="dokkai-q-text">'+q.q_jp+'</div>' +
+        '<div class="dokkai-q-text-id">'+q.q_id+'</div>' +
+        '<div class="dokkai-opts">'+
+          q.opts.map((o,oi) =>
+            '<button class="dokkai-opt" id="n4dk-opt-'+d.id+'-'+q.num+'-'+oi+'" onclick="selectN4DokkaiOpt('+d.id+','+q.num+','+oi+')">' +
+              '<span class="opt-num">'+(oi+1)+'.</span>' +
+              '<span><span class="opt-jp">'+o.jp+'</span><span class="opt-id">'+o.id+'</span></span>' +
+            '</button>'
+          ).join('') +
+        '</div>' +
+        '<div class="dokkai-explanation" id="n4dk-exp-'+d.id+'-'+q.num+'">'+q.exp+'</div>' +
+      '</div>'
+    ).join('');
+    const vocabChips = d.vocab.map(v =>
+      '<span class="dokkai-vocab-chip">'+v.jp+'<span>'+v.id+'</span></span>'
+    ).join('');
+    return '<div class="dokkai-content'+(i===0?' active':'')+'" id="n4-dokkai-sect-'+i+'">' +
+      '<div class="dokkai-header" style="background:linear-gradient(135deg,#2E1065 0%,#4C1D95 100%)">' +
+        '<div class="dokkai-header-left">' +
+          '<div class="dk-label">Teks '+d.id+' — Dokkai N4 <span class="n4-badge">N4</span></div>' +
+          '<div class="dk-title">'+d.judul+'</div>' +
+          '<div class="dk-topic">'+d.topik+'</div>' +
+        '</div>' +
+        '<div class="dk-badge">'+d.questions.length+' soal</div>' +
+      '</div>' +
+      '<div class="dokkai-passage-box">' +
+        '<div class="dokkai-passage-label">文章 Bacaan</div>' +
+        '<div class="dokkai-text">'+d.passage.replace(/\n/g,'<br>')+'</div>' +
+        '<div class="dokkai-vocab-row">'+vocabChips+'</div>' +
+      '</div>' +
+      '<div class="dokkai-score-bar" id="n4dk-score-'+d.id+'">' +
+        '<div class="dokkai-score-top"><div>' +
+          '<div class="dokkai-score-num" id="n4dk-score-num-'+d.id+'">0 / '+d.questions.length+'</div>' +
+          '<div class="dokkai-score-label" id="n4dk-score-msg-'+d.id+'">Jawab semua soal dulu!</div>' +
+        '</div></div>' +
+        '<div class="dokkai-score-prog"><div class="dokkai-score-fill" id="n4dk-score-fill-'+d.id+'" style="width:0%;background:linear-gradient(90deg,#7C3AED,#A855F7)"></div></div>' +
+      '</div>' +
+      '<div class="dokkai-questions">'+qHTML+'</div>' +
+      '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">' +
+        '<button class="btn-dokkai-check" style="background:#7C3AED" onclick="checkN4Dokkai('+d.id+','+d.questions.length+')">📝 Periksa Jawaban</button>' +
+        '<button class="btn-dokkai-reset" onclick="resetN4Dokkai('+d.id+','+d.questions.length+')">🔄 Ulangi</button>' +
+      '</div>' +
+      '<div class="dokkai-nav-row">' +
+        '<button class="dokkai-nav-btn" onclick="switchN4Dokkai('+(i-1)+')" '+(i===0?'disabled':'')+'>← Teks '+(d.id-1)+'</button>' +
+        '<button class="dokkai-nav-btn" onclick="switchN4Dokkai('+(i+1)+')" '+(i===N4_DOKKAI_DATA.length-1?'disabled':'')+'>Teks '+(d.id+1)+' →</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+function switchN4Dokkai(idx) {
+  if(idx<0||idx>=N4_DOKKAI_DATA.length) return;
+  document.querySelectorAll('[id^="n4-dokkai-sect-"]').forEach((e,i)=>e.classList.toggle('active',i===idx));
+  document.querySelectorAll('#n4-dokkai-tabs .dokkai-tab').forEach((e,i)=>{
+    e.classList.toggle('active',i===idx);
+    if(i===idx) e.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function selectN4DokkaiOpt(tid,qn,oi) {
+  const key=tid+'_'+qn;
+  for(let i=0;i<4;i++){const e=document.getElementById('n4dk-opt-'+tid+'-'+qn+'-'+i);if(e){e.style.background='';e.style.borderColor='';}}
+  const sel=document.getElementById('n4dk-opt-'+tid+'-'+qn+'-'+oi);
+  if(sel){sel.style.background='#F3EFFF';sel.style.borderColor='#7C3AED';}
+  n4DokkaiAnswered[key]=oi;
+}
+function checkN4Dokkai(tid,totalQ) {
+  const teks=N4_DOKKAI_DATA.find(d=>d.id===tid);if(!teks)return;
+  let correct=0;
+  teks.questions.forEach(q=>{
+    const key=tid+'_'+q.num; const chosen=n4DokkaiAnswered[key];
+    for(let i=0;i<q.opts.length;i++){const e=document.getElementById('n4dk-opt-'+tid+'-'+q.num+'-'+i);if(e){e.disabled=true;e.style.background='';e.style.borderColor='';}}
+    const ce=document.getElementById('n4dk-opt-'+tid+'-'+q.num+'-'+q.answer);if(ce)ce.classList.add('correct');
+    if(chosen!==undefined&&chosen!==q.answer){const we=document.getElementById('n4dk-opt-'+tid+'-'+q.num+'-'+chosen);if(we)we.classList.add('wrong');}
+    if(chosen===q.answer)correct++;
+    const ee=document.getElementById('n4dk-exp-'+tid+'-'+q.num);if(ee)ee.classList.add('show');
+  });
+  const sb=document.getElementById('n4dk-score-'+tid);if(sb)sb.classList.add('show');
+  const ne=document.getElementById('n4dk-score-num-'+tid);if(ne)ne.textContent=correct+' / '+totalQ;
+  const fe=document.getElementById('n4dk-score-fill-'+tid);if(fe)fe.style.width=Math.round(correct/totalQ*100)+'%';
+  const me=document.getElementById('n4dk-score-msg-'+tid);
+  if(me){const p=correct/totalQ;me.textContent=p===1?'🏆 Sempurna!':p>=0.7?'🎉 Bagus!':p>=0.5?'📚 Lumayan!':'💪 Semangat!';}
+}
+function resetN4Dokkai(tid,totalQ) {
+  const teks=N4_DOKKAI_DATA.find(d=>d.id===tid);if(!teks)return;
+  teks.questions.forEach(q=>{
+    delete n4DokkaiAnswered[tid+'_'+q.num];
+    for(let i=0;i<q.opts.length;i++){const e=document.getElementById('n4dk-opt-'+tid+'-'+q.num+'-'+i);if(e){e.disabled=false;e.classList.remove('correct','wrong');e.style.background='';e.style.borderColor='';}}
+    const ee=document.getElementById('n4dk-exp-'+tid+'-'+q.num);if(ee)ee.classList.remove('show');
+  });
+  const sb=document.getElementById('n4dk-score-'+tid);if(sb)sb.classList.remove('show');
+}
+
+// ── N4 Choukai ──
+let n4ChoukaiAnswered = {};
+function buildN4Choukai() {
+  const tabsEl=document.getElementById('n4-choukai-tabs');
+  const contentEl=document.getElementById('n4-choukai-content');
+  if(!tabsEl||!contentEl)return;
+  tabsEl.innerHTML=N4_CHOUKAI_DATA.map((d,i)=>
+    '<button class="choukai-tab'+(i===0?' active':'')+'" onclick="switchN4Choukai('+i+')">Video '+d.id+'</button>'
+  ).join('');
+  contentEl.innerHTML=N4_CHOUKAI_DATA.map((d,i)=>{
+    const qHTML=d.questions.map(q=>
+      '<div class="choukai-q-card" id="n4ck-q-'+d.id+'-'+q.num+'">' +
+        '<div class="choukai-q-num">'+q.section+' — Soal '+q.num+'</div>' +
+        '<div class="choukai-q-text">'+q.q_jp+'</div>' +
+        '<div class="choukai-q-text-id">'+q.q_id+'</div>' +
+        '<div class="choukai-opts">'+
+          q.opts.map((o,oi)=>
+            '<button class="choukai-opt" id="n4ck-opt-'+d.id+'-'+q.num+'-'+oi+'" onclick="selectN4ChoukaiOpt('+d.id+','+q.num+','+oi+','+q.opts.length+')">' +
+              '<span class="ck-opt-num">'+(oi+1)+'.</span>' +
+              '<span><span class="ck-opt-jp">'+o.jp+'</span><span class="ck-opt-id">'+o.id+'</span></span>' +
+            '</button>'
+          ).join('')+
+        '</div>'+
+        '<div class="choukai-exp" id="n4ck-exp-'+d.id+'-'+q.num+'">'+q.exp+'</div>'+
+      '</div>'
+    ).join('');
+    return '<div class="choukai-section'+(i===0?' active':'')+'" id="n4-choukai-sect-'+i+'">' +
+      '<div class="choukai-header">' +
+        '<div class="choukai-header-left">' +
+          '<div class="ck-label">Video '+d.id+' — Choukai N4 <span class="n4-badge">N4</span></div>' +
+          '<div class="ck-title">'+d.judul+'</div>' +
+          '<div class="ck-topic">'+d.topik+'</div>' +
+        '</div><div class="ck-badge">'+d.questions.length+' soal</div>' +
+      '</div>' +
+      '<div class="choukai-tips-box">' +
+        '<div class="ck-tip-icon">💡</div>' +
+        '<div class="ck-tip-text"><strong>Tips:</strong> '+d.tips+'</div>' +
+      '</div>' +
+      '<div class="choukai-video-wrap">' +
+        '<iframe src="https://www.youtube.com/embed/'+d.videoId+'?list='+d.playlist+'&index='+d.playlistIndex+'&rel=0&modestbranding=1" title="'+d.judul+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>' +
+      '</div>' +
+      '<div class="ck-fallback-link">🎬 Video tidak muncul? <a href="https://www.youtube.com/watch?v='+d.videoId+'&list='+d.playlist+'" target="_blank" rel="noopener noreferrer">Buka di YouTube →</a></div>' +
+      '<div class="choukai-q-section">' +
+        '<div class="choukai-q-label">問題 Soal Latihan</div>' +
+        '<div class="choukai-score-bar" id="n4ck-score-'+d.id+'">' +
+          '<div class="choukai-score-top"><div>' +
+            '<div class="choukai-score-num" id="n4ck-score-num-'+d.id+'">0 / '+d.questions.length+'</div>' +
+            '<div class="choukai-score-label" id="n4ck-score-msg-'+d.id+'">Jawab semua soal dulu!</div>' +
+          '</div></div>' +
+          '<div class="choukai-score-prog"><div class="choukai-score-fill" id="n4ck-score-fill-'+d.id+'" style="width:0%"></div></div>' +
+        '</div>' +
+        '<div class="choukai-q-cards">'+qHTML+'</div>' +
+        '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:1rem">' +
+          '<button class="btn-choukai-check" onclick="checkN4Choukai('+d.id+','+d.questions.length+')">📝 Periksa Jawaban</button>' +
+          '<button class="btn-choukai-reset" onclick="resetN4Choukai('+d.id+','+d.questions.length+')">🔄 Ulangi</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="choukai-nav-row">' +
+        '<button class="choukai-nav-btn" onclick="switchN4Choukai('+(i-1)+')" '+(i===0?'disabled':'')+'>← Video '+(d.id-1)+'</button>' +
+        '<button class="choukai-nav-btn" onclick="switchN4Choukai('+(i+1)+')" '+(i===N4_CHOUKAI_DATA.length-1?'disabled':'')+'>Video '+(d.id+1)+' →</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+function switchN4Choukai(idx) {
+  if(idx<0||idx>=N4_CHOUKAI_DATA.length)return;
+  document.querySelectorAll('[id^="n4-choukai-sect-"]').forEach((e,i)=>e.classList.toggle('active',i===idx));
+  document.querySelectorAll('#n4-choukai-tabs .choukai-tab').forEach((e,i)=>{
+    e.classList.toggle('active',i===idx);
+    if(i===idx)e.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function selectN4ChoukaiOpt(vid,qn,oi,tot) {
+  const key=vid+'_'+qn;
+  for(let i=0;i<tot;i++){const e=document.getElementById('n4ck-opt-'+vid+'-'+qn+'-'+i);if(e){e.style.background='';e.style.borderColor='';}}
+  const sel=document.getElementById('n4ck-opt-'+vid+'-'+qn+'-'+oi);
+  if(sel){sel.style.background='#F3EFFF';sel.style.borderColor='#7C3AED';}
+  n4ChoukaiAnswered[key]=oi;
+}
+function checkN4Choukai(vid,totalQ) {
+  const data=N4_CHOUKAI_DATA.find(d=>d.id===vid);if(!data)return;
+  let correct=0;
+  data.questions.forEach(q=>{
+    const key=vid+'_'+q.num;const chosen=n4ChoukaiAnswered[key];
+    for(let i=0;i<q.opts.length;i++){const e=document.getElementById('n4ck-opt-'+vid+'-'+q.num+'-'+i);if(e){e.disabled=true;e.style.background='';e.style.borderColor='';}}
+    const ce=document.getElementById('n4ck-opt-'+vid+'-'+q.num+'-'+q.answer);if(ce)ce.classList.add('correct');
+    if(chosen!==undefined&&chosen!==q.answer){const we=document.getElementById('n4ck-opt-'+vid+'-'+q.num+'-'+chosen);if(we)we.classList.add('wrong');}
+    if(chosen===q.answer)correct++;
+    const ee=document.getElementById('n4ck-exp-'+vid+'-'+q.num);if(ee)ee.classList.add('show');
+  });
+  const sb=document.getElementById('n4ck-score-'+vid);if(sb){sb.classList.add('show');sb.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  const ne=document.getElementById('n4ck-score-num-'+vid);if(ne)ne.textContent=correct+' / '+totalQ;
+  const fe=document.getElementById('n4ck-score-fill-'+vid);if(fe)fe.style.width=Math.round(correct/totalQ*100)+'%';
+  const me=document.getElementById('n4ck-score-msg-'+vid);
+  if(me){const p=correct/totalQ;me.textContent=p===1?'🏆 Sempurna!':p>=0.7?'🎉 Bagus!':p>=0.5?'📻 Lumayan!':'💪 Semangat! Dengarkan videonya dulu.';}
+}
+function resetN4Choukai(vid,totalQ) {
+  const data=N4_CHOUKAI_DATA.find(d=>d.id===vid);if(!data)return;
+  data.questions.forEach(q=>{
+    delete n4ChoukaiAnswered[vid+'_'+q.num];
+    for(let i=0;i<q.opts.length;i++){const e=document.getElementById('n4ck-opt-'+vid+'-'+q.num+'-'+i);if(e){e.disabled=false;e.classList.remove('correct','wrong');e.style.background='';e.style.borderColor='';}}
+    const ee=document.getElementById('n4ck-exp-'+vid+'-'+q.num);if(ee)ee.classList.remove('show');
+  });
+  const sb=document.getElementById('n4ck-score-'+vid);if(sb)sb.classList.remove('show');
+}
+
 </script>
+
+
 </body>
 </html>
